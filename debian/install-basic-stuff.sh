@@ -2,6 +2,6 @@
 
 echo -e "Installing some basic packages...\n"
 
-apt-get install -y vim curl git build-essential htop
+apt-get install -y vim curl git build-essential htop lsb-release
 
 
