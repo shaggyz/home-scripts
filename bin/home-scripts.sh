@@ -23,6 +23,8 @@ fi
 read -p "Configure bash? " -n 1 -r
 echo
 
+sed -i s/#force_color_prompt/force_color_prompt/ $HOME/.bashrc
+
 if [[ $REPLY =~ ^[Yy]$ ]]; then
    if [ -f "../bash/$USER-bashrc" ]; then
        cat "../bash/$USER-bashrc" >> $HOME/.bashrc
