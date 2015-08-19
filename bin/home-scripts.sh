@@ -16,11 +16,12 @@ read -p "Configure vim? " -n 1 -r
 echo
 
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    cp -R vim/.vim* $HOME/
+    cp -R ../vim/.vim* $HOME/
 fi
 
 # Bash configuration
 read -p "Configure bash? " -n 1 -r
+echo
 
 if [[ $REPLY =~ ^[Yy]$ ]]; then
    if [ -f "../bash/$USER-bashrc" ]; then
@@ -30,3 +31,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
    fi
 fi
 
+echo
+echo "Environment configured. Bye!"
+echo
