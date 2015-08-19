@@ -1,0 +1,14 @@
+# 256 colors terminal
+export TERM=xterm-256color
+
+# Aliases
+alias ls='ls --color=auto'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# My visual editor will be vim
+export VISUAL=vi
