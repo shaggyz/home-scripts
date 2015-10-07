@@ -11,6 +11,14 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     ./install-basic-stuff.sh
 fi
 
+# Linux headers
+read -p "Install linux headers? " -n 1 -r
+echo 
+
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    apt-get install -y linux-headers-`uname -r`
+fi
+
 # Vim configuration
 read -p "Configure vim? " -n 1 -r
 echo
