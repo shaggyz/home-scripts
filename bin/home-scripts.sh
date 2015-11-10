@@ -11,6 +11,14 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     ./install-basic-stuff.sh
 fi
 
+# X11 configuration
+read -p "Configure X11? " -n 1 -r
+echo 
+
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    ./x11configuration.sh
+fi
+
 # Linux headers
 read -p "Install linux headers? " -n 1 -r
 echo 
