@@ -1,9 +1,8 @@
-" Misc stuff
 set number
 set showcmd
 set foldmethod=marker
 
-" Needed for Syntax Highlighting and stuff
+" Needed for Syntax Highlighting
 filetype on
 syntax on
 filetype plugin on
@@ -16,11 +15,11 @@ set autoindent
 " Highlight current line
 set cursorline
 
-" Spaces are better than a tab character
+" Use spaces for tabulation <3
 set expandtab
 set smarttab
 
-" Who wants an 8 character tab?  Not me!
+" Who wants an 8 character tab?
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
@@ -28,18 +27,6 @@ set softtabstop=4
 " Current line highlight
 set hlsearch
 
+" run install.sh to get this theme
 " $HOME/.vim/colors/molokai.vim
 colorscheme molokai
-
-"
-" Plugin configuration
-"
-
-" CtrlP
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-
-" NERDTree
-map <C-n> :NERDTreeToggle<CR>
-
