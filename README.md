@@ -1,33 +1,30 @@
 # My unix home rc's files
 
-## Automated configuration for "vanilla" linux installations:
-## Usage
+## Configurations
 
-```bash
-# The only requirement
-sudo apt install git
+Current configuration and plugins that currently I use in Unix
 
-# Clone this repo
-git clone https://github.com/shaggyz/home-scripts.git
+- GNU screen
+- vim
+- bash
+- X11
 
-# Move to bin directory
-cd home-scripts/bin
+Some default packages for different OS
 
-# Run the installation script (always inside bin/)
-./home-scripts
-```
+- debian
+- OSX
 
 ## Installation script
 
-This script will ask you from some installation options. Note when bash asks for yes/no it doesn't wait for an intro keytroke as other scripts.
+Install/Update config files:
 
-All this actions will be prompted to user:
+```
+./install.sh update
+```
 
-- Install basic linux (install -y vim curl git build-essential htop lsb-release colordiff)
-- Configures X11 (xterm, xsession)
-- Install linux headers
-- Configures vim (editor settings plus molokai theme)
-- Configures bash (env vars, PS1, common paths, etc)
+Install system packages
 
-
+```
+./install.sh os
+```
 
