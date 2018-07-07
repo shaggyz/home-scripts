@@ -1,0 +1,81 @@
+set number
+set showcmd
+set foldmethod=marker
+
+" Needed for Syntax Highlighting
+filetype on
+syntax on
+filetype plugin on
+syntax enable
+set grepprg=grep\ -nH\ $*
+
+" Who doesn't like autoindent?
+set autoindent
+
+" Highlight current line
+set cursorline
+
+" Use spaces for tabulatio:n <3
+set expandtab
+set smarttab
+
+" Who wants an 8 character tab?
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+
+" Disable swap files
+set noswapfile
+
+" Current line highlight
+set hlsearch
+
+" Disable the terminal bell
+set visualbell t_vb=
+
+" Color theme, available themes:
+
+" colorscheme molokai
+colorscheme afterglow
+
+" Plugin autoloading runtime
+execute pathogen#infect()
+call pathogen#helptags()
+
+" Plugin configuration
+
+" NERDTree configuration
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
+" Quit vim if NERDTree is the last buffer
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Markdown Preview
+let g:instant_markdown_autostart = 0
+
+" Syntastic configuration (Check the php path)
+let g:syntastic_php_checkers = ['php', 'phpcs']
+let g:syntastic_php_php_exec = '/opt/local/bin/php'
+
+" Airline buffers tab
+let g:airline#extensions#tabline#enabled = 1
+
+" Key maps
+
+" Toggle NRDTree with CTRL+N
+map <C-n> :NERDTreeToggle<CR>
+
+" Markdown preview
+" map <C-m> <C-a> :InstantMarkdownPreview<CR>
+
+" Format JSON
+" map <C-m> <C-j> :%!python -m json.tool
+
+" Navigation between buffers with TAB
+noremap <Tab> :bnext<CR>
+noremap <S-Tab> :bprevious<CR>
+
+" Close buffer from nerdtree without exit vim
+nnoremap c :bp\|bd #<CR>
+

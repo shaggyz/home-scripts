@@ -1,0 +1,30 @@
+# Bash profile mainly used in OSX/BSD
+
+# Git aliases
+alias gb='git branch'
+alias gca='git add . && git commit -a'
+alias gs='git status'
+alias gl='git log'
+
+export TERM=xterm-256color
+
+# Some colors
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# vim <3
+export VISUAL=vi
+
+# Git autocompletion
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+
+# Prompt
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+export CLICOLOR=1
+export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[00m\]\[\033[38;5;221m\]$(parse_git_branch)\e[m\]\$ '
