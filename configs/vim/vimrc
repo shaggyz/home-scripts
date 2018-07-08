@@ -1,3 +1,7 @@
+" -----------------------------------------------------------------------------
+" Vim editor config values
+" -----------------------------------------------------------------------------
+
 set number
 set showcmd
 set foldmethod=marker
@@ -36,13 +40,16 @@ set visualbell t_vb=
 " Color theme, available themes:
 
 " colorscheme molokai
-colorscheme afterglow
+ colorscheme afterglow
+" colorscheme monokai_pro
 
 " Plugin autoloading runtime
 execute pathogen#infect()
 call pathogen#helptags()
 
+" -----------------------------------------------------------------------------
 " Plugin configuration
+" -----------------------------------------------------------------------------
 
 " NERDTree configuration
 let NERDTreeMinimalUI = 1
@@ -61,7 +68,9 @@ let g:syntastic_php_php_exec = '/opt/local/bin/php'
 " Airline buffers tab
 let g:airline#extensions#tabline#enabled = 1
 
+" -----------------------------------------------------------------------------
 " Key maps
+" -----------------------------------------------------------------------------
 
 " Toggle NRDTree with CTRL+N
 map <C-n> :NERDTreeToggle<CR>
@@ -77,5 +86,14 @@ noremap <Tab> :bnext<CR>
 noremap <S-Tab> :bprevious<CR>
 
 " Close buffer from nerdtree without exit vim
-nnoremap c :bp\|bd #<CR>
+nnoremap <S-w> :bp\|bd #<CR>
+
+" Expand Emmet with tab in insert mode
+imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+
+" Remove hlsearch with double CTRL+C
+nnoremap <C-c><C-c> :silent! nohls<cr>
+
+" Opent the current file's directory in NERDTree with \r
+map <leader>r :NERDTreeFind<cr>
 

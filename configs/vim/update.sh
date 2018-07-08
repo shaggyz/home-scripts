@@ -13,6 +13,10 @@ VIM_AUTOLOAD="$VIM_CONFIG_DIR/autoload"
 GREEN=$(tput setaf 2)
 NORMAL=$(tput sgr0)
 
+#-------------------------------------------------------------------------------
+# Backup configuration, and copy new config files from repository
+#-------------------------------------------------------------------------------
+
 # Check existent backup
 
 if [ ! -d $VIM_CONFIG_BACKUP ]; then
@@ -33,7 +37,9 @@ mkdir -p $VIM_CONFIG_DIR $VIM_COLORS $VIM_BUNDLE $VIM_AUTOLOAD
 mkdir -p "$VIM_AUTOLOAD/airline/themes"
 cp vimrc "$VIM_CONFIG_FILE"
 
+#-------------------------------------------------------------------------------
 # Install plugins
+#-------------------------------------------------------------------------------
 
 printf "\n${GREEN}Installing plugins and themes${NORMAL}\n\n"
 GITHUB="https://raw.githubusercontent.com"
@@ -63,6 +69,24 @@ git clone --dept=1 "https://github.com/vim-airline/vim-airline" "$VIM_BUNDLE/vim
 
 # Instant markdown
 git clone --dept=1 "https://github.com/suan/vim-instant-markdown" "$VIM_BUNDLE/vim-instant-markdown"
+
+# Emmet
+git clone --dept=1 "https://github.com/mattn/emmet-vim.git" "$VIM_BUNDLE/emmet-vim"
+
+# Git fugitive
+git clone --dept=1 "https://github.com/tpope/vim-fugitive.git" "$VIM_BUNDLE/vim-fugitive"
+
+# Git gutter 
+git clone --dept=1 "http://github.com/airblade/vim-gitgutter.git" "$VIM_BUNDLE/vim-gitgutter"
+
+# Auto pair
+git clone --dept=1 "https://github.com/jiangmiao/auto-pairs" "$VIM_BUNDLE/auto-pairs"
+
+# Vim table mode
+git clone --dept=1 "https://github.com/dhruvasagar/vim-table-mode" "$VIM_BUNDLE/vim-table-mode"
+
+# Vim REST client
+git clone --dept=1 "https://github.com/diepm/vim-rest-console" "$VIM_BUNDLE/vim-rest-console"
 
 printf "\n${GREEN}Vim plugins and confguration updated${NORMAL}\n\n"
 
