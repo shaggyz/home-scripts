@@ -23,7 +23,7 @@ if [ "$1" = "--repository" ]; then
     echo "Updating home-scripts vimrc with your current .vimrc configuration..."
     rm "$VIM_SOURCE_DIR/vimrc"
     cp $VIM_CONFIG_FILE "$VIM_SOURCE_DIR/vimrc"
-    git add $VIM_SOURCE_DIR
+    git add "$VIM_SOURCE_DIR/../.."
     git commit
     git push origin master
     echo "Configuration updated in github!"
@@ -104,6 +104,12 @@ git clone --dept=1 "https://github.com/dhruvasagar/vim-table-mode" "$VIM_BUNDLE/
 
 # Vim REST client
 # git clone --dept=1 "https://github.com/diepm/vim-rest-console" "$VIM_BUNDLE/vim-rest-console"
+
+# VimWiki
+git clone --dept=1 "https://github.com/vimwiki/vimwiki.git" "$VIM_BUNDLE/vim-wiki"
+
+# Vim calendar
+git clone --dept=1 "https://github.com/mattn/calendar-vim" "$VIM_BUNDLE/vim-calendar"
 
 printf "\n${GREEN}Vim plugins and confguration updated${NORMAL}\n\n"
 
