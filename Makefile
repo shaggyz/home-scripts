@@ -26,9 +26,8 @@ release: ## Release local configuration to github
 	./configs/vim/update.sh --repository
 	cp -f ~/.tmux.conf configs/tmux/tmux.conf
 	cp -f ~/.screenrc configs/screen/general.screenrc
-	git diff
 	@echo "Pushing to github..."
 	git add .
 	git commit
-	git pull origin master
+	git push origin master
 
