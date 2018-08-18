@@ -108,14 +108,10 @@ let g:vimwiki_table_mappings = 0
 map <C-n> :NERDTreeToggle<CR>
 
 " Markdown preview
-" map <C-m> <C-a> :InstantMarkdownPreview<CR>
+map <leader>mp :set ft=markdown \| e \| InstantMarkdownPreview<CR>
 
 " Format JSON
-" map <C-m> <C-j> :%!python -m json.tool
-
-" Navigation between buffers with TAB and SHIFT+TAB
-noremap <Tab> :bnext<CR>
-noremap <S-Tab> :bprevious<CR>
+map <leader>jsf :% !python -m json.tool<CR>
 
 " Close buffer from nerdtree without exit vim
 nnoremap <S-w> :bp\|bd #<CR>
@@ -129,4 +125,10 @@ nnoremap <C-c><C-c> :silent! nohls<cr>
 " Opent the current file's directory in NERDTree with \r
 map <leader>r :NERDTreeFind<cr>
 
+" VimWiki, disable fucking backspace
+nmap <Leader>wb <Plug>VimwikiGoBackLink
+
+" Navigation between buffers with SHIFT+h and SHIFT+l
+map <S-h> :bprev!<CR>
+map <S-l> :bnext!<CR>
 
