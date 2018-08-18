@@ -23,10 +23,6 @@ if [ "$1" = "--repository" ]; then
     echo "Updating home-scripts vimrc with your current .vimrc configuration..."
     rm "$VIM_SOURCE_DIR/vimrc"
     cp $VIM_CONFIG_FILE "$VIM_SOURCE_DIR/vimrc"
-    git add "$VIM_SOURCE_DIR/../.."
-    git commit
-    git push origin master
-    echo "Configuration updated in github!"
     exit
 fi
 

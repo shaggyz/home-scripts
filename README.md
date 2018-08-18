@@ -1,21 +1,21 @@
 # My unix home configuration files
 
-Configurations/plugins for some unix programs that I use every day.
+Configuration files for programs that I use in a daily basis. Used to keep the configuration synchronised between different environments. Configurations included:
 
 - GNU screen
+- tmux
 - vim
 - bash
 - X11
 
+## Usage
+
+If you want to install all the configurations `make update`. Otherwise you can update specific programs, for example: `make tmux`, `make screen`.
+
 ## Vim 
 
-For vim, there is a script to maintain/update plugins and configurations, you can execute it with this command:
-
-```
-./configs/vim/update.sh
-``` 
-
-It will backup your current configuration in `$HOME/.vim.backup` before to make any change.
+In order to install vim configuration you can use `make vim`. 
+It will backup your current vim configuration in `$HOME/.vim.backup` before to make any change. The same with other files, for example: `~/.tmux.conf` -> `~/.tmux.conf.bkp`
 
 ### Vim key mappings
 
