@@ -10,7 +10,6 @@ set foldmethod=marker
 filetype on
 syntax on
 filetype plugin on
-syntax enable
 set grepprg=grep\ -nH\ $*
 
 " Who doesn't like autoindent?
@@ -31,46 +30,79 @@ set softtabstop=4
 " Disable swap files
 set noswapfile
 
-" Current line highlight
+" Highlight the search
 set hlsearch
 
 " Disable the terminal bell
 set visualbell t_vb=
 
 " Color theme, available themes:
+colorscheme afterglow
 
-" colorscheme molokai
- colorscheme afterglow
-" colorscheme monokai_pro
-
-" Plugin autoloading runtime
+" Pathogen: Plugin autoloading runtime
 execute pathogen#infect()
 call pathogen#helptags()
+
+" -----------------------------------------------------------------------------
+" MacVim / graphical vim configuration
+" -----------------------------------------------------------------------------
+
+set guifont=Monaco:h12
+
+" Graphical vim will work with no dialogs.
+set guioptions=c
 
 " -----------------------------------------------------------------------------
 " Plugin configuration
 " -----------------------------------------------------------------------------
 
-" NERDTree configuration
+" --------------------
+" NERDTree      
+" --------------------
+
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
 " Quit vim if NERDTree is the last buffer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" Markdown Preview
+" --------------------
+" Markdown Preview      
+" --------------------
 let g:instant_markdown_autostart = 0
 
-" Syntastic configuration (Check the php path)
-let g:syntastic_php_checkers = ['php', 'phpcs']
-let g:syntastic_php_php_exec = '/opt/local/bin/php'
+" --------------------
+" Syntastic (used by eclim)
+" --------------------
+" let g:syntastic_php_checkers = ['php', 'phpcs']
+" let g:syntastic_php_php_exec = '/opt/local/bin/php'
+
+" --------------------
+" Airline      
+" --------------------
 
 " Airline buffers tab
 let g:airline#extensions#tabline#enabled = 1
 
+" Just show the filename (no path) in the tab
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" --------------------
+" Vim Wiki
+" --------------------
+
+" Vim Wiki configuration
+let g:vimwiki_list = [{'path': '~/.vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+
+" Disable TAB for Vim Wiki
+let g:vimwiki_table_mappings = 0
+
 " -----------------------------------------------------------------------------
 " Key maps
 " -----------------------------------------------------------------------------
+
+" allow the . to execute once for each line of a visual selection
+" vnoremap . :normal .<CR>
 
 " Toggle NRDTree with CTRL+N
 map <C-n> :NERDTreeToggle<CR>
@@ -81,19 +113,20 @@ map <C-n> :NERDTreeToggle<CR>
 " Format JSON
 " map <C-m> <C-j> :%!python -m json.tool
 
-" Navigation between buffers with TAB
+" Navigation between buffers with TAB and SHIFT+TAB
 noremap <Tab> :bnext<CR>
 noremap <S-Tab> :bprevious<CR>
 
 " Close buffer from nerdtree without exit vim
 nnoremap <S-w> :bp\|bd #<CR>
 
-" Expand Emmet with tab in insert mode
-imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+" Expand Emmet with tab in insert mode (this shit is annoying)
+" imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " Remove hlsearch with double CTRL+C
 nnoremap <C-c><C-c> :silent! nohls<cr>
 
 " Opent the current file's directory in NERDTree with \r
 map <leader>r :NERDTreeFind<cr>
+
 
