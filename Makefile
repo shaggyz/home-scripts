@@ -13,7 +13,7 @@ vim:
 
 tmux:
 	@echo "Updating tmux..."
-	cp -f ~/.tmux.conf ~/.tmux.conf.bak
+	-cp -f ~/.tmux.conf ~/.tmux.conf.bak
 	cp -f configs/tmux/tmux.conf ~/.tmux.conf
 
 screen:
