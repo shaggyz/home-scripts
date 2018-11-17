@@ -24,8 +24,8 @@ screen:
 release: ## Release local configuration to github
 	@echo "Collecting local configuration..."
 	./configs/vim/update.sh --repository
-	cp -f ~/.tmux.conf configs/tmux/tmux.conf
-	cp -f ~/.screenrc configs/screen/general.screenrc
+	-cp -f ~/.tmux.conf configs/tmux/tmux.conf
+	-cp -f ~/.screenrc configs/screen/general.screenrc
 	@echo "Pushing to github..."
 	git add .
 	git commit
