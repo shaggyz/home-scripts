@@ -1,5 +1,8 @@
 # Bash profile mainly used in OSX/BSD
 
+# Set vim mode
+set -o vi
+
 # Git aliases
 alias gb='git branch'
 alias gca='git add . && git commit -a'
