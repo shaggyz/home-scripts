@@ -7,6 +7,7 @@ Configuration files for programs that I use in a daily basis. Used to keep the c
 - vim
 - bash
 - X11
+- i3
 
 ## Usage
 
