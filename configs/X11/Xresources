@@ -1,0 +1,69 @@
+! -------------------------------------------
+! 				xterm
+! -------------------------------------------
+
+! Global configuration
+XTerm.termName: xterm-256color
+
+! Transparent background
+XTerm*transparent: true
+
+! --- Fonts ---------------------------------
+
+! Ugly, but safe TTF.
+!XTerm*faceName: Bitstream Vera Serif Mono
+
+! Not fancy, but it works.
+!XTerm*faceName: Monaco
+
+! Inconsolata doesnt supports unicode symbols.
+!XTerm*faceName: Inconsolata
+
+! Meh..
+XTerm*faceName: Menlo
+
+XTerm*faceSize: 9
+
+! Every shell is a login shell by default (for inclusion of all necessary environment variables)
+XTerm*loginshell: true
+
+! I like a LOT of scrollback...
+XTerm*savelines: 8000
+
+! transparent xterm windows
+URxvt.transparent: true
+URxvt.shading: 20
+
+! Included this so you know how to make your foreground not match the color of your background
+URxvt.foreground: #eeeeee
+
+! --- Colors --------------------------------
+
+#define _background #101010
+#define _foreground #e0e0e0
+#define _cursor #e0e0e0
+#define _dark_green #86c126
+#define _medium_brown #c6aa5d
+#define _light_green #abe560
+#define _light_blue #72a6db
+#define _light_magenta #74f7fc
+
+XTerm*background: _background
+XTerm*foreground: _foreground
+XTerm*cursorColor: _cursor
+
+XTerm*color0: _background
+XTerm*color1: _foreground
+XTerm*color2: _dark_green
+XTerm*color3: _medium_brown
+XTerm*color10: _light_green
+XTerm*color12: _light_blue
+XTerm*color14: _light_magenta
+
+! -------------------------------------------
+! 				shortcuts
+! -------------------------------------------
+
+XTerm.vt100.translations: #override \n\
+  Ctrl <Key> minus: smaller-vt-font() \n\
+  Ctrl <Key> plus: larger-vt-font()
