@@ -36,12 +36,8 @@ set hlsearch
 " Disable the terminal bell
 set visualbell t_vb=
 
-" Color theme, available themes:
-colorscheme afterglow
-
-" Pathogen: Plugin autoloading runtime
-execute pathogen#infect()
-call pathogen#helptags()
+" Dark
+set background=dark
 
 " -----------------------------------------------------------------------------
 " MacVim / graphical vim configuration
@@ -55,6 +51,31 @@ set guioptions=c
 " -----------------------------------------------------------------------------
 " Plugin configuration
 " -----------------------------------------------------------------------------
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+" Plugins
+Plug 'kien/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-airline/vim-airline'
+Plug 'suan/vim-instant-markdown'
+Plug 'https://github.com/vimwiki/vimwiki'
+Plug 'mattn/calendar-vim'
+" Color schemes
+" Plug 'AlessandroYorba/Alduin'
+" Plug 'danilo-augusto/vim-afterglow'
+Plug 'morhetz/gruvbox'
+call plug#end()
+
+" Color theme
+colorscheme gruvbox
+" colorscheme alduin
+" colorscheme afterglow
 
 " --------------------
 " NERDTree      
@@ -101,9 +122,6 @@ let g:vimwiki_table_mappings = 0
 " Key maps
 " -----------------------------------------------------------------------------
 
-" allow the . to execute once for each line of a visual selection
-" vnoremap . :normal .<CR>
-
 " Toggle NRDTree with CTRL+N
 map <C-n> :NERDTreeToggle<CR>
 
@@ -116,13 +134,10 @@ map <leader>jsf :% !python -m json.tool<CR>
 " Close buffer from nerdtree without exit vim
 nnoremap <S-w> :bp\|bd #<CR>
 
-" Expand Emmet with tab in insert mode (this shit is annoying)
-" imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
-
 " Remove hlsearch with double CTRL+C
 nnoremap <C-c><C-c> :silent! nohls<cr>
 
-" Opent the current file's directory in NERDTree with \r
+" Open the current file's directory in NERDTree with \r
 map <leader>r :NERDTreeFind<cr>
 
 " VimWiki, disable fucking backspace

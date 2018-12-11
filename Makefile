@@ -24,7 +24,11 @@ endif
 
 vim: ## vim and plugins
 	@echo "Updating vim..."
-	./configs/vim/update.sh
+	-cp -f ~/.vimrc ~/.vimrc.bak
+	-rm -Rf ~/.vim.bak
+	-cp -Rf ~/.vim ~/.vim.bak
+	cp configs/vim/vimrc ~/.vimrc
+	@echo "Please run :PluginInstall in vim"
 
 x11: ## Manages some X11 configuration files
 	@echo "Updating x11 files..."
@@ -48,7 +52,7 @@ screen: ## Configures GNU/Screen
 
 collect: ## Collects the current local files on this repository
 ifneq (,$(wildcard ~/.vimrc))
-	./configs/vim/update.sh --repository
+	-cp -f ~/.vimrc configs/vim/vimrc
 endif
 ifneq (,$(wildcard ~/.tmux.conf))
 	-cp -f ~/.tmux.conf configs/tmux/tmux.conf
