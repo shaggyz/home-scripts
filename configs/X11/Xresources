@@ -39,10 +39,14 @@ URxvt.foreground: #eeeeee
 
 ! --- Colors --------------------------------
 
+! Colors: https://jonasjacek.github.io/colors/
+
 #define _background #101010
 #define _foreground #e0e0e0
 #define _cursor #e0e0e0
 #define _dark_green #86c126
+#define _light_red #e04c4c
+#define _dark_red #e04c4c
 #define _medium_brown #c6aa5d
 #define _light_green #abe560
 #define _light_blue #72a6db
@@ -53,9 +57,10 @@ XTerm*foreground: _foreground
 XTerm*cursorColor: _cursor
 
 XTerm*color0: _background
-XTerm*color1: _foreground
+XTerm*color1: _dark_red
 XTerm*color2: _dark_green
 XTerm*color3: _medium_brown
+XTerm*color9: _light_red
 XTerm*color10: _light_green
 XTerm*color12: _light_blue
 XTerm*color14: _light_magenta
