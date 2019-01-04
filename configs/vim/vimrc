@@ -2,14 +2,33 @@
 " Vim editor config values
 " -----------------------------------------------------------------------------
 
+" Display line numbers.
 set number
+
+" Display the typed command in the right bottom corner.
 set showcmd
+
+" Use markers for folding only.
 set foldmethod=marker
 
-" Needed for Syntax Highlighting
+" Enable file type detection.
 filetype on
-syntax on
+
+" Load the related plugins for different file types.
 filetype plugin on
+
+" Syntax highlighting 
+syntax on
+
+" Display the help using vertical split.
+" Using some "aliases" for that.
+cabbrev help vert help
+cabbrev h vert h
+
+" Open all the buffers in vertical and right
+set splitright
+
+" Program used for searches.
 set grepprg=grep\ -nH\ $*
 
 " Who doesn't like autoindent?
@@ -36,14 +55,15 @@ set hlsearch
 " Disable the terminal bell
 set visualbell t_vb=
 
-" Dark
+" Dark mode
 set background=dark
 
 " -----------------------------------------------------------------------------
-" MacVim / graphical vim configuration
+" MacVim / gVim vim configuration
 " -----------------------------------------------------------------------------
 
-" set guifont=Monaco:h12
+" This only looks good in MacOS
+set guifont=Monaco:h12
 
 " Graphical vim will work with no dialogs.
 set guioptions=c
