@@ -8,6 +8,7 @@ Configuration files for programs that I use in a daily basis. Used to keep the c
 - bash
 - X11
 - i3
+- i3blocks
 
 ## Usage
 
