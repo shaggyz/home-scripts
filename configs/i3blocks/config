@@ -6,6 +6,12 @@ separator_block_width=22
 [cpu_load]
 interval=10
 color=#c6bebe
+label= 
+
+# Memory
+[memory]
+interval=10
+color=#c6bebe
 label= 
 
 # Disk usage in root partition
@@ -13,6 +19,12 @@ label=
 interval=300
 color=#c6bebe
 label= 
+
+# Docker container counter
+[docker]
+interval=10
+color=#c6bebe
+label= 
 
 # Fetch the public IP address only on startup
 [public_ip]

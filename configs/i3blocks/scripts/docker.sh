@@ -1,5 +1,3 @@
 #!/usr/bin/env bash
 
-CONTAINERS=$(docker ps | wc -l)
-
-
+docker ps --format "{{.ID}}" | wc -l

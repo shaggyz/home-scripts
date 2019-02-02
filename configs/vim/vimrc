@@ -63,7 +63,7 @@ set background=dark
 " -----------------------------------------------------------------------------
 
 " This only looks good in MacOS
-set guifont=Monaco:h12
+"set guifont=Monaco:h12
 
 " Graphical vim will work with no dialogs.
 set guioptions=c
