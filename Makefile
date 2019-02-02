@@ -21,6 +21,9 @@ endif
 ifneq (,$(wildcard ~/.config/i3/config))
 	make i3
 endif
+ifneq (,$(wildcard ~/.config/i3blocks))
+	make i3blocks
+endif
 
 vim: ## vim and plugins
 	@echo "Updating vim..."
@@ -39,6 +42,14 @@ i3: ## Configures i3 window manager
 	@echo "Updating i3..."
 	-cp -f ~/.config/i3/config ~/.config/i3/config.bak
 	cp configs/i3/config ~/.config/i3/config 
+
+i3blocks: ## Configures i3blocks and i3blocks scripts
+	@echo "Updating i3blocks and scripts..."
+	-tar -zcf ~/.config/i3blocks/scripts.bak.tar.gz ~/.config/i3blocks/scripts
+	-rm -Rf ~/.config/i3blocks/scripts
+	-cp -f ~/.config/i3blocks/config ~/.config/i3blocks/config.bak
+	cp configs/i3blocks/config ~/.config/i3blocks/config
+	cp -R configs/i3blocks/scripts ~/.config/i3blocks/scripts
 
 tmux: ## Configures tmux
 	@echo "Updating tmux..."
@@ -62,6 +73,10 @@ ifneq (,$(wildcard ~/.screenrc))
 endif
 ifneq (,$(wildcard ~/.config/i3/config))
 	-cp -f ~/.config/i3/config configs/i3/config
+endif
+ifneq (,$(wildcard ~/.config/i3blocks))
+	-cp -f ~/.config/i3blocks/config configs/i3blocks/config
+	-cp -Rf ~/.config/i3blocks/scripts/* configs/i3blocks/scripts/
 endif
 ifneq (,$(wildcard ~/.Xresources))
 	-cp -f ~/.Xresources configs/X11/Xresources
