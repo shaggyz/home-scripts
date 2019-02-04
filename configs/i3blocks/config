@@ -38,6 +38,11 @@ interval=3600
 color=#c6bebe
 label= 
 
+# Battery
+[battery]
+markup=pango
+interval=30
+
 # Time
 [clock]
 command=date '+%a, %d %b %Y %H:%M'

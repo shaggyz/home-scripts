@@ -25,6 +25,9 @@ syntax on
 cabbrev help vert help
 cabbrev h vert h
 
+" Mouse scrolling
+set mouse=a
+
 " Open all the buffers in vertical and right
 set splitright
 

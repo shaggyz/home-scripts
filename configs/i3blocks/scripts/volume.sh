@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-LEVEL=$(amixer get Master | grep ght: | cut -d'[' -f2 | cut -d']' -f1 | sed s/%//g)
+LEVEL=$(amixer get Master | grep '\[on\]' | head -1 | cut -d'[' -f2 | cut -d']' -f1 | sed s/%//g)
 
 # Button actions
 case $BLOCK_BUTTON in
