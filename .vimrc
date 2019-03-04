@@ -81,24 +81,20 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('~/.vim/plugged')
 " Plugins
-Plug 'kien/ctrlp.vim'
+call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
-Plug 'suan/vim-instant-markdown'
 Plug 'https://github.com/vimwiki/vimwiki'
 Plug 'mattn/calendar-vim'
-" Color schemes
-" Plug 'AlessandroYorba/Alduin'
-" Plug 'danilo-augusto/vim-afterglow'
 Plug 'morhetz/gruvbox'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'schickling/vim-bufonly'
 call plug#end()
 
 " Color theme
 colorscheme gruvbox
-" colorscheme alduin
-" colorscheme afterglow
 
 " --------------------
 " NERDTree      
@@ -106,20 +102,10 @@ colorscheme gruvbox
 
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+let NERDTreeShowHidden = 1
 
 " Quit vim if NERDTree is the last buffer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" --------------------
-" Markdown Preview      
-" --------------------
-let g:instant_markdown_autostart = 0
-
-" --------------------
-" Syntastic (used by eclim)
-" --------------------
-" let g:syntastic_php_checkers = ['php', 'phpcs']
-" let g:syntastic_php_php_exec = '/opt/local/bin/php'
 
 " --------------------
 " Airline      
@@ -148,9 +134,6 @@ let g:vimwiki_table_mappings = 0
 " Toggle NRDTree with CTRL+N
 map <C-n> :NERDTreeToggle<CR>
 
-" Markdown preview
-map <leader>mp :set ft=markdown \| e \| InstantMarkdownPreview<CR>
-
 " Format JSON
 map <leader>jsf :% !python -m json.tool<CR>
 
@@ -170,8 +153,16 @@ nmap <Leader>wb <Plug>VimwikiGoBackLink
 map <S-h> :bprev!<CR>
 map <S-l> :bnext!<CR>
 
+" Close all the buffers, except the current one
+nmap <leader>ca :BufOnly<CR>
+
+" FZF 
+nmap <C-p> :FZF<CR>
+nmap <leader>hs :Files ~<CR>
+nmap <leader>ps :Files .<CR>
+nmap <leader>s :Files ~/.vimwiki<CR>
+
 " Enable paste on gvim (Linux)
 nmap <C-V> "+gP
 imap <C-V> <ESC><C-V>i
 vmap <C-C> "+y 
-
