@@ -1,0 +1,56 @@
+# vim: set ft=dosini:
+command=~/.config/i3blocks/scripts/$BLOCK_NAME.sh
+separator_block_width=22
+
+# CPU load
+[cpu_load]
+interval=10
+color=#c6bebe
+label= 
+
+# Memory
+[memory]
+interval=10
+color=#c6bebe
+label= 
+
+# Disk usage in root partition
+[disk_usage]
+interval=300
+color=#c6bebe
+label= 
+
+# Docker container counter
+[docker]
+interval=10
+color=#c6bebe
+label= 
+
+# Fetch the public IP address only on startup
+[public_ip]
+interval=3600
+color=#c6bebe
+label= 
+
+# LAN IP address
+[lan_ip]
+interval=3600
+color=#c6bebe
+label= 
+
+# Battery
+[battery]
+markup=pango
+interval=30
+
+# Time
+[clock]
+command=date '+%a, %d %b %Y %H:%M'
+color=#c6bebe
+interval=10
+label= 
+
+# Audio volume
+[volume]
+interval=1
+color=#c6bebe
