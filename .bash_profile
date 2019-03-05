@@ -31,8 +31,9 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 # Platform-specific configurations
 
 # GNU/linux
-if [ `uname` == "Linux" ]; then
-fi
+# if [ `uname` == "Linux" ]; then
+#
+# fi
 
 # macOS / OSX
 if [ `uname` == "Darwin" ]; then
