@@ -2,6 +2,9 @@
 !.gitignore
 !.vimrc
 !.Xresources
+!.Xresources.d
+!.Xresources.d/xterm
+!.Xresources.d/unicode-rxvt
 !.tmux.conf
 !.bash_aliases
 !.bash_profile

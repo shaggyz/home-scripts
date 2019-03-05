@@ -1,0 +1,29 @@
+! vi: ft=xdefaults
+
+! -------------------------------------------
+! 				    rxvt
+! -------------------------------------------
+
+URxvt.termName: rxvt-unicode-256color
+URxvt.scrollBar: false
+URxvt.font: xft:Menlo:size=9
+URxvt.boldFont: xft:Menlo:bold:size=9
+URxvt.letterSpace: -1
+
+! transparent xterm windows
+URxvt.transparent: true
+URxvt.shading: 12
+
+URxvt*background: _background
+URxvt*foreground: _foreground
+URxvt*cursorColor: _cursor
+
+URxvt*color0: _background
+URxvt*color1: _dark_red
+URxvt*color2: _dark_green
+URxvt*color3: _medium_brown
+URxvt*color9: _light_red
+URxvt*color10: _light_green
+URxvt*color12: _light_blue
+URxvt*color14: _light_magenta
+

@@ -11,6 +11,9 @@ set showcmd
 " Use markers for folding only.
 set foldmethod=marker
 
+" Enable vim config in file comments (modeline)
+set modeline
+
 " Enable file type detection.
 filetype on
 
