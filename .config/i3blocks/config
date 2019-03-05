@@ -26,6 +26,16 @@ interval=10
 color=#c6bebe
 label= 
 
+# Wifi
+[wifi]
+interval=60
+label=
+
+# Bluetooth
+[blue]
+interval=10
+label=
+
 # Fetch the public IP address only on startup
 [public_ip]
 interval=3600
