@@ -1,7 +1,7 @@
 ! vi: ft=xdefaults
 
 ! -------------------------------------------
-! 				    xterm
+! xterm
 ! -------------------------------------------
 
 ! Global configuration
@@ -10,8 +10,6 @@ XTerm.termName: xterm-256color
 ! Font
 XTerm*faceName: Menlo
 XTerm*faceSize: 9
-
-! Every shell is a login shell by default (for inclusion of all necessary environment variables)
 XTerm*loginshell: true
 
 ! I like a LOT of scrollback...

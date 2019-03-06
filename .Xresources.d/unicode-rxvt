@@ -1,23 +1,37 @@
 ! vi: ft=xdefaults
 
 ! -------------------------------------------
-! 				    rxvt
+! rxvt
 ! -------------------------------------------
 
-URxvt.termName: rxvt-unicode-256color
+URxvt.termName: xterm-256color
 URxvt.scrollBar: false
 URxvt.font: xft:Menlo:size=9
 URxvt.boldFont: xft:Menlo:bold:size=9
 URxvt.letterSpace: -1
+URxvt.cursorBlink: 1
+
+! perl extensions
+URxvt.perl-ext-common: default,clipboard,keyboard-select,url-select,tabbedex,matcher
 
 ! transparent xterm windows
 URxvt.transparent: true
 URxvt.shading: 12
 
+! url select
+URxvt.url-select.launcher:  firefox
+URxvt.url-select.underline: true
+URxvt.matcher.rend.0: Uline Bold fg6
+URxvt.matcher.button: 1
+
+! keymaps
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+
+! colors
 URxvt*background: _background
 URxvt*foreground: _foreground
 URxvt*cursorColor: _cursor
-
 URxvt*color0: _background
 URxvt*color1: _dark_red
 URxvt*color2: _dark_green
@@ -26,4 +40,3 @@ URxvt*color9: _light_red
 URxvt*color10: _light_green
 URxvt*color12: _light_blue
 URxvt*color14: _light_magenta
-
