@@ -8,6 +8,9 @@
 !.tmux.conf
 !.bash_aliases
 !.bash_profile
+!.urxvt
+!.urxvt/ext
+!.urxvt/ext/font-size
 !.config
 !.config/i3
 !.config/i3/config

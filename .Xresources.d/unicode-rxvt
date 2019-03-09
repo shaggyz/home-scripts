@@ -12,21 +12,20 @@ URxvt.letterSpace: -1
 URxvt.cursorBlink: 1
 
 ! perl extensions
-URxvt.perl-ext-common: default,clipboard,keyboard-select,url-select,tabbedex,matcher
+URxvt.perl-ext-common: default,clipboard,keyboard-select,url-select,tabbedex,matcher,font-size
 
 ! transparent xterm windows
 URxvt.transparent: true
 URxvt.shading: 12
 
 ! url select
-URxvt.url-select.launcher:  firefox
+URxvt.url-select.launcher: x-www-browser
 URxvt.url-select.underline: true
 URxvt.matcher.rend.0: Uline Bold fg6
 URxvt.matcher.button: 1
 
 ! keymaps
-URxvt.keysym.Shift-Control-C: perl:clipboard:copy
-URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.keysym.C-equal: perl:font-size:increase
 
 ! colors
 URxvt*background: _background
