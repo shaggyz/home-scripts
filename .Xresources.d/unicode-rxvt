@@ -6,8 +6,8 @@
 
 URxvt.termName: xterm-256color
 URxvt.scrollBar: false
-URxvt.font: xft:Menlo:size=9
-URxvt.boldFont: xft:Menlo:bold:size=9
+URxvt.font: xft:Menlo:size=9:antialias=true
+URxvt.boldFont: xft:Menlo:bold:size=9:antialias=true
 URxvt.letterSpace: -1
 URxvt.cursorBlink: 1
 
@@ -21,7 +21,7 @@ URxvt.shading: 12
 ! url select
 URxvt.url-select.launcher: x-www-browser
 URxvt.url-select.underline: true
-URxvt.matcher.rend.0: Uline Bold fg6
+URxvt.matcher.rend.0: Uline fg8
 URxvt.matcher.button: 1
 
 ! keymaps

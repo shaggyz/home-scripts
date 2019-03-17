@@ -131,6 +131,13 @@ let g:vimwiki_list = [{'path': '~/.vimwiki/', 'syntax': 'markdown', 'ext': '.md'
 let g:vimwiki_table_mappings = 0
 
 " -----------------------------------------------------------------------------
+" Auto-commands for file types
+" -----------------------------------------------------------------------------
+
+" python - run the current buffer content with CTRL-B (build)
+autocmd FileType python nnoremap <buffer> <C-b> :exec '!python' shellescape(@%, 1)<CR>
+
+" -----------------------------------------------------------------------------
 " Key maps
 " -----------------------------------------------------------------------------
 
