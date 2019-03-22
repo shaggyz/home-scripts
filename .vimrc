@@ -69,7 +69,9 @@ set background=dark
 " -----------------------------------------------------------------------------
 
 " This only looks good in MacOS
-"set guifont=Monaco:h12
+if has("gui_macvim")
+    set guifont=Monaco:h12
+endif
 
 " Graphical vim will work with no dialogs.
 set guioptions=c
@@ -94,6 +96,7 @@ Plug 'morhetz/gruvbox'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'schickling/vim-bufonly'
+Plug 'davidhalter/jedi-vim'
 call plug#end()
 
 " Color theme

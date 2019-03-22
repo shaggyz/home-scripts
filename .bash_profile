@@ -48,5 +48,9 @@ if [ `uname` == "Darwin" ]; then
     fi
 
     # Lang C, country Unix
-    export LC_ALL=C
+    export LC_ALL=en_US.UTF-8
+    export LANG=en_US.UTF-8
+
+    # Vim binaries are "protected" by Apple...
+    alias vim="/opt/local/bin/vim"
 fi
