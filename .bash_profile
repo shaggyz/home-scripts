@@ -28,6 +28,9 @@ export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
+# Bash aliases
+source ~/.bash_aliases
+
 # Platform-specific configurations
 
 # GNU/linux
@@ -45,5 +48,9 @@ if [ `uname` == "Darwin" ]; then
     fi
 
     # Lang C, country Unix
-    export LC_ALL=C
+    export LC_ALL=en_US.UTF-8
+    export LANG=en_US.UTF-8
+
+    # Vim binaries are "protected" by Apple...
+    alias vim="/opt/local/bin/vim"
 fi
