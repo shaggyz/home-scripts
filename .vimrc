@@ -135,7 +135,7 @@ let g:vimwiki_table_mappings = 0
 " -----------------------------------------------------------------------------
 
 " python - run the current buffer content with CTRL-B (build)
-autocmd FileType python nnoremap <buffer> <C-b> :exec '!python' shellescape(@%, 1)<CR>
+autocmd FileType python nnoremap <buffer> <C-b> :exec '!venv/bin/python' shellescape(@%, 1)<CR>
 
 " -----------------------------------------------------------------------------
 " Key maps
