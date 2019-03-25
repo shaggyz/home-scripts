@@ -15,8 +15,16 @@
 #define _light_magenta #74f7fc
 
 ! -------------------------------------------
-!             general X11 options
+!                Xft Settings
 ! -------------------------------------------
+
+Xft*dpi: 92
+Xft*antialias: true
+Xft*hinting: true
+Xft*rgba: rgb
+Xft*autohint: false
+Xft*hintstyle: hintfull
+Xft*lcdfilter: lcddefault
 
 ! -------------------------------------------
 !              program specific

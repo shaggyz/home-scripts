@@ -90,13 +90,14 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
-Plug 'https://github.com/vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki'
 Plug 'mattn/calendar-vim'
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'schickling/vim-bufonly'
 Plug 'davidhalter/jedi-vim'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " Color theme
@@ -116,6 +117,10 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " --------------------
 " Airline      
 " --------------------
+
+" Enable powerline patched fonts.
+" Patched fonts retrieved from: https://github.com/powerline/fonts
+let g:airline_powerline_fonts = 1
 
 " Airline buffers tab
 let g:airline#extensions#tabline#enabled = 1
@@ -139,6 +144,9 @@ let g:vimwiki_table_mappings = 0
 
 " python - run the current buffer content with CTRL-B (build)
 autocmd FileType python nnoremap <buffer> <C-b> :exec '!venv/bin/python' shellescape(@%, 1)<CR>
+
+" Remove the trailing spaces in these file types
+autocmd FileType c,cpp,python,php,muttrc,xdefaults autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " -----------------------------------------------------------------------------
 " Key maps
