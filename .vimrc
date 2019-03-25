@@ -97,6 +97,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'schickling/vim-bufonly'
 Plug 'davidhalter/jedi-vim'
+Plug 'https://github.com/tpope/vim-fugitive'
 call plug#end()
 
 " Color theme
