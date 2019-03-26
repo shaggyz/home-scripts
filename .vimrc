@@ -98,6 +98,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'schickling/vim-bufonly'
 Plug 'davidhalter/jedi-vim'
 Plug 'tpope/vim-fugitive'
+Plug 'mattn/emmet-vim'
 call plug#end()
 
 " Color theme
@@ -137,6 +138,15 @@ let g:vimwiki_list = [{'path': '~/.vimwiki/', 'syntax': 'markdown', 'ext': '.md'
 
 " Disable TAB for Vim Wiki
 let g:vimwiki_table_mappings = 0
+
+" --------------------
+" Vim Emmet
+" --------------------
+
+" <C-Y> , (autocomplete/trigger command)
+" Enable emmet only in html and css files.
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
 
 " -----------------------------------------------------------------------------
 " Auto-commands for file types
