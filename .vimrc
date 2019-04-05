@@ -96,9 +96,9 @@ Plug 'morhetz/gruvbox'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'schickling/vim-bufonly'
-Plug 'davidhalter/jedi-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/emmet-vim'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 " Color theme
