@@ -29,7 +29,7 @@ filetype on
 " Load the related plugins for different file types.
 filetype plugin on
 
-" Syntax highlighting 
+" Syntax highlighting
 syntax on
 
 " Display the help using vertical split.
@@ -52,9 +52,9 @@ set autoindent
 " Highlight current line
 set cursorline
 
-" Use spaces for tabulatio:n <3
+" Use spaces for tabulation <3
 set expandtab
-set smarttab
+" set smarttab
 
 " Who wants an 8 character tab?
 set shiftwidth=4
@@ -113,11 +113,24 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
 Plug 'sumpygump/php-documentor-vim'
+Plug 'arnaud-lb/vim-php-namespace'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " Color theme
 colorscheme gruvbox
+
+" --------------------
+" PHP namespaces
+" --------------------
+
+function! IPhpInsertUse()
+    call PhpInsertUse()
+    call feedkeys('a',  'n')
+endfunction
+
+autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
+autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
 
 " --------------------
 " PHP Documentor
@@ -148,7 +161,7 @@ let g:snipMate.description_in_completion = 1
 let g:phpqa_codesniffer_args = '--standard=PSR2'
 
 " --------------------
-" NERDTree      
+" NERDTree
 " --------------------
 
 let NERDTreeMinimalUI = 1
@@ -159,7 +172,7 @@ let NERDTreeShowHidden = 1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " --------------------
-" Airline      
+" Airline
 " --------------------
 
 " Enable powerline patched fonts.
@@ -230,7 +243,7 @@ map <S-l> :bnext!<CR>
 " Close all the buffers, except the current one
 nmap <leader>ca :BufOnly<CR>
 
-" FZF 
+" FZF
 nmap <C-p> :FZF<CR>
 nmap <leader>hs :Files ~<CR>
 nmap <leader>ps :Files .<CR>
@@ -239,4 +252,4 @@ nmap <leader>s :Files ~/.vimwiki<CR>
 " Enable paste on gvim (Linux)
 nmap <C-V> "+gP
 imap <C-V> <ESC><C-V>i
-vmap <C-C> "+y 
+vmap <C-C> "+y
