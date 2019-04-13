@@ -61,6 +61,6 @@ interval=10
 label= 
 
 # Audio volume
-[volume]
-interval=1
-color=#c6bebe
+# [volume]
+# interval=1
+# color=#c6bebe

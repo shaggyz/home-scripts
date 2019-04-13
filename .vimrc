@@ -2,6 +2,12 @@
 " Vim editor config values
 " -----------------------------------------------------------------------------
 
+" It was a long journey, vi
+set nocompatible
+
+" Unicode for everything
+set encoding=UTF-8
+
 " Display line numbers.
 set number
 
@@ -10,6 +16,9 @@ set showcmd
 
 " Use markers for folding only.
 set foldmethod=marker
+
+" Disable folding
+set nofoldenable
 
 " Enable vim config in file comments (modeline)
 set modeline
@@ -99,10 +108,44 @@ Plug 'schickling/vim-bufonly'
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'joonty/vim-phpqa'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'sumpygump/php-documentor-vim'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " Color theme
 colorscheme gruvbox
+
+" --------------------
+" PHP Documentor
+" --------------------
+
+au BufRead,BufNewFile *.php inoremap <buffer> <leader>co :call PhpDoc()<CR>
+au BufRead,BufNewFile *.php nnoremap <buffer> <leader>co :call PhpDoc()<CR>
+au BufRead,BufNewFile *.php vnoremap <buffer> <leader>co :call PhpDocRange()<CR>
+
+let g:pdv_cfg_Author = 'Nicolás Palumbo <n@xinax.net>'
+let g:pdv_cfg_ClassTags = ["author"]
+
+" --------------------
+" SnipMate
+" --------------------
+
+let g:snipMate = {}
+let g:snipMate.snippet_version = 1
+
+" Display the description in the snip popup (CTR-R + TAB)
+let g:snipMate.description_in_completion = 1
+
+" --------------------
+" PHP QA
+" --------------------
+
+" SetDeopletDeopletee the codesniffer args
+let g:phpqa_codesniffer_args = '--standard=PSR2'
 
 " --------------------
 " NERDTree      
@@ -143,7 +186,7 @@ let g:vimwiki_table_mappings = 0
 " Vim Emmet
 " --------------------
 
-" <C-Y> , (autocomplete/trigger command)
+" <C-Y> , (autocomplete/trigger command, please note the comma)
 " Enable emmet only in html and css files.
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
@@ -153,10 +196,10 @@ autocmd FileType html,css EmmetInstall
 " -----------------------------------------------------------------------------
 
 " python - run the current buffer content with CTRL-B (build)
-autocmd FileType python nnoremap <buffer> <C-b> :exec '!venv/bin/python' shellescape(@%, 1)<CR>
+autocmd FileType python nnoremap <buffer> <C-b> :exec '!clear ; venv/bin/python' shellescape(@%, 1)<CR>
 
 " Remove the trailing spaces in these file types
-autocmd FileType c,cpp,python,php,muttrc,xdefaults autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,python,php,muttrc,xdefaults,css,html,config,vim autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " -----------------------------------------------------------------------------
 " Key maps
