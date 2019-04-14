@@ -23,6 +23,9 @@ set nofoldenable
 " Enable vim config in file comments (modeline)
 set modeline
 
+" Suppress shell output
+set shellpipe=>
+
 " Enable file type detection.
 filetype on
 
@@ -238,7 +241,7 @@ autocmd FileType c,cpp,python,php,muttrc,xdefaults,css,html,config,vim autocmd B
 " Key maps
 " -----------------------------------------------------------------------------
 
-" Toggle NRDTree with CTRL+N
+" Toggle NERDTree with CTRL+N
 map <C-n> :NERDTreeToggle<CR>
 
 " Format JSON
