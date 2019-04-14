@@ -114,11 +114,31 @@ Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
 Plug 'sumpygump/php-documentor-vim'
 Plug 'arnaud-lb/vim-php-namespace'
+Plug 'vim-vdebug/vdebug'
+Plug 'mileszs/ack.vim'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " Color theme
 colorscheme gruvbox
+
+" --------------------
+" Ack search
+" --------------------
+
+let g:ackprg = 'ag --silent --ignore "tags" --vimgrep --smart-case'
+cnoreabbrev ag Ack!
+cnoreabbrev aG Ack!
+cnoreabbrev Ag Ack!
+cnoreabbrev AG Ack!
+
+" --------------------
+" vdebug
+" --------------------
+
+let g:vdebug_options = {
+    \'break_on_open': 0
+\}
 
 " --------------------
 " PHP namespaces
