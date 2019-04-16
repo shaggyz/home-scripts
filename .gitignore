@@ -1,5 +1,6 @@
 *
 !.gitignore
+!.notags
 !.vimrc
 !.Xresources
 !.Xresources.d

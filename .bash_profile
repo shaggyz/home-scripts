@@ -17,7 +17,13 @@ parse_git_branch() {
 }
 
 export CLICOLOR=1
-export PS1='\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\[\033[00m\]\[\033[38;5;221m\] `parse_git_branch`\e[m\]\$ '
+
+# Uncolored (fail safe) PS1
+export PS1='\u@\h:\W `parse_git_branch`\$ '
+
+if [ ! -z "CLICOLOR" ]; then
+    export PS1='\[$(tput setaf 2)\]\[$(tput bold)\]\u@\h:\[$(tput setaf 4)\]\W \[$(tput setaf 3)\]`parse_git_branch`\[$(tput sgr0)\$\] '
+fi
 
 # Used for colored psychedelic manpages
 export LESS_TERMCAP_mb=$'\e[1;32m'

@@ -119,6 +119,7 @@ Plug 'sumpygump/php-documentor-vim'
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'vim-vdebug/vdebug'
 Plug 'mileszs/ack.vim'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
