@@ -42,9 +42,11 @@ fi
 # Platform-specific configurations
 
 # GNU/linux
-# if [ `uname` == "Linux" ]; then
-#
-# fi
+if [ `uname` == "Linux" ]; then
+    # Dictionary aliases (dictd, gcide and freedict-eng-spa required)
+    alias enspa='dict -d fd-eng-spa'
+    alias spaen='dict -d fd-spa-eng'
+fi
 
 # macOS / OSX
 if [ `uname` == "Darwin" ]; then
