@@ -28,6 +28,18 @@ exec "setxkbmap en_US"
 # Enable composition
 exec "xcompmgr &"
 
+# Network manager applet
+exec "nm-applet &"
+
+# Bluetooth *blueman manager
+exec "blueman-applet &"
+
+# Netcloud desktop client
+exec "nextcloud &"
+
+# Pulse audio applet
+exec "pasystray &"
+
 # ------------ Specific startup items for this device ------------
 exec $HOME/.config/i3/startup.sh
 

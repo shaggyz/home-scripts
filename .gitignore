@@ -2,6 +2,7 @@
 !.gitignore
 !.notags
 !.vimrc
+!.xinitrc
 !.Xresources
 !.Xresources.d
 !.Xresources.d/xterm
