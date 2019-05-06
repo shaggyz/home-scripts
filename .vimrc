@@ -117,7 +117,8 @@ Plug 'joonty/vim-phpqa'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
-Plug 'sumpygump/php-documentor-vim'
+" Plug 'sumpygump/php-documentor-vim'
+Plug 'shaggyz/php-documentor-vim'
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'vim-vdebug/vdebug'
 Plug 'mileszs/ack.vim'
@@ -286,4 +287,7 @@ vmap <C-C> "+y
 
 " Open vimrc in a vertical split
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+
+" Exit from insert mode when 'jk' is typed.
+inoremap jk <esc>
 
