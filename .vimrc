@@ -82,7 +82,9 @@ set background=dark
 
 " This only looks good in MacOS
 if has("gui_macvim")
-    set guifont=Monaco:h12
+    set guifont=Hack\ Nerd\ Font\ Mono:h12
+    set pythonthreehome=/opt/local/Library/Frameworks/Python.framework/Versions/3.6
+    set pythonthreedll=/opt/local/Library/Frameworks/Python.framework/Versions/3.6/lib/libpython3.6m.dylib
 endif
 
 " Graphical vim will work with no dialogs.
