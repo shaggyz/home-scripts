@@ -249,6 +249,10 @@ autocmd FileType c,cpp,python,php,muttrc,xdefaults,css,html,config,vim autocmd B
 " Key maps
 " -----------------------------------------------------------------------------
 
+" URL encode/decode selection
+vnoremap <leader>en :!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>
+vnoremap <leader>de :!python -c 'import sys,urllib;print urllib.unquote(sys.stdin.read().strip())'<cr>
+
 " Toggle NERDTree with CTRL+N
 map <C-n> :NERDTreeToggle<CR>
 

@@ -50,7 +50,7 @@ fi
 
 # macOS / OSX
 if [ `uname` == "Darwin" ]; then
-    export PATH=/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.vimpkg/bin
+    export PATH="$PATH:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.vimpkg/bin"
 
     # Bash completion from MacPorts
     if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
