@@ -125,13 +125,15 @@ Plug 'mileszs/ack.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'dansomething/vim-eclim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'joshdick/onedark.vim'
 call plug#end()
 
 " Manpages inside vim
 runtime! ftplugin/man.vim
 
 " Color theme
-colorscheme gruvbox
+" colorscheme gruvbox
+colorscheme onedark
 
 " --------------------
 " Ack search
