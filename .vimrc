@@ -245,6 +245,9 @@ autocmd FileType python nnoremap <buffer> <C-b> :exec '!clear ; venv/bin/python'
 " Remove the trailing spaces in these file types
 autocmd FileType c,cpp,python,php,muttrc,xdefaults,css,html,config,vim autocmd BufWritePre <buffer> %s/\s\+$//e
 
+" Open the current html file with the default browser
+autocmd FileType html nnoremap <buffer> <C-b> :!exec xdg-open %<CR>
+
 " -----------------------------------------------------------------------------
 " Key maps
 " -----------------------------------------------------------------------------
