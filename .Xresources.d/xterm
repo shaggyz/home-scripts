@@ -30,6 +30,8 @@ XTerm*color10: _light_green
 XTerm*color12: _light_blue
 XTerm*color14: _light_magenta
 
+XTerm.metaSendsEscape: true
+
 ! shortcuts
 XTerm.vt100.translations: #override \n\
   Ctrl <Key> minus: smaller-vt-font() \n\

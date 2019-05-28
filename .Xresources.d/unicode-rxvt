@@ -28,6 +28,7 @@ URxvt.matcher.button: 1
 
 ! keymaps
 URxvt.keysym.C-equal: perl:font-size:increase
+URxvt.metaSendsEscape: true
 
 ! colors
 URxvt*background: _background
