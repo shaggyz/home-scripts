@@ -107,7 +107,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vimwiki/vimwiki'
 Plug 'mattn/calendar-vim'
 Plug 'morhetz/gruvbox'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'schickling/vim-bufonly'
 Plug 'tpope/vim-fugitive'
@@ -117,7 +117,6 @@ Plug 'joonty/vim-phpqa'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
-" Plug 'sumpygump/php-documentor-vim'
 Plug 'shaggyz/php-documentor-vim'
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'vim-vdebug/vdebug'
@@ -125,13 +124,15 @@ Plug 'mileszs/ack.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'dansomething/vim-eclim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'joshdick/onedark.vim'
 call plug#end()
 
 " Manpages inside vim
 runtime! ftplugin/man.vim
 
 " Color theme
-colorscheme gruvbox
+" colorscheme gruvbox
+colorscheme onedark
 
 " --------------------
 " Ack search
@@ -245,9 +246,16 @@ autocmd FileType python nnoremap <buffer> <C-b> :exec '!clear ; venv/bin/python'
 " Remove the trailing spaces in these file types
 autocmd FileType c,cpp,python,php,muttrc,xdefaults,css,html,config,vim autocmd BufWritePre <buffer> %s/\s\+$//e
 
+" Open the current html file with the default browser
+autocmd FileType html nnoremap <buffer> <C-b> :!exec xdg-open %<CR>
+
 " -----------------------------------------------------------------------------
 " Key maps
 " -----------------------------------------------------------------------------
+
+" URL encode/decode selection
+vnoremap <leader>en :!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>
+vnoremap <leader>de :!python -c 'import sys,urllib;print urllib.unquote(sys.stdin.read().strip())'<cr>
 
 " Toggle NERDTree with CTRL+N
 map <C-n> :NERDTreeToggle<CR>
@@ -255,10 +263,10 @@ map <C-n> :NERDTreeToggle<CR>
 " Format JSON
 map <leader>jsf :% !python -m json.tool<CR>
 
-" Close buffer from nerdtree without exit vim
-nnoremap <S-w> :bp\|bd #<CR>
+" Close buffers with \x
+nnoremap <leader>x :bp\|bd #<CR>
 
-" Remove hlsearch with double CTRL+C
+" Remove hlsearch with double CTRL+c
 nnoremap <C-c><C-c> :silent! nohls<cr>
 
 " Open the current file's directory in NERDTree with \r
@@ -267,27 +275,34 @@ map <leader>r :NERDTreeFind<cr>
 " VimWiki, disable fucking backspace
 nmap <Leader>wb <Plug>VimwikiGoBackLink
 
-" Navigation between buffers with SHIFT+h and SHIFT+l
-map <S-h> :bprev!<CR>
-map <S-l> :bnext!<CR>
+" Navigation between buffers with CTRL+h and CTRL+l
+nmap <C-h> :bprev!<CR>
+nmap <C-l> :bnext!<CR>
 
 " Close all the buffers, except the current one
 nmap <leader>ca :BufOnly<CR>
 
-" FZF
-nmap <C-p> :FZF<CR>
-nmap <leader>hs :Files ~<CR>
-nmap <leader>ps :Files .<CR>
+" FZF select file from current dir.
+nmap <C-p> :Files<CR>
+
+" FZF select from open buffers
+nmap <C-o> :Buffers<CR>
+
+" FZF vimwiki search: /s (files)
 nmap <leader>s :Files ~/.vimwiki<CR>
 
+" FZF list git modified files (fzf git status)
+nmap <leader>gs :GFiles?<CR>
+
+" FZF list the command history
+nmap <leader>h :History:<CR>
+
 " Enable paste on gvim (Linux)
-nmap <C-V> "+gP
-imap <C-V> <ESC><C-V>i
+imap <C-V> "+gP
 vmap <C-C> "+y
 
 " Open vimrc in a vertical split
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>ev :e $MYVIMRC<cr>
 
 " Exit from insert mode when 'jk' is typed.
 inoremap jk <esc>
-
