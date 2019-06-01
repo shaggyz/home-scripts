@@ -76,6 +76,10 @@ set visualbell t_vb=
 " Dark mode
 set background=dark
 
+" Improve autocompletion
+set wildmenu
+set wildmode=longest:full,full
+
 " -----------------------------------------------------------------------------
 " MacVim / gVim vim configuration
 " -----------------------------------------------------------------------------
