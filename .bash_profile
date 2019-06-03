@@ -39,6 +39,10 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# General path entries
+
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # Platform-specific configurations
 
 # GNU/linux
@@ -66,3 +70,4 @@ if [ `uname` == "Darwin" ]; then
 
     alias vim="/opt/local/bin/vim"
 fi
+
