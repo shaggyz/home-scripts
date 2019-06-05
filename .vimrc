@@ -129,6 +129,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'dansomething/vim-eclim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'joshdick/onedark.vim'
+Plug 'lumiliet/vim-twig'
 call plug#end()
 
 " Manpages inside vim
