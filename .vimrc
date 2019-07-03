@@ -76,9 +76,9 @@ set visualbell t_vb=
 " Dark mode
 set background=dark
 
-" Improve autocompletion
+" Improving? autocompletion
+set wildmode=longest,list,full
 set wildmenu
-set wildmode=longest:full,full
 
 " -----------------------------------------------------------------------------
 " MacVim / gVim vim configuration
@@ -129,6 +129,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'dansomething/vim-eclim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'joshdick/onedark.vim'
+Plug 'lumiliet/vim-twig'
 call plug#end()
 
 " Manpages inside vim

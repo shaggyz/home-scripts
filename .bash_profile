@@ -39,6 +39,11 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# General path entries
+
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # Platform-specific configurations
 
 # GNU/linux
