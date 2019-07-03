@@ -65,4 +65,7 @@ if [ `uname` == "Darwin" ]; then
     export LANG=en_US.UTF-8
 
     alias vim="/opt/local/bin/vim"
+
+    export PATH="$HOME/.cargo/bin:$PATH"
 fi
+
