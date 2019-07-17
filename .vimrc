@@ -254,6 +254,9 @@ autocmd FileType c,cpp,python,php,muttrc,xdefaults,css,html,config,vim autocmd B
 " Open the current html file with the default browser
 autocmd FileType html nnoremap <buffer> <C-b> :!exec xdg-open %<CR>
 
+" Export the current markdown file to PDF with pandoc
+autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>pa :exec '!pandoc % --pdf-engine=xelatex -o ~/Downloads/vim-output.pdf -V geometry:margin=0.7in'<CR>
+
 " -----------------------------------------------------------------------------
 " Key maps
 " -----------------------------------------------------------------------------

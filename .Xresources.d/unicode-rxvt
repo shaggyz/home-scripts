@@ -18,7 +18,7 @@ URxvt.perl-ext-common: default,clipboard,keyboard-select,url-select,tabbedex,mat
 
 ! transparent xterm windows
 URxvt.transparent: true
-URxvt.shading: 12
+URxvt.shading: 2
 
 ! url select
 URxvt.url-select.launcher: x-www-browser
