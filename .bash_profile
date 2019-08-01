@@ -44,6 +44,9 @@ fi
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# Go Lang
+export GOPATH="$HOME/Development/sideprojects/go"
+
 # Platform-specific configurations
 
 # GNU/linux

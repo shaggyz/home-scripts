@@ -130,6 +130,7 @@ Plug 'dansomething/vim-eclim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'joshdick/onedark.vim'
 Plug 'lumiliet/vim-twig'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
 " Manpages inside vim
@@ -254,8 +255,11 @@ autocmd FileType c,cpp,python,php,muttrc,xdefaults,css,html,config,vim autocmd B
 " Open the current html file with the default browser
 autocmd FileType html nnoremap <buffer> <C-b> :!exec xdg-open %<CR>
 
+" Format html code with \ fh
+autocmd FileType html nnoremap <buffer> <leader>fh :!exec tidy -mi -html -wrap 0 %<CR>
+
 " Export the current markdown file to PDF with pandoc
-autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>pa :exec '!pandoc % --pdf-engine=xelatex -o ~/Downloads/vim-output.pdf -V geometry:margin=0.7in'<CR>
+autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>pa :exec '!pandoc % --latex-engine=xelatex -o ~/Downloads/vim-output.pdf -V geometry:margin=0.7in'<CR>
 
 " -----------------------------------------------------------------------------
 " Key maps
