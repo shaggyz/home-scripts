@@ -17,6 +17,9 @@ set showcmd
 " Use markers for folding only.
 set foldmethod=marker
 
+" Display manpages without exiting vim
+set keywordprg=:Man
+
 " Disable folding
 set nofoldenable
 
@@ -275,8 +278,8 @@ map <C-n> :NERDTreeToggle<CR>
 " Format JSON
 map <leader>jsf :% !python -m json.tool<CR>
 
-" Close buffers with \x
-nnoremap <leader>x :bp\|bd #<CR>
+" Close buffers with \wq
+nnoremap <leader>wq :bp\|bd #<CR>
 
 " Remove hlsearch with double CTRL+c
 nnoremap <C-c><C-c> :silent! nohls<cr>
