@@ -10,7 +10,8 @@ export PATH="$PATH:~/.scripts"
 
 # Prompt
 parse_git_branch() {
-     BRANCH=`git branch 2> /dev/null | grep -e '^* ' | egrep -o '([a-z]+/[A-Z]+-[0-9]+)'`
+     # This expects a branch named in this form 'feature/ABCD-1234-add-new-feature'
+     BRANCH=`git branch 2> /dev/null | grep -e '^* ' | egrep -o '([a-z/?]*[A-Z]+-[0-9]+)'`
      if [ ! -z "$BRANCH" ]; then
          echo "[$BRANCH]"
      fi
@@ -22,7 +23,7 @@ export CLICOLOR=1
 export PS1='\u@\h:\W `parse_git_branch`\$ '
 
 if [ ! -z "CLICOLOR" ]; then
-    export PS1='\[$(tput setaf 2)\]\[$(tput bold)\]\u@\h:\[$(tput setaf 4)\]\W \[$(tput setaf 3)\]`parse_git_branch`\[$(tput sgr0)\$\] '
+    export PS1='\[$(tput setaf 2)\]\[$(tput bold)\]\u@\h:\[$(tput setaf 4)\]\W\[$(tput setaf 3)\]`parse_git_branch`\[$(tput sgr0)\$\] '
 fi
 
 # Used for colored psychedelic manpages
