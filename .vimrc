@@ -133,7 +133,7 @@ Plug 'dansomething/vim-eclim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'joshdick/onedark.vim'
 Plug 'lumiliet/vim-twig'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'posva/vim-vue'
 call plug#end()
 
 " Manpages inside vim
@@ -243,7 +243,7 @@ let g:vimwiki_table_mappings = 0
 " <C-Y> , (autocomplete/trigger command, please note the comma)
 " Enable emmet only in html and css files.
 let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
+autocmd FileType html,css,vue EmmetInstall
 
 " -----------------------------------------------------------------------------
 " Auto-commands for file types
