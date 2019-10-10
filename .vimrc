@@ -134,6 +134,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'joshdick/onedark.vim'
 Plug 'lumiliet/vim-twig'
 Plug 'posva/vim-vue'
+Plug 'rafi/awesome-vim-colorschemes'
+Plug 'mtdl9/vim-log-highlighting'
 call plug#end()
 
 " Manpages inside vim
@@ -141,7 +143,8 @@ runtime! ftplugin/man.vim
 
 " Color theme
 " colorscheme gruvbox
-colorscheme onedark
+" colorscheme onedark
+colorscheme iceberg
 
 " --------------------
 " Ack search
