@@ -202,8 +202,11 @@ let g:snipMate.description_in_completion = 1
 " PHP QA
 " --------------------
 
-" SetDeopletDeopletee the codesniffer args
+" Set the codesniffer args
 let g:phpqa_codesniffer_args = '--standard=PSR2'
+
+" Disable phpmd on save (there is a bug here)
+let g:phpqa_messdetector_autorun = 0
 
 " --------------------
 " NERDTree

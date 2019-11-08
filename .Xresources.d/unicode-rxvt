@@ -20,6 +20,9 @@ URxvt.perl-ext-common: default,clipboard,keyboard-select,url-select,tabbedex,mat
 URxvt.transparent: true
 URxvt.shading: 2
 
+! Scrollback
+URxvt.saveLines: 100000
+
 ! url select
 URxvt.url-select.launcher: x-www-browser
 URxvt.url-select.underline: true
