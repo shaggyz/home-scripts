@@ -134,6 +134,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'joshdick/onedark.vim'
 Plug 'lumiliet/vim-twig'
 Plug 'posva/vim-vue'
+Plug 'machakann/vim-sandwich'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'mtdl9/vim-log-highlighting'
 call plug#end()
@@ -308,6 +309,9 @@ nmap <C-o> :Buffers<CR>
 
 " FZF vimwiki search: /s (files)
 nmap <leader>s :Files ~/.vimwiki<CR>
+
+" Idea for vimwiki search:
+" grep -ril Linux . | fzf
 
 " FZF list git modified files (fzf git status)
 nmap <leader>gs :GFiles?<CR>
