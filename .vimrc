@@ -137,6 +137,7 @@ Plug 'posva/vim-vue'
 Plug 'machakann/vim-sandwich'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'mtdl9/vim-log-highlighting'
+" Plug 'udalov/kotlin-vim'
 call plug#end()
 
 " Manpages inside vim
@@ -165,7 +166,7 @@ let g:vdebug_options = {
     \'break_on_open': 0
 \}
 
-" --------------------
+
 " PHP namespaces
 " --------------------
 
@@ -269,7 +270,13 @@ autocmd FileType html nnoremap <buffer> <C-b> :!exec xdg-open %<CR>
 autocmd FileType html nnoremap <buffer> <leader>fh :!exec tidy -mi -html -wrap 0 %<CR>
 
 " Export the current markdown file to PDF with pandoc
-autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>pa :exec '!pandoc % --latex-engine=xelatex -o ~/Downloads/vim-output.pdf -V geometry:margin=0.7in'<CR>
+if has("gui_macvim")
+    " MacOS
+    autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>pa :exec '!pandoc % --pdf-engine=xelatex -o ~/Downloads/vim-output.pdf -V geometry:margin=0.7in'<CR>
+else
+    " *nix
+    autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>pa :exec '!pandoc % --latex-engine=xelatex -o ~/Downloads/vim-output.pdf -V geometry:margin=0.7in'<CR>
+endif
 
 " -----------------------------------------------------------------------------
 " Key maps
