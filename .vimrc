@@ -38,16 +38,8 @@ filetype plugin on
 " Syntax highlighting
 syntax on
 
-" Display the help using vertical split.
-" Using some "aliases" for that.
-cabbrev help vert help
-cabbrev h vert h
-
 " Mouse scrolling
 set mouse=a
-
-" Open all the buffers in vertical and right
-set splitright
 
 " Program used for searches.
 set grepprg=grep\ -nH\ $*
@@ -60,9 +52,8 @@ set cursorline
 
 " Use spaces for tabulation <3
 set expandtab
-" set smarttab
 
-" Who wants an 8 character tab?
+" Tabs with four spaces
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
@@ -83,10 +74,6 @@ set background=dark
 set wildmode=longest,list,full
 set wildmenu
 
-" -----------------------------------------------------------------------------
-" MacVim / gVim vim configuration
-" -----------------------------------------------------------------------------
-
 " This only looks good in MacOS
 if has("gui_macvim")
     set guifont=Hack\ Nerd\ Font\ Mono:h12
@@ -96,6 +83,9 @@ endif
 
 " Graphical vim will work with no dialogs.
 set guioptions=c
+
+" Omni complete, for development
+set omnifunc=syntaxcomplete#Complete
 
 " -----------------------------------------------------------------------------
 " Plugin configuration
@@ -120,7 +110,7 @@ Plug 'schickling/vim-bufonly'
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'joonty/vim-phpqa'
+" Plug 'joonty/vim-phpqa'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
@@ -153,9 +143,6 @@ colorscheme iceberg
 
 let g:ackprg = 'ag --silent --ignore "tags" --vimgrep --smart-case'
 cnoreabbrev ag Ack!
-cnoreabbrev aG Ack!
-cnoreabbrev Ag Ack!
-cnoreabbrev AG Ack!
 
 " --------------------
 " vdebug
@@ -215,9 +202,6 @@ let g:phpqa_messdetector_autorun = 0
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeShowHidden = 1
-
-" Quit vim if NERDTree is the last buffer
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " --------------------
 " Airline
@@ -279,8 +263,8 @@ autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>pa :exec '!pandoc % 
 vnoremap <leader>en :!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>
 vnoremap <leader>de :!python -c 'import sys,urllib;print urllib.unquote(sys.stdin.read().strip())'<cr>
 
-" Toggle NERDTree with CTRL+N
-map <C-n> :NERDTreeToggle<CR>
+" Toggle NERDTree with \ + N
+map <leader>n :NERDTreeToggle<CR>
 
 " Format JSON
 map <leader>jsf :% !python -m json.tool<CR>
