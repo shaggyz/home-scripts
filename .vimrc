@@ -127,6 +127,7 @@ Plug 'posva/vim-vue'
 Plug 'machakann/vim-sandwich'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'mtdl9/vim-log-highlighting'
+Plug 'janiczek/vim-latte'
 " Plug 'udalov/kotlin-vim'
 call plug#end()
 
