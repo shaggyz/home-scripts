@@ -129,6 +129,7 @@ Plug 'rafi/awesome-vim-colorschemes'
 Plug 'mtdl9/vim-log-highlighting'
 Plug 'janiczek/vim-latte'
 " Plug 'udalov/kotlin-vim'
+Plug 'fatih/vim-go'
 call plug#end()
 
 " Manpages inside vim

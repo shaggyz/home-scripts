@@ -48,6 +48,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Go Lang
 export GOPATH="$HOME/Development/sideprojects/go"
 
+# Go paths
+export PATH="$GOPATH/bin:$PATH"
+
 # Platform-specific configurations
 
 # GNU/linux
