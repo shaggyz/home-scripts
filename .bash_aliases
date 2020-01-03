@@ -11,3 +11,6 @@ alias egrep='egrep --color=auto'
 alias ll='ls -l'
 alias la='ls -lgh'
 alias l='ls -CF'
+
+# Fancy stuff
+alias ccat='highlight -s dusk -O xterm256' 
