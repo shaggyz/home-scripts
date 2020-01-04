@@ -22,6 +22,9 @@ exec "xset b off"
 # */15 * * * * DISPLAY=:0 feh --bg-scale --randomize ~/Pictures/Wallpapers/Active/*
 exec "feh --bg-scale --randomize ~/Pictures/Wallpapers/Active/*"
 
+# Screen lock
+exec --no-startup-id xautolock -time 5 -locker '/usr/local/bin/lock-screen'
+
 # Keyboard
 exec "setxkbmap en_US"
 

@@ -35,6 +35,9 @@ filetype on
 " Load the related plugins for different file types.
 filetype plugin on
 
+" Enable backspace on some terminals (urxvt, for example)
+set backspace=2
+
 " Syntax highlighting
 syntax on
 
