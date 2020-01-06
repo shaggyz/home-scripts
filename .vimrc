@@ -113,7 +113,6 @@ Plug 'schickling/vim-bufonly'
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
-" Plug 'joonty/vim-phpqa'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
@@ -131,8 +130,8 @@ Plug 'machakann/vim-sandwich'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'mtdl9/vim-log-highlighting'
 Plug 'janiczek/vim-latte'
-" Plug 'udalov/kotlin-vim'
 Plug 'fatih/vim-go'
+Plug 'vim-vdebug/vdebug'
 call plug#end()
 
 " Manpages inside vim
@@ -185,6 +184,7 @@ let g:pdv_cfg_ClassTags = ["author"]
 " SnipMate
 " --------------------
 
+" Snippets directory: ~/.vim/snippets
 let g:snipMate = {}
 let g:snipMate.snippet_version = 1
 
