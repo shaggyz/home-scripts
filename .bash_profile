@@ -58,6 +58,8 @@ if [ `uname` == "Linux" ]; then
     # Dictionary aliases (dictd, gcide and freedict-eng-spa required)
     alias enspa='dict -d fd-eng-spa'
     alias spaen='dict -d fd-spa-eng'
+
+    export QT_QPA_PLATFORMTHEME=qt5ct
 fi
 
 # macOS / OSX
