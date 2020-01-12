@@ -83,6 +83,9 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Disable preview window for omnicompletion
 set completeopt-=preview
 
+" Omni complete, for development
+set omnifunc=syntaxcomplete#Complete
+
 " This only looks good in MacOS
 if has("gui_macvim")
     set guifont=Hack\ Nerd\ Font\ Mono:h12
@@ -92,9 +95,6 @@ endif
 
 " Graphical vim will work with no dialogs.
 set guioptions=c
-
-" Omni complete, for development
-set omnifunc=syntaxcomplete#Complete
 
 " -----------------------------------------------------------------------------
 " Plugin configuration
