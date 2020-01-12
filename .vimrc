@@ -77,6 +77,9 @@ set background=dark
 set wildmode=longest,list,full
 set wildmenu
 
+" Disable preview window for omnicompletion
+set completeopt-=preview
+
 " This only looks good in MacOS
 if has("gui_macvim")
     set guifont=Hack\ Nerd\ Font\ Mono:h12
