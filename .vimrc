@@ -77,6 +77,9 @@ set background=dark
 set wildmode=longest,list,full
 set wildmenu
 
+" Use <intro> to select in omnicompletion
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 " Disable preview window for omnicompletion
 set completeopt-=preview
 
