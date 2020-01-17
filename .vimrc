@@ -138,6 +138,7 @@ Plug 'mtdl9/vim-log-highlighting'
 Plug 'janiczek/vim-latte'
 Plug 'fatih/vim-go'
 Plug 'vim-vdebug/vdebug'
+Plug 'kchmck/vim-coffee-script'
 call plug#end()
 
 " Manpages inside vim
