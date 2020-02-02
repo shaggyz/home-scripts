@@ -60,6 +60,9 @@ if [ `uname` == "Linux" ]; then
     alias spaen='dict -d fd-spa-eng'
 
     export QT_QPA_PLATFORMTHEME=qt5ct
+
+    # Wine32
+    export WINEPREFIX=$HOME/.wine32
 fi
 
 # macOS / OSX

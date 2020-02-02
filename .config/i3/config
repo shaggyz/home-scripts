@@ -56,6 +56,9 @@ font pango:Hack 8
 # open vim
 bindsym $mod+v exec i3-sensible-terminal -e 'vim'
 
+# lock the laptop
+bindsym $mod+Shift+q exec /usr/local/bin/lock-screen
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -64,7 +67,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 # bindsym $mod+Return exec xterm & sleep .1s && transset -m .88 -a
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+Shift+w kill
 
 # bindsym $mod+d exec dmenu_run
 bindsym $mod+d exec dmenu_run -fn "Hack Regular:size=12"
