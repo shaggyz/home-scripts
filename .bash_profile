@@ -45,11 +45,12 @@ fi
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# Go Lang
+# Go Stuff
+export GOROOT="/opt/go"
 export GOPATH="$HOME/Development/sideprojects/go"
 
 # Go paths
-export PATH="$GOPATH/bin:$PATH"
+export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 
 # Platform-specific configurations
 

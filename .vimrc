@@ -136,9 +136,9 @@ Plug 'machakann/vim-sandwich'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'mtdl9/vim-log-highlighting'
 Plug 'janiczek/vim-latte'
-Plug 'fatih/vim-go'
 Plug 'vim-vdebug/vdebug'
 Plug 'kchmck/vim-coffee-script'
+Plug 'justmao945/vim-clang'
 call plug#end()
 
 " Manpages inside vim
