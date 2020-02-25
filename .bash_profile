@@ -11,7 +11,7 @@ export PATH="$PATH:~/.scripts"
 # Prompt
 parse_git_branch() {
      # This expects a branch named in this form 'feature/ABCD-1234-add-new-feature'
-     BRANCH=`git branch 2> /dev/null | grep -e '^* ' | egrep -o '([a-z/?]*[A-Z]+-[0-9]+|release)'`
+     BRANCH=`git branch 2> /dev/null | grep -e '^* ' | egrep -o '([a-z/?]*[A-Z]+-[0-9]+|^release)'`
      if [ ! -z "$BRANCH" ]; then
          echo "[$BRANCH]"
      fi
@@ -80,6 +80,6 @@ if [ `uname` == "Darwin" ]; then
 
     alias vim="/opt/local/bin/vim"
 
-    export PATH="$HOME/.cargo/bin:$PATH"
+    export PATH="$HOME/.cargo/bin:/opt/metasploit-framework/bin:$PATH"
 fi
 
