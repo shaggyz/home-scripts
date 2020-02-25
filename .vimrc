@@ -65,7 +65,7 @@ set softtabstop=4
 set noswapfile
 
 " Highlight the search
-set hlsearch
+" set hlsearch
 
 " Disable the terminal bell
 set visualbell t_vb=
@@ -77,6 +77,15 @@ set background=dark
 set wildmode=longest,list,full
 set wildmenu
 
+" Use <intro> to select in omnicompletion
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Disable preview window for omnicompletion
+set completeopt-=preview
+
+" Omni complete, for development
+set omnifunc=syntaxcomplete#Complete
+
 " This only looks good in MacOS
 if has("gui_macvim")
     set guifont=Hack\ Nerd\ Font\ Mono:h12
@@ -86,9 +95,6 @@ endif
 
 " Graphical vim will work with no dialogs.
 set guioptions=c
-
-" Omni complete, for development
-set omnifunc=syntaxcomplete#Complete
 
 " -----------------------------------------------------------------------------
 " Plugin configuration
@@ -130,8 +136,9 @@ Plug 'machakann/vim-sandwich'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'mtdl9/vim-log-highlighting'
 Plug 'janiczek/vim-latte'
-Plug 'fatih/vim-go'
 Plug 'vim-vdebug/vdebug'
+Plug 'kchmck/vim-coffee-script'
+Plug 'justmao945/vim-clang'
 call plug#end()
 
 " Manpages inside vim
@@ -146,6 +153,7 @@ colorscheme iceberg
 " Ack search
 " --------------------
 
+let g:ackhighlight = 1
 let g:ackprg = 'ag --silent --ignore "tags" --vimgrep --smart-case'
 cnoreabbrev ag Ack!
 
@@ -233,6 +241,12 @@ let g:vimwiki_list = [{'path': '~/.vimwiki/', 'syntax': 'markdown', 'ext': '.md'
 " Disable TAB for Vim Wiki
 let g:vimwiki_table_mappings = 0
 
+" search into vimwiki contents, usage: :Vws "search string"
+function SearchVimWiki(term)
+    :execute 'Ack! ' . a:term . ' ~/.vimwiki'
+endfunction
+command! -nargs=* Vws :call SearchVimWiki(<q-args>)
+
 " --------------------
 " Vim Emmet
 " --------------------
@@ -259,13 +273,7 @@ autocmd FileType html nnoremap <buffer> <C-b> :!exec xdg-open %<CR>
 autocmd FileType html nnoremap <buffer> <leader>fh :!exec tidy -mi -html -wrap 0 %<CR>
 
 " Export the current markdown file to PDF with pandoc
-if has("gui_macvim")
-    " MacOS
-    autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>pa :exec '!pandoc % --pdf-engine=xelatex -o ~/Downloads/vim-output.pdf -V geometry:margin=0.7in'<CR>
-else
-    " *nix
-    autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>pa :exec '!pandoc % --latex-engine=xelatex -o ~/Downloads/vim-output.pdf -V geometry:margin=0.7in'<CR>
-endif
+autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>pa :exec '!pandoc % --pdf-engine=xelatex -o ~/Downloads/vim-output.pdf -V geometry:margin=0.7in'<CR>
 
 " -----------------------------------------------------------------------------
 " Key maps
