@@ -19,15 +19,16 @@
 
 [colors]
 background = #111
-background-alt = #444
+background-alt = #1D586A
 foreground = #dfdfdf
 foreground-alt = #555
-primary = #ffb52a
+primary = #1D586A
 secondary = #e60053
 alert = #bd2c40
 gray = #666
 disabled = #333
-green = #43b32a
+green = #1D586A
+light-green = #1FE099
 
 [bar/linux]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -139,12 +140,13 @@ label-mode-background = ${colors.primary}
 ; focused = Active workspace on focused monitor
 label-focused = %index%
 label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
+label-focused-underline= ${colors.light-green}
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %index%
 label-unfocused-padding = 2
+label-unfocused-underline= ${colors.disabled}
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%
