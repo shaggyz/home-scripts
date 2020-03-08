@@ -28,3 +28,5 @@
 !.config/i3blocks/scripts/memory.sh
 !.config/i3blocks/scripts/public_ip.sh
 !.config/i3blocks/scripts/volume.sh
+!.config/dunst
+!.config/dunst/dunstrc
