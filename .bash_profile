@@ -64,6 +64,9 @@ if [ `uname` == "Linux" ]; then
 
     # Wine32
     export WINEPREFIX=$HOME/.wine32
+
+    # most as a pager
+    export PAGER=most
 fi
 
 # macOS / OSX
