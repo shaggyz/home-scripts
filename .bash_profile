@@ -26,14 +26,14 @@ if [ ! -z "CLICOLOR" ]; then
     export PS1='\[\033[01;32m\]\u@\h:\[\033[01;34m\]\W\[\033[01;33m\]$(parse_git_branch)\[\033[0m\]\$ '
 fi
 
-# Used for colored psychedelic manpages
-export LESS_TERMCAP_mb=$'\e[1;32m'
-export LESS_TERMCAP_md=$'\e[1;32m'
-export LESS_TERMCAP_me=$'\e[0m'
-export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[01;33m'
-export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[1;31m'
+# Used for colored psychedelic manpages (not needed if using most)
+# export LESS_TERMCAP_mb=$'\e[1;32m'
+# export LESS_TERMCAP_md=$'\e[1;32m'
+# export LESS_TERMCAP_me=$'\e[0m'
+# export LESS_TERMCAP_se=$'\e[0m'
+# export LESS_TERMCAP_so=$'\e[01;33m'
+# export LESS_TERMCAP_ue=$'\e[0m'
+# export LESS_TERMCAP_us=$'\e[1;31m'
 
 # Bash aliases
 if [ -f ~/.bash_aliases ]; then
@@ -64,6 +64,9 @@ if [ `uname` == "Linux" ]; then
 
     # Wine32
     export WINEPREFIX=$HOME/.wine32
+
+    # most as pager
+    export PAGER=most
 fi
 
 # macOS / OSX
