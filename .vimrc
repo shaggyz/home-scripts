@@ -139,6 +139,7 @@ Plug 'janiczek/vim-latte'
 Plug 'vim-vdebug/vdebug'
 Plug 'kchmck/vim-coffee-script'
 Plug 'justmao945/vim-clang'
+Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 call plug#end()
 
 " Manpages inside vim
@@ -165,7 +166,7 @@ let g:vdebug_options = {
     \'break_on_open': 0
 \}
 
-
+" --------------------
 " PHP namespaces
 " --------------------
 
@@ -255,6 +256,20 @@ command! -nargs=* Vws :call SearchVimWiki(<q-args>)
 " Enable emmet only in html and css files.
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,vue EmmetInstall
+
+" --------------------
+" Instant markdown
+" --------------------
+
+" Do not start the preview automatically
+" Use instead: :InstantMarkdownPreview and :InstantMarkdownStop
+let g:instant_markdown_autostart = 0
+
+" Allow remote content (images, js, etc.)
+let g:instant_markdown_allow_external_content = 1
+
+" Custom port
+let g:instant_markdown_port = 9999
 
 " -----------------------------------------------------------------------------
 " Auto-commands for file types
