@@ -143,6 +143,7 @@ Plug 'vim-vdebug/vdebug'
 Plug 'kchmck/vim-coffee-script'
 Plug 'justmao945/vim-clang'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+Plug 'chr4/nginx.vim'
 call plug#end()
 
 " Manpages inside vim
@@ -274,6 +275,9 @@ let g:instant_markdown_allow_external_content = 1
 " Custom port
 let g:instant_markdown_port = 9999
 
+let g:instant_markdown_allow_unsafe_content = 1
+let g:instant_markdown_autoscroll = 0
+
 " -----------------------------------------------------------------------------
 " Auto-commands for file types
 " -----------------------------------------------------------------------------
@@ -292,6 +296,9 @@ autocmd FileType html nnoremap <buffer> <leader>fh :!exec tidy -mi -html -wrap 0
 
 " Export the current markdown file to PDF with pandoc
 autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>pa :exec '!pandoc % --pdf-engine=xelatex -o ~/Downloads/vim-output.pdf -V geometry:margin=0.7in'<CR>
+
+" Preview the current markdown file in the browser
+autocmd FileType markdown,vimwiki nnoremap <C-b> :InstantMarkdownPreview<CR>
 
 " -----------------------------------------------------------------------------
 " Key maps

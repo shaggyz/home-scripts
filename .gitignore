@@ -2,6 +2,7 @@
 !.gitignore
 !.notags
 !.vimrc
+!.myclirc
 !.xinitrc
 !.Xresources
 !.Xresources.d

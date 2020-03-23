@@ -67,6 +67,7 @@ if [ `uname` == "Linux" ]; then
 
     # most as pager
     export PAGER=most
+    export GIT_PAGER=less
 fi
 
 # macOS / OSX

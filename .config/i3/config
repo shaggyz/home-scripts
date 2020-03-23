@@ -68,6 +68,9 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+w kill
 
+# screen capture snapshot
+bindsym $mod+p exec /usr/local/bin/screenshot.sh
+
 # bindsym $mod+d exec dmenu_run
 bindsym $mod+d exec dmenu_run -fn "Hack Regular:size=16" -nb "#111" -nf "#444" -sb "#1D586A" -sf "#1FE099"
 
