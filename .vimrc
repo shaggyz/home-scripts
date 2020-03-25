@@ -121,6 +121,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'schickling/vim-bufonly'
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/emmet-vim'
+Plug 'wincent/terminus'
 Plug 'airblade/vim-gitgutter'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
@@ -130,7 +131,6 @@ Plug 'arnaud-lb/vim-php-namespace'
 Plug 'vim-vdebug/vdebug'
 Plug 'mileszs/ack.vim'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'dansomething/vim-eclim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'joshdick/onedark.vim'
 Plug 'lumiliet/vim-twig'
@@ -262,6 +262,13 @@ let g:user_emmet_install_global = 0
 autocmd FileType html,css,vue EmmetInstall
 
 " --------------------
+" Git Gutter
+" --------------------
+
+" Fix the delay on urxvt
+let g:gitgutter_terminal_reports_focus=0
+
+" --------------------
 " Instant markdown
 " --------------------
 
@@ -342,9 +349,6 @@ nmap <C-o> :Buffers<CR>
 " FZF vimwiki search: /s (files)
 nmap <leader>s :Files ~/.vimwiki<CR>
 
-" Idea for vimwiki search:
-" grep -ril Linux . | fzf
-
 " FZF list git modified files (fzf git status)
 nmap <leader>gs :GFiles?<CR>
 
@@ -352,11 +356,8 @@ nmap <leader>gs :GFiles?<CR>
 nmap <leader>h :History:<CR>
 
 " Enable paste on gvim (Linux)
-imap <C-V> "+gP
+imap <C-V> <C-o>"+gP
 vmap <C-C> "+y
 
-" Open vimrc in a vertical split
+" Open vimrc in a split
 nnoremap <leader>ev :e $MYVIMRC<cr>
-
-" Exit from insert mode when 'jk' is typed.
-inoremap jk <esc>
