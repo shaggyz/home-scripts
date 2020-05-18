@@ -250,7 +250,7 @@ let g:vimwiki_table_mappings = 0
 function SearchVimWiki(term)
     :execute 'Ack! ' . a:term . ' ~/.vimwiki'
 endfunction
-command! -nargs=* Vws :call SearchVimWiki(<q-args>)
+command! -nargs=* VWS :call SearchVimWiki(<q-args>)
 
 " --------------------
 " Vim Emmet

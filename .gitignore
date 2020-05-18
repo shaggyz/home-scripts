@@ -31,3 +31,4 @@
 !.config/i3blocks/scripts/volume.sh
 !.config/dunst
 !.config/dunst/dunstrc
+!.config/openbox/rc.xml
