@@ -144,6 +144,7 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'justmao945/vim-clang'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'chr4/nginx.vim'
+Plug 'octol/vim-cpp-enhanced-highlight'
 call plug#end()
 
 " Manpages inside vim
