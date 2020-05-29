@@ -145,6 +145,7 @@ Plug 'justmao945/vim-clang'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'chr4/nginx.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'ericcurtin/CurtineIncSw.vim'
 call plug#end()
 
 " Manpages inside vim
@@ -193,6 +194,12 @@ au BufRead,BufNewFile *.php vnoremap <buffer> <leader>co :call PhpDocRange()<CR>
 
 let g:pdv_cfg_Author = 'Nicolás Palumbo <n@xinax.net>'
 let g:pdv_cfg_ClassTags = ["author"]
+
+" --------------------
+" C/C++ header switch
+" --------------------
+
+au BufRead,BufNewFile *.cpp,*.c,*.hpp,*.h nnoremap <buffer> <leader>sd :call CurtineIncSw()<CR>
 
 " --------------------
 " SnipMate
@@ -323,7 +330,7 @@ map <leader>n :NERDTreeToggle<CR>
 map <leader>jsf :% !python -m json.tool<CR>
 
 " Close buffers with \wq
-nnoremap <leader>wq :bp\|bd #<CR>
+nnoremap <leader>q :bp\|bd #<CR>
 
 " Remove hlsearch with double CTRL+c
 nnoremap <C-c><C-c> :silent! nohls<cr>
