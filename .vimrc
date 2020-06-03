@@ -87,7 +87,7 @@ set completeopt-=preview
 set omnifunc=syntaxcomplete#Complete
 
 " Remove trailing spaces in certain file types.
-autocmd FileType c,cpp,java,php,vimwiki,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType sh,c,cpp,java,php,vimwiki,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " This only looks good in MacOS
 if has("gui_macvim")
