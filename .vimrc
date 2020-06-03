@@ -319,6 +319,9 @@ autocmd FileType markdown,vimwiki nnoremap <C-b> :InstantMarkdownPreview<CR>
 " Key maps
 " -----------------------------------------------------------------------------
 
+" Back to the shell with <CTRL+t>
+nmap <C-t> :shell<CR>
+
 " URL encode/decode selection
 vnoremap <leader>en :!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>
 vnoremap <leader>de :!python -c 'import sys,urllib;print urllib.unquote(sys.stdin.read().strip())'<cr>
