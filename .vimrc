@@ -146,6 +146,8 @@ Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'chr4/nginx.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'ericcurtin/CurtineIncSw.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
 call plug#end()
 
 " Manpages inside vim
@@ -309,6 +311,9 @@ autocmd FileType html nnoremap <buffer> <C-b> :!exec xdg-open %<CR>
 " Format html code with \ fh
 autocmd FileType html nnoremap <buffer> <leader>fh :!exec tidy -mi -html -wrap 0 %<CR>
 
+" Format html code with \ fh
+autocmd FileType xml nnoremap <buffer> <leader>fx :!exec tidy -mi -xml -wrap 0 %<CR>
+"
 " Export the current markdown file to PDF with pandoc
 autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>pa :exec '!pandoc % --pdf-engine=xelatex -o ~/Downloads/vim-output.pdf -V geometry:margin=0.7in'<CR>
 
