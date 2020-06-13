@@ -1,4 +1,3 @@
-
 # Enable vim mode in bash
 # set -o vi
 export EDITOR=vim

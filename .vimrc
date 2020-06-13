@@ -147,6 +147,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'ericcurtin/CurtineIncSw.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
+Plug 'chrisbra/Colorizer'
 call plug#end()
 
 " Manpages inside vim
