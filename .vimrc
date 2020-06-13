@@ -142,10 +142,12 @@ Plug 'janiczek/vim-latte'
 Plug 'vim-vdebug/vdebug'
 Plug 'kchmck/vim-coffee-script'
 Plug 'justmao945/vim-clang'
-Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'chr4/nginx.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'ericcurtin/CurtineIncSw.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'chrisbra/Colorizer'
 call plug#end()
 
 " Manpages inside vim
@@ -254,7 +256,7 @@ let g:vimwiki_list = [{'path': '~/.vimwiki/', 'syntax': 'markdown', 'ext': '.md'
 " Disable TAB for Vim Wiki
 let g:vimwiki_table_mappings = 0
 
-" search into vimwiki contents, usage: :Vws "search string"
+" search into vimwiki contents, usage: :VWS "search string"
 function SearchVimWiki(term)
     :execute 'Ack! ' . a:term . ' ~/.vimwiki'
 endfunction
@@ -309,11 +311,11 @@ autocmd FileType html nnoremap <buffer> <C-b> :!exec xdg-open %<CR>
 " Format html code with \ fh
 autocmd FileType html nnoremap <buffer> <leader>fh :!exec tidy -mi -html -wrap 0 %<CR>
 
+" Format html code with \ fh
+autocmd FileType xml nnoremap <buffer> <leader>fx :!exec tidy -mi -xml -wrap 0 %<CR>
+"
 " Export the current markdown file to PDF with pandoc
 autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>pa :exec '!pandoc % --pdf-engine=xelatex -o ~/Downloads/vim-output.pdf -V geometry:margin=0.7in'<CR>
-
-" Preview the current markdown file in the browser
-autocmd FileType markdown,vimwiki nnoremap <C-b> :InstantMarkdownPreview<CR>
 
 " -----------------------------------------------------------------------------
 " Key maps
@@ -332,7 +334,7 @@ map <leader>n :NERDTreeToggle<CR>
 " Format JSON
 map <leader>jsf :% !python -m json.tool<CR>
 
-" Close buffers with \wq
+" Close buffers with \q
 nnoremap <leader>q :bp\|bd #<CR>
 
 " Remove hlsearch with double CTRL+c
@@ -340,9 +342,6 @@ nnoremap <C-c><C-c> :silent! nohls<cr>
 
 " Open the current file's directory in NERDTree with \r
 map <leader>r :NERDTreeFind<cr>
-
-" VimWiki, disable fucking backspace
-nmap <Leader>wb <Plug>VimwikiGoBackLink
 
 " Navigation between buffers with CTRL+h and CTRL+l
 nmap <C-h> :bprev!<CR>
@@ -352,10 +351,10 @@ nmap <C-l> :bnext!<CR>
 nmap <leader>ca :BufOnly<CR>
 
 " FZF select file from current dir.
-nmap <C-p> :Files<CR>
+nmap <leader>p :Files<CR>
 
 " FZF select from open buffers
-nmap <C-o> :Buffers<CR>
+nmap <leader>o :Buffers<CR>
 
 " FZF vimwiki search: /s (files)
 nmap <leader>s :Files ~/.vimwiki<CR>
@@ -366,9 +365,17 @@ nmap <leader>gs :GFiles?<CR>
 " FZF list the command history
 nmap <leader>h :History:<CR>
 
+" Open the custom vimwiki search with /S
+nmap <leader>S :VWS<space>
+
 " Enable paste on gvim (Linux)
 imap <C-V> <C-o>"+gP
 vmap <C-C> "+y
 
 " Open vimrc in a split
 nnoremap <leader>ev :e $MYVIMRC<cr>
+
+
+" -----------------------------------------------------------------------------
+" Unmaps (pluggin mappings that I don't like
+" -----------------------------------------------------------------------------

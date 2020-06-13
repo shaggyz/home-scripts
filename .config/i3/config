@@ -14,34 +14,8 @@ set $mod Mod4
 
 # ----------- Common startup items for all the devices ----------
 
-# Disable terminal bell
-exec "xset b off"
-
-# Wallpaper
-# Rotation can be added to crontab:
-# */15 * * * * DISPLAY=:0 feh --bg-scale --randomize ~/Pictures/Wallpapers/Active/*
-exec "feh --bg-scale --randomize ~/Pictures/Wallpapers/Active/*"
-
 # Screen lock
 exec --no-startup-id xautolock -time 5 -locker '/usr/local/bin/lock-screen'
-
-# Keyboard
-exec "setxkbmap en_US"
-
-# Enable composition
-exec "xcompmgr &"
-
-# Network manager applet
-exec "nm-applet &"
-
-# Bluetooth *blueman manager
-exec "blueman-applet &"
-
-# Netcloud desktop client
-exec "nextcloud &"
-
-# Pulse audio applet
-exec "pasystray &"
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
