@@ -9,7 +9,8 @@
 
 URxvt.termName: xterm-256color
 URxvt.scrollBar: false
-URxvt.font: xft:Hack Nerd Font Mono:size=10:antialias=true:hinting=true:minspace=false, xft:Font Awesome 5 Free:pixelsize=18
+!URxvt.font: xft:Hack Nerd Font Mono:size=10:antialias=true:hinting=true:minspace=false, xft:Font Awesome 5 Free:pixelsize=18
+URxvt.font: xft:JetBrainsMono Nerd Font Mono:size=10:antialias=true:hinting=true:minspace=false, xft:Font Awesome 5 Free:pixelsize=18
 URxvt.letterSpace: -1
 URxvt.cursorBlink: 1
 
