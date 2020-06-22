@@ -262,7 +262,7 @@ time-alt = " %H:%M:%S"
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.disabled}
 
-label = %time% %date% 
+label = %time% %date%
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -418,7 +418,8 @@ screenchange-reload = true
 ;pseudo-transparency = false
 
 [global/wm]
-margin-top = 5
-margin-bottom = 5
+# Only needed for i3-gaps
+# margin-top = 5
+# margin-bottom = 5
 
 ; vim:ft=dosini
