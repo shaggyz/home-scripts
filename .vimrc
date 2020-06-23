@@ -115,39 +115,28 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vimwiki/vimwiki'
 Plug 'mattn/calendar-vim'
-Plug 'morhetz/gruvbox'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'schickling/vim-bufonly'
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/emmet-vim'
-Plug 'wincent/terminus'
 Plug 'airblade/vim-gitgutter'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
 Plug 'shaggyz/php-documentor-vim'
 Plug 'arnaud-lb/vim-php-namespace'
-Plug 'vim-vdebug/vdebug'
 Plug 'mileszs/ack.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'ryanoasis/vim-devicons'
-Plug 'joshdick/onedark.vim'
+Plug 'cocopon/iceberg.vim'
 Plug 'lumiliet/vim-twig'
 Plug 'posva/vim-vue'
 Plug 'machakann/vim-sandwich'
-Plug 'rafi/awesome-vim-colorschemes'
 Plug 'mtdl9/vim-log-highlighting'
-Plug 'janiczek/vim-latte'
-Plug 'vim-vdebug/vdebug'
-Plug 'kchmck/vim-coffee-script'
 Plug 'justmao945/vim-clang'
 Plug 'chr4/nginx.vim'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'ericcurtin/CurtineIncSw.vim'
 Plug 'leafgarland/typescript-vim'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'chrisbra/Colorizer'
 Plug 'nicwest/vim-http'
 call plug#end()
 
@@ -155,8 +144,6 @@ call plug#end()
 runtime! ftplugin/man.vim
 
 " Color theme
-" colorscheme gruvbox
-" colorscheme onedark
 colorscheme iceberg
 
 " --------------------
@@ -166,14 +153,6 @@ colorscheme iceberg
 let g:ackhighlight = 1
 let g:ackprg = 'ag --silent --ignore "tags" --vimgrep --smart-case'
 cnoreabbrev ag Ack!
-
-" --------------------
-" vdebug
-" --------------------
-
-let g:vdebug_options = {
-    \'break_on_open': 0
-\}
 
 " --------------------
 " PHP namespaces
@@ -197,12 +176,6 @@ au BufRead,BufNewFile *.php vnoremap <buffer> <leader>co :call PhpDocRange()<CR>
 
 let g:pdv_cfg_Author = 'Nicolás Palumbo <n@xinax.net>'
 let g:pdv_cfg_ClassTags = ["author"]
-
-" --------------------
-" C/C++ header switch
-" --------------------
-
-au BufRead,BufNewFile *.cpp,*.c,*.hpp,*.h nnoremap <buffer> <leader>sd :call CurtineIncSw()<CR>
 
 " --------------------
 " SnipMate
@@ -260,10 +233,7 @@ let g:vimwiki_url_maxsave = 0
 " Disable TAB for Vim Wiki
 let g:vimwiki_table_mapping = 0
 
-" Disable URL shortener
-let g:vimwiki_url_maxsave = 0
-
-" earch into vimwiki contents, usage: :VWS "search string"
+" earch into vimwiki contents, usage: :VWS 'search string'
 function SearchVimWiki(term)
     :execute 'Ack! ' . a:term . ' ~/.vimwiki'
 endfunction
@@ -283,31 +253,13 @@ autocmd FileType html,css,vue EmmetInstall
 " --------------------
 
 " Fix the delay on urxvt
-let g:gitgutter_terminal_reports_focus=0
-
-" --------------------
-" Instant markdown
-" --------------------
-
-" Do not start the preview automatically
-" Use instead: :InstantMarkdownPreview and :InstantMarkdownStop
-let g:instant_markdown_autostart = 0
-
-" Allow remote content (images, js, etc.)
-let g:instant_markdown_allow_external_content = 1
-
-" Custom port
-let g:instant_markdown_port = 9999
-
-let g:instant_markdown_allow_unsafe_content = 1
-let g:instant_markdown_autoscroll = 0
+" let g:gitgutter_terminal_reports_focus=0
 
 " -----------------------------------------------------------------------------
 " Auto-commands for file types
 " -----------------------------------------------------------------------------
 
 " python - run the current buffer content with CTRL-B (build)
-" autocmd FileType python nnoremap <buffer> <C-b> :exec '!clear ; venv/bin/python' shellescape(@%, 1)<CR>
 autocmd FileType python nnoremap <buffer> <C-b> :exec '!clear ; python3' shellescape(@%, 1)<CR>
 
 " Remove the trailing spaces in these file types
@@ -333,8 +285,8 @@ autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>pa :exec '!pandoc % 
 nmap <C-t> :shell<CR>
 
 " URL encode/decode selection
-vnoremap <leader>en :!python -c 'import sys,urllib;print urllib.quote(sys.stdin.read().strip())'<cr>
-vnoremap <leader>de :!python -c 'import sys,urllib;print urllib.unquote(sys.stdin.read().strip())'<cr>
+vnoremap <leader>en :!python3 -c 'import sys,urllib;print(urllib.quote(sys.stdin.read().strip()))'<cr>
+vnoremap <leader>de :!python3 -c 'import sys,urllib;print(urllib.unquote(sys.stdin.read().strip()))'<cr>
 
 " Toggle NERDTree with \ + N
 map <leader>n :NERDTreeToggle<CR>
@@ -382,8 +334,3 @@ vmap <C-C> "+y
 
 " Open vimrc in a split
 nnoremap <leader>ev :e $MYVIMRC<cr>
-
-
-" -----------------------------------------------------------------------------
-" Unmaps (pluggin mappings that I don't like
-" -----------------------------------------------------------------------------
