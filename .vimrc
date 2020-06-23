@@ -254,9 +254,12 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:vimwiki_list = [{'path': '~/.vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 
 " Disable TAB for Vim Wiki
-let g:vimwiki_table_mappings = 0
+let g:vimwiki_table_mapping = 0
 
-" search into vimwiki contents, usage: :VWS "search string"
+" Disable URL shortener
+let g:vimwiki_url_maxsave = 0
+
+" earch into vimwiki contents, usage: :VWS "search string"
 function SearchVimWiki(term)
     :execute 'Ack! ' . a:term . ' ~/.vimwiki'
 endfunction
