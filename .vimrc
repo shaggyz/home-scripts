@@ -148,6 +148,7 @@ Plug 'ericcurtin/CurtineIncSw.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'chrisbra/Colorizer'
+Plug 'nicwest/vim-http'
 call plug#end()
 
 " Manpages inside vim
@@ -253,6 +254,9 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " Vim Wiki configuration
 let g:vimwiki_list = [{'path': '~/.vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 
+" Disable URL shortener
+let g:vimwiki_url_maxsave = 0
+
 " Disable TAB for Vim Wiki
 let g:vimwiki_table_mappings = 0
 
@@ -300,7 +304,8 @@ let g:instant_markdown_autoscroll = 0
 " -----------------------------------------------------------------------------
 
 " python - run the current buffer content with CTRL-B (build)
-autocmd FileType python nnoremap <buffer> <C-b> :exec '!clear ; venv/bin/python' shellescape(@%, 1)<CR>
+" autocmd FileType python nnoremap <buffer> <C-b> :exec '!clear ; venv/bin/python' shellescape(@%, 1)<CR>
+autocmd FileType python nnoremap <buffer> <C-b> :exec '!clear ; python3' shellescape(@%, 1)<CR>
 
 " Remove the trailing spaces in these file types
 autocmd FileType c,cpp,python,php,muttrc,xdefaults,css,html,config,vim autocmd BufWritePre <buffer> %s/\s\+$//e
