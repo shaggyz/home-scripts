@@ -17,7 +17,7 @@ feh --bg-scale --randomize ~/Pictures/Wallpapers/Active/*
 setxkbmap en_US
 
 # Enable composition
-xcompmgr &
+compton &
 
 # Network manager applet
 nm-applet &

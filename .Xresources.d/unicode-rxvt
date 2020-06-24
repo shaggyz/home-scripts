@@ -7,35 +7,36 @@
 ! Font hack patched for powerline, downloaded from:
 ! https://github.com/powerline/fonts/tree/master/Hack
 
-URxvt.termName: xterm-256color
-URxvt.scrollBar: false
-!URxvt.font: xft:Hack Nerd Font Mono:size=10:antialias=true:hinting=true:minspace=false, xft:Font Awesome 5 Free:pixelsize=18
-URxvt.font: xft:JetBrainsMono Nerd Font Mono:size=10:antialias=true:hinting=true:minspace=false, xft:Font Awesome 5 Free:pixelsize=18
-URxvt.letterSpace: -1
-URxvt.cursorBlink: 1
+URxvt*termName: xterm-256color
+URxvt*scrollBar: false
+URxvt*font: xft:JetBrainsMono Nerd Font Mono:size=10:antialias=true:hinting=true:minspace=false
+URxvt*letterSpace: -1
+URxvt*cursorBlink: 1
 
 ! perl extensions
-URxvt.perl-ext-common: default,clipboard,keyboard-select,url-select,tabbedex,matcher,font-size
+URxvt*perl-ext-common: default,clipboard,keyboard-select,url-select,tabbedex,matcher,font-size
 
 ! transparent xterm windows
-URxvt.transparent: true
-URxvt.shading: 2
+!URxvt*transparent: true
+!URxvt*shading: 2
+URxvt*depth: 32
+URxvt*background: [95]#000000
 
 ! Scrollback
-URxvt.saveLines: 100000
+URxvt*saveLines: 100000
 
 ! url select
-URxvt.url-select.launcher: x-www-browser
-URxvt.url-select.underline: true
-URxvt.matcher.rend.0: Uline
-URxvt.matcher.button: 1
+URxvt*url-select.launcher: x-www-browser
+URxvt*url-select.underline: true
+URxvt*matcher.rend.0: Uline
+URxvt*matcher.button: 1
 
 ! keymaps
-URxvt.keysym.C-equal: perl:font-size:increase
-URxvt.metaSendsEscape: true
+URxvt*keysym.C-equal: perl:font-size:increase
+URxvt*metaSendsEscape: true
 
 ! colors
-URxvt*background: _background
+!URxvt*background: _background
 URxvt*foreground: _foreground
 URxvt*cursorColor: _cursor
 URxvt*color0: _background
