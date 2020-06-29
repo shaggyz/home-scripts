@@ -2,102 +2,45 @@
 " Vim editor config values
 " -----------------------------------------------------------------------------
 
-" It was a long journey, vi
+" Features
 set nocompatible
-
-" Unicode for everything
-set encoding=UTF-8
-
-" Display line numbers.
-set number
-
-" Display the typed command in the right bottom corner.
-set showcmd
-
-" Use markers for folding only.
-set foldmethod=marker
-
-" Display manpages without exiting vim
-set keywordprg=:Man
-
-" Disable folding
 set nofoldenable
-
-" Enable vim config in file comments (modeline)
 set modeline
-
-" Suppress shell output
 set shellpipe=>
-
-" Enable file type detection.
-filetype on
-
-" Load the related plugins for different file types.
-filetype plugin on
-
-" Enable backspace on some terminals (urxvt, for example)
-set backspace=2
-
-" Syntax highlighting
-syntax on
-
-" Mouse scrolling
-set mouse=a
-
-" Program used for searches.
+set autoindent
+set cursorline
+set noswapfile
+set visualbell t_vb=
+set guioptions=c
 set grepprg=grep\ -nH\ $*
 
-" Who doesn't like autoindent?
-set autoindent
+filetype on
+filetype plugin on
+syntax on
 
-" Highlight current line
-set cursorline
-
-" Use spaces for tabulation <3
+" Editor
+set encoding=UTF-8
+set mouse=a
 set expandtab
-
-" Tabs with four spaces
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
 
-" Disable swap files
-set noswapfile
-
-" Highlight the search
-" set hlsearch
-
-" Disable the terminal bell
-set visualbell t_vb=
-
-" Dark mode
+" UI
+set number
+set showcmd
+set foldmethod=marker
 set background=dark
+
+" Enable backspace on some terminals (urxvt, for example)
+set backspace=2
 
 " Improving? autocompletion
 set wildmode=longest,list,full
 set wildmenu
-
-" Use <intro> to select in omnicompletion
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Disable preview window for omnicompletion
+" omnicompletion?
 set completeopt-=preview
-
-" Omni complete, for development
 set omnifunc=syntaxcomplete#Complete
-
-" Remove trailing spaces in certain file types.
-autocmd FileType sh,c,cpp,java,php,vimwiki,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
-
-" This only looks good in MacOS
-if has("gui_macvim")
-    set guifont=Hack\ Nerd\ Font\ Mono:h12
-    set pythonthreehome=/opt/local/Library/Frameworks/Python.framework/Versions/3.6
-    set pythonthreedll=/opt/local/Library/Frameworks/Python.framework/Versions/3.6/lib/libpython3.6m.dylib
-endif
-
-" Graphical vim will work with no dialogs.
-set guioptions=c
 
 " -----------------------------------------------------------------------------
 " Plugin configuration
@@ -142,195 +85,134 @@ call plug#end()
 
 " Manpages inside vim
 runtime! ftplugin/man.vim
+set keywordprg=:Man
 
 " Color theme
 colorscheme iceberg
 
-" --------------------
 " Ack search
-" --------------------
-
 let g:ackhighlight = 1
 let g:ackprg = 'ag --silent --ignore "tags" --vimgrep --smart-case'
 cnoreabbrev ag Ack!
 
-" --------------------
 " PHP namespaces
-" --------------------
-
 function! IPhpInsertUse()
     call PhpInsertUse()
     call feedkeys('a',  'n')
 endfunction
-
 autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
 autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
 
-" --------------------
 " PHP Documentor
-" --------------------
-
 au BufRead,BufNewFile *.php inoremap <buffer> <leader>co :call PhpDoc()<CR>
 au BufRead,BufNewFile *.php nnoremap <buffer> <leader>co :call PhpDoc()<CR>
 au BufRead,BufNewFile *.php vnoremap <buffer> <leader>co :call PhpDocRange()<CR>
 
-let g:pdv_cfg_Author = 'Nicolás Palumbo <n@xinax.net>'
-let g:pdv_cfg_ClassTags = ["author"]
-
-" --------------------
 " SnipMate
-" --------------------
-
 " Snippets directory: ~/.vim/snippets
 let g:snipMate = {}
 let g:snipMate.snippet_version = 1
-
 " Display the description in the snip popup (CTR-R + TAB)
 let g:snipMate.description_in_completion = 1
 
-" --------------------
-" PHP QA
-" --------------------
-
-" Set the codesniffer args
-let g:phpqa_codesniffer_args = '--standard=PSR2'
-
-" Disable phpmd on save (there is a bug here)
-let g:phpqa_messdetector_autorun = 0
-
-" --------------------
 " NERDTree
-" --------------------
-
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeShowHidden = 1
 
-" --------------------
 " Airline
-" --------------------
-
-" Enable powerline patched fonts.
-" Patched fonts retrieved from: https://github.com/powerline/fonts
 let g:airline_powerline_fonts = 1
-
-" Airline buffers tab
 let g:airline#extensions#tabline#enabled = 1
-
-" Just show the filename (no path) in the tab
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-" --------------------
 " Vim Wiki
-" --------------------
-
-" Vim Wiki configuration
 let g:vimwiki_list = [{'path': '~/.vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
-
-" Disable URL shortener
 let g:vimwiki_url_maxsave = 0
-
-" Disable TAB for Vim Wiki
 let g:vimwiki_table_mapping = 0
-
-" earch into vimwiki contents, usage: :VWS 'search string'
+" search into vimwiki contents, usage: :VWS 'search string'
 function SearchVimWiki(term)
     :execute 'Ack! ' . a:term . ' ~/.vimwiki'
 endfunction
 command! -nargs=* VWS :call SearchVimWiki(<q-args>)
 
-" --------------------
 " Vim Emmet
-" --------------------
-
 " <C-Y> , (autocomplete/trigger command, please note the comma)
 " Enable emmet only in html and css files.
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,vue EmmetInstall
 
-" --------------------
-" Git Gutter
-" --------------------
-
-" Fix the delay on urxvt
-" let g:gitgutter_terminal_reports_focus=0
-
 " -----------------------------------------------------------------------------
 " Auto-commands for file types
 " -----------------------------------------------------------------------------
 
+" Remove trailing spaces in certain file types.
+autocmd FileType sh,c,cpp,java,php,vimwiki,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
 " python - run the current buffer content with CTRL-B (build)
 autocmd FileType python nnoremap <buffer> <C-b> :exec '!clear ; python3' shellescape(@%, 1)<CR>
-
 " Remove the trailing spaces in these file types
 autocmd FileType c,cpp,python,php,muttrc,xdefaults,css,html,config,vim autocmd BufWritePre <buffer> %s/\s\+$//e
-
 " Open the current html file with the default browser
 autocmd FileType html nnoremap <buffer> <C-b> :!exec xdg-open %<CR>
-
 " Format html code with \ fh
 autocmd FileType html nnoremap <buffer> <leader>fh :!exec tidy -mi -html -wrap 0 %<CR>
-
-" Format html code with \ fh
+" Format xml code with \ fx
 autocmd FileType xml nnoremap <buffer> <leader>fx :!exec tidy -mi -xml -wrap 0 %<CR>
-"
 " Export the current markdown file to PDF with pandoc
 autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>pa :exec '!pandoc % --pdf-engine=xelatex -o ~/Downloads/vim-output.pdf -V geometry:margin=0.7in'<CR>
+" Use <intro> to select in omnicompletion
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " -----------------------------------------------------------------------------
 " Key maps
 " -----------------------------------------------------------------------------
 
-" Back to the shell with <CTRL+t>
+" CTRL+t    -> Back to the shell
 nmap <C-t> :shell<CR>
-
-" URL encode/decode selection
+" \en       -> URL Encode selection
 vnoremap <leader>en :!python3 -c 'import sys,urllib;print(urllib.quote(sys.stdin.read().strip()))'<cr>
+" \de       -> URL Decode selection
 vnoremap <leader>de :!python3 -c 'import sys,urllib;print(urllib.unquote(sys.stdin.read().strip()))'<cr>
-
-" Toggle NERDTree with \ + N
+" \n        -> Toggle NERDTree
 map <leader>n :NERDTreeToggle<CR>
-
-" Format JSON
-map <leader>jsf :% !python -m json.tool<CR>
-
-" Close buffers with \q
-nnoremap <leader>q :bp\|bd #<CR>
-
-" Remove hlsearch with double CTRL+c
-nnoremap <C-c><C-c> :silent! nohls<cr>
-
-" Open the current file's directory in NERDTree with \r
+" \r        -> Open the current file's directory in NERDTree
 map <leader>r :NERDTreeFind<cr>
-
-" Navigation between buffers with CTRL+h and CTRL+l
+" \jsf      -> Format JSON
+map <leader>jsf :% !python -m json.tool<CR>
+" \q        -> Close the current buffer
+nnoremap <leader>q :bp\|bd #<CR>
+" CTRL+c CTRL+c -> Remove hlsearch
+nnoremap <C-c><C-c> :silent! nohls<cr>
+" CTRL+h    -> Move to the prev. buffer
 nmap <C-h> :bprev!<CR>
+" CTRL+l    -> Move to the next buffer
 nmap <C-l> :bnext!<CR>
-
-" Close all the buffers, except the current one
+" \ca       -> Close all the buffers, except the current one
 nmap <leader>ca :BufOnly<CR>
-
-" FZF select file from current dir.
+" \p        -> FZF select file from current dir.
 nmap <leader>p :Files<CR>
-
-" FZF select from open buffers
+" \o        -> FZF select from open buffers
 nmap <leader>o :Buffers<CR>
-
-" FZF vimwiki search: /s (files)
+" \s        -> FZF vimwiki search (file names)
 nmap <leader>s :Files ~/.vimwiki<CR>
-
-" FZF list git modified files (fzf git status)
-nmap <leader>gs :GFiles?<CR>
-
-" FZF list the command history
-nmap <leader>h :History:<CR>
-
-" Open the custom vimwiki search with /S
+" \S        -> Vimwiki search (content)
 nmap <leader>S :VWS<space>
-
-" Enable paste on gvim (Linux)
+" \gs       -> FZF list git modified files (fzf git status)
+nmap <leader>gs :GFiles?<CR>
+" \h        -> FZF list the command history
+nmap <leader>h :History:<CR>
+" CTRL+v    -> Paste from the X11 clipboard
 imap <C-V> <C-o>"+gP
+" CTRL+p    -> Copy to the X11 clipboard
 vmap <C-C> "+y
-
-" Open vimrc in a split
+" \ev       -> Open vimrc in a split
 nnoremap <leader>ev :e $MYVIMRC<cr>
+
+" -----------------------------------------------------------------------------
+" OSX-specific configuration
+" -----------------------------------------------------------------------------
+
+if has("gui_macvim")
+    set guifont=Hack\ Nerd\ Font\ Mono:h12
+    set pythonthreehome=/opt/local/Library/Frameworks/Python.framework/Versions/3.6
+    set pythonthreedll=/opt/local/Library/Frameworks/Python.framework/Versions/3.6/lib/libpython3.6m.dylib
+endif
