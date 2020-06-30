@@ -27,8 +27,89 @@ Xft*hintstyle: hintfull
 Xft*lcdfilter: lcddefault
 
 ! -------------------------------------------
-!              program specific
+!              urxvt specific
 ! -------------------------------------------
 
-#include ".Xresources.d/xterm"
-#include ".Xresources.d/unicode-rxvt"
+URxvt*termName: xterm-256color
+URxvt*scrollBar: false
+URxvt*font: xft:JetBrainsMono Nerd Font Mono:size=10:antialias=true:hinting=true:minspace=false
+URxvt*letterSpace: -1
+URxvt*cursorBlink: 1
+
+! perl extensions
+URxvt*perl-ext-common: default,clipboard,keyboard-select,url-select,tabbedex,matcher,font-size
+
+! fake transparency
+!URxvt*transparent: true
+!URxvt*shading: 2
+!URxvt*background: _background
+
+! composite transparent
+URxvt*depth: 32
+URxvt*background: [95]#000000
+
+! Scrollback
+URxvt*saveLines: 100000
+
+! url select
+URxvt*url-select.launcher: x-www-browser
+URxvt*url-select.underline: true
+URxvt*matcher.rend.0: Uline
+URxvt*matcher.button: 1
+
+! keymaps
+URxvt*keysym.C-equal: perl:font-size:increase
+URxvt*metaSendsEscape: true
+
+! colors
+URxvt*foreground: _foreground
+URxvt*cursorColor: _cursor
+URxvt*color0: _background
+URxvt*color1: _dark_red
+URxvt*color2: _dark_green
+URxvt*color3: _medium_brown
+URxvt*color9: _light_red
+URxvt*color10: _light_green
+URxvt*color12: _light_blue
+URxvt*color14: _light_magenta
+
+! -------------------------------------------
+!              xterm specific
+! -------------------------------------------
+
+! Global configuration
+XTerm*termName: xterm-256color
+
+! Font
+XTerm*faceName: Hack Nerd Font Mono
+XTerm*faceSize: 10
+XTerm*loginshell: true
+XTerm*letterSpace: -1
+
+! I like a LOT of scrollback...
+XTerm*savelines: 8000
+
+! xterm colors
+XTerm*background: _background
+XTerm*foreground: _foreground
+XTerm*cursorColor: _cursor
+
+XTerm*color0: _background
+XTerm*color1: _dark_red
+XTerm*color2: _dark_green
+XTerm*color3: _medium_brown
+XTerm*color9: _light_red
+XTerm*color10: _light_green
+XTerm*color12: _light_blue
+XTerm*color14: _light_magenta
+
+XTerm*metaSendsEscape: true
+
+! shortcuts
+XTerm.vt100.translations: #override \n\
+  Ctrl <Key> minus: smaller-vt-font() \n\
+  Ctrl <Key> plus: larger-vt-font()
+
+XTerm.vt100.Translations: #override \n\
+  Ctrl Shift <Key> V: insert-selection(CLIPBOARD) \n\
+  Ctrl Shift <Key> C: copy-selection(CLIPBOARD)
