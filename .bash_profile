@@ -4,23 +4,27 @@ export TERM=xterm-256color
 
 # Prompt
 parse_git_branch() {
-     # This expects a branch named in this form 'feature/ABCD-1234-add-new-feature'
-     BRANCH=`git branch 2> /dev/null | grep -e '^* ' | egrep -o '([a-z/?]*[A-Z]+-[0-9]+|^release)'`
-     if [ ! -z "$BRANCH" ]; then
-         echo "[$BRANCH]"
-     fi
+    [ -d "$CWD/.git" ] && return
+    # This expects a branch named in this form 'feature/ABCD-1234-add-new-feature'
+    BRANCH=`git branch 2> /dev/null | grep -e '^* ' | egrep -o '([a-z/?]*[A-Z]+-[0-9]+|^release)'`
+    [ ! -z "$BRANCH" ] && echo "[$BRANCH]"
 }
 
 export PS1='\[\033[01;32m\]\u@\h:\[\033[01;34m\]\W\[\033[01;33m\]$(parse_git_branch)\[\033[0m\]\$ '
 
-# Used for colored psychedelic manpages (not needed if using most)
-# export LESS_TERMCAP_mb=$'\e[1;32m'
-# export LESS_TERMCAP_md=$'\e[1;32m'
-# export LESS_TERMCAP_me=$'\e[0m'
-# export LESS_TERMCAP_se=$'\e[0m'
-# export LESS_TERMCAP_so=$'\e[01;33m'
-# export LESS_TERMCAP_ue=$'\e[0m'
-# export LESS_TERMCAP_us=$'\e[1;31m'
+# Man pages counter and %
+export MANPAGER='less -s -M +Gg'
+
+# Man in full color
+man() {
+    LESS_TERMCAP_md=$'\e[01;34m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[00;40;33m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[01;32m' \
+    command man "$@"
+}
 
 # Bash aliases
 if [ -f ~/.bash_aliases ]; then
