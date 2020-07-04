@@ -27,16 +27,10 @@ man() {
 }
 
 # Bash aliases
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+[ -f ~/.bash_aliases ] && source ~/.bash_aliases
 
 # General path entries
-
-# Go Stuff
-export GOROOT="/opt/go"
-export GOPATH="$HOME/Development/sideprojects/go"
-export PATH="$HOME/.scripts:$HOME/.cargo/bin:$GOPATH/bin:$GOROOT/bin:$PATH"
+export PATH="$HOME/.scripts:$PATH"
 
 # Only GNU/linux
 if [ `uname` == "Linux" ]; then
@@ -44,9 +38,9 @@ if [ `uname` == "Linux" ]; then
     alias enspa='dict -d fd-eng-spa'
     alias spaen='dict -d fd-spa-eng'
     # Needed to specify Qt themes
-    export QT_QPA_PLATFORMTHEME=qt5ct
+    # export QT_QPA_PLATFORMTHEME=qt5ct
     # Wine32
-    export WINEPREFIX=$HOME/.wine32
+    # export WINEPREFIX=$HOME/.wine32
 fi
 
 # Only macOS

@@ -20,7 +20,7 @@ syntax on
 
 " Editor
 set encoding=UTF-8
-set mouse=a
+set mouse+=a
 set expandtab
 set shiftwidth=4
 set tabstop=4
@@ -42,6 +42,16 @@ set wildmenu
 set completeopt-=preview
 set omnifunc=syntaxcomplete#Complete
 
+" fix tmux text dragging in arch
+if has("mouse_sgr")
+    set ttymouse=sgr
+else
+    set ttymouse=xterm2
+end
+
+" map leader to ,
+let mapleader = ","
+
 " -----------------------------------------------------------------------------
 " Plugin configuration
 " -----------------------------------------------------------------------------
@@ -51,6 +61,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
 
 " Plugins
 call plug#begin('~/.vim/plugged')
