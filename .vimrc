@@ -92,6 +92,7 @@ Plug 'justmao945/vim-clang'
 Plug 'chr4/nginx.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'nicwest/vim-http'
+Plug 'fedorenchik/qt-support.vim'
 call plug#end()
 
 " Manpages inside vim
@@ -177,19 +178,34 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Key maps
 " -----------------------------------------------------------------------------
 
+" Copy and paste on X11
+fun! X11Copy()
+    silent %w !setsid xclip -selection clipboard
+endfun
+fun! X11CopyRegister(reg)
+    let l:ignore = system('setsid xclip -selection clipboard', getreg(a:reg))
+endfun
+fun! X11PasteClipboard()
+    r !xclip -selection clipboard -o
+endfun
+fun! X11PastePrimary()
+    r !xclip -o
+endfun
+
+
 " CTRL+t    -> Back to the shell
 nmap <C-t> :shell<CR>
-" \en       -> URL Encode selection
+" ,en       -> URL Encode selection
 vnoremap <leader>en :!python3 -c 'import sys,urllib;print(urllib.quote(sys.stdin.read().strip()))'<cr>
-" \de       -> URL Decode selection
+" ,de       -> URL Decode selection
 vnoremap <leader>de :!python3 -c 'import sys,urllib;print(urllib.unquote(sys.stdin.read().strip()))'<cr>
-" \n        -> Toggle NERDTree
+" ,n        -> Toggle NERDTree
 map <leader>n :NERDTreeToggle<CR>
-" \r        -> Open the current file's directory in NERDTree
+" ,r        -> Open the current file's directory in NERDTree
 map <leader>r :NERDTreeFind<cr>
-" \jsf      -> Format JSON
+" ,jsf      -> Format JSON
 map <leader>jsf :% !python -m json.tool<CR>
-" \q        -> Close the current buffer
+" ,q        -> Close the current buffer
 nnoremap <leader>q :bp\|bd #<CR>
 " CTRL+c CTRL+c -> Remove hlsearch
 nnoremap <C-c><C-c> :silent! nohls<cr>
@@ -197,25 +213,28 @@ nnoremap <C-c><C-c> :silent! nohls<cr>
 nmap <C-h> :bprev!<CR>
 " CTRL+l    -> Move to the next buffer
 nmap <C-l> :bnext!<CR>
-" \ca       -> Close all the buffers, except the current one
+" ,ca       -> Close all the buffers, except the current one
 nmap <leader>ca :BufOnly<CR>
-" \p        -> FZF select file from current dir.
+" ,p        -> FZF select file from current dir.
 nmap <leader>p :Files<CR>
-" \o        -> FZF select from open buffers
+" ,o        -> FZF select from open buffers
 nmap <leader>o :Buffers<CR>
-" \s        -> FZF vimwiki search (file names)
+" ,s        -> FZF vimwiki search (file names)
 nmap <leader>s :Files ~/.vimwiki<CR>
-" \S        -> Vimwiki search (content)
+" ,S        -> Vimwiki search (content)
 nmap <leader>S :VWS<space>
-" \gs       -> FZF list git modified files (fzf git status)
+" ,gs       -> FZF list git modified files (fzf git status)
 nmap <leader>gs :GFiles?<CR>
-" \h        -> FZF list the command history
+" ,h        -> FZF list the command history
 nmap <leader>h :History:<CR>
 " CTRL+v    -> Paste from the X11 clipboard
 imap <C-V> <C-o>"+gP
-" CTRL+p    -> Copy to the X11 clipboard
-vmap <C-C> "+y
-" \ev       -> Open vimrc in a split
+" vmap <C-C> "+y
+nmap <C-c> :call X11Copy()<CR>
+vmap <C-c> "xy:call X11CopyRegister('x')<CR>
+nmap <Leader>xp :call X11PasteClipboard()<CR>
+nmap <Leader>xP :call X11PastePrimary()<CR>
+" ,ev       -> Open vimrc in a split
 nnoremap <leader>ev :e $MYVIMRC<cr>
 
 " -----------------------------------------------------------------------------
