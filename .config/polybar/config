@@ -1,17 +1,7 @@
 ;==========================================================
 ;
-;
-;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
-;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
-;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
-;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
-;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
-;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
-;
-;
 ;   To learn more about how to configure Polybar
 ;   go to https://github.com/polybar/polybar
-;
 ;   The README contains a lot of information
 ;   See: https://github.com/polybar/polybar/wiki/Configuration
 ;
@@ -45,24 +35,24 @@ line-color = #f00
 border-size = 0
 border-color = #00000000
 
-padding-left = 0
+padding-left = 2
 padding-right = 2
 
 module-margin-left = 1
 module-margin-right = 2
 
 # Fonts
-font-0 = System-ui:pixelsize=11;1
-font-1 = JetBrainsMono Nerd Font Mono:pixelsize=18:antialias=true;4
-font-2 = unifont:fontformat=truetype:size=8:antialias=false
+font-0 = System-ui:size=10.5;1
+font-1 = JetBrainsMono Nerd Font Mono:size=11:antialias=true;2
+font-2 = unifont:fontformat=truetype:size=11:antialias=false
 
 
 # Modules
-modules-left = 
+modules-left = xbacklight xkeyboard
 # modules-left = i3
 modules-center = 
-;modules-right = filesystem memory cpu battery temperature date xbacklight
-modules-right = filesystem memory cpu temperature date
+modules-right = filesystem memory cpu battery temperature date 
+;modules-right = filesystem memory cpu temperature date
 
 tray-position = right
 tray-padding = 2
@@ -76,12 +66,11 @@ type = internal/xwindow
 label = %title:0:30:...%
 
 [module/xkeyboard]
-# TODO: For some reason this is not working as expected
 type = internal/xkeyboard
 blacklist-0 = num lock
 
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
+#format-prefix = " "
+format-prefix-foreground = ${colors.green}
 format-prefix-underline = ${colors.secondary}
 
 label-layout = %layout%
@@ -89,8 +78,8 @@ label-layout-underline = ${colors.secondary}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
+label-indicator-background = ${colors.green}
+#label-indicator-underline = ${colors.secondary}
 
 [module/filesystem]
 type = internal/fs

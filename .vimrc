@@ -35,12 +35,12 @@ set background=dark
 " Enable backspace on some terminals (urxvt, for example)
 set backspace=2
 
-" Improving? autocompletion
+" command autocompletion
 set wildmode=longest,list,full
 set wildmenu
 " omnicompletion?
 set completeopt-=preview
-set omnifunc=syntaxcomplete#Complete
+"set omnifunc=syntaxcomplete#Complete
 
 " fix tmux text dragging in arch
 if has("mouse_sgr")
@@ -62,15 +62,18 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-
 " Plugins
 call plug#begin('~/.vim/plugged')
+Plug 'moll/vim-bbye'
+Plug 'tpope/vim-commentary'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vimwiki/vimwiki'
 Plug 'mattn/calendar-vim'
 Plug 'junegunn/fzf'
+Plug 'StanAngeloff/php.vim'
 Plug 'junegunn/fzf.vim'
+Plug 'StanAngeloff/php.vim'
 Plug 'schickling/vim-bufonly'
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/emmet-vim'
@@ -81,18 +84,19 @@ Plug 'garbas/vim-snipmate'
 Plug 'shaggyz/php-documentor-vim'
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'mileszs/ack.vim'
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'ryanoasis/vim-devicons'
-Plug 'cocopon/iceberg.vim'
+" Plug 'cocopon/iceberg.vim'
+Plug 'morhetz/gruvbox'
 Plug 'lumiliet/vim-twig'
-Plug 'posva/vim-vue'
 Plug 'machakann/vim-sandwich'
 Plug 'mtdl9/vim-log-highlighting'
 Plug 'justmao945/vim-clang'
 Plug 'chr4/nginx.vim'
 Plug 'leafgarland/typescript-vim'
-Plug 'nicwest/vim-http'
+" Plug 'nicwest/vim-http'
 Plug 'fedorenchik/qt-support.vim'
+Plug 'leafOfTree/vim-vue-plugin'
+Plug 'tenfyzhong/CompleteParameter.vim'
 call plug#end()
 
 " Manpages inside vim
@@ -100,7 +104,7 @@ runtime! ftplugin/man.vim
 set keywordprg=:Man
 
 " Color theme
-colorscheme iceberg
+colorscheme gruvbox
 
 " Ack search
 let g:ackhighlight = 1
@@ -175,6 +179,13 @@ autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>pa :exec '!pandoc % 
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " -----------------------------------------------------------------------------
+" Tag generation
+" -----------------------------------------------------------------------------
+
+" Generate ctags everytime we save a PHP file
+au BufWritePost *.php silent! !eval 'ctags -R --languages=php --php-kinds=cif --exclude=var/* --exclude=bin/* --exclude=public/* --fields=+aimS' &
+
+" -----------------------------------------------------------------------------
 " Key maps
 " -----------------------------------------------------------------------------
 
@@ -206,7 +217,7 @@ map <leader>r :NERDTreeFind<cr>
 " ,jsf      -> Format JSON
 map <leader>jsf :% !python -m json.tool<CR>
 " ,q        -> Close the current buffer
-nnoremap <leader>q :bp\|bd #<CR>
+:nnoremap <Leader>q :Bdelete<CR>
 " CTRL+c CTRL+c -> Remove hlsearch
 nnoremap <C-c><C-c> :silent! nohls<cr>
 " CTRL+h    -> Move to the prev. buffer
@@ -216,7 +227,7 @@ nmap <C-l> :bnext!<CR>
 " ,ca       -> Close all the buffers, except the current one
 nmap <leader>ca :BufOnly<CR>
 " ,p        -> FZF select file from current dir.
-nmap <leader>p :Files<CR>
+nmap <leader>f :Files<CR>
 " ,o        -> FZF select from open buffers
 nmap <leader>o :Buffers<CR>
 " ,s        -> FZF vimwiki search (file names)
@@ -229,9 +240,9 @@ nmap <leader>gs :GFiles?<CR>
 nmap <leader>h :History:<CR>
 " CTRL+v    -> Paste from the X11 clipboard
 imap <C-V> <C-o>"+gP
-" vmap <C-C> "+y
-nmap <C-c> :call X11Copy()<CR>
-vmap <C-c> "xy:call X11CopyRegister('x')<CR>
+vmap <C-C> "+y
+" nmap <C-c> :call X11Copy()<CR>
+" vmap <C-c> "xy:call X11CopyRegister('x')<CR>
 nmap <Leader>xp :call X11PasteClipboard()<CR>
 nmap <Leader>xP :call X11PastePrimary()<CR>
 " ,ev       -> Open vimrc in a split
