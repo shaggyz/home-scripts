@@ -42,6 +42,9 @@ set wildmenu
 set completeopt-=preview
 "set omnifunc=syntaxcomplete#Complete
 
+" Workaround for https://github.com/vim/vim/issues/3471
+:set t_Cs=
+
 " fix tmux text dragging in arch
 if has("mouse_sgr")
     set ttymouse=sgr

@@ -37,7 +37,7 @@ URxvt*letterSpace: -1
 URxvt*cursorBlink: 1
 
 ! perl extensions
-URxvt*perl-ext-common: default,clipboard,keyboard-select,url-select,matcher,font-size
+URxvt*perl-ext-common: default,clipboard,keyboard-select,url-select,tabbedex,matcher,font-size
 
 ! fake transparency
 !URxvt*transparent: true
