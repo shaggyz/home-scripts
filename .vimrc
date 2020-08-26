@@ -178,6 +178,7 @@ autocmd FileType html nnoremap <buffer> <leader>fh :!exec tidy -mi -html -wrap 0
 autocmd FileType xml nnoremap <buffer> <leader>fx :!exec tidy -mi -xml -wrap 0 %<CR>
 " Export the current markdown file to PDF with pandoc
 autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>pa :exec '!pandoc % --pdf-engine=xelatex -o ~/Downloads/vim-output.pdf -V geometry:margin=0.7in'<CR>
+autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>ph :exec '!pandoc -s -f markdown -t html5 -o ~/Downloads/vim-output.html -c ~/Downloads/css/bootstrap.min.css %'<CR>
 " Use <intro> to select in omnicompletion
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
@@ -187,6 +188,9 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Generate ctags everytime we save a PHP file
 au BufWritePost *.php silent! !eval 'ctags -R --languages=php --php-kinds=cif --exclude=var/* --exclude=bin/* --exclude=public/* --fields=+aimS' &
+
+" Generate ctags everytime we save a C file
+au BufWritePost *.c,*.h,*.cpp silent! !eval 'ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --fields=+aimS' &
 
 " -----------------------------------------------------------------------------
 " Key maps
@@ -208,7 +212,7 @@ endfun
 
 
 " CTRL+t    -> Back to the shell
-nmap <C-t> :shell<CR>
+nmap <leader>t :shell<CR>
 " ,en       -> URL Encode selection
 vnoremap <leader>en :!python3 -c 'import sys,urllib;print(urllib.quote(sys.stdin.read().strip()))'<cr>
 " ,de       -> URL Decode selection
@@ -243,11 +247,11 @@ nmap <leader>gs :GFiles?<CR>
 nmap <leader>h :History:<CR>
 " CTRL+v    -> Paste from the X11 clipboard
 imap <C-V> <C-o>"+gP
-vmap <C-C> "+y
-" nmap <C-c> :call X11Copy()<CR>
-" vmap <C-c> "xy:call X11CopyRegister('x')<CR>
-nmap <Leader>xp :call X11PasteClipboard()<CR>
-nmap <Leader>xP :call X11PastePrimary()<CR>
+" vmap <C-C> "+y
+nmap <C-c> :call X11Copy()<CR>
+vmap <C-c> "xy:call X11CopyRegister('x')<CR>
+" nmap <Leader>xp :call X11PasteClipboard()<CR>
+" nmap <Leader>xP :call X11PastePrimary()<CR>
 " ,ev       -> Open vimrc in a split
 nnoremap <leader>ev :e $MYVIMRC<cr>
 

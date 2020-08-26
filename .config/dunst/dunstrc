@@ -3,7 +3,7 @@
 #
 
 [global]
-font = Hack Regular 11
+font = Roboto Regular 11
 
 # Allow a small subset of html markup:
 #   <b>bold</b>
