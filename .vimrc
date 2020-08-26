@@ -38,11 +38,9 @@ set backspace=2
 " command autocompletion
 set wildmode=longest,list,full
 set wildmenu
-" omnicompletion?
 set completeopt-=preview
-"set omnifunc=syntaxcomplete#Complete
 
-" Workaround for https://github.com/vim/vim/issues/3471
+" Workaround for pink cursor: https://github.com/vim/vim/issues/3471
 :set t_Cs=
 
 " fix tmux text dragging in arch
@@ -99,7 +97,9 @@ Plug 'leafgarland/typescript-vim'
 " Plug 'nicwest/vim-http'
 Plug 'fedorenchik/qt-support.vim'
 Plug 'leafOfTree/vim-vue-plugin'
-Plug 'tenfyzhong/CompleteParameter.vim'
+" Plug 'tenfyzhong/CompleteParameter.vim'
+Plug 'jwalton512/vim-blade'
+Plug 'alvan/vim-php-manual'
 call plug#end()
 
 " Manpages inside vim
@@ -143,6 +143,9 @@ let NERDTreeShowHidden = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
+
+" PHP manual for vim, disable open in browser shortcut
+let g:php_manual_online_search_shortcut = ''
 
 " Vim Wiki
 let g:vimwiki_list = [{'path': '~/.vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
@@ -254,6 +257,7 @@ vmap <C-c> "xy:call X11CopyRegister('x')<CR>
 " nmap <Leader>xP :call X11PastePrimary()<CR>
 " ,ev       -> Open vimrc in a split
 nnoremap <leader>ev :e $MYVIMRC<cr>
+" gv        -> toggle comments
 
 " -----------------------------------------------------------------------------
 " OSX-specific configuration
