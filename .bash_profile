@@ -55,7 +55,7 @@ if [ `uname` == "Darwin" ]; then
     export LC_ALL=en_US.UTF-8
     export LANG=en_US.UTF-8
     alias vim="/opt/local/bin/vim"
-    export PATH="$HOME/.cargo/bin:/opt/metasploit-framework/bin:$PATH"
+    export PATH="/usr/local/mysql/bin:$PATH"
     # Fuck apple using zsh as default
     export BASH_SILENCE_DEPRECATION_WARNING=1
 fi
