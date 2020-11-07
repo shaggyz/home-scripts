@@ -51,7 +51,7 @@ if [ `uname` == "Darwin" ]; then
         source /opt/local/etc/profile.d/bash_completion.sh
     fi
     # MacTEX LaTeX distribution binaries:
-    export "PATH=$PATH:/usr/local/texlive/2019/bin/x86_64-darwin"
+    export PATH="/usr/local/texlive/2020/bin/x86_64-darwin/:$PATH"
     export LC_ALL=en_US.UTF-8
     export LANG=en_US.UTF-8
     alias vim="/opt/local/bin/vim"

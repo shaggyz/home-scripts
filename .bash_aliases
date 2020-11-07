@@ -15,6 +15,9 @@ alias l='ls -CF'
 # Fancy stuff
 alias ccat='highlight -s dusk -O xterm256'
 
+# Development
+alias dps='docker ps'
+
 # Only GNU/linux
 if [ `uname` == "Linux" ]; then
     alias ls='ls --color=auto'

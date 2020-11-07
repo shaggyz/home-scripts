@@ -100,6 +100,7 @@ Plug 'leafOfTree/vim-vue-plugin'
 " Plug 'tenfyzhong/CompleteParameter.vim'
 Plug 'jwalton512/vim-blade'
 Plug 'alvan/vim-php-manual'
+Plug 'itspriddle/vim-shellcheck'
 call plug#end()
 
 " Manpages inside vim
