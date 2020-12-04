@@ -51,9 +51,16 @@ if [ `uname` == "Darwin" ]; then
         source /opt/local/etc/profile.d/bash_completion.sh
     fi
     # MacTEX LaTeX distribution binaries:
-    export "PATH=$PATH:/usr/local/texlive/2019/bin/x86_64-darwin"
+    export PATH="/usr/local/texlive/2020/bin/x86_64-darwin/:$PATH"
     export LC_ALL=en_US.UTF-8
     export LANG=en_US.UTF-8
     alias vim="/opt/local/bin/vim"
-    export PATH="$HOME/.cargo/bin:/opt/metasploit-framework/bin:$PATH"
+    export PATH="/usr/local/mysql/bin:$PATH"
+    # Fuck apple using zsh as default
+    export BASH_SILENCE_DEPRECATION_WARNING=1
+    # The next line updates PATH for the Google Cloud SDK.
+    if [ -f '/opt/google-cloud-sdk/path.bash.inc' ]; then . '/opt/google-cloud-sdk/path.bash.inc'; fi
+    # The next line enables shell command completion for gcloud.
+    if [ -f '/opt/google-cloud-sdk/completion.bash.inc' ]; then . '/opt/google-cloud-sdk/completion.bash.inc'; fi
 fi
+

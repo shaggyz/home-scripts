@@ -93,6 +93,7 @@ Plug 'leafOfTree/vim-vue-plugin'
 " Plug 'tenfyzhong/CompleteParameter.vim'
 Plug 'jwalton512/vim-blade'
 Plug 'alvan/vim-php-manual'
+Plug 'itspriddle/vim-shellcheck'
 call plug#end()
 
 " Manpages inside vim
@@ -256,7 +257,7 @@ nnoremap <leader>ev :e $MYVIMRC<cr>
 " -----------------------------------------------------------------------------
 
 if has("gui_macvim")
-    set guifont=Hack\ Nerd\ Font\ Mono:h12
+    set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h13
     set pythonthreehome=/opt/local/Library/Frameworks/Python.framework/Versions/3.6
     set pythonthreedll=/opt/local/Library/Frameworks/Python.framework/Versions/3.6/lib/libpython3.6m.dylib
 endif
