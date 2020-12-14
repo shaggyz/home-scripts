@@ -71,8 +71,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vimwiki/vimwiki'
 Plug 'mattn/calendar-vim'
-Plug 'junegunn/fzf'
 Plug 'StanAngeloff/php.vim'
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'StanAngeloff/php.vim'
 Plug 'schickling/vim-bufonly'
@@ -101,6 +101,9 @@ Plug 'leafOfTree/vim-vue-plugin'
 Plug 'jwalton512/vim-blade'
 Plug 'alvan/vim-php-manual'
 Plug 'itspriddle/vim-shellcheck'
+Plug 'nightsense/carbonized'
+Plug 'arcticicestudio/nord-vim'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 call plug#end()
 
 " Manpages inside vim
@@ -108,7 +111,8 @@ runtime! ftplugin/man.vim
 set keywordprg=:Man
 
 " Color theme
-colorscheme gruvbox
+" colorscheme gruvbox
+colorscheme onehalfdark
 
 " Ack search
 let g:ackhighlight = 1
@@ -169,7 +173,7 @@ autocmd FileType html,css,vue EmmetInstall
 " -----------------------------------------------------------------------------
 
 " Remove trailing spaces in certain file types.
-autocmd FileType sh,c,cpp,java,php,vimwiki,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType sh,js,ts,c,cpp,java,php,vimwiki,make,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
 " python - run the current buffer content with CTRL-B (build)
 autocmd FileType python nnoremap <buffer> <C-b> :exec '!clear ; python3' shellescape(@%, 1)<CR>
 " Remove the trailing spaces in these file types
