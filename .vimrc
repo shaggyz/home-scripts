@@ -43,13 +43,6 @@ set completeopt-=preview
 " Workaround for pink cursor: https://github.com/vim/vim/issues/3471
 :set t_Cs=
 
-" fix tmux text dragging in arch
-if has("mouse_sgr")
-    set ttymouse=sgr
-else
-    set ttymouse=xterm2
-end
-
 " map leader to ,
 let mapleader = ","
 
@@ -132,8 +125,7 @@ au BufRead,BufNewFile *.php inoremap <buffer> <leader>co :call PhpDoc()<CR>
 au BufRead,BufNewFile *.php nnoremap <buffer> <leader>co :call PhpDoc()<CR>
 au BufRead,BufNewFile *.php vnoremap <buffer> <leader>co :call PhpDocRange()<CR>
 
-" SnipMate
-" Snippets directory: ~/.vim/snippets
+" SnipMate: Snippets directory: ~/.vim/snippets
 let g:snipMate = {}
 let g:snipMate.snippet_version = 1
 " Display the description in the snip popup (CTR-R + TAB)
@@ -166,7 +158,7 @@ command! -nargs=* VWS :call SearchVimWiki(<q-args>)
 " <C-Y> , (autocomplete/trigger command, please note the comma)
 " Enable emmet only in html and css files.
 let g:user_emmet_install_global = 0
-autocmd FileType html,css,vue EmmetInstall
+autocmd FileType html,css,vue,php EmmetInstall
 
 " -----------------------------------------------------------------------------
 " Auto-commands for file types
