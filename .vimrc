@@ -97,6 +97,8 @@ Plug 'itspriddle/vim-shellcheck'
 Plug 'nightsense/carbonized'
 Plug 'arcticicestudio/nord-vim'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
+Plug 'digitaltoad/vim-pug'
+Plug 'nvie/vim-flake8'
 call plug#end()
 
 " Manpages inside vim
@@ -160,6 +162,12 @@ command! -nargs=* VWS :call SearchVimWiki(<q-args>)
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,vue,php EmmetInstall
 
+" flake8
+" show error hints in the gutter
+let g:flake8_show_in_gutter = 1
+" show error marks in the file
+let g:flake8_show_in_file = 1
+
 " -----------------------------------------------------------------------------
 " Auto-commands for file types
 " -----------------------------------------------------------------------------
@@ -167,7 +175,7 @@ autocmd FileType html,css,vue,php EmmetInstall
 " Remove trailing spaces in certain file types.
 autocmd FileType sh,js,ts,c,cpp,java,php,vimwiki,make,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
 " python - run the current buffer content with CTRL-B (build)
-autocmd FileType python nnoremap <buffer> <C-b> :exec '!clear ; python3' shellescape(@%, 1)<CR>
+autocmd FileType python nnoremap <buffer> <leader>run :exec '!clear ; python3' shellescape(@%, 1)<CR>
 " Remove the trailing spaces in these file types
 autocmd FileType c,cpp,python,php,muttrc,xdefaults,css,html,config,vim autocmd BufWritePre <buffer> %s/\s\+$//e
 " Open the current html file with the default browser
