@@ -32,7 +32,7 @@ Xft*lcdfilter: lcddefault
 
 URxvt*termName: xterm-256color
 URxvt*scrollBar: false
-URxvt*font: xft:JetBrainsMono Nerd Font Mono:size=11:antialias=true:hinting=true:minspace=false
+URxvt*font: xft:Source Code Pro Semibold:size=11:antialias=true:hinting=true:minspace=false
 URxvt*letterSpace: -1
 URxvt*cursorBlink: 1
 
