@@ -120,6 +120,8 @@ let g:airline_symbols.maxlinenr = ''
 let g:airline_symbols.branch = '⚡'
 let g:airline_symbols.linenr = ''
 let g:airline#extensions#tabline#enabled = 1
+" Just show the filename (no path) in the tab
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 " PHP namespaces
 function! IPhpInsertUse()
