@@ -95,7 +95,6 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'digitaltoad/vim-pug'
 Plug 'nvie/vim-flake8'
-Plug 'davidhalter/jedi-vim'
 call plug#end()
 
 " Manpages inside vim
@@ -193,6 +192,10 @@ autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>pa :exec '!pandoc % 
 autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>ph :exec '!pandoc -s -f markdown -t html5 -o ~/Downloads/vim-output.html -c ~/Downloads/css/bootstrap.min.css %'<CR>
 " Use <intro> to select in omnicompletion
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" 4-spaces tabs for some file types
+autocmd FileType vue setlocal shiftwidth=4 tabstop=4
+autocmd FileType javascript setlocal shiftwidth=4 tabstop=4
 
 " -----------------------------------------------------------------------------
 " Tag generation
