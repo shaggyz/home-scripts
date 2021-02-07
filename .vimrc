@@ -65,7 +65,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'vimwiki/vimwiki'
 Plug 'mattn/calendar-vim'
 Plug 'StanAngeloff/php.vim'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'StanAngeloff/php.vim'
 Plug 'schickling/vim-bufonly'
@@ -102,8 +102,8 @@ runtime! ftplugin/man.vim
 set keywordprg=:Man
 
 " Color theme
-" colorscheme gruvbox
-colorscheme onehalfdark
+colorscheme gruvbox
+" colorscheme onehalfdark
 
 " Ack search
 let g:ackhighlight = 1
@@ -176,7 +176,7 @@ let g:flake8_show_in_file = 1
 " -----------------------------------------------------------------------------
 
 " Remove trailing spaces in certain file types.
-autocmd FileType sh,js,ts,c,cpp,java,php,vimwiki,make,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType sh,javascript,ts,vue,c,cpp,java,php,vimwiki,make,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
 " python - run the current buffer content with CTRL-B (build)
 autocmd FileType python nnoremap <buffer> <leader>run :exec '!clear ; python3' shellescape(@%, 1)<CR>
 " Remove the trailing spaces in these file types
