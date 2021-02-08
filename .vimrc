@@ -58,14 +58,14 @@ endif
 
 " Plugins
 call plug#begin('~/.vim/plugged')
+Plug 'vim-airline/vim-airline'
 Plug 'moll/vim-bbye'
 Plug 'tpope/vim-commentary'
 Plug 'scrooloose/nerdtree'
-Plug 'vim-airline/vim-airline'
 Plug 'vimwiki/vimwiki'
 Plug 'mattn/calendar-vim'
 Plug 'StanAngeloff/php.vim'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'StanAngeloff/php.vim'
 Plug 'schickling/vim-bufonly'
@@ -78,8 +78,6 @@ Plug 'garbas/vim-snipmate'
 Plug 'shaggyz/php-documentor-vim'
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'mileszs/ack.vim'
-Plug 'ryanoasis/vim-devicons'
-" Plug 'cocopon/iceberg.vim'
 Plug 'morhetz/gruvbox'
 Plug 'lumiliet/vim-twig'
 Plug 'machakann/vim-sandwich'
@@ -87,16 +85,16 @@ Plug 'mtdl9/vim-log-highlighting'
 Plug 'justmao945/vim-clang'
 Plug 'chr4/nginx.vim'
 Plug 'leafgarland/typescript-vim'
-" Plug 'nicwest/vim-http'
 Plug 'fedorenchik/qt-support.vim'
 Plug 'leafOfTree/vim-vue-plugin'
-" Plug 'tenfyzhong/CompleteParameter.vim'
 Plug 'jwalton512/vim-blade'
 Plug 'alvan/vim-php-manual'
 Plug 'itspriddle/vim-shellcheck'
 Plug 'nightsense/carbonized'
 Plug 'arcticicestudio/nord-vim'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
+Plug 'digitaltoad/vim-pug'
+Plug 'nvie/vim-flake8'
 call plug#end()
 
 " Manpages inside vim
@@ -104,13 +102,25 @@ runtime! ftplugin/man.vim
 set keywordprg=:Man
 
 " Color theme
-" colorscheme gruvbox
-colorscheme onehalfdark
+colorscheme gruvbox
+" colorscheme onehalfdark
 
 " Ack search
 let g:ackhighlight = 1
 let g:ackprg = 'ag --silent --ignore "tags" --vimgrep --smart-case'
 cnoreabbrev ag Ack!
+
+" air-line
+let g:airline_powerline_fonts = 0
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.branch = '⚡'
+let g:airline_symbols.linenr = ''
+let g:airline#extensions#tabline#enabled = 1
+" Just show the filename (no path) in the tab
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 " PHP namespaces
 function! IPhpInsertUse()
@@ -136,11 +146,6 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeShowHidden = 1
 
-" Airline
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-
 " PHP manual for vim, disable open in browser shortcut
 let g:php_manual_online_search_shortcut = ''
 
@@ -160,14 +165,20 @@ command! -nargs=* VWS :call SearchVimWiki(<q-args>)
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,vue,php EmmetInstall
 
+" flake8
+" show error hints in the gutter
+let g:flake8_show_in_gutter = 1
+" show error marks in the file
+let g:flake8_show_in_file = 1
+
 " -----------------------------------------------------------------------------
 " Auto-commands for file types
 " -----------------------------------------------------------------------------
 
 " Remove trailing spaces in certain file types.
-autocmd FileType sh,js,ts,c,cpp,java,php,vimwiki,make,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType sh,javascript,ts,vue,c,cpp,java,php,vimwiki,make,markdown autocmd BufWritePre <buffer> %s/\s\+$//e
 " python - run the current buffer content with CTRL-B (build)
-autocmd FileType python nnoremap <buffer> <C-b> :exec '!clear ; python3' shellescape(@%, 1)<CR>
+autocmd FileType python nnoremap <buffer> <leader>run :exec '!clear ; python3' shellescape(@%, 1)<CR>
 " Remove the trailing spaces in these file types
 autocmd FileType c,cpp,python,php,muttrc,xdefaults,css,html,config,vim autocmd BufWritePre <buffer> %s/\s\+$//e
 " Open the current html file with the default browser
@@ -182,6 +193,10 @@ autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>ph :exec '!pandoc -s
 " Use <intro> to select in omnicompletion
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
+" 4-spaces tabs for some file types
+autocmd FileType vue setlocal shiftwidth=4 tabstop=4
+autocmd FileType javascript setlocal shiftwidth=4 tabstop=4
+
 " -----------------------------------------------------------------------------
 " Tag generation
 " -----------------------------------------------------------------------------
@@ -195,21 +210,6 @@ au BufWritePost *.c,*.h,*.cpp silent! !eval 'ctags -R --c++-kinds=+p --fields=+i
 " -----------------------------------------------------------------------------
 " Key maps
 " -----------------------------------------------------------------------------
-
-" Copy and paste on X11
-fun! X11Copy()
-    silent %w !setsid xclip -selection clipboard
-endfun
-fun! X11CopyRegister(reg)
-    let l:ignore = system('setsid xclip -selection clipboard', getreg(a:reg))
-endfun
-fun! X11PasteClipboard()
-    r !xclip -selection clipboard -o
-endfun
-fun! X11PastePrimary()
-    r !xclip -o
-endfun
-
 
 " CTRL+t    -> Back to the shell
 nmap <leader>t :shell<CR>
@@ -245,16 +245,12 @@ nmap <leader>S :VWS<space>
 nmap <leader>gs :GFiles?<CR>
 " ,h        -> FZF list the command history
 nmap <leader>h :History:<CR>
-" CTRL+v    -> Paste from the X11 clipboard
-imap <C-V> <C-o>"+gP
-" vmap <C-C> "+y
-nmap <C-c> :call X11Copy()<CR>
-vmap <C-c> "xy:call X11CopyRegister('x')<CR>
-" nmap <Leader>xp :call X11PasteClipboard()<CR>
-" nmap <Leader>xP :call X11PastePrimary()<CR>
 " ,ev       -> Open vimrc in a split
 nnoremap <leader>ev :e $MYVIMRC<cr>
-" gv        -> toggle comments
+" ,er       -> Reload vimrc configuration
+nnoremap <leader>er :source $MYVIMRC<cr>
+" Copy the selection in visual mode with CTRL+C
+vmap <C-c> "+y
 
 " -----------------------------------------------------------------------------
 " OSX-specific configuration
