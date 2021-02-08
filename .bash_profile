@@ -51,7 +51,7 @@ if [ `uname` == "Darwin" ]; then
         source /opt/local/etc/profile.d/bash_completion.sh
     fi
     # MacTEX LaTeX distribution binaries:
-    export PATH="/usr/local/texlive/2020/bin/x86_64-darwin/:$PATH"
+    export PATH="/opt/metasploit-framework/bin:/usr/local/texlive/2020/bin/x86_64-darwin/:$PATH"
     export LC_ALL=en_US.UTF-8
     export LANG=en_US.UTF-8
     alias vim="/opt/local/bin/vim"
@@ -62,5 +62,7 @@ if [ `uname` == "Darwin" ]; then
     if [ -f '/opt/google-cloud-sdk/path.bash.inc' ]; then . '/opt/google-cloud-sdk/path.bash.inc'; fi
     # The next line enables shell command completion for gcloud.
     if [ -f '/opt/google-cloud-sdk/completion.bash.inc' ]; then . '/opt/google-cloud-sdk/completion.bash.inc'; fi
+    # MacPorts Installer addition on 2020-12-21_at_11:04:04: adding an appropriate DISPLAY variable for use with MacPorts.
+    export DISPLAY=:0
+    # Finished adapting your DISPLAY environment variable for use with MacPorts.
 fi
-

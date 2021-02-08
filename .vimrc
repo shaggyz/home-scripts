@@ -261,7 +261,7 @@ nnoremap <leader>ev :e $MYVIMRC<cr>
 " -----------------------------------------------------------------------------
 
 if has("gui_macvim")
-    set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h13
+    set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h14
     set pythonthreehome=/opt/local/Library/Frameworks/Python.framework/Versions/3.6
     set pythonthreedll=/opt/local/Library/Frameworks/Python.framework/Versions/3.6/lib/libpython3.6m.dylib
 endif
