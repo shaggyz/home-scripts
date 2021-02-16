@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+# enable composition
+compton &
+
+# disable terminal bell
+xset b off &
+
+# launch polybar
+sh ~/.config/polybar/launch.sh &
+
