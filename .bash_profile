@@ -59,10 +59,6 @@ if [ `uname` == "Darwin" ]; then
     export PATH="/usr/local/mysql/bin:$PATH"
     # Fuck apple using zsh as default
     export BASH_SILENCE_DEPRECATION_WARNING=1
-    # The next line updates PATH for the Google Cloud SDK.
-    if [ -f '/opt/google-cloud-sdk/path.bash.inc' ]; then . '/opt/google-cloud-sdk/path.bash.inc'; fi
-    # The next line enables shell command completion for gcloud.
-    if [ -f '/opt/google-cloud-sdk/completion.bash.inc' ]; then . '/opt/google-cloud-sdk/completion.bash.inc'; fi
     # MacPorts Installer addition on 2020-12-21_at_11:04:04: adding an appropriate DISPLAY variable for use with MacPorts.
     export DISPLAY=:0
     # Finished adapting your DISPLAY environment variable for use with MacPorts.
