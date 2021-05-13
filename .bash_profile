@@ -7,7 +7,7 @@ export TERM=xterm-256color
 parse_git_branch() {
     [ -d "$CWD/.git" ] && return
     # This expects a branch named in this form 'feature/ABCD-1234-add-new-feature'
-    BRANCH=`git branch 2> /dev/null | grep -e '^* ' | egrep -o '([a-z/?]*[A-Z]+-[0-9]+|^release)'`
+    BRANCH=`git branch 2> /dev/null | grep -e '^* ' | egrep -o '([a-z/?]*[A-Z]+-[0-9]+|[a-z/-]+)'`
     [ ! -z "$BRANCH" ] && echo "[$BRANCH]"
 }
 
@@ -62,4 +62,5 @@ if [ `uname` == "Darwin" ]; then
     # MacPorts Installer addition on 2020-12-21_at_11:04:04: adding an appropriate DISPLAY variable for use with MacPorts.
     export DISPLAY=:0
     # Finished adapting your DISPLAY environment variable for use with MacPorts.
+    # test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 fi
