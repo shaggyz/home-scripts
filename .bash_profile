@@ -7,7 +7,7 @@ export TERM=xterm-256color
 parse_git_branch() {
     [ -d "$CWD/.git" ] && return
     # This expects a branch named in this form 'feature/ABCD-1234-add-new-feature'
-    BRANCH=`git branch 2> /dev/null | grep -e '^* ' | egrep -o '([a-z/?]*[A-Z]+-[0-9]+|[a-z/-]+)'`
+    BRANCH=`git branch 2> /dev/null | grep -e '^* ' | egrep -Eo '([A-Za-z0-9\/\-]+)'`
     [ ! -z "$BRANCH" ] && echo "[$BRANCH]"
 }
 
