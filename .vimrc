@@ -95,6 +95,7 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'digitaltoad/vim-pug'
 Plug 'nvie/vim-flake8'
+Plug 'jparise/vim-graphql'
 call plug#end()
 
 " Manpages inside vim
