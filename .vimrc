@@ -96,6 +96,8 @@ Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'digitaltoad/vim-pug'
 Plug 'nvie/vim-flake8'
 Plug 'jparise/vim-graphql'
+Plug 'gcmt/taboo.vim'
+Plug 'bfrg/vim-qf-diagnostics'
 call plug#end()
 
 " Manpages inside vim
@@ -103,8 +105,9 @@ runtime! ftplugin/man.vim
 set keywordprg=:Man
 
 " Color theme
-colorscheme gruvbox
+" colorscheme gruvbox
 " colorscheme onehalfdark
+colorscheme nord
 
 " Ack search
 let g:ackhighlight = 1
@@ -234,7 +237,7 @@ nmap <C-h> :bprev!<CR>
 nmap <C-l> :bnext!<CR>
 " ,ca       -> Close all the buffers, except the current one
 nmap <leader>ca :BufOnly<CR>
-" ,p        -> FZF select file from current dir.
+" ,f        -> FZF select file from current dir.
 nmap <leader>f :Files<CR>
 " ,o        -> FZF select from open buffers
 nmap <leader>o :Buffers<CR>
@@ -258,7 +261,7 @@ vmap <C-c> "+y
 " -----------------------------------------------------------------------------
 
 if has("gui_macvim")
-    set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h14
+    set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h13
     set pythonthreehome=/opt/local/Library/Frameworks/Python.framework/Versions/3.6
     set pythonthreedll=/opt/local/Library/Frameworks/Python.framework/Versions/3.6/lib/libpython3.6m.dylib
 endif
