@@ -177,6 +177,14 @@ let g:flake8_show_in_gutter = 1
 let g:flake8_show_in_file = 1
 
 " -----------------------------------------------------------------------------
+" CoC for some languages
+" -----------------------------------------------------------------------------
+
+" python (:CocInstall coc-pyright)
+autocmd FileType python let b:coc_root_patterns = ['.git', '.env', 'venv', '.venv', 'setup.cfg', 'setup.py', 'pyproject.toml', 'pyrightconfig.json']
+
+
+" -----------------------------------------------------------------------------
 " Auto-commands for file types
 " -----------------------------------------------------------------------------
 
@@ -197,8 +205,6 @@ autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>pa :exec '!pandoc % 
 autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>ph :exec '!pandoc -s -f markdown -t html5 -o ~/Downloads/vim-output.html -c ~/Downloads/css/bootstrap.min.css %'<CR>
 " Use <intro> to select in omnicompletion
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Needed for coc-pyright
-autocmd FileType python let b:coc_root_patterns = ['.git', '.env', 'venv', '.venv', 'setup.cfg', 'setup.py', 'pyproject.toml', 'pyrightconfig.json']
 
 " 4-spaces tabs for some file types
 autocmd FileType vue setlocal shiftwidth=4 tabstop=4
@@ -240,8 +246,10 @@ nmap <C-h> :bprev!<CR>
 nmap <C-l> :bnext!<CR>
 " ,ca       -> Close all the buffers, except the current one
 nmap <leader>ca :BufOnly<CR>
-" ,f        -> FZF select file from current dir.
+" ,f        -> FZF select file name from current dir.
 nmap <leader>f :Files<CR>
+" ,C        -> Search file contents in the current directory
+nmap <leader>C :Ag<CR>
 " ,o        -> FZF select from open buffers
 nmap <leader>o :Buffers<CR>
 " ,s        -> FZF vimwiki search (file names)
