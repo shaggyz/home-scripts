@@ -106,9 +106,9 @@ runtime! ftplugin/man.vim
 set keywordprg=:Man
 
 " Color theme
-" colorscheme gruvbox
+colorscheme gruvbox
 " colorscheme onehalfdark
-colorscheme nord
+" colorscheme nord
 
 " Ack search
 let g:ackhighlight = 1
@@ -155,7 +155,10 @@ let NERDTreeShowHidden = 1
 let g:php_manual_online_search_shortcut = ''
 
 " Vim Wiki
-let g:vimwiki_list = [{'path': '~/.vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [
+    \{'path': '~/.vimwiki/personal/', 'syntax': 'markdown', 'ext': '.md'},
+    \{'path': '~/.vimwiki/wargames/', 'syntax': 'markdown', 'ext': '.md'}
+\]
 let g:vimwiki_url_maxsave = 0
 let g:vimwiki_table_mapping = 0
 " search into vimwiki contents, usage: :VWS 'search string'
@@ -219,6 +222,9 @@ au BufWritePost *.php silent! !eval 'ctags -R --languages=php --php-kinds=cif --
 
 " Generate ctags everytime we save a C file
 au BufWritePost *.c,*.h,*.cpp silent! !eval 'ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --fields=+aimS' &
+
+" Generate ctags everytime we save a python file
+au BufWritePost *.py silent! !eval 'ctags -R --fields=+l --languages=python --python-kinds=-iv --exclude=venv/bin/* --fields=+aimS' &
 
 " -----------------------------------------------------------------------------
 " Key maps
