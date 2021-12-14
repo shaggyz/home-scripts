@@ -99,6 +99,7 @@ Plug 'jparise/vim-graphql'
 Plug 'gcmt/taboo.vim'
 Plug 'bfrg/vim-qf-diagnostics'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'joshdick/onedark.vim'
 call plug#end()
 
 " Manpages inside vim
@@ -106,9 +107,10 @@ runtime! ftplugin/man.vim
 set keywordprg=:Man
 
 " Color theme
-colorscheme gruvbox
+" colorscheme gruvbox
 " colorscheme onehalfdark
 " colorscheme nord
+colorscheme onedark
 
 " Ack search
 let g:ackhighlight = 1
@@ -161,11 +163,6 @@ let g:vimwiki_list = [
 \]
 let g:vimwiki_url_maxsave = 0
 let g:vimwiki_table_mapping = 0
-" search into vimwiki contents, usage: :VWS 'search string'
-function SearchVimWiki(term)
-    :execute 'Ack! ' . a:term . ' ~/.vimwiki'
-endfunction
-command! -nargs=* VWS :call SearchVimWiki(<q-args>)
 
 " Vim Emmet
 " <C-Y> , (autocomplete/trigger command, please note the comma)
@@ -243,7 +240,7 @@ map <leader>r :NERDTreeFind<cr>
 " ,jsf      -> Format JSON
 map <leader>jsf :% !python -m json.tool<CR>
 " ,q        -> Close the current buffer
-:nnoremap <Leader>q :Bdelete<CR>
+nnoremap <Leader>q :Bdelete<CR>
 " CTRL+c CTRL+c -> Remove hlsearch
 nnoremap <C-c><C-c> :silent! nohls<cr>
 " CTRL+h    -> Move to the prev. buffer
@@ -261,7 +258,7 @@ nmap <leader>o :Buffers<CR>
 " ,s        -> FZF vimwiki search (file names)
 nmap <leader>s :Files ~/.vimwiki<CR>
 " ,S        -> Vimwiki search (content)
-nmap <leader>S :VWS<space>
+nmap <leader>S :cd ~/.vimwiki/personal \| Ag
 " ,gs       -> FZF list git modified files (fzf git status)
 nmap <leader>gs :GFiles?<CR>
 " ,h        -> FZF list the command history
