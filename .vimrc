@@ -258,7 +258,7 @@ nmap <leader>o :Buffers<CR>
 " ,s        -> FZF vimwiki search (file names)
 nmap <leader>s :Files ~/.vimwiki<CR>
 " ,S        -> Vimwiki search (content)
-nmap <leader>S :cd ~/.vimwiki/personal \| Ag
+nmap <leader>S :cd ~/.vimwiki/personal \| Ag<CR>
 " ,gs       -> FZF list git modified files (fzf git status)
 nmap <leader>gs :GFiles?<CR>
 " ,h        -> FZF list the command history
