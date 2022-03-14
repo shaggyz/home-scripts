@@ -100,6 +100,8 @@ Plug 'gcmt/taboo.vim'
 Plug 'bfrg/vim-qf-diagnostics'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'joshdick/onedark.vim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
 " Manpages inside vim
