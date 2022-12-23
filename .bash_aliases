@@ -3,8 +3,8 @@ alias gb='git branch'
 alias gca='git add . && git commit -a'
 alias gs='git status'
 alias gl='git log'
-alias gpl='git pull'
-alias gps='git push'
+alias gp='git pull'
+alias gpp='git push'
 
 # Console utilities
 alias grep='grep --color=auto'
