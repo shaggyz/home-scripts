@@ -5,6 +5,7 @@ alias gs='git status'
 alias gl='git log'
 alias gp='git pull'
 alias gpp='git push'
+alias gcp='git checkout'
 
 # Console utilities
 alias grep='grep --color=auto'
