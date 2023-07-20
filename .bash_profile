@@ -63,4 +63,9 @@ if [ `uname` == "Darwin" ]; then
     export DISPLAY=:0
     # Finished adapting your DISPLAY environment variable for use with MacPorts.
     # test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+    # In my company they put a very ugly name to my computer
+    export PS1='\[\033[01;32m\]\u@grunt:\[\033[01;34m\]\W\[\033[01;33m\]$(parse_git_branch)\[\033[0m\]\$ '
+
+    # Work related stuff
+    export USE_LEGACY_SAML2AWS='true'
 fi
