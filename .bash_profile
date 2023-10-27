@@ -51,6 +51,10 @@ if [ `uname` == "Darwin" ]; then
     if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
         source /opt/local/etc/profile.d/bash_completion.sh
     fi
+    # Bash completion from HomeBrew
+    if [ -d /usr/local/etc/bash_completion.d ]; then
+        source /usr/local/etc/bash_completion.d/*
+    fi
     # MacTEX LaTeX distribution binaries:
     export PATH="/opt/metasploit-framework/bin:/usr/local/texlive/2021/bin/universal-darwin:/Users/nicolaspalumbo/Library/Python/3.9/bin:$PATH"
     export LC_ALL=en_US.UTF-8
@@ -67,5 +71,7 @@ if [ `uname` == "Darwin" ]; then
     export PS1='\[\033[01;32m\]\u@grunt:\[\033[01;34m\]\W\[\033[01;33m\]$(parse_git_branch)\[\033[0m\]\$ '
 
     # Work related stuff
-    export USE_LEGACY_SAML2AWS='true'
+    #export USE_LEGACY_SAML2AWS='true'
+    # Avoid running pip-compile in local
+    export SKIP=pip-compile
 fi
