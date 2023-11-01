@@ -46,32 +46,44 @@ fi
 
 # Only macOS
 if [ `uname` == "Darwin" ]; then
-    export PATH="/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.vimpkg/bin:$PATH"
+    export PATH="/opt/local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.vimpkg/bin:$PATH"
     # Bash completion from MacPorts
     if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
         source /opt/local/etc/profile.d/bash_completion.sh
     fi
+
     # Bash completion from HomeBrew
     if [ -d /usr/local/etc/bash_completion.d ]; then
         source /usr/local/etc/bash_completion.d/*
     fi
+
     # MacTEX LaTeX distribution binaries:
-    export PATH="/opt/metasploit-framework/bin:/usr/local/texlive/2021/bin/universal-darwin:/Users/nicolaspalumbo/Library/Python/3.9/bin:$PATH"
+    # export PATH="/usr/local/texlive/2021/bin/universal-darwin:$PATH"
     export LC_ALL=en_US.UTF-8
     export LANG=en_US.UTF-8
-    alias vim="/opt/local/bin/vim"
-    export PATH="/usr/local/mysql/bin:$PATH"
+
     # Fuck apple using zsh as default
     export BASH_SILENCE_DEPRECATION_WARNING=1
-    # MacPorts Installer addition on 2020-12-21_at_11:04:04: adding an appropriate DISPLAY variable for use with MacPorts.
-    export DISPLAY=:0
-    # Finished adapting your DISPLAY environment variable for use with MacPorts.
-    # test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-    # In my company they put a very ugly name to my computer
-    export PS1='\[\033[01;32m\]\u@grunt:\[\033[01;34m\]\W\[\033[01;33m\]$(parse_git_branch)\[\033[0m\]\$ '
 
-    # Work related stuff
-    #export USE_LEGACY_SAML2AWS='true'
-    # Avoid running pip-compile in local
-    export SKIP=pip-compile
+    # Needed for some legacy X11 applications
+    export DISPLAY=:0
+    # test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+    # Homebrew node
+    export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
+    export LDFLAGS="-L/opt/homebrew/opt/node@16/lib"
+    export CPPFLAGS="-I/opt/homebrew/opt/node@16/include"
+
+    # In my company they put a very ugly name to my computer
+    MACHINE_NAME=$(hostname | cut -d'.' -f1 | tr '[:upper:]' '[:lower:]')
+    [[ "$MACHINE_NAME" == "foxy" ]] || MACHINE_NAME="grunt"
+
+    # Git bash autocompletion
+    if [ -f ~/.git-completion.bash ]; then
+      . ~/.git-completion.bash
+    fi
+
+    # Set the PS1 for macOS
+    export PS1='\[\033[01;32m\]\u@$MACHINE_NAME:\[\033[01;34m\]\W\[\033[01;33m\]$(parse_git_branch)\[\033[0m\]\$ '
+>>>>>>> 9c56333 (Some stuff for macOS)
 fi

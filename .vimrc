@@ -102,6 +102,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'joshdick/onedark.vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'MarcWeber/vim-addon-mw-utils'
 call plug#end()
 
 " Manpages inside vim
@@ -159,10 +160,7 @@ let NERDTreeShowHidden = 1
 let g:php_manual_online_search_shortcut = ''
 
 " Vim Wiki
-let g:vimwiki_list = [
-    \{'path': '~/.vimwiki/personal/', 'syntax': 'markdown', 'ext': '.md'},
-    \{'path': '~/.vimwiki/wargames/', 'syntax': 'markdown', 'ext': '.md'}
-\]
+let g:vimwiki_list = [{'path': '~/.vimwiki/personal/', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_url_maxsave = 0
 let g:vimwiki_table_mapping = 0
 
