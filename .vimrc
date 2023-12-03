@@ -223,7 +223,7 @@ autocmd FileType javascript setlocal shiftwidth=4 tabstop=4
 au BufWritePost *.c,*.h,*.cpp silent! !eval '/opt/local/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --fields=+aimS' &
 
 " Generate ctags everytime we save a python file
-au BufWritePost *.py silent! !eval '/opt/local/bin/ctags -R --fields=+l --languages=python --python-kinds=-iv --exclude=venv/bin/* --fields=+aimS' &
+au BufWritePost *.py silent! !eval 'ctags -R --fields=+l --languages=python --python-kinds=-iv --exclude=venv/bin/* --fields=+aimS' &
 
 " -----------------------------------------------------------------------------
 " Key maps
