@@ -22,19 +22,28 @@ Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
 Plug 'nvim-tree/nvim-web-devicons'
 call plug#end()
 
+" Python debugger:
+" https://github.com/puremourning/vimspector
+"
+" Airline replacement, requires a lot of config
+" https://github.com/famiu/feline.nvim
+
 colorscheme rose-pine-main
 
 " Key bindings
 let mapleader=','
 
 " ,ev: edit configuration
-nnoremap <leader>ev :e $MYVIMRC<cr>
+nnoremap <leader>ev :e $MYVIMRC<CR>
 " CTRL+h: move to the previous buffer
 nmap <C-h> :bprev!<CR>
 " CTRL+l: move to the next buffer
 nmap <C-l> :bnext!<CR>
 " ,v: open file explorer
-nnoremap <leader>v <cmd>CHADopen<cr>
+nnoremap <leader>v <cmd>CHADopen<CR>
 " ,f: fuzzy on files
 nnoremap <leader>f <cmd>lua require('fzf-lua').files()<CR>
-
+" ,q: close the current buffer
+nnoremap <Leader>q :bd<CR>
+" CTRL+c CTRL+c: Remove hlsearch
+nnoremap <C-c><C-c> :silent! nohls<CR>
