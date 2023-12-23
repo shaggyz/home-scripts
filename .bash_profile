@@ -31,7 +31,7 @@ man() {
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 
 # General path entries
-export PATH="$HOME/.scripts:$PATH"
+export PATH="$HOME/.scripts:$HOME/.local/bin:$PATH"
 
 # Only GNU/linux
 if [ `uname` == "Linux" ]; then
