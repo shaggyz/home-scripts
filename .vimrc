@@ -103,6 +103,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'rose-pine/vim'
 call plug#end()
 
 " Manpages inside vim
@@ -113,7 +114,8 @@ set keywordprg=:Man
 " colorscheme gruvbox
 " colorscheme onehalfdark
 " colorscheme nord
-colorscheme onedark
+" colorscheme onedark
+colorscheme rosepine
 
 " Ack search
 let g:ackhighlight = 1

@@ -3,6 +3,7 @@ set cursorline
 set noswapfile
 set autoindent
 set number
+set mouse=a
 filetype plugin indent on
 set wildmenu
 set expandtab
