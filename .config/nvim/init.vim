@@ -35,8 +35,10 @@ colorscheme rose-pine-main
 " Key bindings
 let mapleader=','
 
-" ,ev: edit configuration
+" ,ev: edit CLI configuration
 nnoremap <leader>ev :e $MYVIMRC<CR>
+" ,gv: edit GUI configuration
+nnoremap <leader>gv :e $HOME/.config/nvim/ginit.vim<CR>
 " CTRL+h: move to the previous buffer
 nmap <C-h> :bprev!<CR>
 " CTRL+l: move to the next buffer
