@@ -22,6 +22,8 @@ Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
 Plug 'nvim-tree/nvim-web-devicons'
 call plug#end()
 
+" PyRight: :CocInstall coc-pyright
+"
 " Python debugger:
 " https://github.com/puremourning/vimspector
 "
