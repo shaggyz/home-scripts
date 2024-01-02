@@ -102,6 +102,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'joshdick/onedark.vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'rose-pine/vim'
 call plug#end()
 
 " Manpages inside vim
@@ -112,7 +114,8 @@ set keywordprg=:Man
 " colorscheme gruvbox
 " colorscheme onehalfdark
 " colorscheme nord
-colorscheme onedark
+" colorscheme onedark
+colorscheme rosepine
 
 " Ack search
 let g:ackhighlight = 1
@@ -159,10 +162,7 @@ let NERDTreeShowHidden = 1
 let g:php_manual_online_search_shortcut = ''
 
 " Vim Wiki
-let g:vimwiki_list = [
-    \{'path': '~/.vimwiki/personal/', 'syntax': 'markdown', 'ext': '.md'},
-    \{'path': '~/.vimwiki/wargames/', 'syntax': 'markdown', 'ext': '.md'}
-\]
+let g:vimwiki_list = [{'path': '~/.vimwiki/personal/', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_url_maxsave = 0
 let g:vimwiki_table_mapping = 0
 
@@ -223,7 +223,7 @@ autocmd FileType javascript setlocal shiftwidth=4 tabstop=4
 au BufWritePost *.c,*.h,*.cpp silent! !eval '/opt/local/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --fields=+aimS' &
 
 " Generate ctags everytime we save a python file
-au BufWritePost *.py silent! !eval '/opt/local/bin/ctags -R --fields=+l --languages=python --python-kinds=-iv --exclude=venv/bin/* --fields=+aimS' &
+au BufWritePost *.py silent! !eval 'ctags -R --fields=+l --languages=python --python-kinds=-iv --exclude=venv/bin/* --fields=+aimS' &
 
 " -----------------------------------------------------------------------------
 " Key maps
