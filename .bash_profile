@@ -55,8 +55,7 @@ if [ `uname` == "Darwin" ]; then
     if [ -d /usr/local/etc/bash_completion.d ]; then
         source /usr/local/etc/bash_completion.d/*
     fi
-    # MacTEX LaTeX distribution binaries:
-    export PATH="/opt/metasploit-framework/bin:/usr/local/texlive/2021/bin/universal-darwin:/Users/nicolaspalumbo/Library/Python/3.9/bin:$PATH"
+    export PATH="/Users/nicolaspalumbo/.local/bin:/opt/metasploit-framework/bin:/usr/local/texlive/2021/bin/universal-darwin:/Users/nicolaspalumbo/Library/Python/3.9/bin:$PATH"
     export LC_ALL=en_US.UTF-8
     export LANG=en_US.UTF-8
     alias vim="/opt/local/bin/vim"
