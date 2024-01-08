@@ -57,6 +57,11 @@ if [ `uname` == "Darwin" ]; then
         source /usr/local/etc/bash_completion.d/*
     fi
 
+    # FZF search for bash in macOS
+    if [ -f /opt/local/share/fzf/shell/completion.bash ]; then
+        source /opt/local/share/fzf/shell/completion.bash
+    fi
+
     export PATH="/Users/nicolaspalumbo/.local/bin:/opt/metasploit-framework/bin:/usr/local/texlive/2021/bin/universal-darwin:/Users/nicolaspalumbo/Library/Python/3.9/bin:$PATH"
     export LC_ALL=en_US.UTF-8
     export LANG=en_US.UTF-8
@@ -66,7 +71,7 @@ if [ `uname` == "Darwin" ]; then
 
     # Needed for some legacy X11 applications
     export DISPLAY=:0
-    # test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+    test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
     # Homebrew node
     export PATH="/opt/homebrew/opt/node@16/bin:$PATH"

@@ -4,7 +4,6 @@ set noswapfile
 set autoindent
 set number
 set mouse=a
-filetype plugin indent on
 set wildmenu
 set expandtab
 set tabstop=4
@@ -12,6 +11,7 @@ set shiftwidth=4
 set softtabstop=4
 
 syntax on
+filetype plugin indent on
 
 
 " Plug: https://github.com/junegunn/vim-plug#neovim
