@@ -13,6 +13,7 @@ set noswapfile
 set visualbell t_vb=
 set guioptions=c
 set grepprg=grep\ -nH\ $*
+set termguicolors
 
 filetype on
 filetype plugin on
