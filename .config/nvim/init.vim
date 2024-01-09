@@ -3,7 +3,7 @@ set cursorline
 set noswapfile
 set autoindent
 set number
-filetype plugin indent on
+set mouse=a
 set wildmenu
 set expandtab
 set tabstop=4
@@ -11,6 +11,7 @@ set shiftwidth=4
 set softtabstop=4
 
 syntax on
+filetype plugin indent on
 
 
 " Plug: https://github.com/junegunn/vim-plug#neovim
@@ -22,6 +23,8 @@ Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
 Plug 'nvim-tree/nvim-web-devicons'
 call plug#end()
 
+" PyRight: :CocInstall coc-pyright
+"
 " Python debugger:
 " https://github.com/puremourning/vimspector
 "
@@ -33,8 +36,10 @@ colorscheme rose-pine-main
 " Key bindings
 let mapleader=','
 
-" ,ev: edit configuration
+" ,ev: edit CLI configuration
 nnoremap <leader>ev :e $MYVIMRC<CR>
+" ,gv: edit GUI configuration
+nnoremap <leader>gv :e $HOME/.config/nvim/ginit.vim<CR>
 " CTRL+h: move to the previous buffer
 nmap <C-h> :bprev!<CR>
 " CTRL+l: move to the next buffer

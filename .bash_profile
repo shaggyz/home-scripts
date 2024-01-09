@@ -57,8 +57,12 @@ if [ `uname` == "Darwin" ]; then
         source /usr/local/etc/bash_completion.d/*
     fi
 
-    # MacTEX LaTeX distribution binaries:
-    # export PATH="/usr/local/texlive/2021/bin/universal-darwin:$PATH"
+    # FZF search for bash in macOS
+    if [ -f /opt/local/share/fzf/shell/completion.bash ]; then
+        source /opt/local/share/fzf/shell/completion.bash
+    fi
+
+    export PATH="/Users/nicolaspalumbo/.local/bin:/opt/metasploit-framework/bin:/usr/local/texlive/2021/bin/universal-darwin:/Users/nicolaspalumbo/Library/Python/3.9/bin:$PATH"
     export LC_ALL=en_US.UTF-8
     export LANG=en_US.UTF-8
 
@@ -67,7 +71,7 @@ if [ `uname` == "Darwin" ]; then
 
     # Needed for some legacy X11 applications
     export DISPLAY=:0
-    # test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+    test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
     # Homebrew node
     export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
@@ -85,4 +89,19 @@ if [ `uname` == "Darwin" ]; then
 
     # Set the PS1 for macOS
     export PS1='\[\033[01;32m\]\u@$MACHINE_NAME:\[\033[01;34m\]\W\[\033[01;33m\]$(parse_git_branch)\[\033[0m\]\$ '
+
+    if type brew &>/dev/null
+    then
+      HOMEBREW_PREFIX="$(brew --prefix)"
+      if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]
+      then
+        source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+      else
+        for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*
+        do
+          [[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
+        done
+      fi
+    fi
+
 fi

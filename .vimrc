@@ -20,7 +20,7 @@ syntax on
 
 " Editor
 set encoding=UTF-8
-set mouse+=a
+set mouse=a
 set expandtab
 set shiftwidth=4
 set tabstop=4
@@ -64,10 +64,8 @@ Plug 'tpope/vim-commentary'
 Plug 'scrooloose/nerdtree'
 Plug 'vimwiki/vimwiki'
 Plug 'mattn/calendar-vim'
-Plug 'StanAngeloff/php.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'StanAngeloff/php.vim'
 Plug 'schickling/vim-bufonly'
 Plug 'tpope/vim-fugitive'
 Plug 'mattn/emmet-vim'
@@ -75,34 +73,19 @@ Plug 'airblade/vim-gitgutter'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
-Plug 'shaggyz/php-documentor-vim'
-Plug 'arnaud-lb/vim-php-namespace'
 Plug 'mileszs/ack.vim'
-Plug 'morhetz/gruvbox'
-Plug 'lumiliet/vim-twig'
 Plug 'machakann/vim-sandwich'
 Plug 'mtdl9/vim-log-highlighting'
 Plug 'justmao945/vim-clang'
 Plug 'chr4/nginx.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'fedorenchik/qt-support.vim'
-Plug 'leafOfTree/vim-vue-plugin'
-Plug 'jwalton512/vim-blade'
-Plug 'alvan/vim-php-manual'
 Plug 'itspriddle/vim-shellcheck'
-Plug 'nightsense/carbonized'
-Plug 'arcticicestudio/nord-vim'
-Plug 'sonph/onehalf', { 'rtp': 'vim' }
-Plug 'digitaltoad/vim-pug'
-Plug 'nvie/vim-flake8'
 Plug 'jparise/vim-graphql'
-Plug 'gcmt/taboo.vim'
-Plug 'bfrg/vim-qf-diagnostics'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'joshdick/onedark.vim'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'maxmellon/vim-jsx-pretty'
 Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'rose-pine/vim'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 " Manpages inside vim
@@ -110,40 +93,24 @@ runtime! ftplugin/man.vim
 set keywordprg=:Man
 
 " Color theme
-" colorscheme gruvbox
-" colorscheme onehalfdark
-" colorscheme nord
-colorscheme onedark
+colorscheme rosepine
 
 " Ack search
 let g:ackhighlight = 1
 let g:ackprg = 'ag --silent --ignore "tags" --vimgrep --smart-case'
 cnoreabbrev ag Ack!
 
-" air-line
-let g:airline_powerline_fonts = 0
+" vim airline
+let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.branch = '⚡'
-let g:airline_symbols.linenr = ''
+let g:airline_theme='solarized'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_solarized_bg='dark'
+
 " Just show the filename (no path) in the tab
 let g:airline#extensions#tabline#fnamemod = ':t'
-
-" PHP namespaces
-function! IPhpInsertUse()
-    call PhpInsertUse()
-    call feedkeys('a',  'n')
-endfunction
-autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
-autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
-
-" PHP Documentor
-au BufRead,BufNewFile *.php inoremap <buffer> <leader>co :call PhpDoc()<CR>
-au BufRead,BufNewFile *.php nnoremap <buffer> <leader>co :call PhpDoc()<CR>
-au BufRead,BufNewFile *.php vnoremap <buffer> <leader>co :call PhpDocRange()<CR>
 
 " SnipMate: Snippets directory: ~/.vim/snippets
 let g:snipMate = {}
@@ -156,9 +123,6 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeShowHidden = 1
 
-" PHP manual for vim, disable open in browser shortcut
-let g:php_manual_online_search_shortcut = ''
-
 " Vim Wiki
 let g:vimwiki_list = [{'path': '~/.vimwiki/personal/', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_url_maxsave = 0
@@ -169,12 +133,6 @@ let g:vimwiki_table_mapping = 0
 " Enable emmet only in html and css files.
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,vue,php EmmetInstall
-
-" flake8
-" show error hints in the gutter
-let g:flake8_show_in_gutter = 1
-" show error marks in the file
-let g:flake8_show_in_file = 1
 
 " -----------------------------------------------------------------------------
 " CoC for some languages
@@ -214,9 +172,6 @@ autocmd FileType javascript setlocal shiftwidth=4 tabstop=4
 " Tag generation
 " -----------------------------------------------------------------------------
 
-" Generate ctags everytime we save a PHP file
-" au BufWritePost *.php silent! !eval 'ctags -R --languages=php --php-kinds=cif --exclude=var/* --exclude=bin/* --exclude=public/* --fields=+aimS' &
-
 " Generate ctags everytime we save a C file
 au BufWritePost *.c,*.h,*.cpp silent! !eval '/opt/local/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --fields=+aimS' &
 
@@ -228,7 +183,7 @@ au BufWritePost *.py silent! !eval 'ctags -R --fields=+l --languages=python --py
 " -----------------------------------------------------------------------------
 
 " CTRL+t    -> Back to the shell
-nmap <leader>t :shell<CR>
+nmap <leader>t :terminal<CR>
 " ,en       -> URL Encode selection
 vnoremap <leader>en :!python3 -c 'import sys,urllib;print(urllib.quote(sys.stdin.read().strip()))'<cr>
 " ,de       -> URL Decode selection
@@ -267,8 +222,6 @@ nmap <leader>h :History:<CR>
 nnoremap <leader>ev :e $MYVIMRC<cr>
 " ,er       -> Reload vimrc configuration
 nnoremap <leader>er :source $MYVIMRC<cr>
-" Copy the selection in visual mode with CTRL+C
-vmap <C-c> "+y
 
 " -----------------------------------------------------------------------------
 " OSX-specific configuration
@@ -276,6 +229,4 @@ vmap <C-c> "+y
 
 if has("gui_macvim")
     set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h13
-    set pythonthreehome=/opt/local/Library/Frameworks/Python.framework/Versions/3.6
-    set pythonthreedll=/opt/local/Library/Frameworks/Python.framework/Versions/3.6/lib/libpython3.6m.dylib
 endif
