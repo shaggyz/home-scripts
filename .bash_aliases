@@ -17,6 +17,7 @@ alias l='ls -CF'
 
 # Fancy stuff
 alias ccat='highlight -s dusk -O xterm256'
+alias weather='curl https://wttr.in/Palma'
 
 # Development
 alias dps='docker ps'
