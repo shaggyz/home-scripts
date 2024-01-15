@@ -169,6 +169,9 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 autocmd FileType vue setlocal shiftwidth=4 tabstop=4
 autocmd FileType javascript setlocal shiftwidth=4 tabstop=4
 
+" Colorize requirements.txt files for python
+autocmd BufRead,BufNewFile requirements.txt set syntax=config
+
 " -----------------------------------------------------------------------------
 " Tag generation
 " -----------------------------------------------------------------------------
