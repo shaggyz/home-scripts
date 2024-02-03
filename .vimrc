@@ -170,6 +170,9 @@ autocmd FileType vue setlocal shiftwidth=2 tabstop=2
 autocmd FileType json setlocal shiftwidth=2 tabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 
+" Colorize requirements.txt files for python
+autocmd BufRead,BufNewFile requirements.txt set syntax=config
+
 " -----------------------------------------------------------------------------
 " Tag generation
 " -----------------------------------------------------------------------------
