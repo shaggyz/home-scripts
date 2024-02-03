@@ -42,7 +42,7 @@ set wildmenu
 set completeopt-=preview
 
 " Workaround for pink cursor: https://github.com/vim/vim/issues/3471
-:set t_Cs=
+":set t_Cs=
 
 " map leader to ,
 let mapleader = ","
@@ -163,7 +163,7 @@ autocmd FileType xml nnoremap <buffer> <leader>fx :!exec tidy -mi -xml -wrap 0 %
 autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>pa :exec '!pandoc % --pdf-engine=xelatex -o ~/Downloads/vim-output.pdf -V geometry:margin=0.7in'<CR>
 autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>ph :exec '!pandoc -s -f markdown -t html5 -o ~/Downloads/vim-output.html -c ~/Downloads/css/bootstrap.min.css %'<CR>
 " Use <intro> to select in omnicompletion
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " 2-spaces tabs for some file types
 autocmd FileType vue setlocal shiftwidth=2 tabstop=2
