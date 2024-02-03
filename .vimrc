@@ -165,9 +165,10 @@ autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>ph :exec '!pandoc -s
 " Use <intro> to select in omnicompletion
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" 4-spaces tabs for some file types
-autocmd FileType vue setlocal shiftwidth=4 tabstop=4
-autocmd FileType javascript setlocal shiftwidth=4 tabstop=4
+" 2-spaces tabs for some file types
+autocmd FileType vue setlocal shiftwidth=2 tabstop=2
+autocmd FileType json setlocal shiftwidth=2 tabstop=2
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 
 " -----------------------------------------------------------------------------
 " Tag generation
@@ -178,6 +179,7 @@ au BufWritePost *.c,*.h,*.cpp silent! !eval '/opt/local/bin/ctags -R --c++-kinds
 
 " Generate ctags everytime we save a python file
 au BufWritePost *.py silent! !eval 'ctags -R --fields=+l --languages=python --python-kinds=-iv --exclude=venv/bin/* --fields=+aimS' &
+" TODO: check this and not only when saving!!: ctags -R --fields=+laimSz --languages=python --python-kinds=+cfmvi
 
 " -----------------------------------------------------------------------------
 " Key maps
