@@ -87,6 +87,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'rose-pine/vim'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'lepture/vim-jinja'
+
 call plug#end()
 
 " Manpages inside vim
@@ -123,6 +125,7 @@ let g:snipMate.description_in_completion = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeShowHidden = 1
+let NERDTreeIgnore = ['\.pyc$', '__pycache__', '.git', '.idea', 'tags', '.venv']
 
 " Vim Wiki
 let g:vimwiki_list = [{'path': '~/.vimwiki/personal/', 'syntax': 'markdown', 'ext': '.md'}]

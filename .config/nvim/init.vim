@@ -25,6 +25,7 @@ Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
 Plug 'nvim-tree/nvim-web-devicons'
 "Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
+Plug 'mattn/emmet-vim'
 call plug#end()
 
 " PyRight: :CocInstall coc-pyright
