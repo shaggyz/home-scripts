@@ -160,7 +160,7 @@ autocmd FileType html nnoremap <buffer> <leader>fh :!exec tidy -mi -html -wrap 0
 " Format xml code with \ fx
 autocmd FileType xml nnoremap <buffer> <leader>fx :!exec tidy -mi -xml -wrap 0 %<CR>
 " Export the current markdown file to PDF with pandoc
-autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>pa :exec '!pandoc % --pdf-engine=xelatex -o ~/Downloads/vim-output.pdf -V geometry:margin=0.7in'<CR>
+autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>pa :exec '!pandoc "%" --pdf-engine=xelatex -o ~/Downloads/vim-output.pdf -V geometry:margin=0.7in'<CR>
 autocmd FileType markdown,vimwiki nnoremap <buffer> <leader>ph :exec '!pandoc -s -f markdown -t html5 -o ~/Downloads/vim-output.html -c ~/Downloads/css/bootstrap.min.css %'<CR>
 " Use <intro> to select in omnicompletion
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
