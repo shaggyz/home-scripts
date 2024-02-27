@@ -204,7 +204,7 @@ map <leader>jsf :% !python -m json.tool<CR>
 nnoremap <Leader>q :Bdelete<CR>
 " CTRL+c CTRL+c -> Remove hlsearch
 nnoremap <C-c><C-c> :silent! nohls<cr>
-" CTRL+h    -> Move to the prev. buffer
+" CTRL+h    -> Move to the previous buffer
 nmap <C-h> :bprev!<CR>
 " CTRL+l    -> Move to the next buffer
 nmap <C-l> :bnext!<CR>

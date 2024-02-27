@@ -9,6 +9,8 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+set nofoldenable
+set conceallevel=2
 
 syntax on
 filetype plugin indent on
@@ -21,6 +23,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
 Plug 'nvim-tree/nvim-web-devicons'
+"Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
 call plug#end()
 
 " PyRight: :CocInstall coc-pyright
@@ -32,6 +36,7 @@ call plug#end()
 " https://github.com/famiu/feline.nvim
 
 colorscheme rose-pine-main
+
 
 " Key bindings
 let mapleader=','
