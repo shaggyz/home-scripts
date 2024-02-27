@@ -4,7 +4,7 @@ set mouse=a
 " Set Editor Font
 if exists(':GuiFont')
     " Use GuiFont * to configure the font
-    GuiFont! JetBrainsMono Nerd Font Mono:h13
+    GuiFont! JetBrainsMono Nerd Font Mono:h12
 endif
 
 " Enable GUI Tabline
