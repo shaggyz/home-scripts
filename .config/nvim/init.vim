@@ -23,11 +23,12 @@ Plug 'rose-pine/neovim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
-Plug 'nvim-tree/nvim-web-devicons'
+Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/vim-markdown'
 Plug 'mattn/emmet-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'schickling/vim-bufonly'
 call plug#end()
 
 
@@ -59,7 +60,8 @@ nnoremap <leader>f <cmd>lua require('fzf-lua').files()<CR>
 nnoremap <Leader>q :bd<CR>
 " CTRL+c CTRL+c: Remove hlsearch
 nnoremap <C-c><C-c> :silent! nohls<CR>
-
+" ,ca: Close all the buffers, except the current one
+nmap <leader>ca :BufOnly<CR>
 
 " Vim Airline configuration
 let g:airline_theme='solarized'
@@ -67,8 +69,18 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
 
+" CHADTree configuration
+let g:chadtree_settings = { "theme.text_colour_set": "env", "keymap.jump_to_current": ["<leader>-r"]}
+
+
+
 " Read .bashrc and friend for the integrated terminal
 set shell=bash\ -l
+
+
+" Emmet configuration
+let g:user_emmet_install_global = 0
+autocmd FileType html,css,vue,php EmmetInstall
 
 
 " Neovide configuration (GUI)
@@ -76,6 +88,8 @@ if exists("g:neovide")
     " Font: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/CommitMono.zip
     " set guifont=CommitMono\ Nerd\ Font\ Mono:h14
     set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h12.5
+    " on Linux:
+    " set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h12.5
     " Additional cursor particle effect
     let g:neovide_cursor_vfx_mode = "sonicboom"
     " Cursor animation time
