@@ -87,7 +87,7 @@ autocmd FileType html,css,vue,php EmmetInstall
 if exists("g:neovide")
     " Font: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/CommitMono.zip
     " set guifont=CommitMono\ Nerd\ Font\ Mono:h14
-    set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h12.5
+    set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h13
     " on Linux:
     " set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h12.5
     " Additional cursor particle effect
