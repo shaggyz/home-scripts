@@ -37,4 +37,5 @@
 !.config/gtk-3.0/settings.ini
 !.config/nvim/init.vim
 !.config/nvim/ginit.vim
+!.config/nvim/lua/config.lua
 

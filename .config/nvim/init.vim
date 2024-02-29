@@ -16,8 +16,6 @@ set conceallevel=2
 syntax on
 filetype plugin indent on
 
-colorscheme rose-pine-main
-
 
 " PyRight: :CocInstall coc-pyright
 " Python debugger:
@@ -38,13 +36,16 @@ Plug 'numToStr/FTerm.nvim'
 call plug#end()
 
 
+colorscheme rose-pine-main
+
+
 " Vim Airline configuration
 let g:airline_theme='solarized'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
 
-" CHADTree configuration
+" CHADTree configuration: this is not working
 let g:chadtree_settings = { "theme.text_colour_set": "env", "keymap.jump_to_current": ["<leader>-r"]}
 
 
@@ -57,24 +58,8 @@ let g:user_emmet_install_global = 0
 autocmd FileType html,css,vue,php EmmetInstall
 
 
-" FTerm
-#lua require('FTerm').setup({'blend' = '5'})
-
-
-" Neovide configuration (GUI)
-if exists("g:neovide")
-    " Font: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/CommitMono.zip
-    " set guifont=CommitMono\ Nerd\ Font\ Mono:h14
-    set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h13
-    " on Linux:
-    " set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h12.5
-    " Additional cursor particle effect
-    let g:neovide_cursor_vfx_mode = "sonicboom"
-    " Cursor animation time
-    let g:neovide_cursor_trail_size = 0.2
-    " Scrolling animation time
-    let g:neovide_scroll_animation_length = 0.2
-endif
+" Require the ~/.config/nvim/lua/config.lua config file
+lua require('config')
 
 
 " Key bindings
@@ -84,8 +69,26 @@ let mapleader=','
 nnoremap <leader>ev :e $MYVIMRC<CR>
 " ,gv: edit GUI configuration
 nnoremap <leader>gv :e $HOME/.config/nvim/ginit.vim<CR>
-" ,dd go to definition with coc-vim
-nnoremap <leader>dd :call CocActionAsync('jumpDefinition')<CR>
+" ,lv: edit LUA configuration
+nnoremap <leader>lv :e $HOME/.config/nvim/lua/config.lua<CR>
+
+" Coc keymaps
+nmap <silent> <leader>dd <Plug>(coc-definition)
+nmap <silent> <leader>yy <Plug>(coc-type-definition)
+nmap <silent> <leader>im <Plug>(coc-implementation)
+nmap <silent> <leader>re <Plug>(coc-references)
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
 " CTRL+h: move to the previous buffer
 nmap <C-h> :bprev!<CR>
 " CTRL+l: move to the next buffer
