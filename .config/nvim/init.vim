@@ -16,7 +16,12 @@ set conceallevel=2
 syntax on
 filetype plugin indent on
 
+colorscheme rose-pine-main
 
+
+" PyRight: :CocInstall coc-pyright
+" Python debugger:
+" https://github.com/puremourning/vimspector
 " Plug: https://github.com/junegunn/vim-plug#neovim
 call plug#begin()
 Plug 'rose-pine/neovim'
@@ -29,39 +34,9 @@ Plug 'mattn/emmet-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'schickling/vim-bufonly'
+Plug 'numToStr/FTerm.nvim'
 call plug#end()
 
-
-" PyRight: :CocInstall coc-pyright
-"
-" Python debugger:
-" https://github.com/puremourning/vimspector
-
-
-colorscheme rose-pine-main
-
-
-" Key bindings
-let mapleader=','
-
-" ,ev: edit CLI configuration
-nnoremap <leader>ev :e $MYVIMRC<CR>
-" ,gv: edit GUI configuration
-nnoremap <leader>gv :e $HOME/.config/nvim/ginit.vim<CR>
-" CTRL+h: move to the previous buffer
-nmap <C-h> :bprev!<CR>
-" CTRL+l: move to the next buffer
-nmap <C-l> :bnext!<CR>
-" ,v: open file explorer
-nnoremap <leader>v <cmd>CHADopen<CR>
-" ,f: fuzzy on files
-nnoremap <leader>f <cmd>lua require('fzf-lua').files()<CR>
-" ,q: close the current buffer
-nnoremap <Leader>q :bd<CR>
-" CTRL+c CTRL+c: Remove hlsearch
-nnoremap <C-c><C-c> :silent! nohls<CR>
-" ,ca: Close all the buffers, except the current one
-nmap <leader>ca :BufOnly<CR>
 
 " Vim Airline configuration
 let g:airline_theme='solarized'
@@ -73,7 +48,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:chadtree_settings = { "theme.text_colour_set": "env", "keymap.jump_to_current": ["<leader>-r"]}
 
 
-
 " Read .bashrc and friend for the integrated terminal
 set shell=bash\ -l
 
@@ -81,6 +55,10 @@ set shell=bash\ -l
 " Emmet configuration
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,vue,php EmmetInstall
+
+
+" FTerm
+#lua require('FTerm').setup({'blend' = '5'})
 
 
 " Neovide configuration (GUI)
@@ -97,3 +75,31 @@ if exists("g:neovide")
     " Scrolling animation time
     let g:neovide_scroll_animation_length = 0.2
 endif
+
+
+" Key bindings
+let mapleader=','
+
+" ,ev: edit CLI configuration
+nnoremap <leader>ev :e $MYVIMRC<CR>
+" ,gv: edit GUI configuration
+nnoremap <leader>gv :e $HOME/.config/nvim/ginit.vim<CR>
+" ,dd go to definition with coc-vim
+nnoremap <leader>dd :call CocActionAsync('jumpDefinition')<CR>
+" CTRL+h: move to the previous buffer
+nmap <C-h> :bprev!<CR>
+" CTRL+l: move to the next buffer
+nmap <C-l> :bnext!<CR>
+" ,v: open file explorer
+nnoremap <leader>v <cmd>CHADopen<CR>
+" ,f: fuzzy on files
+nnoremap <leader>f <cmd>lua require('fzf-lua').files()<CR>
+" ,q: close the current buffer
+nnoremap <Leader>q :bd<CR>
+" CTRL+c CTRL+c: Remove hlsearch
+nnoremap <C-c><C-c> :silent! nohls<CR>
+" ,ca: Close all the buffers, except the current one
+nmap <leader>ca :BufOnly<CR>
+" CTRL+i: toggle the terminal
+nnoremap <C-i> <cmd>lua require("FTerm").toggle()<CR>
+tnoremap <C-i> <C-n><CMD>lua require("FTerm").toggle()<CR>
