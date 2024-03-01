@@ -50,8 +50,8 @@ colorscheme rose-pine-main
 
 set shell=bash\ -l
 
-" ~/.config/nvim/lua/config.lua 
-lua require('config') 
+" ~/.config/nvim/lua/config.lua
+lua require('config')
 
 
 " Plugins: configuration
@@ -103,7 +103,7 @@ nnoremap <silent> K :call ShowDocumentation()<CR>
 nnoremap <C-i> <cmd>lua require("FTerm").toggle()<CR>
 tnoremap <C-i> <C-n><CMD>lua require("FTerm").toggle()<CR>
 
-" Config Files: 
+" Config Files:
 " ,ev: edit CLI configuration
 nnoremap <leader>ev :e $MYVIMRC<CR>
 " ,gv: edit GUI configuration
