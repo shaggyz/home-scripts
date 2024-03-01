@@ -22,6 +22,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'schickling/vim-bufonly'
 Plug 'numToStr/FTerm.nvim'
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
 call plug#end()
 
 
@@ -48,7 +50,7 @@ syntax on
 
 colorscheme rose-pine-main
 
-set shell=bash\ -l
+"set shell=bash\ -l
 
 " ~/.config/nvim/lua/config.lua
 lua require('config')
@@ -124,3 +126,5 @@ nnoremap <leader>v <cmd>CHADopen<CR>
 " FZF:
 " ,f: fuzzy on files
 nnoremap <leader>f <cmd>lua require('fzf-lua').files()<CR>
+nnoremap <leader>o <cmd>lua require('fzf-lua').buffers()<CR>
+nnoremap <leader>g <cmd>lua require('fzf-lua').grep()<CR>

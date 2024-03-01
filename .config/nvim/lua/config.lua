@@ -38,3 +38,6 @@ require'FTerm'.setup({
     border = 'single',
     blend = 8,
 })
+
+-- Gitsings
+require('gitsigns').setup()
