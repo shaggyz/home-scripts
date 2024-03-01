@@ -17,7 +17,7 @@ if vim.g.neovide then
         vim.keymap.set('i', '<A-C-v>', '<ESC>l"+Pli') -- Paste insert mode
         vim.keymap.set('v', '<A-C-c>', '"+y') -- Copy
         -- Font
-        vim.o.guifont = "JetBrainsMono Nerd Font Mono:h10"
+        vim.o.guifont = "JetBrainsMono Nerd Font Mono:h9"
     end
     -- Additional cursor particle effect
     vim.g.neovide_cursor_vfx_mode = "sonicboom"
