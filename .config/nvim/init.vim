@@ -24,6 +24,7 @@ Plug 'schickling/vim-bufonly'
 Plug 'numToStr/FTerm.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
+Plug 'ntpeters/vim-better-whitespace'
 call plug#end()
 
 
@@ -74,6 +75,10 @@ autocmd FileType html,css,vue,php EmmetInstall
 " PyRight: :CocInstall coc-pyright
 " TBD.
 
+" Better Whitespace:
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
+let g:strip_whitespace_confirm=0
 
 " Keybindings:
 " -----------------------------------------------------------------------------
