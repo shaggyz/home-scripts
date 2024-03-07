@@ -9,7 +9,7 @@ if vim.g.neovide then
         vim.keymap.set('v', '<A-C-c>', '"+y') -- Copy
         -- Font
         --vim.o.guifont = "JetBrainsMono Nerd Font Mono:h10.5"
-        vim.o.guifont = "Hack Nerd Font Mono:h11"
+        vim.o.guifont = "Hack Nerd Font Mono:h10"
 
     else
         -- macOS
