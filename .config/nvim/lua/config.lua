@@ -20,7 +20,7 @@ if vim.g.neovide then
         vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
         vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
         -- Font
-        vim.o.guifont = "JetBrainsMono Nerd Font Mono:h13"
+        vim.o.guifont = "JetBrainsMono Nerd Font Mono:h12.5"
 
     end
 

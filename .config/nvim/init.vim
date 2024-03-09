@@ -25,6 +25,7 @@ Plug 'numToStr/FTerm.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'xiyaowong/virtcolumn.nvim'
 call plug#end()
 
 
@@ -38,6 +39,7 @@ set softtabstop=4
 set cursorline
 set number
 set conceallevel=2
+set cc=100
 
 set noswapfile
 set autoindent
@@ -50,8 +52,6 @@ filetype plugin indent on
 syntax on
 
 colorscheme rose-pine-main
-
-"set shell=bash\ -l
 
 " ~/.config/nvim/lua/config.lua
 lua require('config')
@@ -73,6 +73,7 @@ let g:user_emmet_install_global = 0
 autocmd FileType html,css,vue,php EmmetInstall
 
 " PyRight: :CocInstall coc-pyright
+" Add mypy:python.linting.mypyEnabled
 " TBD.
 
 " Better Whitespace:
@@ -89,8 +90,8 @@ let mapleader=','
 nmap <C-h> :bprev!<CR>
 " CTRL+l: move to the next buffer
 nmap <C-l> :bnext!<CR>
-" ,q: close the current buffer
-nnoremap <Leader>q :bd<CR>
+" ,q: close the current buffer w/o closing the window and move to the previous
+nnoremap <Leader>q :bp<CR> :bd#<CR>
 " CTRL+c CTRL+c: Remove hlsearch
 nnoremap <C-c><C-c> :silent! nohls<CR>
 " ,ca: Close all the buffers, except the current one
@@ -122,7 +123,7 @@ nnoremap <leader>lv :e $HOME/.config/nvim/lua/config.lua<CR>
 nmap <silent> <leader>dd <Plug>(coc-definition)
 nmap <silent> <leader>yy <Plug>(coc-type-definition)
 nmap <silent> <leader>im <Plug>(coc-implementation)
-nmap <silent> <leader>re <Plug>(coc-references)
+nmap <silent> <leader>us <Plug>(coc-references)
 
 " CHADTree:
 " ,v: open file explorer
