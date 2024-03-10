@@ -8,8 +8,9 @@ if vim.g.neovide then
         vim.keymap.set('i', '<A-C-v>', '<ESC>l"+Pli') -- Paste insert mode
         vim.keymap.set('v', '<A-C-c>', '"+y') -- Copy
         -- Font
-        --vim.o.guifont = "JetBrainsMono Nerd Font Mono:h10.5"
-        vim.o.guifont = "Hack Nerd Font Mono:h11"
+        -- https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/JetBrainsMono.zip
+        vim.o.guifont = "JetBrainsMonoNL Nerd Font:h10.5"
+        --vim.o.guifont = "Hack Nerd Font Mono:h11"
 
     else
         -- macOS
