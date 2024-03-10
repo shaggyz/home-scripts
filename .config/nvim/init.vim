@@ -26,6 +26,9 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'xiyaowong/virtcolumn.nvim'
+Plug 'rktjmp/lush.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
 call plug#end()
 
 
@@ -40,6 +43,8 @@ set cursorline
 set number
 set conceallevel=2
 set cc=100
+set termguicolors
+set signcolumn=yes
 
 set noswapfile
 set autoindent
@@ -47,6 +52,7 @@ set mouse=a
 set wildmenu
 set expandtab
 set nofoldenable
+set updatetime=300
 
 filetype plugin indent on
 syntax on
@@ -71,6 +77,11 @@ let g:chadtree_settings = { "theme.text_colour_set": "env", "keymap.jump_to_curr
 " Emmet:
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,vue,php EmmetInstall
+
+" Coc-nvim
+" Highlight the symbol and its references when holding the cursor
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
 
 " PyRight: :CocInstall coc-pyright
 " Add mypy:python.linting.mypyEnabled
@@ -124,6 +135,38 @@ nmap <silent> <leader>dd <Plug>(coc-definition)
 nmap <silent> <leader>yy <Plug>(coc-type-definition)
 nmap <silent> <leader>im <Plug>(coc-implementation)
 nmap <silent> <leader>us <Plug>(coc-references)
+
+" Use <tab> for autotomplete options
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
 
 " CHADTree:
 " ,v: open file explorer

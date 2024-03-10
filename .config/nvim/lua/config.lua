@@ -9,7 +9,7 @@ if vim.g.neovide then
         vim.keymap.set('v', '<A-C-c>', '"+y') -- Copy
         -- Font
         --vim.o.guifont = "JetBrainsMono Nerd Font Mono:h10.5"
-        vim.o.guifont = "Hack Nerd Font Mono:h10"
+        vim.o.guifont = "Hack Nerd Font Mono:h11"
 
     else
         -- macOS
@@ -46,3 +46,44 @@ require'FTerm'.setup({
 
 -- Gitsings
 require('gitsigns').setup()
+
+-- TreeSitter (better syntax)
+require'nvim-treesitter.configs'.setup {
+    ensure_installed =  { "python", "vimdoc" },
+    highlight = {
+        enable = true,
+    },
+}
+
+
+-- Custom syntax stuff (for rosepine)
+
+-- Rosepine pallete: https://rosepinetheme.com/palette/ingredients/
+local LighterGreen = '#d9fbeb'
+local LightGreen = '#9ccfd8'
+local DarkGreen = '#31748f'
+local LighterYellow = '#fbf1d9'
+local Grey = '#908caa'
+local Yellow = '#fee1b8'
+local White = '#ffffff'
+local LightGrey = '#a3a0b5'
+
+-- Global
+vim.api.nvim_set_hl(0, '@type', { fg = LighterGreen, italic = false })
+vim.api.nvim_set_hl(0, '@variable.builtin.vim', { fg = LightGreen, bold = false })
+
+-- Python
+vim.api.nvim_set_hl(0, '@variable.parameter.python', { fg = LighterYellow, italic = false })
+vim.api.nvim_set_hl(0, '@variable.python', { italic = false })
+vim.api.nvim_set_hl(0, '@operator.python', { fg = DarkGreen})
+vim.api.nvim_set_hl(0, '@constant.builtin.python', { fg = DarkGreen, bold = false })
+vim.api.nvim_set_hl(0, '@function.method.call.python', { fg = LightGreen })
+vim.api.nvim_set_hl(0, '@function.call.python', { fg = White })
+vim.api.nvim_set_hl(0, '@string.documentation.python', { fg = Grey })
+vim.api.nvim_set_hl(0, '@string.python', { fg = Yellow })
+vim.api.nvim_set_hl(0, 'CocUnusedHighlight', { fg = LightGrey })
+
+-- Custom queries for python (~/.config/nvim/queries/python/highlights.scm)
+vim.api.nvim_set_hl(0, '@decorator.identifier.python', { fg = DarkGreen })
+vim.api.nvim_set_hl(0, '@decorator.function.object.python', { fg = DarkGreen })
+vim.api.nvim_set_hl(0, '@decorator.function.attribute.python', { fg = LightGreen })
