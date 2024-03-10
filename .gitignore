@@ -38,4 +38,5 @@
 !.config/nvim/init.vim
 !.config/nvim/ginit.vim
 !.config/nvim/lua/config.lua
+!.config/nvim/coc-settings.json
 
