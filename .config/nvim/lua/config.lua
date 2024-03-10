@@ -49,9 +49,10 @@ require('gitsigns').setup()
 
 -- TreeSitter (better syntax)
 require'nvim-treesitter.configs'.setup {
-    ensure_installed =  { "python", "vimdoc" },
+    ensure_installed =  { "python", "vimdoc", "bash" },
     highlight = {
         enable = true,
+        disable = { "sh" },
     },
 }
 
@@ -67,6 +68,8 @@ local Grey = '#908caa'
 local Yellow = '#fee1b8'
 local White = '#ffffff'
 local LightGrey = '#a3a0b5'
+local Red = '#eb6f92'
+local LightBlue = '#3e8fb0'
 
 -- Global
 vim.api.nvim_set_hl(0, '@type', { fg = LighterGreen, italic = false })
@@ -81,9 +84,64 @@ vim.api.nvim_set_hl(0, '@function.method.call.python', { fg = LightGreen })
 vim.api.nvim_set_hl(0, '@function.call.python', { fg = White })
 vim.api.nvim_set_hl(0, '@string.documentation.python', { fg = Grey })
 vim.api.nvim_set_hl(0, '@string.python', { fg = Yellow })
-vim.api.nvim_set_hl(0, 'CocUnusedHighlight', { fg = LightGrey })
 
 -- Custom queries for python (~/.config/nvim/queries/python/highlights.scm)
 vim.api.nvim_set_hl(0, '@decorator.identifier.python', { fg = DarkGreen })
 vim.api.nvim_set_hl(0, '@decorator.function.object.python', { fg = DarkGreen })
 vim.api.nvim_set_hl(0, '@decorator.function.attribute.python', { fg = LightGreen })
+
+-- Coc colors
+vim.api.nvim_set_hl(0, 'CocUnusedHighlight', { fg = LightGrey })
+
+-- following colors are not fully working
+vim.api.nvim_set_hl(0, 'CocHintSign', { fg = LightBlue })
+vim.api.nvim_set_hl(0, 'CocHintVirtualText', { fg = LightBlue })
+vim.api.nvim_set_hl(0, 'CocHintFloat', { fg = LightBlue })
+vim.api.nvim_set_hl(0, 'CocInlayHint', { fg = LightBlue })
+
+vim.api.nvim_set_hl(0, 'CocInfoSign', { fg = LightBlue })
+vim.api.nvim_set_hl(0, 'CocInfoVirtualText', { fg = LightBlue })
+vim.api.nvim_set_hl(0, 'CocInfoFloat', { fg = LightBlue })
+vim.api.nvim_set_hl(0, 'CocInlayInfo', { fg = LightBlue })
+
+vim.api.nvim_set_hl(0, 'CocErrorSign', { fg = Red })
+vim.api.nvim_set_hl(0, 'CocErrorVirtualText', { fg = Red })
+vim.api.nvim_set_hl(0, 'CocErrorFloat', { fg = Red })
+vim.api.nvim_set_hl(0, 'CocInlayError', { fg = Red })
+
+vim.api.nvim_set_hl(0, 'CocWarningSign', { fg = Yellow })
+vim.api.nvim_set_hl(0, 'CocWarningVirtualText', { fg = Yellow })
+vim.api.nvim_set_hl(0, 'CocWarningFloat', { fg = Yellow })
+vim.api.nvim_set_hl(0, 'CocInlayWarning', { fg = Yellow })
+
+vim.api.nvim_set_var("chadtree_settings", {
+  ["theme.text_colour_set"] = "custom",
+  ["theme.custom.text_colour_set"] = {
+    normal = "#FFFFFF",
+    bright = "#FFFFFF",
+    dim = "#FFFFFF",
+    accent = "#FFFFFF",
+    background = "#FFFFFF",
+    foreground = "#FFFFFF",
+    text = "#FFFFFF",
+    text_highlight = "#FFFFFF",
+    git = {
+      added = "#FFFFFF",
+      modified = "#FFFFFF",
+      deleted = "#FFFFFF",
+      untracked = "#FFFFFF",
+      ignored = "#FFFFFF",
+      renamed = "#FFFFFF",
+      unmerged = "#FFFFFF",
+    },
+    icons = {
+      folder = "#FFFFFF",
+      file = "#FFFFFF",
+      symlink = "#FFFFFF",
+      image = "#FFFFFF",
+      music = "#FFFFFF",
+      video = "#FFFFFF",
+    }
+  },
+})
+
