@@ -13,7 +13,6 @@
 call plug#begin()
 Plug 'rose-pine/neovim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
 Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/vim-markdown'
@@ -23,10 +22,14 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'schickling/vim-bufonly'
 Plug 'numToStr/FTerm.nvim'
 Plug 'lewis6991/gitsigns.nvim'
-Plug 'nvim-tree/nvim-web-devicons'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'xiyaowong/virtcolumn.nvim'
 Plug 'rktjmp/lush.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
+" In testing:
+Plug 'nvim-tree/nvim-tree.lua'
+
+" Color Scheme edition plugins:
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 call plug#end()
@@ -70,9 +73,6 @@ lua require('config')
 let g:airline_theme='solarized'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-
-" CHADTree: keybinding not working ATM
-let g:chadtree_settings = { "theme.text_colour_set": "env", "keymap.jump_to_current": ["<leader>-r"]}
 
 " Emmet:
 let g:user_emmet_install_global = 0
@@ -167,13 +167,12 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
-
-" CHADTree:
-" ,v: open file explorer
-nnoremap <leader>v <cmd>CHADopen<CR>
-
 " FZF:
 " ,f: fuzzy on files
 nnoremap <leader>f <cmd>lua require('fzf-lua').files()<CR>
 nnoremap <leader>o <cmd>lua require('fzf-lua').buffers()<CR>
 nnoremap <leader>g <cmd>lua require('fzf-lua').grep()<CR>
+
+" NvimTree
+nnoremap <leader>v <cmd>NvimTreeToggle<CR>
+nnoremap <leader>r <cmd>NvimTreeFindFile<CR>

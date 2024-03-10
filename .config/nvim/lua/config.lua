@@ -57,6 +57,37 @@ require'nvim-treesitter.configs'.setup {
 }
 
 
+-- Nvim Tree
+
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- optionally enable 24-bit colour
+vim.opt.termguicolors = true
+
+-- Main configuration (check :h nvim-tree-opts)
+require("nvim-tree").setup({
+    renderer = {
+        add_trailing = true,
+        highlight_git = "all",
+        highlight_opened_files = "name",
+        highlight_modified = "name",
+        indent_markers = {
+            enable = true
+        },
+    },
+    modified = {
+        enable = true,
+        show_on_dirs = false
+    },
+    git = {
+        enable = true,
+        ignore = false
+    }
+})
+
+
 -- Custom syntax stuff (for rosepine)
 
 -- Rosepine pallete: https://rosepinetheme.com/palette/ingredients/
@@ -70,6 +101,7 @@ local White = '#ffffff'
 local LightGrey = '#a3a0b5'
 local Red = '#eb6f92'
 local LightBlue = '#3e8fb0'
+local DarkGrey = '#474556'
 
 -- Global
 vim.api.nvim_set_hl(0, '@type', { fg = LighterGreen, italic = false })
@@ -114,34 +146,10 @@ vim.api.nvim_set_hl(0, 'CocWarningVirtualText', { fg = Yellow })
 vim.api.nvim_set_hl(0, 'CocWarningFloat', { fg = Yellow })
 vim.api.nvim_set_hl(0, 'CocInlayWarning', { fg = Yellow })
 
-vim.api.nvim_set_var("chadtree_settings", {
-  ["theme.text_colour_set"] = "custom",
-  ["theme.custom.text_colour_set"] = {
-    normal = "#FFFFFF",
-    bright = "#FFFFFF",
-    dim = "#FFFFFF",
-    accent = "#FFFFFF",
-    background = "#FFFFFF",
-    foreground = "#FFFFFF",
-    text = "#FFFFFF",
-    text_highlight = "#FFFFFF",
-    git = {
-      added = "#FFFFFF",
-      modified = "#FFFFFF",
-      deleted = "#FFFFFF",
-      untracked = "#FFFFFF",
-      ignored = "#FFFFFF",
-      renamed = "#FFFFFF",
-      unmerged = "#FFFFFF",
-    },
-    icons = {
-      folder = "#FFFFFF",
-      file = "#FFFFFF",
-      symlink = "#FFFFFF",
-      image = "#FFFFFF",
-      music = "#FFFFFF",
-      video = "#FFFFFF",
-    }
-  },
-})
+-- Nvim tree colors (use the :NvimTreeHiTest command to check the available groups):
+vim.api.nvim_set_hl(0, 'NvimTreeFolderName', { fg = DarkGreen })
+vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { fg = LightBlue })
+vim.api.nvim_set_hl(0, 'NvimTreeGitIgnoredIcon', { fg = LightGrey })
+vim.api.nvim_set_hl(0, 'NvimTreeGitFileIgnoredHL', { fg = LightGrey })
+vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { fg = DarkGrey })
 
