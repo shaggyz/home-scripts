@@ -22,7 +22,7 @@ if vim.g.neovide then
         vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
         vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
         -- Font
-        vim.o.guifont = "JetBrainsMono Nerd Font Mono:h12.5"
+        vim.o.guifont = "JetBrainsMonoNL Nerd Font:h12.5"
 
     end
 
@@ -118,6 +118,13 @@ vim.api.nvim_set_hl(0, '@function.method.call.python', { fg = LightGreen })
 vim.api.nvim_set_hl(0, '@function.call.python', { fg = White })
 vim.api.nvim_set_hl(0, '@string.documentation.python', { fg = Grey })
 vim.api.nvim_set_hl(0, '@string.python', { fg = Yellow })
+vim.api.nvim_set_hl(0, '@variable.builtin.python', { fg = DarkGreen, bold = false })
+vim.api.nvim_set_hl(0, '@attribute.builtin.python', { fg = DarkGreen, bold = false })
+vim.api.nvim_set_hl(0, '@attribute.python', { fg = DarkGreen, bold = false })
+
+-- Bash
+vim.api.nvim_set_hl(0, '@constant.bash', { fg = DarkGreen })
+vim.api.nvim_set_hl(0, '@string.bash', { fg = Yellow })
 
 -- Custom queries for python (~/.config/nvim/queries/python/highlights.scm)
 vim.api.nvim_set_hl(0, '@decorator.identifier.python', { fg = DarkGreen })
