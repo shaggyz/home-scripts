@@ -160,10 +160,10 @@ else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
-" Symbol renaming
+" Symbol Rename:
 nmap <leader>rn <Plug>(coc-rename)
 
-" Formatting selected code
+" Formatting Code:
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
@@ -172,6 +172,9 @@ nnoremap <leader>f <cmd>lua require('fzf-lua').files()<CR>
 nnoremap <leader>o <cmd>lua require('fzf-lua').buffers()<CR>
 nnoremap <leader>g <cmd>lua require('fzf-lua').live_grep({ cmd = "git grep --line-number --column --color=always" })<CR>
 
-" NvimTree
+" NvimTree:
 nnoremap <leader>v <cmd>NvimTreeToggle<CR>
 nnoremap <leader>r <cmd>NvimTreeFindFile<CR>
+
+" Terminal Keybindings:
+tunmap <Tab>
