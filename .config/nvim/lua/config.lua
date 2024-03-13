@@ -108,6 +108,7 @@ local DarkGrey = '#474556'
 -- Global
 vim.api.nvim_set_hl(0, '@type', { fg = LighterGreen, italic = false })
 vim.api.nvim_set_hl(0, '@variable.builtin.vim', { fg = LightGreen, bold = false })
+vim.api.nvim_set_hl(0, '@string.special.url.vimdoc', { fg = LightBlue, underline = true  })
 
 -- Python
 vim.api.nvim_set_hl(0, '@variable.parameter.python', { fg = LighterYellow, italic = false })
