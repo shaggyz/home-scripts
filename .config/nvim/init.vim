@@ -7,35 +7,53 @@
 " ~/.config/nvim/ginit.lua - specific configuration for neovim-qt.
 
 
-" Plugins: installation, using: https://github.com/junegunn/vim-plug#neovim
+" -----------------------------------------------------------------------------
+" ❇ Plugins: installation, using: https://github.com/junegunn/vim-plug#neovim
 " -----------------------------------------------------------------------------
 
 call plug#begin()
+" Rose-pine colorscheme
 Plug 'rose-pine/neovim'
+" CoC for neovim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Fuzz search
 Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
+" Icons
 Plug 'ryanoasis/vim-devicons'
+" Markdown plugin
 Plug 'preservim/vim-markdown'
+" Emmet, HTML tools
 Plug 'mattn/emmet-vim'
+" Airline bar
 Plug 'vim-airline/vim-airline'
+" Themes collection for airline
 Plug 'vim-airline/vim-airline-themes'
+" Close all the buffers
 Plug 'schickling/vim-bufonly'
+" Floating terminal
 Plug 'numToStr/FTerm.nvim'
+" Git signs in buffers
 Plug 'lewis6991/gitsigns.nvim'
+" Automatically remove whitespaces
 Plug 'ntpeters/vim-better-whitespace'
+" Max width column
 Plug 'xiyaowong/virtcolumn.nvim'
-Plug 'rktjmp/lush.nvim'
+" Icons used by FZF
 Plug 'nvim-tree/nvim-web-devicons'
-" In testing:
+" File tree
 Plug 'nvim-tree/nvim-tree.lua'
-
-" Color Scheme edition plugins:
+" Adds additional highlight groups, used for syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/playground'
+" Color Scheme edition plugins:
+" Colorcheme creation
+" Plug 'rktjmp/lush.nvim'
+" Playground for treesitter
+" Plug 'nvim-treesitter/playground'
 call plug#end()
 
 
-" Neovim: editor settings
+" -----------------------------------------------------------------------------
+" ❇ Neovim: editor settings
 " -----------------------------------------------------------------------------
 
 set tabstop=4
@@ -66,33 +84,35 @@ colorscheme rose-pine-main
 lua require('config')
 
 
-" Plugins: configuration
+" -----------------------------------------------------------------------------
+" ❇ Plugins: configuration
 " -----------------------------------------------------------------------------
 
-" Vim Airline:
+" Vim Airline -----------------------------------------------------------------
 let g:airline_theme='solarized'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
-" Emmet:
+" Emmet -----------------------------------------------------------------------
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,vue,php EmmetInstall
 
-" Coc-nvim
+" CoC -------------------------------------------------------------------------
 " Highlight the symbol and its references when holding the cursor
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-
-" PyRight: :CocInstall coc-pyright
+" PyRight: :CocInstall coc-pyright --------------------------------------------
 " Add mypy:python.linting.mypyEnabled
 " TBD.
 
-" Better Whitespace:
+" Better Whitespace -----------------------------------------------------------
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
 
-" Keybindings:
+
+" -----------------------------------------------------------------------------
+" ❇ Keybindings:
 " -----------------------------------------------------------------------------
 
 let mapleader=','
@@ -122,7 +142,6 @@ nnoremap <silent> K :call ShowDocumentation()<CR>
 nnoremap <C-i> <cmd>lua require("FTerm").toggle()<CR>
 tnoremap <C-i> <C-n><CMD>lua require("FTerm").toggle()<CR>
 
-" Config Files:
 " ,ev: edit CLI configuration
 nnoremap <leader>ev :e $MYVIMRC<CR>
 " ,gv: edit GUI configuration
@@ -135,6 +154,13 @@ nmap <silent> <leader>dd <Plug>(coc-definition)
 nmap <silent> <leader>yy <Plug>(coc-type-definition)
 nmap <silent> <leader>im <Plug>(coc-implementation)
 nmap <silent> <leader>us <Plug>(coc-references)
+
+" Symbol Rename:
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting Code:
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 " Use <tab> for autotomplete options
 inoremap <silent><expr> <TAB>
@@ -159,13 +185,6 @@ if has('nvim')
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
-
-" Symbol Rename:
-nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting Code:
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
 
 " FZF:
 nnoremap <leader>f <cmd>lua require('fzf-lua').files()<CR>
