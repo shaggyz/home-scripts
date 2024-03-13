@@ -121,6 +121,7 @@ vim.api.nvim_set_hl(0, '@string.python', { fg = Yellow })
 vim.api.nvim_set_hl(0, '@variable.builtin.python', { fg = DarkGreen, bold = false })
 vim.api.nvim_set_hl(0, '@attribute.builtin.python', { fg = DarkGreen, bold = false })
 vim.api.nvim_set_hl(0, '@attribute.python', { fg = DarkGreen, bold = false })
+vim.api.nvim_set_hl(0, '@spell.python', { fg = Grey, bold = false, italic = true })
 
 -- Bash
 vim.api.nvim_set_hl(0, '@constant.bash', { fg = DarkGreen })

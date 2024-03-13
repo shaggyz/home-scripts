@@ -168,10 +168,9 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 " FZF:
-" ,f: fuzzy on files
 nnoremap <leader>f <cmd>lua require('fzf-lua').files()<CR>
 nnoremap <leader>o <cmd>lua require('fzf-lua').buffers()<CR>
-nnoremap <leader>g <cmd>lua require('fzf-lua').grep()<CR>
+nnoremap <leader>g <cmd>lua require('fzf-lua').live_grep({ cmd = "git grep --line-number --column --color=always" })<CR>
 
 " NvimTree
 nnoremap <leader>v <cmd>NvimTreeToggle<CR>
