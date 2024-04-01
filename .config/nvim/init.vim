@@ -222,6 +222,7 @@ endif
 nnoremap <leader>f <cmd>lua require('fzf-lua').files()<CR>
 nnoremap <leader>o <cmd>lua require('fzf-lua').buffers()<CR>
 nnoremap <leader>g <cmd>lua require('fzf-lua').live_grep({ cmd = "git grep --line-number --column --color=always" })<CR>
+nnoremap <leader>s <cmd>lua require('fzf-lua').files({prompt="WIKI❯ ", cmd="find -type f", cwd="~/Nextcloud/VimWiki/personal"})<CR>
 
 " NvimTree:
 nnoremap <leader>v <cmd>NvimTreeToggle<CR>
