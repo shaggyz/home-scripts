@@ -46,13 +46,17 @@ Plug 'nvim-tree/nvim-tree.lua'
 Plug 'tpope/vim-fugitive'
 " Adds additional highlight groups, used for syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 " Color Scheme edition plugins:
 " Colorcheme creation
 " Plug 'rktjmp/lush.nvim'
 " Playground for treesitter
 " Plug 'nvim-treesitter/playground'
-call plug#end()
 
+" Debugger testing
+" Plug 'mfussenegger/nvim-dap'
+" Plug 'mfussenegger/nvim-dap-python/'
+call plug#end()
 
 " -----------------------------------------------------------------------------
 " ❇ Neovim: editor settings

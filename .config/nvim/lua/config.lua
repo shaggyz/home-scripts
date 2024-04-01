@@ -1,5 +1,4 @@
 -- Neovide specific configuration
-
 if vim.g.neovide then
     if jit and jit.os == "Linux" then
         -- Linux
@@ -163,4 +162,9 @@ vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { fg = LightBlue })
 vim.api.nvim_set_hl(0, 'NvimTreeGitIgnoredIcon', { fg = LightGrey })
 vim.api.nvim_set_hl(0, 'NvimTreeGitFileIgnoredHL', { fg = LightGrey })
 vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { fg = DarkGrey })
+
+
+-- Debug testing
+-- require('dap-python').setup('.venv/bin/python')
+
 
