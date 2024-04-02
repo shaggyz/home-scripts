@@ -54,8 +54,11 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'nvim-treesitter/playground'
 "
 " TODO: Database tools: kristijanhusak/vim-dadbod-ui
-call plug#end()
 
+" TODO: Python debugger testing
+" Plug 'mfussenegger/nvim-dap'
+" Plug 'mfussenegger/nvim-dap-python/'
+call plug#end()
 
 " -----------------------------------------------------------------------------
 " ❇ Neovim: editor settings
@@ -221,6 +224,7 @@ endif
 nnoremap <leader>f <cmd>lua require('fzf-lua').files()<CR>
 nnoremap <leader>o <cmd>lua require('fzf-lua').buffers()<CR>
 nnoremap <leader>g <cmd>lua require('fzf-lua').live_grep({ cmd = "git grep --line-number --column --color=always" })<CR>
+nnoremap <leader>s <cmd>lua require('fzf-lua').files({prompt="WIKI❯ ", cmd="find -type f", cwd="~/Nextcloud/VimWiki/personal"})<CR>
 
 " NvimTree:
 nnoremap <leader>v <cmd>NvimTreeToggle<CR>
