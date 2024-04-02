@@ -46,11 +46,14 @@ Plug 'nvim-tree/nvim-tree.lua'
 Plug 'tpope/vim-fugitive'
 " Adds additional highlight groups, used for syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" Color Scheme edition plugins:
+
+" TODO: Color Scheme edition plugins:
 " Colorcheme creation
 " Plug 'rktjmp/lush.nvim'
 " Playground for treesitter
 " Plug 'nvim-treesitter/playground'
+"
+" TODO: Database tools: kristijanhusak/vim-dadbod-ui
 call plug#end()
 
 
