@@ -30,39 +30,21 @@ man() {
 # Bash aliases
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 
-# General path entries
-export PATH="$HOME/.scripts:$HOME/.local/bin:$PATH"
-
-# Only GNU/linux
-if [ `uname` == "Linux" ]; then
-    # Dictionary aliases (dictd, gcide and freedict-eng-spa required)
-    alias enspa='dict -d fd-eng-spa'
-    alias spaen='dict -d fd-spa-eng'
-    # Needed to specify Qt themes
-    # export QT_QPA_PLATFORMTHEME=qt5ct
-    # Wine32
-    # export WINEPREFIX=$HOME/.wine32
-fi
-
 # Only macOS
 if [ `uname` == "Darwin" ]; then
-    export PATH="/opt/local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.vimpkg/bin:$PATH"
+    export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.local/bin:$PATH"
     # Bash completion from MacPorts
     if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
         source /opt/local/etc/profile.d/bash_completion.sh
     fi
-
-    # Bash completion from HomeBrew
-    if [ -d /usr/local/etc/bash_completion.d ]; then
-        source /usr/local/etc/bash_completion.d/*
-    fi
-
+    #
     # FZF search for bash in macOS
     if [ -f /opt/local/share/fzf/shell/completion.bash ]; then
         source /opt/local/share/fzf/shell/completion.bash
     fi
 
-    export PATH="/Users/nicolaspalumbo/.local/bin:/opt/metasploit-framework/bin:/usr/local/texlive/2021/bin/universal-darwin:/Users/nicolaspalumbo/Library/Python/3.9/bin:$PATH"
+    # LaTeX
+    export PATH="/usr/local/texlive/2021/bin/universal-darwin:$PATH"
     export LC_ALL=en_US.UTF-8
     export LANG=en_US.UTF-8
 
@@ -72,11 +54,6 @@ if [ `uname` == "Darwin" ]; then
     # Needed for some legacy X11 applications
     export DISPLAY=:0
     test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-
-    # Homebrew node
-    export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
-    export LDFLAGS="-L/opt/homebrew/opt/node@16/lib"
-    export CPPFLAGS="-I/opt/homebrew/opt/node@16/include"
 
     # In my company they put a very ugly name to my computer
     MACHINE_NAME=$(hostname | cut -d'.' -f1 | tr '[:upper:]' '[:lower:]')
@@ -103,5 +80,4 @@ if [ `uname` == "Darwin" ]; then
         done
       fi
     fi
-
 fi
