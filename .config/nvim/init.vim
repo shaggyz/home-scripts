@@ -82,6 +82,8 @@ set wildmenu
 set expandtab
 set nofoldenable
 set updatetime=300
+set splitbelow
+set splitright
 
 filetype plugin indent on
 syntax on

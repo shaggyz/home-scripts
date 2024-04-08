@@ -33,15 +33,6 @@ man() {
 # Only macOS
 if [ `uname` == "Darwin" ]; then
     export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.local/bin:$PATH"
-    # Bash completion from MacPorts
-    if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
-        source /opt/local/etc/profile.d/bash_completion.sh
-    fi
-    #
-    # FZF search for bash in macOS
-    if [ -f /opt/local/share/fzf/shell/completion.bash ]; then
-        source /opt/local/share/fzf/shell/completion.bash
-    fi
 
     # LaTeX
     export PATH="/usr/local/texlive/2021/bin/universal-darwin:$PATH"
@@ -55,29 +46,31 @@ if [ `uname` == "Darwin" ]; then
     export DISPLAY=:0
     test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
-    # In my company they put a very ugly name to my computer
+    # Change the horrible name my company put to the work laptop
     MACHINE_NAME=$(hostname | cut -d'.' -f1 | tr '[:upper:]' '[:lower:]')
     [[ "$MACHINE_NAME" == "foxy" ]] || MACHINE_NAME="grunt"
 
-    # Git bash autocompletion
-    if [ -f ~/.git-completion.bash ]; then
-      . ~/.git-completion.bash
-    fi
+    # nodejs installed with brew (not automatic linking for this package)
+    export PATH="/usr/local/opt/node@18/bin:$PATH"
+    export LDFLAGS="-L/usr/local/opt/node@18/lib"
+    export CPPFLAGS="-I/usr/local/opt/node@18/include"
 
     # Set the PS1 for macOS
     export PS1='\[\033[01;32m\]\u@$MACHINE_NAME:\[\033[01;34m\]\W\[\033[01;33m\]$(parse_git_branch)\[\033[0m\]\$ '
 
+    # Homebrew
+    export HOMEBREW_NO_ENV_HINTS=1
     if type brew &>/dev/null
     then
-      HOMEBREW_PREFIX="$(brew --prefix)"
-      if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]
-      then
-        source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
-      else
-        for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*
-        do
-          [[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
-        done
-      fi
+        HOMEBREW_PREFIX="$(brew --prefix)"
+        if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]
+        then
+            source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+        else
+            for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*
+            do
+                [[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
+            done
+        fi
     fi
 fi
