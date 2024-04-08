@@ -30,6 +30,9 @@ man() {
 # Bash aliases
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 
+# Poetry
+export PATH="~/.local/bin:$PATH"
+
 # Only macOS
 if [ `uname` == "Darwin" ]; then
     export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.local/bin:$PATH"
