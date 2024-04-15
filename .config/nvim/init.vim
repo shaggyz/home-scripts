@@ -190,9 +190,7 @@ nmap <silent> <leader>dd <Plug>(coc-definition)
 nmap <silent> <leader>yy <Plug>(coc-type-definition)
 nmap <silent> <leader>im <Plug>(coc-implementation)
 nmap <silent> <leader>us <Plug>(coc-references)
-
-" Symbol Rename:
-nmap <leader>rn <Plug>(coc-rename)
+nmap <silent> <leader>rn <Plug>(coc-rename)
 
 " Formatting Code:
 xmap <leader>f  <Plug>(coc-format-selected)
