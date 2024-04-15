@@ -5,7 +5,8 @@ if vim.g.neovide then
         -- Copy/Paste keybindings
         vim.keymap.set('n', '<A-C-v>', '"+P') -- Paste normal mode
         vim.keymap.set('v', '<A-C-v>', '"+P') -- Paste visual mode
-        vim.keymap.set('i', '<A-C-v>', '<ESC>l"+Pa') -- Paste insert mode
+        vim.keymap.set('t', '<A-C-v>', '<C-\\><C-n>"+PA') -- Paste terminal mode
+        vim.keymap.set('i', '<A-C-v>', '<C-o>"+P') -- Paste insert mode
         vim.keymap.set('c', '<A-C-v>', '<C-R>+') -- Paste command mode
         vim.keymap.set('v', '<A-C-c>', '"+y') -- Copy
         -- Font
@@ -18,8 +19,9 @@ if vim.g.neovide then
         vim.keymap.set('v', '<D-c>', '"+y') -- Copy
         vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
         vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
+        vim.keymap.set('t', '<D-v>', '<C-\\><C-n>"+PA') -- Paste terminal mode
         vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
-        vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
+        vim.keymap.set('i', '<D-v>', '<C-o>"+P') -- Paste insert mode
         -- Font
         vim.o.guifont = "JetBrainsMonoNL Nerd Font:h12.5"
 

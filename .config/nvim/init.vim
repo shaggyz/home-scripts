@@ -90,6 +90,9 @@ syntax on
 
 colorscheme rose-pine-main
 
+" Neovim python virtualenv
+let g:python3_host_prog = '~/.local/nico-virtualenvs/neovim-venv/bin/python'
+
 " ~/.config/nvim/lua/config.lua
 lua require('config')
 
@@ -191,6 +194,15 @@ nmap <silent> <leader>yy <Plug>(coc-type-definition)
 nmap <silent> <leader>im <Plug>(coc-implementation)
 nmap <silent> <leader>us <Plug>(coc-references)
 nmap <silent> <leader>rn <Plug>(coc-rename)
+
+" Define an autocmd that runs for Python files
+augroup PythonAutocomplete
+    autocmd!
+    " For Python files, set specific complete options
+    autocmd FileType python setlocal completeopt=menuone,noinsert,noselect
+    autocmd FileType python setlocal shortmess+=c
+augroup END
+
 
 " Formatting Code:
 xmap <leader>f  <Plug>(coc-format-selected)
