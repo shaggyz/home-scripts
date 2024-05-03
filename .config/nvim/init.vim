@@ -46,6 +46,10 @@ Plug 'nvim-tree/nvim-tree.lua'
 Plug 'tpope/vim-fugitive'
 " Adds additional highlight groups, used for syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Kotlin syntax highlight
+Plug 'udalov/kotlin-vim'
+" Astro syntax
+Plug 'wuelnerdotexe/vim-astro'
 
 " TODO: Color Scheme edition plugins:
 " Colorcheme creation

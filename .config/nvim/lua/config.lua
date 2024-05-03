@@ -88,6 +88,11 @@ require("nvim-tree").setup({
         enable = true,
         ignore = false,
         timeout = 5000,
+    },
+    actions = {
+        open_file = {
+            resize_window = false
+        }
     }
 })
 
@@ -165,6 +170,10 @@ vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { fg = LightBlue })
 vim.api.nvim_set_hl(0, 'NvimTreeGitIgnoredIcon', { fg = LightGrey })
 vim.api.nvim_set_hl(0, 'NvimTreeGitFileIgnoredHL', { fg = LightGrey })
 vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { fg = DarkGrey })
+
+-- YAML
+vim.api.nvim_set_hl(0, 'yamlBlockMappingKey', { fg = DarkGreen })
+
 
 
 -- Debug testing
