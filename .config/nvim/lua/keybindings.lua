@@ -113,3 +113,11 @@ vim.keymap.set('n', '<leader>r', require('nvim-tree.api').tree.find_file, {
     noremap = true,
     silent = true
 })
+
+
+-- DBUI -----------------------------------------------------------------------
+
+-- Toggle the DBUI GUI
+vim.keymap.set('n', '<leader>dt', '<cmd>DBUIToggle<CR>', { silent = true, noremap = true })
+-- Add databsae
+vim.keymap.set('n', '<leader>da', '<cmd>DBUIAddConnection<CR>', { silent = true, noremap = true })

@@ -156,3 +156,10 @@ vim.api.nvim_create_autocmd("CursorHold", {
 vim.g.better_whitespace_enabled = 1
 vim.g.strip_whitespace_on_save = 1
 vim.g.strip_whitespace_confirm = 0
+
+
+-- DBUI ------------------------------------------------------------------------
+--
+vim.g.db_ui_win_position = 'right'
+vim.g.db_ui_show_database_icon = true
+vim.g.db_ui_use_nerd_fonts = true
