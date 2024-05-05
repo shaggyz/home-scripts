@@ -18,10 +18,6 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/vim-markdown'
 -- Emmet, HTML tools
 Plug 'mattn/emmet-vim'
--- Airline bar
-Plug 'vim-airline/vim-airline'
--- Themes collection for airline
-Plug 'vim-airline/vim-airline-themes'
 -- Close all the buffers
 Plug 'schickling/vim-bufonly'
 -- Floating terminal
@@ -44,6 +40,8 @@ Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 Plug 'udalov/kotlin-vim'
 -- Astro syntax
 Plug 'wuelnerdotexe/vim-astro'
+-- Lualine
+Plug 'nvim-lualine/lualine.nvim'
 
 --TODO: Color Scheme edition plugins:
 --Colorcheme creation

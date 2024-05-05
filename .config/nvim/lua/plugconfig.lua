@@ -60,36 +60,76 @@ require("nvim-tree").setup({
     }
 })
 
--- Lua Airline ----------------------------------------------------------------
+-- Lualine --------------------------------------------------------------------
+
+-- Theme example: https://github.com/nvim-lualine/lualine.nvim/wiki/Writing-a-theme
+
+require('lualine').setup {
+    options = {
+        theme = 'iceberg_dark',
+        ignore_focus = { 'NvimTree' },
+    },
+    sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'branch', 'diff' },
+        lualine_c = {
+            {
+                'filename',
+                newfile_status = false,
+            },
+        },
+        lualine_x = { 'encoding', 'fileformat', 'filetype' },
+        lualine_y = { 'progress' },
+        lualine_z = {
+            {
+                'location',
+            },
+            {
+                'diagnostics',
+                sources = { 'nvim_diagnostic', 'coc' },
+                sections = { 'error', 'warn', 'info', 'hint' },
+                diagnostics_color = {
+                    error = 'DiagnosticError',
+                    warn  = 'DiagnosticWarn',
+                    info  = 'DiagnosticInfo',
+                    hint  = 'DiagnosticHint',
+                },
+                symbols = { error = 'E', warn = 'W', info = 'I', hint = 'H' },
+                colored = true,
+            },
+        }
+    },
+    tabline = {
+        lualine_a = {
+            {
+                'buffers',
+                use_mode_colors = true,
+            },
+        },
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {
+            {
+                'windows',
+                mode = 2,
+            },
+        },
+        lualine_z = {
+            {
+                'tabs',
+            }
+        }
+    },
+    extensions = {
+        'fugitive',
+        'fzf',
+        'nvim-tree',
+        'quickfix',
+    }
+}
 
 
-
--- Vim Airline ----------------------------------------------------------------
-
-vim.g.airline_theme = 'solarized'
-vim.g.airline_powerline_fonts = 1
--- vim.g['airline#extensions#tabline#enabled'] = 1
--- vim.g['airline#extensions#coc#enabled'] = 1
--- vim.g['airline#extensions#coc#error_symbol'] = ' '
--- vim.g['airline#extensions#coc#warning_symbol'] = ' '
--- vim.g['airline#extensions#coc#show_coc_status'] = 1
--- vim.g['airline#parts#ffenc#skip_expected_string'] = 'utf-8[unix]'
-vim.g.airline_section_c_only_filename = 1
--- vim.g['airline#extensions#wordcount#enabled'] = 0
--- vim.g['airline#extensions#hunks#enabled'] = 1
--- vim.g['airline#extensions#hunks#hunk_symbols'] = { ' ', ' ', ' ' }
-
--- Initialize airline_symbols if it doesn't exist
--- if vim.g.airline_symbols == nil then
--- vim.g.airline_symbols = {}
--- end
-
--- Set the properties of airline_symbols
--- vim.g.airline_symbols['dirty'] = ''
--- vim.g.airline_symbols['linenr'] = ' Ⓛ '
--- vim.g.airline_symbols['maxlinenr'] = ' '
--- vim.g.airline_symbols['colnr'] = 'Ⓒ '
--- vim.g.airline_symbols['branch'] = ' '
 
 -- DAP python (debugger) -------------------------------------------------------
 

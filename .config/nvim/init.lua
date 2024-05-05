@@ -17,9 +17,7 @@ require 'plugconfig'
 require 'syntax'
 
 -- ~/.config/nvim/lua/neovide.lua - Neovide specific configuration
-if vim.g.neovide then
-    require 'neovide'
-end
+if vim.g.neovide then require 'neovide' end
 
 -- ~/.config/nvim/lua/keybindings.lua - Custom keybindings
 require 'keybindings'
