@@ -35,8 +35,7 @@
 !.gtkrc-2.0
 !.config/gtk-3.0
 !.config/gtk-3.0/settings.ini
-!.config/nvim/init.vim
-!.config/nvim/ginit.vim
-!.config/nvim/lua/config.lua
 !.config/nvim/coc-settings.json
+!.config/nvim/init.lua
+!.config/nvim/lua/*.lua
 
