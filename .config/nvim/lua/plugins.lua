@@ -43,14 +43,15 @@ Plug 'wuelnerdotexe/vim-astro'
 -- Lualine
 Plug 'nvim-lualine/lualine.nvim'
 
+-- Database viewer
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
+
 --TODO: Color Scheme edition plugins:
 --Colorcheme creation
 --Plug 'rktjmp/lush.nvim'
 --Playground for treesitter
 --Plug 'nvim-treesitter/playground'
-
---TODO: Database tools:
---Plug 'kristijanhusak/vim-dadbod-ui'
 
 --TODO: Python debugger testing
 --Plug 'mfussenegger/nvim-dap'

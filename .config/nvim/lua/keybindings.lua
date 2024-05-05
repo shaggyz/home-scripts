@@ -71,8 +71,8 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- Map keys for formatting code in visual and normal modes
-vim.keymap.set('x', '<leader>f', '<Plug>(coc-format-selected)', { silent = true })
-vim.keymap.set('n', '<leader>f', '<Plug>(coc-format-selected)', { silent = true })
+vim.keymap.set('x', '<leader>ff', '<Plug>(coc-format-selected)', { silent = true })
+vim.keymap.set('n', '<leader>ff', '<Plug>(coc-format-selected)', { silent = true })
 
 
 -- FZF ------------------------------------------------------------------------

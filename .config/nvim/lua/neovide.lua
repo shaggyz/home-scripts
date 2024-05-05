@@ -8,7 +8,7 @@ if jit and jit.os == "Linux" then
     vim.keymap.set('n', '<A-C-v>', '"+P')             -- Paste normal mode
     vim.keymap.set('v', '<A-C-v>', '"+P')             -- Paste visual mode
     vim.keymap.set('t', '<A-C-v>', '<C-\\><C-n>"+PA') -- Paste terminal mode
-    vim.keymap.set('i', '<A-C-v>', '<C-o>"+P')        -- Paste insert mode
+    vim.keymap.set('i', '<A-C-v>', '<C-o>h"+P')       -- Paste insert mode
     vim.keymap.set('c', '<A-C-v>', '<C-R>+')          -- Paste command mode
     vim.keymap.set('v', '<A-C-c>', '"+y')             -- Copy
     -- Font
