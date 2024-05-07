@@ -42,11 +42,11 @@ Plug 'udalov/kotlin-vim'
 Plug 'wuelnerdotexe/vim-astro'
 -- Lualine
 Plug 'nvim-lualine/lualine.nvim'
-
 -- Database viewer
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
-
+-- Improved diff tool
+Plug 'sindrets/diffview.nvim'
 --TODO: Color Scheme edition plugins:
 --Colorcheme creation
 --Plug 'rktjmp/lush.nvim'

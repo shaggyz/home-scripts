@@ -163,3 +163,8 @@ vim.g.strip_whitespace_confirm = 0
 vim.g.db_ui_win_position = 'right'
 vim.g.db_ui_show_database_icon = true
 vim.g.db_ui_use_nerd_fonts = true
+
+
+-- Better diff tool
+-- TBD > https://github.com/sindrets/diffview.nvim?tab=readme-ov-file
+
