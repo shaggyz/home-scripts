@@ -143,13 +143,23 @@ vim.api.nvim_create_autocmd("FileType", {
     command = "EmmetInstall"
 })
 
+
 -- CoC -------------------------------------------------------------------------
 
--- Highlight the symbol and its references when holding the cursor
+-- Highlight the symbol and its references on a CursorHold event(cursor is idle)
+vim.api.nvim_create_augroup("CocGroup", {})
 vim.api.nvim_create_autocmd("CursorHold", {
-    pattern = "*",
-    command = "silent call CocActionAsync('highlight')"
+    group = "CocGroup",
+    command = "silent call CocActionAsync('highlight')",
+    desc = "Highlight symbol under cursor on CursorHold"
 })
+
+-- Autocomplete
+function _G.check_back_space()
+    local col = vim.fn.col('.') - 1
+    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+end
+
 
 -- Better Whitespace -----------------------------------------------------------
 
@@ -159,7 +169,8 @@ vim.g.strip_whitespace_confirm = 0
 
 
 -- DBUI ------------------------------------------------------------------------
---
+-- https://github.com/kristijanhusak/vim-dadbod-ui -----------------------------
+
 vim.g.db_ui_win_position = 'right'
 vim.g.db_ui_show_database_icon = true
 vim.g.db_ui_use_nerd_fonts = true

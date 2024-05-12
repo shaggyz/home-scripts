@@ -60,19 +60,43 @@ vim.keymap.set('n', '<leader>us', '<Plug>(coc-references)', { silent = true })
 vim.keymap.set('n', '<leader>rn', '<Plug>(coc-rename)', { silent = true })
 
 -- Clear previous autocmds and define new ones for Python files
-vim.api.nvim_create_augroup('PythonAutocomplete', { clear = true })
-vim.api.nvim_create_autocmd('FileType', {
-    group = 'PythonAutocomplete',
-    pattern = 'python',
-    callback = function()
-        vim.bo.completeopt = 'menuone,noinsert,noselect'
-        vim.bo.shortmess = vim.bo.shortmess .. 'c'
-    end
-})
+--vim.api.nvim_create_augroup('PythonAutocomplete', { clear = true })
+--vim.api.nvim_create_autocmd('FileType', {
+    --group = 'PythonAutocomplete',
+    --pattern = 'python',
+    --callback = function()
+        --vim.bo.completeopt = 'menuone,noinsert,noselect'
+        --vim.bo.shortmess = vim.bo.shortmess .. 'c'
+    --end
+--})
 
 -- Map keys for formatting code in visual and normal modes
 vim.keymap.set('x', '<leader>ff', '<Plug>(coc-format-selected)', { silent = true })
 vim.keymap.set('n', '<leader>ff', '<Plug>(coc-format-selected)', { silent = true })
+
+-- Make <CR> to accept selected completion item or notify coc.nvim to format
+-- <C-g>u breaks current undo, please make your own choice
+-- vim.keymap.set("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "<cr>"]], {silent = true, nowait = true})
+
+-- Map <CR> to confirm and select the autocomplete suggestion
+vim.keymap.set('i', '<CR>', 'coc#pum#visible() ? coc#pum#confirm() : "<CR>"', { expr = true, noremap = true })
+
+
+-- Use <c-space> to trigger completion
+vim.keymap.set("i", "<c-space>", "coc#refresh()", {silent = true, expr = true})
+
+-- Use K to show documentation in preview window
+function _G.show_docs()
+    local cw = vim.fn.expand('<cword>')
+    if vim.fn.index({'vim', 'help'}, vim.bo.filetype) >= 0 then
+        vim.api.nvim_command('h ' .. cw)
+    elseif vim.api.nvim_eval('coc#rpc#ready()') then
+        vim.fn.CocActionAsync('doHover')
+    else
+        vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
+    end
+end
+vim.keymap.set("n", "K", '<CMD>lua _G.show_docs()<CR>', {silent = true})
 
 
 -- FZF ------------------------------------------------------------------------

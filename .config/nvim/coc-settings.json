@@ -1,7 +1,7 @@
 {
-  "inlayHint.enable": false,
-  "pyright.inlayHints.parameterTypes": false,
-  "pyright.inlayHints.variableTypes": false,
+  "inlayHint.enable": true,
+  "pyright.inlayHints.parameterTypes": true,
+  "pyright.inlayHints.variableTypes": true,
   "python.linting.mypyEnabled": true,
   "python.formatting.provider": "ruff",
   "coc.preferences.formatOnSave": true,

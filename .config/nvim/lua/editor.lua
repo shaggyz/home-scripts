@@ -14,6 +14,8 @@ vim.opt.termguicolors = true
 vim.opt.signcolumn = 'yes'
 
 vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.writebackup = false
 vim.opt.autoindent = true
 vim.opt.mouse = 'a'
 vim.opt.wildmenu = true
