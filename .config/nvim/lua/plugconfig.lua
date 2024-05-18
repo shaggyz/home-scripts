@@ -160,7 +160,6 @@ function _G.check_back_space()
     return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
 end
 
-
 -- Better Whitespace -----------------------------------------------------------
 
 vim.g.better_whitespace_enabled = 1
@@ -174,8 +173,10 @@ vim.g.strip_whitespace_confirm = 0
 vim.g.db_ui_win_position = 'right'
 vim.g.db_ui_show_database_icon = true
 vim.g.db_ui_use_nerd_fonts = true
+vim.g.db_ui_auto_execute_table_helpers = true
+vim.g.db_ui_show_help = false
+vim.g.db_ui_save_location = '~/.local/share/db_ui'
 
 
 -- Better diff tool
 -- TBD > https://github.com/sindrets/diffview.nvim?tab=readme-ov-file
-
