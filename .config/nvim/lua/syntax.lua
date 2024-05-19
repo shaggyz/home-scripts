@@ -3,18 +3,20 @@
 --------------------------------------------------------------------------------
 
 -- Rosepine pallete: https://rosepinetheme.com/palette/ingredients/
-local LighterGreen = '#d9fbeb'
-local LightGreen = '#9ccfd8'
-local DarkGreen = '#31748f'
-local LighterYellow = '#fbf1d9'
-local Grey = '#908caa'
-local Yellow = '#fee1b8'
-local White = '#ffffff'
-local LightGrey = '#a3a0b5'
-local Red = '#eb6f92'
-local LightBlue = '#3e8fb0'
-local DarkGrey = '#474556'
 local Black = '#000000'
+local DarkGreen = '#31748f'
+local DarkGrey = '#474556'
+local DarkYellow = '#f6c177'
+local Grey = '#908caa'
+local Green = '#56949f'
+local LightBlue = '#3e8fb0'
+local LightGreen = '#9ccfd8'
+local LightGrey = '#a3a0b5'
+local LighterGreen = '#d9fbeb'
+local LighterYellow = '#fbf1d9'
+local Red = '#eb6f92'
+local White = '#ffffff'
+local Yellow = '#fee1b8'
 
 -- Global
 vim.api.nvim_set_hl(0, '@type', { fg = LighterGreen, italic = false })
@@ -78,6 +80,18 @@ vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { fg = LightBlue })
 vim.api.nvim_set_hl(0, 'NvimTreeGitIgnoredIcon', { fg = LightGrey })
 vim.api.nvim_set_hl(0, 'NvimTreeGitFileIgnoredHL', { fg = LightGrey })
 vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { fg = DarkGrey })
+vim.api.nvim_set_hl(0, 'NvimTreeRootFolder', { fg = DarkGreen })
+
+vim.api.nvim_set_hl(0, 'NvimTreeModifiedIcon', { fg = Red })
+vim.api.nvim_set_hl(0, 'NvimTreeModifiedFileHL', { fg = DarkYellow })
+vim.api.nvim_set_hl(0, 'NvimTreeGitDirtyIcon', { fg = DarkYellow })
+vim.api.nvim_set_hl(0, 'NvimTreeGitFolderDirtyHL', { fg = DarkGreen })
+vim.api.nvim_set_hl(0, 'NvimTreeGitFileDirtyHL', { fg = LighterYellow })
+vim.api.nvim_set_hl(0, 'NvimTreeGitStagedIcon', { fg = Green })
+vim.api.nvim_set_hl(0, 'NvimTreeGitFolderStagedHL', { fg = DarkGreen })
+vim.api.nvim_set_hl(0, 'NvimTreeGitFileStagedHL', { fg = Green })
+
+
 
 -- YAML
 vim.api.nvim_set_hl(0, 'yamlBlockMappingKey', { fg = DarkGreen })

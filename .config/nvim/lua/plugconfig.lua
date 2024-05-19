@@ -35,14 +35,29 @@ vim.opt.termguicolors = true
 
 -- Main configuration (check :h nvim-tree-opts)
 require("nvim-tree").setup({
+    sync_root_with_cwd = true,
     renderer = {
         add_trailing = true,
-        highlight_git = "all",
-        highlight_opened_files = "name",
+        highlight_git = "name",
+        highlight_opened_files = "none",
         highlight_modified = "name",
         indent_markers = {
             enable = true
         },
+        icons = {
+            git_placement = 'before',
+            modified_placement = 'after',
+            glyphs = {
+                git = {
+                    untracked = '󰐗',
+                    unstaged = '',
+                    deleted = '󰯆'
+                },
+            },
+        },
+    },
+    view = {
+        width = 30,
     },
     modified = {
         enable = true,
@@ -55,9 +70,15 @@ require("nvim-tree").setup({
     },
     actions = {
         open_file = {
-            resize_window = false
+            resize_window = false,
+            window_picker = {
+                enable = false
+            }
         }
-    }
+    },
+    diagnostics = {
+        enable = true,
+    },
 })
 
 -- Lualine --------------------------------------------------------------------
@@ -167,8 +188,7 @@ vim.g.strip_whitespace_on_save = 1
 vim.g.strip_whitespace_confirm = 0
 
 
--- DBUI ------------------------------------------------------------------------
--- https://github.com/kristijanhusak/vim-dadbod-ui -----------------------------
+-- DBUI --------------------- https://github.com/kristijanhusak/vim-dadbod-ui --
 
 vim.g.db_ui_win_position = 'right'
 vim.g.db_ui_show_database_icon = true

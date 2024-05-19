@@ -10,8 +10,6 @@ vim.cmd('call plug#begin()')
 Plug 'rose-pine/neovim'
 -- CoC for neovim
 Plug('neoclide/coc.nvim', { branch = 'release' })
--- Fuzz search
-Plug('ibhagwan/fzf-lua', { branch = 'main' })
 -- Icons
 Plug 'ryanoasis/vim-devicons'
 -- Markdown plugin
@@ -47,6 +45,15 @@ Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
 -- Improved diff tool
 Plug 'sindrets/diffview.nvim'
+--Telescope
+Plug 'nvim-lua/plenary.nvim'
+Plug('nvim-telescope/telescope-fzf-native.nvim',
+    {
+        ['do'] =
+        'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+    })
+Plug('nvim-telescope/telescope.nvim', { ['tag'] = '0.1.6' })
+
 --TODO: Color Scheme edition plugins:
 --Colorcheme creation
 --Plug 'rktjmp/lush.nvim'
@@ -59,5 +66,3 @@ Plug 'sindrets/diffview.nvim'
 
 -- luacheck: ignore
 vim.cmd('call plug#end()')
-
--- print('plugins.lua end')

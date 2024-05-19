@@ -59,36 +59,20 @@ vim.keymap.set('n', '<leader>im', '<Plug>(coc-implementation)', { silent = true 
 vim.keymap.set('n', '<leader>us', '<Plug>(coc-references)', { silent = true })
 vim.keymap.set('n', '<leader>rn', '<Plug>(coc-rename)', { silent = true })
 
--- Clear previous autocmds and define new ones for Python files
---vim.api.nvim_create_augroup('PythonAutocomplete', { clear = true })
---vim.api.nvim_create_autocmd('FileType', {
-    --group = 'PythonAutocomplete',
-    --pattern = 'python',
-    --callback = function()
-        --vim.bo.completeopt = 'menuone,noinsert,noselect'
-        --vim.bo.shortmess = vim.bo.shortmess .. 'c'
-    --end
---})
-
 -- Map keys for formatting code in visual and normal modes
 vim.keymap.set('x', '<leader>ff', '<Plug>(coc-format-selected)', { silent = true })
 vim.keymap.set('n', '<leader>ff', '<Plug>(coc-format-selected)', { silent = true })
 
--- Make <CR> to accept selected completion item or notify coc.nvim to format
--- <C-g>u breaks current undo, please make your own choice
--- vim.keymap.set("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "<cr>"]], {silent = true, nowait = true})
-
 -- Map <CR> to confirm and select the autocomplete suggestion
 vim.keymap.set('i', '<CR>', 'coc#pum#visible() ? coc#pum#confirm() : "<CR>"', { expr = true, noremap = true })
 
-
 -- Use <c-space> to trigger completion
-vim.keymap.set("i", "<c-space>", "coc#refresh()", {silent = true, expr = true})
+vim.keymap.set("i", "<c-space>", "coc#refresh()", { silent = true, expr = true })
 
 -- Use K to show documentation in preview window
 function _G.show_docs()
     local cw = vim.fn.expand('<cword>')
-    if vim.fn.index({'vim', 'help'}, vim.bo.filetype) >= 0 then
+    if vim.fn.index({ 'vim', 'help' }, vim.bo.filetype) >= 0 then
         vim.api.nvim_command('h ' .. cw)
     elseif vim.api.nvim_eval('coc#rpc#ready()') then
         vim.fn.CocActionAsync('doHover')
@@ -96,31 +80,39 @@ function _G.show_docs()
         vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
     end
 end
-vim.keymap.set("n", "K", '<CMD>lua _G.show_docs()<CR>', {silent = true})
+
+vim.keymap.set("n", "K", '<CMD>lua _G.show_docs()<CR>', { silent = true })
 
 
--- FZF ------------------------------------------------------------------------
+-- Telescope ------------------------------------------------------------------
 
--- List project files
-vim.keymap.set('n', '<leader>f', require('fzf-lua').files, { silent = true, noremap = true })
--- List open files
-vim.keymap.set('n', '<leader>o', require('fzf-lua').buffers, { silent = true, noremap = true })
--- Grep in project
-vim.keymap.set('n', '<leader>g',
+local builtin = require('telescope.builtin')
+
+vim.keymap.set('n', '<leader>ff',
     function()
-        require('fzf-lua').live_grep({
-            cmd = "git grep --line-number --column --color=always"
-        })
+        builtin.find_files({ no_ignore_parent = true })
     end,
-    { silent = true, noremap = true }
+    {}
 )
 
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fo', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fm', builtin.command_history, {})
+vim.keymap.set('n', '<leader>fq', builtin.quickfix, {})
+vim.keymap.set('n', '<leader>fr', builtin.resume, {})
+
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+vim.keymap.set('n', '<leader>fs', builtin.treesitter, {})
+
+vim.keymap.set('n', '<leader>fc', builtin.git_commits, {})
+vim.keymap.set('n', '<leader>fb', builtin.git_branches, {})
+vim.keymap.set('n', '<leader>gs', builtin.git_status, {})
+
 -- Grep in wiki
-vim.keymap.set('n', '<leader>s',
+vim.keymap.set('n', '<leader>ss',
     function()
-        require('fzf-lua').files({
+        builtin.find_files({
             prompt = "WIKI❯ ",
-            cmd = "find -type f",
             cwd = "~/Nextcloud/VimWiki/personal"
         })
     end,
@@ -128,7 +120,7 @@ vim.keymap.set('n', '<leader>s',
 )
 
 
--- Nvim Tree ------------------------------------------------------------------
+-- Nvim Tree -------------------------------------------------------------------
 
 -- NvimTree mappings
 vim.keymap.set('n', '<leader>v', "<cmd>NvimTreeToggle<CR>", { silent = true, noremap = true })
@@ -139,7 +131,7 @@ vim.keymap.set('n', '<leader>r', require('nvim-tree.api').tree.find_file, {
 })
 
 
--- DBUI -----------------------------------------------------------------------
+-- DBUI --------------------- https://github.com/kristijanhusak/vim-dadbod-ui --
 
 -- Toggle the DBUI GUI
 vim.keymap.set('n', '<leader>dt', '<cmd>DBUIToggle<CR>', { silent = true, noremap = true })
