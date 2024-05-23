@@ -3,13 +3,16 @@
 --------------------------------------------------------------------------------
 
 -- Rosepine pallete: https://rosepinetheme.com/palette/ingredients/
+local Background = '#191724'
+local BackgroundTop = '#3b3950'
 local Black = '#000000'
+local Blue = '#1e81b0'
 local DarkGreen = '#31748f'
 local DarkGrey = '#474556'
 local DarkYellow = '#f6c177'
-local Grey = '#908caa'
 local Green = '#56949f'
-local LightBlue = '#3e8fb0'
+local Grey = '#908caa'
+local LightBlue = '#76b5c5'
 local LightGreen = '#9ccfd8'
 local LightGrey = '#a3a0b5'
 local LighterGreen = '#d9fbeb'
@@ -24,9 +27,14 @@ vim.api.nvim_set_hl(0, '@variable.builtin.vim', { fg = LightGreen, bold = false 
 vim.api.nvim_set_hl(0, '@string.special.url.vimdoc', { fg = LightBlue, underline = true })
 
 -- Markdown
--- vim.api.nvim_set_hl(0, '@markup.raw.block.markdown', { bg = Black })
---vim.api.nvim_set_hl(0, '@markup.raw.block.markdown', { bg = Black })
--- vim.api.nvim_set_hl(0, 'mkdCodeStart', { bg = Black })
+vim.api.nvim_set_hl(0, '@markup.heading.marker', { fg = DarkGreen })
+vim.api.nvim_set_hl(0, '@markup.heading.content', { fg = LighterYellow })
+vim.api.nvim_set_hl(0, '@markup.heading.content.level1', { fg = DarkYellow })
+vim.api.nvim_set_hl(0, '@markup.heading.content.level2', { fg = Yellow })
+vim.api.nvim_set_hl(0, '@markup.heading.content.level3', { fg = LighterYellow })
+vim.api.nvim_set_hl(0, '@markup.link.text', { fg = LightBlue, underline = true, bold = false, sp = BackgroundTop })
+vim.api.nvim_set_hl(0, '@markup.link.destination', { fg = LightGrey })
+vim.api.nvim_set_hl(0, '@markup.code_span', { fg = DarkGreen })
 
 -- Python
 vim.api.nvim_set_hl(0, '@variable.parameter.python', { fg = LighterYellow, italic = false })
@@ -91,8 +99,6 @@ vim.api.nvim_set_hl(0, 'NvimTreeGitFileDirtyHL', { fg = LighterYellow })
 vim.api.nvim_set_hl(0, 'NvimTreeGitStagedIcon', { fg = Green })
 vim.api.nvim_set_hl(0, 'NvimTreeGitFolderStagedHL', { fg = DarkGreen })
 vim.api.nvim_set_hl(0, 'NvimTreeGitFileStagedHL', { fg = Green })
-
-
 
 -- YAML
 vim.api.nvim_set_hl(0, 'yamlBlockMappingKey', { fg = DarkGreen })

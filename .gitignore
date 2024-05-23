@@ -39,3 +39,5 @@
 !.config/nvim/init.lua
 !.config/nvim/lua/*.lua
 !.config/nvim/queries/python/highlights.scm
+!.config/nvim/queries/markdown/highlights.scm
+!.config/nvim/queries/markdown_inline/highlights.scm

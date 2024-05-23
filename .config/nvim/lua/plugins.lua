@@ -55,8 +55,9 @@ Plug('nvim-telescope/telescope.nvim', { ['tag'] = '0.1.6' })
 --TODO: Color Scheme edition plugins:
 --Color scheme creation
 --Plug 'rktjmp/lush.nvim'
+
 --Playground for treesitter
---Plug 'nvim-treesitter/playground'
+Plug 'nvim-treesitter/playground'
 
 -- Python debugger
 Plug 'mfussenegger/nvim-dap'

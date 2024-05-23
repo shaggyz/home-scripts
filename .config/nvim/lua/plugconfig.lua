@@ -17,7 +17,7 @@ require('gitsigns').setup()
 -- TreeSitter (better syntax) --------------------------------------------------
 
 require 'nvim-treesitter.configs'.setup {
-    ensure_installed = { "python", "vimdoc", "bash" },
+    ensure_installed = { "python", "vimdoc", "bash", "markdown" },
     highlight = {
         enable = true,
         disable = { "sh" },
