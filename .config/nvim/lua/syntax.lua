@@ -25,6 +25,7 @@ vim.api.nvim_set_hl(0, '@string.special.url.vimdoc', { fg = LightBlue, underline
 
 -- Markdown
 -- vim.api.nvim_set_hl(0, '@markup.raw.block.markdown', { bg = Black })
+--vim.api.nvim_set_hl(0, '@markup.raw.block.markdown', { bg = Black })
 -- vim.api.nvim_set_hl(0, 'mkdCodeStart', { bg = Black })
 
 -- Python

@@ -24,6 +24,7 @@ vim.opt.foldenable = false
 vim.opt.updatetime = 300
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+vim.opt.spell = true
 
 -- Enable filetype detection
 vim.cmd('filetype plugin indent on')
@@ -33,5 +34,3 @@ vim.cmd('colorscheme rose-pine-main')
 
 -- Neovim python virtualenv
 vim.g.python3_host_prog = '~/.local/nico-virtualenvs/neovim-venv/bin/python'
-
--- print('editor.lua end')

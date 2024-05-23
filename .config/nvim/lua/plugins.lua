@@ -6,7 +6,7 @@ local Plug = vim.fn['plug#']
 
 vim.cmd('call plug#begin()')
 
--- Rose-pine colorscheme
+-- Rose-pine color scheme
 Plug 'rose-pine/neovim'
 -- CoC for neovim
 Plug('neoclide/coc.nvim', { branch = 'release' })
@@ -22,7 +22,7 @@ Plug 'schickling/vim-bufonly'
 Plug 'numToStr/FTerm.nvim'
 -- Git signs in buffers
 Plug 'lewis6991/gitsigns.nvim'
--- Automatically remove whitespaces
+-- Automatically remove white spaces
 Plug 'ntpeters/vim-better-whitespace'
 -- Max width column
 Plug 'xiyaowong/virtcolumn.nvim'
@@ -36,8 +36,6 @@ Plug 'tpope/vim-fugitive'
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 -- Kotlin syntax highlight
 Plug 'udalov/kotlin-vim'
--- Astro syntax
-Plug 'wuelnerdotexe/vim-astro'
 -- Lualine
 Plug 'nvim-lualine/lualine.nvim'
 -- Database viewer
@@ -55,14 +53,15 @@ Plug('nvim-telescope/telescope-fzf-native.nvim',
 Plug('nvim-telescope/telescope.nvim', { ['tag'] = '0.1.6' })
 
 --TODO: Color Scheme edition plugins:
---Colorcheme creation
+--Color scheme creation
 --Plug 'rktjmp/lush.nvim'
 --Playground for treesitter
 --Plug 'nvim-treesitter/playground'
 
---TODO: Python debugger testing
---Plug 'mfussenegger/nvim-dap'
---Plug 'mfussenegger/nvim-dap-python/'
+-- Python debugger
+Plug 'mfussenegger/nvim-dap'
+Plug 'nvim-neotest/nvim-nio'
+Plug 'rcarriga/nvim-dap-ui'
 
 -- luacheck: ignore
 vim.cmd('call plug#end()')

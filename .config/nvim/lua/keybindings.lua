@@ -112,8 +112,8 @@ vim.keymap.set('n', '<leader>gs', builtin.git_status, {})
 vim.keymap.set('n', '<leader>ss',
     function()
         builtin.find_files({
-            prompt = "WIKI❯ ",
-            cwd = "~/Nextcloud/VimWiki/personal"
+            cwd = "~/Nextcloud/VimWiki/personal",
+            no_ignore_parent = true,
         })
     end,
     { silent = true, noremap = true }
@@ -135,5 +135,11 @@ vim.keymap.set('n', '<leader>r', require('nvim-tree.api').tree.find_file, {
 
 -- Toggle the DBUI GUI
 vim.keymap.set('n', '<leader>dt', '<cmd>DBUIToggle<CR>', { silent = true, noremap = true })
--- Add databsae
+-- Add database
 vim.keymap.set('n', '<leader>da', '<cmd>DBUIAddConnection<CR>', { silent = true, noremap = true })
+
+
+-- DAP UI -------------------------- https://github.com/rcarriga/nvim-dap-ui --
+
+vim.keymap.set('n', '<leader>de', require("dapui").toggle, { silent = true, noremap = true })
+
