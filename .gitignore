@@ -38,4 +38,4 @@
 !.config/nvim/coc-settings.json
 !.config/nvim/init.lua
 !.config/nvim/lua/*.lua
-
+!.config/nvim/queries/python/highlights.scm
