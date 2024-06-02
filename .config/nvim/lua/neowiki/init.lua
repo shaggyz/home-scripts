@@ -8,49 +8,53 @@ neowiki.config = {
 }
 
 
-function neowiki.do_something()
-    print("Doing something...")
-end
-
-function neowiki.insert_link()
-    local vim = vim
-    local title, start_pos, end_pos
+-- Converts the highlighted text or the word under the cursor into a Markdown link
+function neowiki.create_link()
+    local start_text
+    local end_text
     local current_line = vim.fn.getline('.')
-    local cursor_pos = vim.fn.col('.')
+    local cursor_position = vim.fn.getpos(".")
+    local current_line_number = cursor_position[2]
 
-    -- Determine if there is a visual selection
-    if vim.fn.mode() == 'v' or vim.fn.mode() == 'V' or vim.fn.mode() == "\22" then
-        vim.cmd('normal! gv"vy')
-        title = vim.fn.getreg('v')
-        local vs = vim.fn.getpos("'<")
-        local ve = vim.fn.getpos("'>")
-        start_pos = vs[2] == ve[2] and vs[3] or 1                      -- start of selection in line or start of line
-        end_pos = ve[2] == vs[2] and ve[3] or string.len(current_line) -- end of selection in line or end of line
+    if vim.fn.mode() == 'v' then
+        -- Visual highlighted text
+        local visual_position = vim.fn.getpos("v")
+        -- Do not allow multi-line links
+        start_text = visual_position[3]
+        end_text = cursor_position[3]
     else
         -- Use the word under the cursor as the link text if no visual selection
         local word = vim.fn.expand('<cword>')
-        local s, e = current_line:find(vim.pesc(word), 1, true)
-        if s and e then
-            start_pos = s
-            end_pos = e
-            title = word
-        end
+        start_text, end_text = current_line:find(vim.pesc(word), 1, true)
     end
 
-    -- Replace the selected text or word with the markdown link format, cursor placed for target
-    if title and start_pos and end_pos then
-        local markdown_link = string.format('[%s]()', title)
-        local new_line = current_line:sub(1, start_pos - 1) .. markdown_link .. current_line:sub(end_pos + 1)
-
-        vim.fn.setline('.', new_line)
-        -- Move cursor inside the parentheses
-        local new_cursor_pos = start_pos + #title + 2 -- Adjust for the length of the title and the brackets
-        vim.fn.cursor('.', new_cursor_pos)
-    else
-        print('No valid text selected and no word under cursor!')
+    -- Ugly swap for reversed visual selections
+    if start_text > end_text then
+        local swap = end_text
+        end_text = start_text
+        start_text = swap
     end
+
+    if start_text == nil then
+        return
+    end
+
+    local prefix = current_line:sub(0, start_text - 1)
+    local title = current_line:sub(start_text, end_text)
+    local sufix = current_line:sub(end_text + 1)
+    local new_line = string.format("%s[%s]()%s", prefix, title, sufix)
+
+    -- Update the line contents
+    vim.fn.setline(current_line_number, new_line)
+
+    -- Cursor is placed between the parenthesis (computing the added symbols: []()  == 4)
+    vim.fn.cursor(current_line_number, #prefix + #title + 4)
+
+    -- Go back to normal mode
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, false, true), 'n', false)
 end
 
+-- Main plugin setup
 function neowiki.setup(user_config)
     user_config = user_config or {}
     -- Merge user config with the default config
@@ -58,12 +62,10 @@ function neowiki.setup(user_config)
         neowiki.config[key] = value
     end
     -- Export the plugin functions as NeoVim commands
-    vim.api.nvim_create_user_command("Wiki", neowiki.do_something, {})
-    vim.api.nvim_create_user_command("WikiCreateLink", neowiki.insert_link, {})
+    vim.api.nvim_create_user_command("WikiCreateLink", neowiki.create_link, {})
 
     if neowiki.config.debug then
-        print("NeoWiki has been initialized!")
-        print(neowiki.config.wiki_directory)
+        print(string.format("NeoWiki: %s", neowiki.config.wiki_directory))
     end
 end
 

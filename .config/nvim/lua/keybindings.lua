@@ -100,6 +100,7 @@ vim.keymap.set('n', '<leader>fo', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fm', builtin.command_history, {})
 vim.keymap.set('n', '<leader>fq', builtin.quickfix, {})
 vim.keymap.set('n', '<leader>fr', builtin.resume, {})
+vim.keymap.set('n', '<leader>fk', builtin.keymaps, {})
 
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fs', builtin.treesitter, {})
@@ -145,6 +146,7 @@ vim.keymap.set('n', '<leader>de', require("dapui").toggle, { silent = true, nore
 
 
 -- NeoWiki ---------------------------------------------------------------------
+-- Personal plugin under development
 
-vim.keymap.set('n', '<leader>ww', '<cmd>Wiki<CR>', { silent = true, noremap = true })
-vim.keymap.set({ 'n', 'v' }, '<leader>wh', '<cmd>WikiCreateLink<CR>', { silent = true, noremap = true })
+vim.keymap.set('n', '<s-cr>', '<cmd>WikiCreateLink<CR>', { silent = true, noremap = true })
+vim.keymap.set('v', '<s-cr>', '<cmd>WikiCreateLink<CR>', { silent = true, noremap = true })
