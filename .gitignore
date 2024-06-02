@@ -38,6 +38,8 @@
 !.config/nvim/coc-settings.json
 !.config/nvim/init.lua
 !.config/nvim/lua/*.lua
+!.config/nvim/lua/neowiki/init.lua
+!.config/nvim/lua/neowiki/wiki.lua
 !.config/nvim/queries/python/highlights.scm
 !.config/nvim/queries/markdown/highlights.scm
 !.config/nvim/queries/markdown_inline/highlights.scm

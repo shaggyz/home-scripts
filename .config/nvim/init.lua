@@ -21,4 +21,3 @@ require 'keybindings'
 
 -- ~/.config/nvim/lua/syntax.lua - Custom syntax modifications
 require 'syntax'
-

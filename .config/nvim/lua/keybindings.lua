@@ -143,3 +143,8 @@ vim.keymap.set('n', '<leader>da', '<cmd>DBUIAddConnection<CR>', { silent = true,
 
 vim.keymap.set('n', '<leader>de', require("dapui").toggle, { silent = true, noremap = true })
 
+
+-- NeoWiki ---------------------------------------------------------------------
+
+vim.keymap.set('n', '<leader>ww', '<cmd>Wiki<CR>', { silent = true, noremap = true })
+vim.keymap.set({ 'n', 'v' }, '<leader>wh', '<cmd>WikiCreateLink<CR>', { silent = true, noremap = true })
