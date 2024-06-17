@@ -146,10 +146,20 @@ vim.keymap.set('n', '<leader>de', require("dapui").toggle, { silent = true, nore
 
 
 -- NeoWiki ---------------------------------------------------------------------
--- Personal plugin under development
+-- Personal plugin under development -------------------------------------------
 
 vim.keymap.set('n', '<leader>mt', '<cmd>WikiToday<CR>', { silent = true, noremap = true })
 vim.keymap.set('n', '<leader>my', '<cmd>WikiYesterday<CR>', { silent = true, noremap = true })
 vim.keymap.set('n', '<leader>mo', '<cmd>WikiTomorrow<CR>', { silent = true, noremap = true })
-vim.keymap.set('n', '<s-cr>', '<cmd>WikiCreateLink<CR>', { silent = true, noremap = true })
-vim.keymap.set('v', '<s-cr>', '<cmd>WikiCreateLink<CR>', { silent = true, noremap = true })
+
+-- Enable this keymaps only for markdown files
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "markdown" },
+    callback = function()
+        vim.schedule(function()
+            vim.keymap.set('n', '<s-cr>', '<cmd>WikiCreateLink<CR>', { silent = true, noremap = true })
+            vim.keymap.set('v', '<s-cr>', '<cmd>WikiCreateLink<CR>', { silent = true, noremap = true })
+            vim.keymap.set('n', '<leader>mi', '<cmd>WikiCreateIndex<CR>', { silent = true, noremap = true })
+        end)
+    end,
+})
