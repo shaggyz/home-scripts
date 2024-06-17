@@ -58,6 +58,9 @@ if [ `uname` == "Darwin" ]; then
     export LDFLAGS="-L/usr/local/opt/node@18/lib"
     export CPPFLAGS="-I/usr/local/opt/node@18/include"
 
+    # Wezterm
+    export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
+
     # Set the PS1 for macOS
     export PS1='\[\033[01;32m\]\u@$MACHINE_NAME:\[\033[01;34m\]\W\[\033[01;33m\]$(parse_git_branch)\[\033[0m\]\$ '
 
