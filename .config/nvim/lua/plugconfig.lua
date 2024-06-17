@@ -262,7 +262,7 @@ vim.g.db_ui_save_location = '~/.local/share/db_ui'
 -- TBD > https://github.com/sindrets/diffview.nvim?tab=readme-ov-file
 
 
--- Better Whitespace -----------------------------------------------------------
+-- NeoWiki ---------------------------------------------------------------------
 
 require("neowiki").setup({
     debug = true,
