@@ -1,0 +1,23 @@
+# Runs neovim from inside WSL
+wsl = false
+# This disables neovim's multigrid which will disable floating window, blurred, animations, etc.
+no-multigrid = false
+# enable vsync
+vsync = false
+# Maximize the window on startup
+maximized = false
+# Fixes an issue in windows, if you see weird colors, enable this.
+srgb = false
+# With idle enabled, neovide won't render new frames when nothing is happening
+idle = true
+# nvim binary
+neovim-bin = "/usr/local/bin/nvim"
+# Configure the window manager frame
+frame = "full"
+# This hides the title in macOS
+title-hidden = true
+# Open new files in tabs
+tabs = false
+# Detach from the terminal instead of waiting for the Neovide process to terminate.
+fork = true
+
