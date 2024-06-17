@@ -123,6 +123,17 @@ function neowiki.create_link()
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, false, true), 'n', false)
 end
 
+-- Creates a document index
+function neowiki.create_index()
+    print("Create index called 666")
+    local lines = vim.api.nvim_buf_get_lines(0, 1, -1, true)
+    local structure = {}
+    for line_number in ipairs(lines) do
+        local line = vim.fn.getline(line_number)
+        print(line)
+    end
+end
+
 -- Main plugin setup
 function neowiki.setup(user_config)
     user_config = user_config or {}
@@ -145,10 +156,14 @@ function neowiki.setup(user_config)
     vim.api.nvim_create_user_command("WikiToday", neowiki.open_today, {})
     vim.api.nvim_create_user_command("WikiYesterday", neowiki.open_yesterday, {})
     vim.api.nvim_create_user_command("WikiTomorrow", neowiki.open_tomorrow, {})
+    vim.api.nvim_create_user_command("WikiCreateIndex", neowiki.create_index, {})
 
     if neowiki.config.debug then
         print(string.format("NeoWiki started: %s", neowiki.config.wiki_directory))
     end
 end
+
+-- TODO:
+-- 1.
 
 return neowiki
