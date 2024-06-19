@@ -160,6 +160,7 @@ vim.api.nvim_create_autocmd("FileType", {
             vim.keymap.set('n', '<s-cr>', '<cmd>WikiCreateLink<CR>', { silent = true, noremap = true })
             vim.keymap.set('v', '<s-cr>', '<cmd>WikiCreateLink<CR>', { silent = true, noremap = true })
             vim.keymap.set('n', '<leader>mi', '<cmd>WikiCreateIndex<CR>', { silent = true, noremap = true })
+            vim.keymap.set('n', '<cr>', '<cmd>WikiFollowLink<CR>', { silent = true, noremap = true })
         end)
     end,
 })
