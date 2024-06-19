@@ -9,7 +9,7 @@ maximized = false
 # Fixes an issue in windows, if you see weird colors, enable this.
 srgb = false
 # With idle enabled, neovide won't render new frames when nothing is happening
-idle = true
+idle = false
 # nvim binary
 neovim-bin = "/usr/local/bin/nvim"
 # Configure the window manager frame
