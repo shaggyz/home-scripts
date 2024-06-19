@@ -1,14 +1,17 @@
 {
-  "inlayHint.enable": false,
-  "pyright.inlayHints.parameterTypes": false,
-  "pyright.inlayHints.variableTypes": false,
-  "python.linting.mypyEnabled": true,
-  "python.formatting.provider": "ruff",
-  "python.linting.mypyPath": "poetry run mypy",
-  "coc.preferences.formatOnSave": true,
-  "diagnostic.errorSign": "",
-  "diagnostic.infoSign": "",
-  "diagnostic.warningSign": "",
-  "diagnostic.hintSign": "",
-  "Lua.workspace.library": ["/usr/local/share/nvim/runtime"]
+    "inlayHint.enable": false,
+    "pyright.inlayHints.parameterTypes": false,
+    "pyright.inlayHints.variableTypes": false,
+    "python.linting.mypyEnabled": true,
+    "python.formatting.provider": "ruff",
+    "python.linting.mypyPath": "poetry run mypy",
+    "coc.preferences.formatOnSave": true,
+    "diagnostic.errorSign": "",
+    "diagnostic.infoSign": "",
+    "diagnostic.warningSign": "",
+    "diagnostic.hintSign": "",
+    "Lua.workspace.library": [
+        "/usr/local/share/nvim/runtime"
+    ],
+    "html.format.wrapLineLength": 100
 }

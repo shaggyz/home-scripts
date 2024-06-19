@@ -15,7 +15,7 @@ Plug 'ryanoasis/vim-devicons'
 -- Markdown plugin
 Plug 'preservim/vim-markdown'
 -- Emmet, HTML tools
-Plug 'mattn/emmet-vim'
+-- Plug 'mattn/emmet-vim'
 -- Close all the buffers
 Plug 'schickling/vim-bufonly'
 -- Floating terminal
