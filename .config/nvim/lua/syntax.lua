@@ -2,7 +2,7 @@
 -- ❇ Custom syntax stuff (for rosepine)
 --------------------------------------------------------------------------------
 
--- Rosepine pallete: https://rosepinetheme.com/palette/ingredients/
+-- Rosepine palette: https://rosepinetheme.com/palette/ingredients/
 local Background = '#191724'
 local BackgroundTop = '#3b3950'
 local Black = '#000000'
@@ -33,7 +33,7 @@ vim.api.nvim_set_hl(0, '@markup.heading.content.level1', { fg = DarkYellow })
 vim.api.nvim_set_hl(0, '@markup.heading.content.level2', { fg = Yellow })
 vim.api.nvim_set_hl(0, '@markup.heading.content.level3', { fg = LighterYellow })
 -- vim.api.nvim_set_hl(0, '@markup.link.text', { fg = LightBlue, underline = true, bold = false, sp = BackgroundTop })
-vim.api.nvim_set_hl(0, '@markup.link.text', { fg = LightBlue, underline = false, bold = false})
+vim.api.nvim_set_hl(0, '@markup.link.text', { fg = LightBlue, underline = false, bold = false })
 vim.api.nvim_set_hl(0, '@markup.link.destination', { fg = LightGrey })
 vim.api.nvim_set_hl(0, '@markup.code_span', { fg = DarkGreen })
 
@@ -54,6 +54,11 @@ vim.api.nvim_set_hl(0, '@spell.python', { fg = Grey, bold = false, italic = true
 -- Bash
 vim.api.nvim_set_hl(0, '@constant.bash', { fg = DarkGreen })
 vim.api.nvim_set_hl(0, '@string.bash', { fg = Yellow })
+
+-- Lua
+vim.api.nvim_set_hl(0, '@variable.parameter.lua', { fg = DarkYellow })
+vim.api.nvim_set_hl(0, '@string.lua', { fg = LighterYellow })
+
 
 -- Custom queries for python (~/.config/nvim/queries/python/highlights.scm)
 vim.api.nvim_set_hl(0, '@decorator.identifier.python', { fg = DarkGreen })

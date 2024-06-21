@@ -1,5 +1,38 @@
 local neowiki = {}
 
+-- Utility functions
+
+-- Check if a table contains the given value
+local function table_has_value(table, target_value)
+    for index, value in ipairs(table) do
+        if value == target_value then
+            return true
+        end
+    end
+    return false
+end
+
+-- Check if a table contains the given regex value
+local function table_has_regex_value(table, target_regex)
+    for _, value in ipairs(table) do
+        if string.match(value, target_regex) then
+            return true
+        end
+    end
+    return false
+end
+
+-- Prints a debug message
+local function debug(message, level, context)
+    level = level or "debug"
+    print("NeoWiki [" .. string.upper(level) .. "]: " .. message)
+    if context ~= nil then
+        print("--------- Context ---------")
+        print(vim.inspect(context))
+        print("---------------------------")
+    end
+end
+
 
 -- Default configuration
 neowiki.config = {
@@ -31,7 +64,7 @@ local function get_or_create_daily_todo_file(date, month, year)
         -- File does not exist, create it and add the template
         local file = io.open(full_path, "w")
         if file == nil then
-            print(string.format("NeoWiki: ERROR the file %s cannot be created", full_path))
+            debug("The file " .. full_path .. " cannot be created", "error")
             return
         end
 
@@ -125,12 +158,55 @@ end
 
 -- Creates a document index
 function neowiki.create_index()
-    print("Create index called 666")
     local lines = vim.api.nvim_buf_get_lines(0, 1, -1, true)
-    local structure = {}
+    -- local structure = {}
     for line_number in ipairs(lines) do
         local line = vim.fn.getline(line_number)
-        print(line)
+        debug(line)
+    end
+end
+
+-- Opens a markdown internal_section/external/local_file link
+local function open_link(target)
+    if string.match(target, "^#.+") then
+        -- TODO: implement this
+        debug("Open internal section not implemented.", "warning")
+    elseif string.match(target, "^http[s]?.+") then
+        vim.cmd('silent exec "!open \'' .. target .. '\'"')
+    elseif string.match(target, "%a+%.md") then
+        vim.cmd('exec "edit ' .. target .. '"')
+    else
+        debug("Unkown link type '" .. target .. "'", "error")
+    end
+end
+
+-- Follows an external/internal-markdown link
+function neowiki.follow_link()
+    -- Is the cursor over a link?
+    local highlights = vim.treesitter.get_captures_at_cursor(0)
+    local is_link = table_has_regex_value(highlights, "^markup%.link.*$")
+    if is_link == false then
+        return nil
+    end
+
+    -- Get the link text under the cursor
+    local ts_utils = require("nvim-treesitter.ts_utils")
+    local ts_node = ts_utils.get_node_at_cursor()
+    if ts_node == nil then
+        return nil
+    end
+    local cursor_text = vim.treesitter.get_node_text(ts_node, 0)
+
+    -- Get the line link targets and compare it with the cursor text
+    local current_line = vim.fn.getline('.')
+    local pattern = "%[([^%]]+)%]%(([^%)]+)%)"
+    for label, target in string.gmatch(current_line, pattern) do
+        local full_link = "[" .. label .. "](" .. target .. ")"
+        if cursor_text == label or cursor_text == target or cursor_text == full_link then
+            -- If matches, open the link
+            open_link(target)
+            break
+        end
     end
 end
 
@@ -147,7 +223,7 @@ function neowiki.setup(user_config)
             local wiki_path = vim.fn.expand(neowiki.config.wiki_directory)
             vim.fn.mkdir(wiki_path, "p")
         else
-            print(string.format("NeoWiki disabled: the wiki directory %s is missing", neowiki.config.wiki_directory))
+            debug("Not enabled, missing wiki directory: " .. neowiki.config.wiki_directory, "error")
             return
         end
     end
@@ -157,13 +233,17 @@ function neowiki.setup(user_config)
     vim.api.nvim_create_user_command("WikiYesterday", neowiki.open_yesterday, {})
     vim.api.nvim_create_user_command("WikiTomorrow", neowiki.open_tomorrow, {})
     vim.api.nvim_create_user_command("WikiCreateIndex", neowiki.create_index, {})
+    vim.api.nvim_create_user_command("WikiFollowLink", neowiki.follow_link, {})
 
     if neowiki.config.debug then
-        print(string.format("NeoWiki started: %s", neowiki.config.wiki_directory))
+        debug("Started: %s", neowiki.config.wiki_directory)
     end
 end
 
 -- TODO:
--- 1.
+--
+-- 1. [ ] Finish the CreateIndex function
+-- 2. [X] Implement the follow link function
+-- 3. [ ] Handle internal section links
 
 return neowiki

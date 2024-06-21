@@ -216,13 +216,14 @@ require("dapui").setup()
 -- Check: https://neovimcraft.com/plugin/dasupradyumna/launch.nvim/
 
 
--- Emmet -----------------------------------------------------------------------
+-- (removed) Emmet -----------------------------------------------------------------------
+-- ATM testing https://github.com/neoclide/coc-html
 
-vim.g.user_emmet_install_global = 0
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "html", "css", "vue", "php" },
-    command = "EmmetInstall"
-})
+-- vim.g.user_emmet_install_global = 0
+-- vim.api.nvim_create_autocmd("FileType", {
+--     pattern = { "html", "css", "vue", "php" },
+--     command = "EmmetInstall"
+-- })
 
 
 -- CoC -------------------------------------------------------------------------
