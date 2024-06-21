@@ -24,7 +24,15 @@ vim.opt.foldenable = false
 vim.opt.updatetime = 300
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-vim.opt.spell = true
+
+-- Enable spell only in certain files
+vim.opt.spell = false
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+    pattern = { "*.md", "*.py", "*.html", "*.lua" },
+    callback = function(ev)
+        vim.opt.spell = true
+    end
+})
 
 -- Enable filetype detection
 vim.cmd('filetype plugin indent on')

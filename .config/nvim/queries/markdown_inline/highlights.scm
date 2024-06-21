@@ -14,4 +14,4 @@
 )
 
 ; markdown inline code
-((code_span) @markup.code_span)
+; ((code_span) @markup.code_span)

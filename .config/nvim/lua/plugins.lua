@@ -13,7 +13,7 @@ Plug('neoclide/coc.nvim', { branch = 'release' })
 -- Icons
 Plug 'ryanoasis/vim-devicons'
 -- Markdown plugin
-Plug 'preservim/vim-markdown'
+-- Plug 'preservim/vim-markdown'
 -- Emmet, HTML tools
 Plug 'mattn/emmet-vim'
 -- Close all the buffers

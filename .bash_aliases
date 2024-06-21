@@ -22,6 +22,9 @@ alias weather='curl https://wttr.in/Palma'
 # Development
 alias dps='docker ps'
 
+# Vim
+alias vim='nvim'
+
 # Only GNU/linux
 if [ `uname` == "Linux" ]; then
     alias ls='ls --color=auto'
