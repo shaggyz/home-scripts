@@ -43,3 +43,5 @@
 !.config/nvim/queries/python/highlights.scm
 !.config/nvim/queries/markdown/highlights.scm
 !.config/nvim/queries/markdown_inline/highlights.scm
+!.config/wezterm
+!.config/wezterm/wezterm.lua

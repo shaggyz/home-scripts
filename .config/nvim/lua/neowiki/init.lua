@@ -172,9 +172,13 @@ local function open_link(target)
         -- TODO: implement this
         debug("Open internal section not implemented.", "warning")
     elseif string.match(target, "^http[s]?.+") then
+        -- External link
         vim.cmd('silent exec "!open \'' .. target .. '\'"')
     elseif string.match(target, "%a+%.md") then
-        vim.cmd('exec "edit ' .. target .. '"')
+        -- Markdown file
+        local current_buffer_dir = vim.fn.expand("%:p:h")
+        local file_path = current_buffer_dir .. "/" .. target
+        vim.cmd('exec "edit ' .. file_path .. '"')
     else
         debug("Unkown link type '" .. target .. "'", "error")
     end
@@ -236,7 +240,7 @@ function neowiki.setup(user_config)
     vim.api.nvim_create_user_command("WikiFollowLink", neowiki.follow_link, {})
 
     if neowiki.config.debug then
-        debug("Started: %s", neowiki.config.wiki_directory)
+        debug("Started: " .. neowiki.config.wiki_directory)
     end
 end
 
