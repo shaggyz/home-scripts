@@ -257,6 +257,16 @@ function neowiki.handle_markdown_list()
     end
 end
 
+-- Opens the current month's folder
+function neowiki.open_current_month()
+    local month = os.date("%m")
+    local year = os.date("%Y")
+    local wiki_path = vim.fn.expand(neowiki.config.wiki_directory)
+    local full_path = string.format("%s/%s/%s/", wiki_path, year, month)
+    print("Current month folder: " .. full_path)
+    vim.cmd('edit ' .. full_path)
+end
+
 -- Main plugin setup
 function neowiki.setup(user_config)
     user_config = user_config or {}
@@ -279,6 +289,7 @@ function neowiki.setup(user_config)
     vim.api.nvim_create_user_command("WikiToday", neowiki.open_today, {})
     vim.api.nvim_create_user_command("WikiYesterday", neowiki.open_yesterday, {})
     vim.api.nvim_create_user_command("WikiTomorrow", neowiki.open_tomorrow, {})
+    vim.api.nvim_create_user_command("WikiCurrentMonth", neowiki.open_current_month, {})
     vim.api.nvim_create_user_command("WikiCreateIndex", neowiki.create_index, {})
     vim.api.nvim_create_user_command("WikiFollowLink", neowiki.follow_link, {})
 

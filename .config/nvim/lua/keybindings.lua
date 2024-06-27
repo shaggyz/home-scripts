@@ -151,6 +151,7 @@ vim.keymap.set('n', '<leader>de', require("dapui").toggle, { silent = true, nore
 vim.keymap.set('n', '<leader>mt', '<cmd>WikiToday<CR>', { silent = true, noremap = true })
 vim.keymap.set('n', '<leader>my', '<cmd>WikiYesterday<CR>', { silent = true, noremap = true })
 vim.keymap.set('n', '<leader>mo', '<cmd>WikiTomorrow<CR>', { silent = true, noremap = true })
+vim.keymap.set('n', '<leader>mm', '<cmd>WikiCurrentMonth<CR>', { silent = true, noremap = true })
 
 -- Enable this keymaps only for markdown files
 vim.api.nvim_create_autocmd("FileType", {
@@ -165,3 +166,15 @@ vim.api.nvim_create_autocmd("FileType", {
         end)
     end,
 })
+
+-- Grep in wiki
+-- TODO: replace with a plugin function
+vim.keymap.set('n', '<leader>ss',
+    function()
+        builtin.find_files({
+            cwd = "~/Nextcloud/VimWiki/personal",
+            no_ignore_parent = true,
+        })
+    end,
+    { silent = true, noremap = true }
+)
