@@ -166,11 +166,28 @@ function neowiki.create_index()
     end
 end
 
+-- Moves the cursor to a given markdown section header line
+function neowiki.go_to_header(header)
+    print("Trying to go to the: '" .. header .. "' line")
+    local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false) -- Get all lines in the current buffer
+    local target_header = header:match("^#+%s*(.-)%s*$")      -- Extract the header text, ignoring leading '#' and spaces
+
+    for line_number, line in ipairs(lines) do
+        if line:match("^#+%s*" .. vim.pesc(target_header) .. "%s*$") then
+            -- Move cursor to the line below the header if it exists, otherwise to the header line
+            local next_line_number = (line_number < #lines) and (line_number + 1) or line_number
+            vim.api.nvim_win_set_cursor(0, { next_line_number, 0 }) -- Move cursor to the next line
+            return
+        end
+    end
+end
+
 -- Opens a markdown internal_section/external/local_file link
 local function open_link(target)
     if string.match(target, "^#.+") then
         -- TODO: implement this
-        debug("Open internal section not implemented.", "warning")
+        -- debug("Open internal section not implemented.", "warning")
+        neowiki.go_to_header(target)
     elseif string.match(target, "^http[s]?.+") then
         -- External link
         vim.cmd('silent exec "!open \'' .. target .. '\'"')
@@ -214,6 +231,32 @@ function neowiki.follow_link()
     end
 end
 
+function neowiki.handle_markdown_list()
+    local line = vim.api.nvim_get_current_line()
+    local cursor_pos = vim.api.nvim_win_get_cursor(0)[2] -- Cursor column position
+    local insert_text = ""
+
+    -- Check if the line is a list item and prepare continuation
+    if line:sub(1, cursor_pos + 1):match("^%s*-%s+[[][%sxX]?[]]%s+") then
+        -- Line with checkbox
+        insert_text = "\n- [ ] "
+    elseif line:sub(1, cursor_pos + 1):match("^%s*-%s+") then
+        -- Regular list item
+        insert_text = "\n- "
+    elseif line:sub(1, cursor_pos + 1):match(":%s*$") then
+        -- Ends with colon (nested list continuation)
+        insert_text = "\n    - "
+    end
+
+    if insert_text ~= "" then
+        -- Insert the new line with continuation using nvim_feedkeys
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(insert_text, true, false, true), 'n', true)
+    else
+        -- Default behavior, just start a new line
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("\n", true, false, true), 'n', true)
+    end
+end
+
 -- Main plugin setup
 function neowiki.setup(user_config)
     user_config = user_config or {}
@@ -239,6 +282,13 @@ function neowiki.setup(user_config)
     vim.api.nvim_create_user_command("WikiCreateIndex", neowiki.create_index, {})
     vim.api.nvim_create_user_command("WikiFollowLink", neowiki.follow_link, {})
 
+    -- Map <CR> in Insert mode
+    -- vim.api.nvim_set_keymap('i', '<CR>', 'v:lua.neowiki.handle_markdown_list()', { expr = true, noremap = true })
+    -- vim.keymap.set('i', '<CR>', neowiki.handle_markdown_list, { expr = true, noremap = true })
+    -- Map 'o' in Normal mode (optional, depending on your needs)
+    -- vim.keymap.set('n', 'o', neowiki.handle_markdown_list, { expr = true, noremap = true })
+
+
     if neowiki.config.debug then
         debug("Started: " .. neowiki.config.wiki_directory)
     end
@@ -248,6 +298,9 @@ end
 --
 -- 1. [ ] Finish the CreateIndex function
 -- 2. [X] Implement the follow link function
--- 3. [ ] Handle internal section links
+-- 3. [X] Handle internal section links
+-- 4. [ ] Auto create list points
+-- 5. [ ] Add checklist
+-- 6. [ ] Toggle checklist
 
 return neowiki
