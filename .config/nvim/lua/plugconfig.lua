@@ -269,3 +269,13 @@ require("neowiki").setup({
     debug = true,
     wiki_directory = "~/Nextcloud/Notes"
 })
+
+-- Highlight Colors --- https://github.com/brenoprata10/nvim-highlight-colors --
+
+require('nvim-highlight-colors').setup({})
+
+
+-- Which Key ------------------------ https://github.com/folke/which-key.nvim --
+
+local wk = require("which-key")
+wk.register()

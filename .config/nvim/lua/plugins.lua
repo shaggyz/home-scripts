@@ -64,5 +64,10 @@ Plug 'mfussenegger/nvim-dap'
 Plug 'nvim-neotest/nvim-nio'
 Plug 'rcarriga/nvim-dap-ui'
 
+-- Testing: Highlight colors
+Plug 'brenoprata10/nvim-highlight-colors'
+-- Testing: Which keys
+Plug 'folke/which-key.nvim'
+
 -- luacheck: ignore
 vim.cmd('call plug#end()')
