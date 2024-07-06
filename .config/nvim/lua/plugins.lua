@@ -19,7 +19,7 @@ Plug 'ryanoasis/vim-devicons'
 -- Close all the buffers
 Plug 'schickling/vim-bufonly'
 -- Floating terminal
-Plug 'numToStr/FTerm.nvim'
+-- Plug 'numToStr/FTerm.nvim'
 -- Git signs in buffers
 Plug 'lewis6991/gitsigns.nvim'
 -- Automatically remove white spaces

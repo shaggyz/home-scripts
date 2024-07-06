@@ -4,11 +4,11 @@
 
 -- FTerm -----------------------------------------------------------------------
 
-require 'FTerm'.setup({
-    cmd = 'bash -l',
-    border = 'single',
-    blend = 8,
-})
+-- require 'FTerm'.setup({
+--     cmd = 'bash -l',
+--     border = 'single',
+--     blend = 8,
+-- })
 
 -- Gitsings --------------------------------------------------------------------
 
