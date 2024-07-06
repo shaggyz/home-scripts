@@ -12,14 +12,8 @@ Plug 'rose-pine/neovim'
 Plug('neoclide/coc.nvim', { branch = 'release' })
 -- Icons
 Plug 'ryanoasis/vim-devicons'
--- Markdown plugin
--- Plug 'preservim/vim-markdown'
--- Emmet, HTML tools
--- Plug 'mattn/emmet-vim'
 -- Close all the buffers
 Plug 'schickling/vim-bufonly'
--- Floating terminal
--- Plug 'numToStr/FTerm.nvim'
 -- Git signs in buffers
 Plug 'lewis6991/gitsigns.nvim'
 -- Automatically remove white spaces
@@ -45,16 +39,12 @@ Plug 'kristijanhusak/vim-dadbod-ui'
 Plug 'sindrets/diffview.nvim'
 --Telescope
 Plug 'nvim-lua/plenary.nvim'
-Plug('nvim-telescope/telescope-fzf-native.nvim',
-    {
-        ['do'] =
-        'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
-    })
-Plug('nvim-telescope/telescope.nvim', { ['tag'] = '0.1.6' })
-
---TODO: Color Scheme edition plugins:
---Color scheme creation
---Plug 'rktjmp/lush.nvim'
+-- Plug('nvim-telescope/telescope-fzf-native.nvim',
+--     {
+--         ['do'] =
+--         'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+--     })
+Plug 'nvim-telescope/telescope.nvim'
 
 --Playground for treesitter
 Plug 'nvim-treesitter/playground'

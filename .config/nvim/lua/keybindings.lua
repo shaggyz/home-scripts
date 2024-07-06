@@ -40,15 +40,15 @@ vim.keymap.set('n', '<leader>ev', ':e ~/.config/nvim/init.lua<CR>', {
 
 -- Terminal --------------------------------------------------------------------
 
--- Toggle terminal in normal mode
-vim.keymap.set('n', '<C-i>', require("FTerm").toggle, { noremap = true, silent = true })
-
--- Toggle terminal in terminal mode
-vim.keymap.set('t', '<C-i>', '<C-\\><C-n><cmd>lua require("FTerm").toggle()<CR>',
-    { noremap = true, silent = true })
-
--- Unmap <Tab> in terminal mode
-vim.cmd('tunmap <Tab>')
+-- -- Toggle terminal in normal mode
+-- vim.keymap.set('n', '<C-i>', require("FTerm").toggle, { noremap = true, silent = true })
+--
+-- -- Toggle terminal in terminal mode
+-- vim.keymap.set('t', '<C-i>', '<C-\\><C-n><cmd>lua require("FTerm").toggle()<CR>',
+--     { noremap = true, silent = true })
+--
+-- -- Unmap <Tab> in terminal mode
+-- vim.cmd('tunmap <Tab>')
 
 
 -- CoC ------------------------------------------------------------------------
@@ -109,12 +109,25 @@ vim.keymap.set('n', '<leader>fc', builtin.git_commits, {})
 vim.keymap.set('n', '<leader>fb', builtin.git_branches, {})
 vim.keymap.set('n', '<leader>gs', builtin.git_status, {})
 
--- Grep in wiki
+-- Find and open wiki files
 vim.keymap.set('n', '<leader>ss',
     function()
         builtin.find_files({
             cwd = "~/Nextcloud/VimWiki/personal",
             no_ignore_parent = true,
+        })
+    end,
+    { silent = true, noremap = true }
+)
+
+
+-- Find in wiki content
+-- For some reason live_grep is not working
+vim.keymap.set('n', '<leader>ws',
+    function()
+        builtin.live_grep({
+            cwd = "~/Nextcloud/VimWiki/personal",
+            type_filter = "markdown"
         })
     end,
     { silent = true, noremap = true }
@@ -166,15 +179,3 @@ vim.api.nvim_create_autocmd("FileType", {
         end)
     end,
 })
-
--- Grep in wiki
--- TODO: replace with a plugin function
-vim.keymap.set('n', '<leader>ss',
-    function()
-        builtin.find_files({
-            cwd = "~/Nextcloud/VimWiki/personal",
-            no_ignore_parent = true,
-        })
-    end,
-    { silent = true, noremap = true }
-)
