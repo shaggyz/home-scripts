@@ -35,28 +35,20 @@ export PATH="~/.local/bin:$PATH"
 
 # Only macOS
 if [ `uname` == "Darwin" ]; then
-    export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.local/bin:$PATH"
-
-    # LaTeX
-    export PATH="/usr/local/texlive/2021/bin/universal-darwin:$PATH"
-    export LC_ALL=en_US.UTF-8
-    export LANG=en_US.UTF-8
+    export HOMEBREW_PREFIX="/opt/homebrew"
+    export PATH="$HOMEBREW_PREFIX/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/opt/openjdk/bin:/opt/homebrew/opt/util-linux/bin:$PATH"
 
     # Fuck apple using zsh as default
     export BASH_SILENCE_DEPRECATION_WARNING=1
 
-    # Needed for some legacy X11 applications
-    export DISPLAY=:0
-    test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-
     # Change the horrible name my company put to the work laptop
     MACHINE_NAME=$(hostname | cut -d'.' -f1 | tr '[:upper:]' '[:lower:]')
-    [[ "$MACHINE_NAME" == "foxy" ]] || MACHINE_NAME="grunt"
+    [[ "$MACHINE_NAME" == "foxy" ]] || MACHINE_NAME="osiris"
 
     # nodejs installed with brew (not automatic linking for this package)
-    export PATH="/usr/local/opt/node@18/bin:$PATH"
-    export LDFLAGS="-L/usr/local/opt/node@18/lib"
-    export CPPFLAGS="-I/usr/local/opt/node@18/include"
+    export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
+    export LDFLAGS="-L/opt/homebrew/opt/node@18/lib"
+    export CPPFLAGS="-I/opt/homebrew/opt/node@18/include"
 
     # Wezterm
     export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
@@ -68,7 +60,6 @@ if [ `uname` == "Darwin" ]; then
     export HOMEBREW_NO_ENV_HINTS=1
     if type brew &>/dev/null
     then
-        HOMEBREW_PREFIX="$(brew --prefix)"
         if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]
         then
             source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
