@@ -13,6 +13,7 @@ vim.opt.cc = '100'
 vim.opt.termguicolors = true
 vim.opt.signcolumn = 'yes'
 
+vim.opt.hlsearch = false
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.writebackup = false
@@ -24,6 +25,7 @@ vim.opt.foldenable = false
 vim.opt.updatetime = 300
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
 
 -- Enable spell only in certain files
 vim.opt.spell = false
@@ -41,4 +43,4 @@ vim.cmd('syntax on')
 vim.cmd('colorscheme rose-pine-main')
 
 -- Neovim python virtualenv
-vim.g.python3_host_prog = '~/.local/nico-virtualenvs/neovim-venv/bin/python'
+-- vim.g.python3_host_prog = '~/.local/nico-virtualenvs/neovim-venv/bin/python'

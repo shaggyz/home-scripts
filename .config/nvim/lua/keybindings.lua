@@ -13,9 +13,11 @@ vim.keymap.set('n', '<C-l>', ':bnext!<CR>')
 -- ,q: close the current buffer w/o closing the window and move to the previous
 vim.keymap.set('n', '<Leader>q', ':bp<CR> :bd#<CR>')
 -- CTRL+c CTRL+c: Remove hlsearch
-vim.keymap.set('n', '<C-c><C-c>', ':silent! nohls<CR>')
+-- vim.keymap.set('n', '<C-c><C-c>', ':silent! nohls<CR>')
 -- ,ca: Close all the buffers, except the current one
 vim.keymap.set('n', '<leader>ca', ':BufOnly<CR>')
+-- CTRL+x: copy visual selected text into system clipboard (wezterm needs this to make CMD+c work in macOS)
+vim.api.nvim_set_keymap('v', '<Leader>xc', '"+y', { noremap = true, silent = true })
 
 -- Define the ShowDocumentation function
 function ShowDocumentation()
