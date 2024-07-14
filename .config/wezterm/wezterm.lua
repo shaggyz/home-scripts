@@ -41,6 +41,7 @@ config.keys = {
     { key = 'f', mods = 'SUPER', action = act.Search 'CurrentSelectionOrEmptyString' },
     { key = 'm', mods = 'SUPER', action = act.Hide },
     { key = 'n', mods = 'SUPER', action = act.SpawnWindow },
+    { key = 't', mods = 'SHIFT|SUPER', action = act.SendString "wezterm cli set-tab-title " },
     { key = 'v', mods = 'SUPER', action = act.PasteFrom "Clipboard" },
     {
         key = 'c',
