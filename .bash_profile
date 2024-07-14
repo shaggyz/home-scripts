@@ -36,7 +36,7 @@ export PATH="~/.local/bin:$PATH"
 # Only macOS
 if [ `uname` == "Darwin" ]; then
     export HOMEBREW_PREFIX="/opt/homebrew"
-    export PATH="$HOMEBREW_PREFIX/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/opt/openjdk/bin:/opt/homebrew/opt/util-linux/bin:$PATH"
+    export PATH="$HOMEBREW_PREFIX/bin:/opt/homebrew/opt/util-linux/bin:/opt/homebrew/opt/make/libexec/gnubin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/opt/openjdk/bin:$PATH"
 
     # Fuck apple using zsh as default
     export BASH_SILENCE_DEPRECATION_WARNING=1

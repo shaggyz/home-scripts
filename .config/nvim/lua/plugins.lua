@@ -58,6 +58,8 @@ Plug 'rcarriga/nvim-dap-ui'
 Plug 'brenoprata10/nvim-highlight-colors'
 -- Testing: Which keys
 Plug 'folke/which-key.nvim'
+-- Testing: UUID generator
+Plug 'TrevorS/uuid-nvim'
 
 -- luacheck: ignore
 vim.cmd('call plug#end()')

@@ -279,3 +279,10 @@ require('nvim-highlight-colors').setup({})
 
 local wk = require("which-key")
 wk.register()
+
+-- UUID generator ---------------------- https://github.com/TrevorS/uuid-nvim --
+
+require('uuid-nvim').setup{
+  case = 'lower',
+  quotes = 'double',
+}

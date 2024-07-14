@@ -179,3 +179,8 @@ vim.api.nvim_create_autocmd("FileType", {
         end)
     end,
 })
+
+-- UUID -------------------------------- https://github.com/TrevorS/uuid-nvim --
+
+local uuid = require('uuid-nvim')
+vim.keymap.set('i', '<C-u>', uuid.insert_v4)
