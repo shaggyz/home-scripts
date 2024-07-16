@@ -25,7 +25,7 @@ local Yellow = '#fee1b8'
 vim.api.nvim_set_hl(0, '@type', { fg = LighterGreen, italic = false })
 vim.api.nvim_set_hl(0, '@variable.builtin.vim', { fg = LightGreen, bold = false })
 vim.api.nvim_set_hl(0, '@string.special.url.vimdoc', { fg = LightBlue, underline = true })
-vim.api.nvim_set_hl(0, 'ColorColumn', { fg = LightBlue, bg = Red }) -- Not working
+vim.api.nvim_set_hl(0, 'ColorColumn', { bg = DarkGrey })
 
 -- Markdown
 vim.api.nvim_set_hl(0, '@markup.heading.marker', { fg = DarkGreen })
