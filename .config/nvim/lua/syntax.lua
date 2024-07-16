@@ -25,6 +25,7 @@ local Yellow = '#fee1b8'
 vim.api.nvim_set_hl(0, '@type', { fg = LighterGreen, italic = false })
 vim.api.nvim_set_hl(0, '@variable.builtin.vim', { fg = LightGreen, bold = false })
 vim.api.nvim_set_hl(0, '@string.special.url.vimdoc', { fg = LightBlue, underline = true })
+vim.api.nvim_set_hl(0, 'ColorColumn', { fg = LightBlue, bg = Red }) -- Not working
 
 -- Markdown
 vim.api.nvim_set_hl(0, '@markup.heading.marker', { fg = DarkGreen })
@@ -32,7 +33,6 @@ vim.api.nvim_set_hl(0, '@markup.heading.content', { fg = LighterYellow })
 vim.api.nvim_set_hl(0, '@markup.heading.content.level1', { fg = DarkYellow })
 vim.api.nvim_set_hl(0, '@markup.heading.content.level2', { fg = Yellow })
 vim.api.nvim_set_hl(0, '@markup.heading.content.level3', { fg = LighterYellow })
--- vim.api.nvim_set_hl(0, '@markup.link.text', { fg = LightBlue, underline = true, bold = false, sp = BackgroundTop })
 vim.api.nvim_set_hl(0, '@markup.link.text', { fg = LightBlue, underline = false, bold = false })
 vim.api.nvim_set_hl(0, '@markup.link.destination', { fg = LightGrey })
 vim.api.nvim_set_hl(0, '@markup.code_span', { fg = DarkGreen })
@@ -58,7 +58,6 @@ vim.api.nvim_set_hl(0, '@string.bash', { fg = Yellow })
 -- Lua
 vim.api.nvim_set_hl(0, '@variable.parameter.lua', { fg = DarkYellow })
 vim.api.nvim_set_hl(0, '@string.lua', { fg = LighterYellow })
-
 
 -- Custom queries for python (~/.config/nvim/queries/python/highlights.scm)
 vim.api.nvim_set_hl(0, '@decorator.identifier.python', { fg = DarkGreen })
