@@ -39,11 +39,6 @@ Plug 'kristijanhusak/vim-dadbod-ui'
 Plug 'sindrets/diffview.nvim'
 --Telescope
 Plug 'nvim-lua/plenary.nvim'
--- Plug('nvim-telescope/telescope-fzf-native.nvim',
---     {
---         ['do'] =
---         'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
---     })
 Plug 'nvim-telescope/telescope.nvim'
 
 --Playground for treesitter
@@ -56,8 +51,6 @@ Plug 'rcarriga/nvim-dap-ui'
 
 -- Testing: Highlight colors
 Plug 'brenoprata10/nvim-highlight-colors'
--- Testing: Which keys
-Plug 'folke/which-key.nvim'
 -- Testing: UUID generator
 Plug 'TrevorS/uuid-nvim'
 

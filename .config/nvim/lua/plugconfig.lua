@@ -275,10 +275,10 @@ require("neowiki").setup({
 require('nvim-highlight-colors').setup({})
 
 
--- Which Key ------------------------ https://github.com/folke/which-key.nvim --
+-- Which Key (removed) -------------- https://github.com/folke/which-key.nvim --
 
-local wk = require("which-key")
-wk.register()
+-- local wk = require("which-key")
+-- wk.register()
 
 -- UUID generator ---------------------- https://github.com/TrevorS/uuid-nvim --
 

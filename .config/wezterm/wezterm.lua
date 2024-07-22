@@ -60,6 +60,15 @@ config.keys = {
                 }, pane)
             end
         end)
+    },
+    {
+        key = ' ',
+        mods = 'CTRL',
+        -- Enable <c-space>
+        action = act.SendKey {
+            key = ' ',
+            mods = 'CTRL',
+        },
     }
 }
 
