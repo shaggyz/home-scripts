@@ -55,6 +55,10 @@ Plug 'brenoprata10/nvim-highlight-colors'
 Plug 'TrevorS/uuid-nvim'
 -- Testing: Markdown viewer
 Plug 'MeanderingProgrammer/markdown.nvim'
+-- Testing: Bind syntax
+Plug 'egberts/vim-syntax-bind-named'
+-- Testing: python documentation
+Plug 'girishji/pythondoc.vim'
 
 -- luacheck: ignore
 vim.cmd('call plug#end()')

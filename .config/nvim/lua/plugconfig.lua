@@ -286,3 +286,6 @@ require('uuid-nvim').setup{
   case = 'lower',
   quotes = 'double',
 }
+
+-- Python documentation ----------- https://github.com/girishji/pythondoc.vim --
+-- No setup needed?
