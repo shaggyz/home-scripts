@@ -150,14 +150,14 @@ vim.keymap.set('n', '<leader>r', require('nvim-tree.api').tree.find_file, {
 -- DBUI --------------------- https://github.com/kristijanhusak/vim-dadbod-ui --
 
 -- Toggle the DBUI GUI
-vim.keymap.set('n', '<leader>dt', '<cmd>DBUIToggle<CR>', { silent = true, noremap = true })
+-- vim.keymap.set('n', '<leader>dt', '<cmd>DBUIToggle<CR>', { silent = true, noremap = true })
 -- Add database
-vim.keymap.set('n', '<leader>da', '<cmd>DBUIAddConnection<CR>', { silent = true, noremap = true })
+-- vim.keymap.set('n', '<leader>da', '<cmd>DBUIAddConnection<CR>', { silent = true, noremap = true })
 
 
 -- DAP UI -------------------------- https://github.com/rcarriga/nvim-dap-ui --
 
-vim.keymap.set('n', '<leader>de', require("dapui").toggle, { silent = true, noremap = true })
+-- vim.keymap.set('n', '<leader>de', require("dapui").toggle, { silent = true, noremap = true })
 
 
 -- NeoWiki ---------------------------------------------------------------------
