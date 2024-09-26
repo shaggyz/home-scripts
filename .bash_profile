@@ -33,6 +33,9 @@ man() {
 # Poetry
 export PATH="~/.local/bin:$PATH"
 
+# WSL
+[ -f ~/.bash_windows ] && source ~/.bash_windows
+
 # Only macOS
 if [ `uname` == "Darwin" ]; then
     export HOMEBREW_PREFIX="/opt/homebrew"
