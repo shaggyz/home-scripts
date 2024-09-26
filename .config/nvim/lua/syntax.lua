@@ -21,6 +21,11 @@ local Red = '#eb6f92'
 local White = '#ffffff'
 local Yellow = '#fee1b8'
 
+-- Temporary: colors for light test
+-- LighterYellow = '#79917f'
+-- LightGrey = '#5f615f'
+-- DarkGreen = '#185238'
+
 -- Global
 vim.api.nvim_set_hl(0, '@type', { fg = LighterGreen, italic = false })
 vim.api.nvim_set_hl(0, '@variable.builtin.vim', { fg = LightGreen, bold = false })
@@ -88,7 +93,7 @@ vim.api.nvim_set_hl(0, 'CocWarningVirtualText', { fg = Yellow })
 vim.api.nvim_set_hl(0, 'CocWarningFloat', { fg = Yellow })
 vim.api.nvim_set_hl(0, 'CocInlayWarning', { fg = Yellow })
 
--- Nvim tree colors (use the :NvimTreeHiTest command to check the available groups):
+-- NvimTree colors (use the :NvimTreeHiTest command to check the available groups):
 vim.api.nvim_set_hl(0, 'NvimTreeFolderName', { fg = DarkGreen })
 vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { fg = LightBlue })
 vim.api.nvim_set_hl(0, 'NvimTreeGitIgnoredIcon', { fg = LightGrey })
@@ -107,3 +112,9 @@ vim.api.nvim_set_hl(0, 'NvimTreeGitFileStagedHL', { fg = Green })
 
 -- YAML
 vim.api.nvim_set_hl(0, 'yamlBlockMappingKey', { fg = DarkGreen })
+
+
+-- Temporary: testing light themes
+-- vim.api.nvim_set_hl(0, 'NvimTreeFolderName', { fg = DarkGreen, bold = true })
+-- vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { fg = DarkGreen })
+

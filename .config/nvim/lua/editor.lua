@@ -40,7 +40,15 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 vim.cmd('filetype plugin indent on')
 vim.cmd('syntax on')
 
-vim.cmd('colorscheme rose-pine-main')
+-- color scheme
+-- dark
+-- vim.cmd('colorscheme rose-pine-main')
+-- medium
+vim.cmd('colorscheme rose-pine-moon')
+-- vim.cmd('colorscheme retrobox')
+-- light
+-- vim.cmd('colorscheme rose-pine-dawn')
+-- vim.cmd.colorscheme "catppuccin-macchiato"
 
 -- Neovim python virtualenv
 -- vim.g.python3_host_prog = '~/.local/nico-virtualenvs/neovim-venv/bin/python'

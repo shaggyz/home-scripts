@@ -21,3 +21,7 @@ require 'keybindings'
 
 -- ~/.config/nvim/lua/syntax.lua - Custom syntax modifications
 require 'syntax'
+
+-- Testing themes here (to ensure we override all the custom syntax rules)
+-- vim.cmd('set background=light')
+-- -- vim.cmd('colorscheme rusticated')

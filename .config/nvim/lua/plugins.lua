@@ -63,5 +63,11 @@ Plug 'egberts/vim-syntax-bind-named'
 -- Testing: python documentation
 Plug 'girishji/pythondoc.vim'
 
+-- Testing: themes
+-- 4 variants and light and dark
+-- Plug('catppuccin/nvim', { ['as'] = 'catppuccin' })
+-- Plug('katawful/kat.nvim', { ['tag'] = '3.1' })
+-- Plug 'haystackandroid/rusticated'
+
 -- luacheck: ignore
 vim.cmd('call plug#end()')
