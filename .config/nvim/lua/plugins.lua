@@ -53,8 +53,9 @@ Plug 'rcarriga/nvim-dap-ui'
 Plug 'brenoprata10/nvim-highlight-colors'
 -- Testing: UUID generator
 Plug 'TrevorS/uuid-nvim'
+-- Testing: Bind named syntax
+Plug 'egberts/vim-syntax-bind-named'
 -- Testing: Markdown viewer
 Plug 'MeanderingProgrammer/markdown.nvim'
 
--- luacheck: ignore
 vim.cmd('call plug#end()')
