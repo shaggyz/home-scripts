@@ -33,10 +33,13 @@ man() {
 # Poetry
 export PATH="~/.local/bin:$PATH"
 
+# WSL
+[ -f ~/.bash_windows ] && source ~/.bash_windows
+
 # Only macOS
 if [ `uname` == "Darwin" ]; then
     export HOMEBREW_PREFIX="/opt/homebrew"
-    export PATH="$HOMEBREW_PREFIX/bin:/opt/homebrew/opt/util-linux/bin:/opt/homebrew/opt/make/libexec/gnubin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/opt/openjdk/bin:$PATH"
+    export PATH="$HOMEBREW_PREFIX/bin:/opt/homebrew/opt/util-linux/bin:/opt/homebrew/opt/make/libexec/gnubin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/opt/openjdk/bin:/opt/homebrew/opt/curl/bin:$PATH"
 
     # Fuck apple using zsh as default
     export BASH_SILENCE_DEPRECATION_WARNING=1
@@ -55,6 +58,9 @@ if [ `uname` == "Darwin" ]; then
 
     # Set the PS1 for macOS
     export PS1='\[\033[01;32m\]\u@$MACHINE_NAME:\[\033[01;34m\]\W\[\033[01;33m\]$(parse_git_branch)\[\033[0m\]\$ '
+
+    # rust
+    [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
     # Homebrew
     export HOMEBREW_NO_ENV_HINTS=1

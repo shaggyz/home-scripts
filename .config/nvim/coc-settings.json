@@ -4,7 +4,7 @@
     "pyright.inlayHints.variableTypes": false,
     "python.linting.mypyEnabled": true,
     "python.formatting.provider": "ruff",
-    "python.linting.mypyPath": "poetry run mypy",
+    "python.linting.mypyPath": "./.venv/bin/mypy",
     "coc.preferences.formatOnSave": true,
     "diagnostic.errorSign": "",
     "diagnostic.infoSign": "",
