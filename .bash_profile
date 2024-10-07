@@ -38,8 +38,8 @@ export PATH="~/.local/bin:$PATH"
 
 # Only macOS
 if [ `uname` == "Darwin" ]; then
-    export HOMEBREW_PREFIX="/opt/homebrew"
-    export PATH="$HOMEBREW_PREFIX/bin:/opt/homebrew/opt/util-linux/bin:/opt/homebrew/opt/make/libexec/gnubin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/opt/openjdk/bin:/opt/homebrew/opt/curl/bin:$PATH"
+    export HB="/opt/homebrew"
+    export PATH="$HB/bin:$HB/opt/util-linux/bin:$HB/opt/make/libexec/gnubin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HB/opt/openjdk@11/bin:$HB/opt/curl/bin:$PATH"
 
     # Fuck apple using zsh as default
     export BASH_SILENCE_DEPRECATION_WARNING=1
@@ -49,9 +49,9 @@ if [ `uname` == "Darwin" ]; then
     [[ "$MACHINE_NAME" == "foxy" ]] || MACHINE_NAME="osiris"
 
     # nodejs installed with brew (not automatic linking for this package)
-    export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
-    export LDFLAGS="-L/opt/homebrew/opt/node@18/lib"
-    export CPPFLAGS="-I/opt/homebrew/opt/node@18/include"
+    export PATH="$HB/opt/node@18/bin:$PATH"
+    export LDFLAGS="-L$HB/opt/node@18/lib"
+    export CPPFLAGS="-I$HB/opt/node@18/include"
 
     # Wezterm
     export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
@@ -66,11 +66,11 @@ if [ `uname` == "Darwin" ]; then
     export HOMEBREW_NO_ENV_HINTS=1
     if type brew &>/dev/null
     then
-        if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]
+        if [[ -r "${HB}/etc/profile.d/bash_completion.sh" ]]
         then
-            source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+            source "${HB}/etc/profile.d/bash_completion.sh"
         else
-            for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*
+            for COMPLETION in "${HB}/etc/bash_completion.d/"*
             do
                 [[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
             done
