@@ -59,6 +59,14 @@ require("nvim-tree").setup({
     view = {
         width = 30,
     },
+    update_focused_file = {
+      enable = true,
+      update_root = {
+        enable = false,
+        ignore_list = {},
+      },
+      exclude = false,
+    },
     modified = {
         enable = true,
         show_on_dirs = false

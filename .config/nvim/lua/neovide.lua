@@ -13,7 +13,7 @@ if jit and jit.os == "Linux" then
     vim.keymap.set('v', '<A-C-c>', '"+y')             -- Copy
     -- Font
     -- https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/JetBrainsMono.zip
-    vim.o.guifont = "JetBrainsMonoNL Nerd Font:h11.5"
+    vim.o.guifont = "JetBrainsMono Nerd Font:h11.5"
 else
     -- macOS
     -- Copy/Paste keybindings
@@ -24,7 +24,8 @@ else
     vim.keymap.set('c', '<D-v>', '<C-R>+')          -- Paste command mode
     vim.keymap.set('i', '<D-v>', '<C-o>"+P')        -- Paste insert mode
     -- Font
-    vim.o.guifont = "JetBrainsMonoNL Nerd Font:h12.5"
+    vim.o.guifont = "JetBrainsMono Nerd Font:h12.5"
+    -- brew install --cask font-jetbrains-mono-nerd-font
 end
 
 -- Increase / decrease font size
@@ -35,6 +36,8 @@ vim.keymap.set({ "n", "v" }, "<C-0>", ":lua vim.g.neovide_scale_factor = 1<CR>")
 -- Additional cursor particle effect
 vim.g.neovide_cursor_vfx_mode = "sonicboom"
 -- Cursor animation time
-vim.g.neovide_cursor_trail_size = 0.2
+vim.g.neovide_cursor_trail_size = 0.1
 -- Scrolling animation time
-vim.g.neovide_scroll_animation_length = 0.2
+vim.g.neovide_scroll_animation_length = 0.1
+-- Disable transparency
+vim.g.neovide_transparency = 1
