@@ -96,7 +96,7 @@ require("nvim-tree").setup({
 require('lualine').setup {
     options = {
         -- theme = 'iceberg_dark',
-        theme = 'onedark',
+        -- theme = 'onedark',
         ignore_focus = { 'NvimTree' },
     },
     sections = {

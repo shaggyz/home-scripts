@@ -38,10 +38,3 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 
 vim.cmd('filetype plugin indent on')
 vim.cmd('syntax on')
-vim.cmd('colorscheme rose-pine-moon')
-
--- color scheme
--- dark
--- vim.cmd('colorscheme rose-pine-main')
--- medium
--- vim.cmd('colorscheme retrobox')

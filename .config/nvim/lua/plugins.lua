@@ -39,10 +39,12 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 -- Markdown viewer
 Plug 'MeanderingProgrammer/markdown.nvim'
--- Testing: UUID generator
+-- UUID generator
 Plug 'TrevorS/uuid-nvim'
--- Testing: Bind named syntax
+-- Bind named syntax
 Plug 'egberts/vim-syntax-bind-named'
+-- Testing: some light themes
+Plug 'sainnhe/gruvbox-material'
 
 -- Playground for treesitter
 -- Plug 'nvim-treesitter/playground'

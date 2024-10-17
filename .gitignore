@@ -36,8 +36,10 @@
 !.gtkrc-2.0
 !.config/gtk-3.0
 !.config/gtk-3.0/settings.ini
+!.config/nvim
 !.config/nvim/coc-settings.json
 !.config/nvim/init.lua
+!.config/nvim/lua
 !.config/nvim/lua/*.lua
 !.config/nvim/lua/neowiki/init.lua
 !.config/nvim/lua/neowiki/wiki.lua
@@ -46,3 +48,8 @@
 !.config/nvim/queries/markdown_inline/highlights.scm
 !.config/wezterm
 !.config/wezterm/wezterm.lua
+!.config/nvim/lua/syntax
+!.config/nvim/lua/syntax/gruvboxlight.lua
+!.config/nvim/lua/syntax/retrobox.lua
+!.config/nvim/lua/syntax/roselight.lua
+!.config/nvim/lua/syntax/rosepine.lua

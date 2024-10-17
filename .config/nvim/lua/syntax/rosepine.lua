@@ -2,6 +2,17 @@
 -- ❇ Custom syntax stuff (for rosepine)
 --------------------------------------------------------------------------------
 
+-- Main color scheme
+vim.o.background = 'dark'
+vim.cmd('colorscheme rose-pine-moon')
+
+-- Airline settings
+require('lualine').setup {
+    options = {
+        theme = 'onedark',
+    }
+}
+
 -- Rosepine palette: https://rosepinetheme.com/palette/ingredients/
 local Background = '#191724'
 local BackgroundTop = '#3b3950'
@@ -20,11 +31,6 @@ local LighterYellow = '#fbf1d9'
 local Red = '#eb6f92'
 local White = '#ffffff'
 local Yellow = '#fee1b8'
-
--- Temporary: colors for light test
--- LighterYellow = '#79917f'
--- LightGrey = '#5f615f'
--- DarkGreen = '#185238'
 
 -- Global
 vim.api.nvim_set_hl(0, '@type', { fg = LighterGreen, italic = false })
@@ -112,9 +118,4 @@ vim.api.nvim_set_hl(0, 'NvimTreeGitFileStagedHL', { fg = Green })
 
 -- YAML
 vim.api.nvim_set_hl(0, 'yamlBlockMappingKey', { fg = DarkGreen })
-
-
--- Temporary: testing light themes
--- vim.api.nvim_set_hl(0, 'NvimTreeFolderName', { fg = DarkGreen, bold = true })
--- vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { fg = DarkGreen })
 

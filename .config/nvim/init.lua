@@ -19,9 +19,16 @@ if vim.g.neovide then require 'neovide' end
 -- ~/.config/nvim/lua/keybindings.lua - Custom keybindings
 require 'keybindings'
 
--- ~/.config/nvim/lua/syntax.lua - Custom syntax modifications
-require 'syntax'
+-- Syntax color configuration
 
--- Testing themes here (to ensure we override all the custom syntax rules)
--- vim.cmd('set background=light')
--- -- vim.cmd('colorscheme rusticated')
+-- ~/.config/nvim/lua/syntax/rosepine.lua
+-- require 'syntax.rosepine'
+
+-- ~/.config/nvim/lua/syntax/retrobox.lua
+-- require 'syntax.retrobox'
+
+-- ~/.config/nvim/lua/syntax/roselight.lua
+-- require 'syntax.roselight'
+
+-- ~/.config/nvim/lua/syntax/gruvboxlight.lua
+require 'syntax.gruvboxlight'
