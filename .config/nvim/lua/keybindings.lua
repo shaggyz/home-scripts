@@ -12,8 +12,6 @@ vim.keymap.set('n', '<C-h>', ':bprev!<CR>')
 vim.keymap.set('n', '<C-l>', ':bnext!<CR>')
 -- ,q: close the current buffer w/o closing the window and move to the previous
 vim.keymap.set('n', '<Leader>q', ':bp<CR> :bd#<CR>')
--- CTRL+c CTRL+c: Remove hlsearch
--- vim.keymap.set('n', '<C-c><C-c>', ':silent! nohls<CR>')
 -- ,ca: Close all the buffers, except the current one
 vim.keymap.set('n', '<leader>ca', ':BufOnly<CR>')
 -- CTRL+x: copy visual selected text into system clipboard (wezterm needs this to make CMD+c work in macOS)
@@ -39,6 +37,12 @@ vim.keymap.set('n', '<leader>ev', ':e ~/.config/nvim/init.lua<CR>', {
     silent = true
 })
 
+-- <leader>tn Add new tab
+vim.keymap.set('n', '<leader>tn', ':tabnew<CR>')
+-- <leader>tt Next tab
+vim.keymap.set('n', '<leader>tt', ':tabnext<CR>')
+-- <leader>T Close tab
+vim.keymap.set('n', '<leader>T', ':tabclose<CR>')
 
 -- Terminal --------------------------------------------------------------------
 
@@ -140,11 +144,11 @@ vim.keymap.set('n', '<leader>ws',
 
 -- NvimTree mappings
 vim.keymap.set('n', '<leader>v', "<cmd>NvimTreeToggle<CR>", { silent = true, noremap = true })
--- Find file in NvimTree using a Lua function
-vim.keymap.set('n', '<leader>r', require('nvim-tree.api').tree.find_file, {
-    noremap = true,
-    silent = true
-})
+-- Find file in NvimTree using a Lua function (does not work)
+-- vim.keymap.set('n', '<leader>r', require('nvim-tree.api').tree.find_file, {
+--     noremap = true,
+--     silent = true
+-- })
 
 
 -- DBUI --------------------- https://github.com/kristijanhusak/vim-dadbod-ui --
@@ -155,9 +159,21 @@ vim.keymap.set('n', '<leader>r', require('nvim-tree.api').tree.find_file, {
 -- vim.keymap.set('n', '<leader>da', '<cmd>DBUIAddConnection<CR>', { silent = true, noremap = true })
 
 
--- DAP UI -------------------------- https://github.com/rcarriga/nvim-dap-ui --
+-- DAP UI -------------------------- https://github.com/rcarriga/nvim-dap-ui ---
 
 -- vim.keymap.set('n', '<leader>de', require("dapui").toggle, { silent = true, noremap = true })
+
+
+-- DAP -------------------------------------------------------------------------
+
+vim.keymap.set('n', '<Leader>ds', function() require('dap').continue() end)
+vim.keymap.set('n', '<Leader>dq', function() require('dap').terminate() end)
+vim.keymap.set('n', '<Leader>do', function() require('dap').step_over() end)
+vim.keymap.set('n', '<Leader>di', function() require('dap').step_into() end)
+vim.keymap.set('n', '<Leader>dt', function() require('dap').step_out() end)
+vim.keymap.set('n', '<Leader>db', function() require('dap').toggle_breakpoint() end)
+vim.keymap.set('n', '<Leader>dr', function() require('dap').repl.open() end)
+vim.keymap.set('n', '<Leader>dl', ':e $HOME/.cache/nvim/dap.log<CR>', { silent = true, noremap = true })
 
 
 -- NeoWiki ---------------------------------------------------------------------

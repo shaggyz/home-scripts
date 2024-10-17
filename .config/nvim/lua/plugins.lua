@@ -43,15 +43,17 @@ Plug 'MeanderingProgrammer/markdown.nvim'
 Plug 'TrevorS/uuid-nvim'
 -- Bind named syntax
 Plug 'egberts/vim-syntax-bind-named'
--- Testing: some light themes
+-- Used in the light theme
 Plug 'sainnhe/gruvbox-material'
+-- IO library for asynchronous Lua
+Plug 'nvim-neotest/nvim-nio'
 
 -- Playground for treesitter
 -- Plug 'nvim-treesitter/playground'
 
 -- Python debugger
--- Plug 'mfussenegger/nvim-dap'
--- Plug 'nvim-neotest/nvim-nio'
--- Plug 'rcarriga/nvim-dap-ui'
+Plug 'mfussenegger/nvim-dap'
+Plug 'mfussenegger/nvim-dap-python'
+Plug 'rcarriga/nvim-dap-ui'
 
 vim.cmd('call plug#end()')
