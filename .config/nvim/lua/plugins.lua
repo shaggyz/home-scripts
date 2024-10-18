@@ -1,6 +1,6 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 -- ❇ Plugins: installation, using: https://github.com/junegunn/vim-plug#neovim
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 
 local Plug = vim.fn['plug#']
 
@@ -47,6 +47,8 @@ Plug 'egberts/vim-syntax-bind-named'
 Plug 'sainnhe/gruvbox-material'
 -- IO library for asynchronous Lua
 Plug 'nvim-neotest/nvim-nio'
+-- Load .env variables in nvim session
+Plug 'ellisonleao/dotenv.nvim'
 
 -- Playground for treesitter
 -- Plug 'nvim-treesitter/playground'

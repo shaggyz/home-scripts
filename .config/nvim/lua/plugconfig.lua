@@ -1,20 +1,14 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 -- ❇ Plugins: configuration for each installed plugin
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 
--- FTerm (removed) -------------------------------------------------------------
 
--- require 'FTerm'.setup({
---     cmd = 'bash -l',
---     border = 'single',
---     blend = 8,
--- })
-
--- Gitsings --------------------------------------------------------------------
+-- Gitsings ------------------------------------------ https://github.com/lewis6991/gitsigns.nvim --
 
 require('gitsigns').setup()
 
--- TreeSitter (better syntax) --------------------------------------------------
+
+-- TreeSitter (better syntax) ---------------- https://github.com/nvim-treesitter/nvim-treesitter --
 
 require 'nvim-treesitter.configs'.setup {
     ensure_installed = { "python", "vimdoc", "bash", "markdown" },
@@ -24,7 +18,8 @@ require 'nvim-treesitter.configs'.setup {
     },
 }
 
--- Nvim Tree -------------------------------------------------------------------
+
+-- Nvim Tree ----------------------------------------- https://github.com/nvim-tree/nvim-tree.lua --
 
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
@@ -89,9 +84,10 @@ require("nvim-tree").setup({
     },
 })
 
--- Lualine --------------------------------------------------------------------
 
--- Theme example: https://github.com/nvim-lualine/lualine.nvim/wiki/Writing-a-theme
+-- Lualine ----------------------------------------- https://github.com/nvim-lualine/lualine.nvim --
+
+-- Example: https://github.com/nvim-lualine/lualine.nvim/wiki/Writing-a-theme
 
 require('lualine').setup {
     options = {
@@ -159,7 +155,8 @@ require('lualine').setup {
     }
 }
 
--- DAP python (debugger) -------------------------------------------------------
+
+-- DAP python (debugger) ------------------------------- https://github.com/mfussenegger/nvim-dap --
 
 local dap = require('dap')
 
@@ -197,8 +194,6 @@ dap.configurations.python = {
         type = 'python',
         request = 'launch',
         name = "Launch LDD application",
-        -- program = cwd .. "/.venv/bin/uvicorn",
-        -- args = {'link_direct_data.api.main:app', '--reload'},
         program = cwd .. "/.venv/bin/fastapi",
         args = {'run', cwd .. '/link_direct_data/api/main.py'},
         pythonPath = function()
@@ -215,7 +210,16 @@ dap.configurations.python = {
     },
 }
 
+-- FIXME: Unknown character error
+-- vim.fn.sign_define('DapBreakpoint', {text='', texthl='#de4948', linehl='', numhl=''})
+-- vim.fn.sign_define('DapStopped', {text='', texthl='#1f717b', linehl='', numhl=''})
+-- vim.fn.sign_define('DapBreakpointRejected', {text='', texthl='#ffa100', linehl='', numhl=''})
+
+-- Nvim DAP UI ------------------------------------------ https://github.com/rcarriga/nvim-dap-ui --
+
 local dapui = require("dapui")
+
+dapui.setup()
 
 dap.listeners.before.attach.dapui_config = function()
   dapui.open()
@@ -230,24 +234,8 @@ dap.listeners.before.event_exited.dapui_config = function()
   dapui.close()
 end
 
--- Nvim DAP UI -----------------------------------------------------------------
 
-require("dapui").setup()
-
--- Check: https://neovimcraft.com/plugin/dasupradyumna/launch.nvim/
-
-
--- (removed) Emmet -----------------------------------------------------------------------
--- ATM testing https://github.com/neoclide/coc-html
-
--- vim.g.user_emmet_install_global = 0
--- vim.api.nvim_create_autocmd("FileType", {
---     pattern = { "html", "css", "vue", "php" },
---     command = "EmmetInstall"
--- })
-
-
--- CoC -------------------------------------------------------------------------
+-- CoC ----------------------------------------------------- https://github.com/neoclide/coc.nvim --
 
 -- Highlight the symbol and its references on a CursorHold event(cursor is idle)
 vim.api.nvim_create_augroup("CocGroup", {})
@@ -263,50 +251,30 @@ function _G.check_back_space()
     return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
 end
 
--- Better Whitespace -----------------------------------------------------------
+
+-- Better Whitespace -------------------------- https://github.com/ntpeters/vim-better-whitespace --
 
 vim.g.better_whitespace_enabled = 1
 vim.g.strip_whitespace_on_save = 1
 vim.g.strip_whitespace_confirm = 0
 
 
--- DBUI --------------------- https://github.com/kristijanhusak/vim-dadbod-ui --
-
--- vim.g.db_ui_win_position = 'right'
--- vim.g.db_ui_show_database_icon = true
--- vim.g.db_ui_use_nerd_fonts = true
--- vim.g.db_ui_auto_execute_table_helpers = true
--- vim.g.db_ui_show_help = false
--- vim.g.db_ui_save_location = '~/.local/share/db_ui'
-
-
--- Better diff tool
--- TBD > https://github.com/sindrets/diffview.nvim?tab=readme-ov-file
-
-
--- NeoWiki ---------------------------------------------------------------------
+-- NeoWiki -----------------------------------------------------------------------------------------
 
 require("neowiki").setup({
     debug = true,
     wiki_directory = "~/Nextcloud/Notes"
 })
 
--- Highlight Colors --- https://github.com/brenoprata10/nvim-highlight-colors --
 
--- require('nvim-highlight-colors').setup({})
-
-
--- Which Key (removed) -------------- https://github.com/folke/which-key.nvim --
-
--- local wk = require("which-key")
--- wk.register()
-
--- UUID generator ---------------------- https://github.com/TrevorS/uuid-nvim --
+-- UUID generator ------------------------------------------ https://github.com/TrevorS/uuid-nvim --
 
 require('uuid-nvim').setup{
   case = 'lower',
   quotes = 'double',
 }
 
--- Python documentation ----------- https://github.com/girishji/pythondoc.vim --
--- No setup needed?
+
+-- DotEnv -------------------------------------------- https://github.com/ellisonleao/dotenv.nvim --
+
+require('dotenv').setup()

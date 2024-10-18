@@ -1,8 +1,8 @@
--------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 -- ❇ Neovim: keybindings
--------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 
--- Editor ---------------------------------------------------------------------
+-- Editor ------------------------------------------------------------------------------------------
 
 vim.g.mapleader = ','
 
@@ -44,20 +44,8 @@ vim.keymap.set('n', '<leader>tt', ':tabnext<CR>')
 -- <leader>T Close tab
 vim.keymap.set('n', '<leader>T', ':tabclose<CR>')
 
--- Terminal --------------------------------------------------------------------
 
--- -- Toggle terminal in normal mode
--- vim.keymap.set('n', '<C-i>', require("FTerm").toggle, { noremap = true, silent = true })
---
--- -- Toggle terminal in terminal mode
--- vim.keymap.set('t', '<C-i>', '<C-\\><C-n><cmd>lua require("FTerm").toggle()<CR>',
---     { noremap = true, silent = true })
---
--- -- Unmap <Tab> in terminal mode
--- vim.cmd('tunmap <Tab>')
-
-
--- CoC ------------------------------------------------------------------------
+-- CoC ---------------------------------------------------------------------------------------------
 
 vim.keymap.set('n', '<leader>dd', '<Plug>(coc-definition)', { silent = true })
 vim.keymap.set('n', '<leader>yy', '<Plug>(coc-type-definition)', { silent = true })
@@ -90,7 +78,7 @@ end
 vim.keymap.set("n", "K", '<CMD>lua _G.show_docs()<CR>', { silent = true })
 
 
--- Telescope ------------------------------------------------------------------
+-- Telescope ---------------------------------------------------------------------------------------
 
 local builtin = require('telescope.builtin')
 
@@ -140,7 +128,7 @@ vim.keymap.set('n', '<leader>ws',
 )
 
 
--- Nvim Tree -------------------------------------------------------------------
+-- Nvim Tree ---------------------------------------------------------------------------------------
 
 -- NvimTree mappings
 vim.keymap.set('n', '<leader>v', "<cmd>NvimTreeToggle<CR>", { silent = true, noremap = true })
@@ -151,20 +139,7 @@ vim.keymap.set('n', '<leader>v', "<cmd>NvimTreeToggle<CR>", { silent = true, nor
 -- })
 
 
--- DBUI --------------------- https://github.com/kristijanhusak/vim-dadbod-ui --
-
--- Toggle the DBUI GUI
--- vim.keymap.set('n', '<leader>dt', '<cmd>DBUIToggle<CR>', { silent = true, noremap = true })
--- Add database
--- vim.keymap.set('n', '<leader>da', '<cmd>DBUIAddConnection<CR>', { silent = true, noremap = true })
-
-
--- DAP UI -------------------------- https://github.com/rcarriga/nvim-dap-ui ---
-
--- vim.keymap.set('n', '<leader>de', require("dapui").toggle, { silent = true, noremap = true })
-
-
--- DAP -------------------------------------------------------------------------
+-- DAP ---------------------------------------------------------------------------------------------
 
 vim.keymap.set('n', '<Leader>ds', function() require('dap').continue() end)
 vim.keymap.set('n', '<Leader>dq', function() require('dap').terminate() end)
@@ -173,11 +148,12 @@ vim.keymap.set('n', '<Leader>di', function() require('dap').step_into() end)
 vim.keymap.set('n', '<Leader>dt', function() require('dap').step_out() end)
 vim.keymap.set('n', '<Leader>db', function() require('dap').toggle_breakpoint() end)
 vim.keymap.set('n', '<Leader>dr', function() require('dap').repl.open() end)
+vim.keymap.set('n', '<Leader>dk', function() require('dap.ui.widgets').hover() end)
 vim.keymap.set('n', '<Leader>dl', ':e $HOME/.cache/nvim/dap.log<CR>', { silent = true, noremap = true })
 
 
--- NeoWiki ---------------------------------------------------------------------
--- Personal plugin under development -------------------------------------------
+-- NeoWiki -----------------------------------------------------------------------------------------
+-- Personal plugin under development ---------------------------------------------------------------
 
 vim.keymap.set('n', '<leader>mt', '<cmd>WikiToday<CR>', { silent = true, noremap = true })
 vim.keymap.set('n', '<leader>my', '<cmd>WikiYesterday<CR>', { silent = true, noremap = true })
@@ -198,7 +174,7 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- UUID -------------------------------- https://github.com/TrevorS/uuid-nvim --
+-- UUID ---------------------------------------------------- https://github.com/TrevorS/uuid-nvim --
 
 local uuid = require('uuid-nvim')
 vim.keymap.set('i', '<C-u>', uuid.insert_v4)
