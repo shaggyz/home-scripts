@@ -84,16 +84,41 @@ config.keys = {
     }
 }
 
+-- Use the new tab bar
+config.use_fancy_tab_bar = true
+
+-- Tab bar settings
+config.window_frame = {
+    font_size = 13.5,
+}
 
 -- Debug key events
 config.debug_key_events = false
 
+-- Color scheme tests
+-- config.color_scheme = 'rose-pine'
+-- config.color_scheme = 'Ef-Bio'
+-- config.color_scheme = 'Material Darker (base16)'
+-- config.color_scheme = 'Everblush'
+-- config.color_scheme = 'MaterialDesignColors'
+
 -- Color scheme
-config.color_scheme = 'rose-pine'
+local color_scheme = 'Railscasts (base16)'
+
+-- Current color scheme customization
+local color_definition = wezterm.color.get_builtin_schemes()[color_scheme]
+color_definition.background = '#000000'
+
+config.color_schemes = {
+    [color_scheme] = color_definition
+}
+
+config.color_scheme = color_scheme
 
 -- Color scheme modifications
 config.colors = {
-    selection_bg = '#182e1e',
+    selection_bg = '#464646',
+    selection_fg = 'none',
 }
 
 -- Bell
