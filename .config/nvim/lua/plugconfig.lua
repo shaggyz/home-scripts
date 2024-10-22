@@ -171,24 +171,25 @@ dap.adapters.python = {
 
 local cwd = vim.fn.getcwd()
 
+local function resolvePythonBinary()
+    if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
+        return cwd .. '/venv/bin/python'
+    elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
+        return cwd .. '/.venv/bin/python'
+    elseif vim.fn.executable(cwd .. '/.venv/bin/python3') == 1 then
+        return cwd .. '/.venv/bin/python3'
+    else
+        return '/usr/bin/python3'
+    end
+end
+
 dap.configurations.python = {
     {
         type = 'python',
         request = 'launch',
         name = "Launch file",
         program = "${file}",
-        pythonPath = function()
-            local cwd = vim.fn.getcwd()
-            if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
-                return cwd .. '/venv/bin/python'
-            elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
-                return cwd .. '/.venv/bin/python'
-            elseif vim.fn.executable(cwd .. '/.venv/bin/python3') == 1 then
-                return cwd .. '/.venv/bin/python3'
-            else
-                return '/usr/bin/python3'
-            end
-        end,
+        pythonPath = resolvePythonBinary,
     },
     {
         type = 'python',
@@ -196,17 +197,15 @@ dap.configurations.python = {
         name = "Launch LDD application",
         program = cwd .. "/.venv/bin/fastapi",
         args = {'run', cwd .. '/link_direct_data/api/main.py'},
-        pythonPath = function()
-            if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
-                return cwd .. '/venv/bin/python'
-            elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
-                return cwd .. '/.venv/bin/python'
-            elseif vim.fn.executable(cwd .. '/.venv/bin/python3') == 1 then
-                return cwd .. '/.venv/bin/python3'
-            else
-                return '/usr/bin/python3'
-            end
-        end,
+        pythonPath = resolvePythonBinary,
+    },
+    {
+        type = 'python',
+        request = 'launch',
+        name = "Run pytest",
+        program = cwd .. "/.venv/bin/pytest",
+        args = {'-s', '-v',  cwd .. '/tests'},
+        pythonPath = resolvePythonBinary,
     },
 }
 
