@@ -25,10 +25,10 @@ require 'keybindings'
 -- require 'syntax.rosepine'
 
 -- ~/.config/nvim/lua/syntax/retrobox.lua
--- require 'syntax.retrobox'
+require 'syntax.retrobox'
 
 -- ~/.config/nvim/lua/syntax/roselight.lua
 -- require 'syntax.roselight'
 
 -- ~/.config/nvim/lua/syntax/gruvboxlight.lua
-require 'syntax.gruvboxlight'
+-- require 'syntax.gruvboxlight'

@@ -191,23 +191,31 @@ dap.configurations.python = {
         program = "${file}",
         pythonPath = resolvePythonBinary,
     },
+    -- {
+    --     type = 'python',
+    --     request = 'launch',
+    --     name = "Launch LDD application",
+    --     program = cwd .. "/.venv/bin/fastapi",
+    --     args = {'run', cwd .. '/link_direct_data/api/main.py'},
+    --     pythonPath = resolvePythonBinary,
+    -- },
     {
         type = 'python',
         request = 'launch',
-        name = "Launch LDD application",
-        program = cwd .. "/.venv/bin/fastapi",
-        args = {'run', cwd .. '/link_direct_data/api/main.py'},
-        pythonPath = resolvePythonBinary,
-    },
-    {
-        type = 'python',
-        request = 'launch',
-        name = "Run pytest",
+        name = "Run all pytests",
         program = cwd .. "/.venv/bin/pytest",
         args = {'-s', '-v',  cwd .. '/tests'},
         pythonPath = resolvePythonBinary,
     },
 }
+
+-- Automatically load launch.json DAP entries
+local launch_file = cwd .. "/launch.json"
+
+if vim.fn.filereadable(launch_file) == 1 then
+    require('dap.ext.vscode').load_launchjs(launch_file)
+    print("DAP: Loaded launch.json file")
+end
 
 -- FIXME: Unknown character error
 -- vim.fn.sign_define('DapBreakpoint', {text='', texthl='#de4948', linehl='', numhl=''})
@@ -261,7 +269,7 @@ vim.g.strip_whitespace_confirm = 0
 -- NeoWiki -----------------------------------------------------------------------------------------
 
 require("neowiki").setup({
-    debug = true,
+    debug = false,
     wiki_directory = "~/Nextcloud/Notes"
 })
 
@@ -276,4 +284,11 @@ require('uuid-nvim').setup{
 
 -- DotEnv -------------------------------------------- https://github.com/ellisonleao/dotenv.nvim --
 
-require('dotenv').setup()
+local env_file = cwd .. "/.env"
+
+if vim.fn.filereadable(env_file) == 1 then
+    require('dotenv').setup({
+        enable_on_load = true,
+        verbose = true,
+    })
+end
