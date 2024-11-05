@@ -19,7 +19,7 @@ if vim.g.neovide then require 'neovide' end
 -- ~/.config/nvim/lua/keybindings.lua - Custom keybindings
 require 'keybindings'
 
--- Syntax color configuration
+-- Syntax color configurations
 
 -- ~/.config/nvim/lua/syntax/rosepine.lua
 -- require 'syntax.rosepine'

@@ -3,8 +3,8 @@
 ----------------------------------------------------------------------------------------------------
 
 -- Main color scheme
--- vim.o.background = 'light'
-vim.o.background = 'dark'
+vim.cmd('set background=light')
+
 vim.cmd('colorscheme gruvbox-material')
 
 -- Available values: 'hard', 'medium'(default), 'soft'
