@@ -10,8 +10,11 @@
     "diagnostic.infoSign": "",
     "diagnostic.warningSign": "",
     "diagnostic.hintSign": "",
+    "html.format.wrapLineLength": 100,
     "Lua.workspace.library": [
         "/usr/local/share/nvim/runtime"
     ],
-    "html.format.wrapLineLength": 100
+    "Lua.diagnostics.globals": [
+        "vim"
+    ]
 }

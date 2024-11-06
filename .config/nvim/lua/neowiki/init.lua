@@ -2,16 +2,6 @@ local neowiki = {}
 
 -- Utility functions
 
--- Check if a table contains the given value
-local function table_has_value(table, target_value)
-    for index, value in ipairs(table) do
-        if value == target_value then
-            return true
-        end
-    end
-    return false
-end
-
 -- Check if a table contains the given regex value
 local function table_has_regex_value(table, target_regex)
     for _, value in ipairs(table) do
@@ -33,7 +23,6 @@ local function debug(message, level, context)
     end
 end
 
-
 -- Default configuration
 neowiki.config = {
     -- Enable debug flag
@@ -47,19 +36,19 @@ neowiki.config = {
 }
 
 -- Construct the full path to the file
-function get_date_file_path(year, month, date)
+local function get_date_file_path(year, month, date)
     local wiki_path = vim.fn.expand(neowiki.config.wiki_directory)
-    local full_path = string.format("%s/%s/%s/%s.md", wiki_path, year, month, date)
+    return string.format("%s/%s/%s/%s.md", wiki_path, year, month, date)
 end
 
 -- Construct the full path to the directory
-function get_date_dir_path(year, month)
+local function get_date_dir_path(year, month)
     local wiki_path = vim.fn.expand(neowiki.config.wiki_directory)
-    local dir_path = string.format("%s/%s/%s", wiki_path, year, month)
+    return string.format("%s/%s/%s", wiki_path, year, month)
 end
 
 -- Returns the date, month and year values for yesterday
-function get_yesterday_date()
+local function get_yesterday_date()
     local timestamp = os.time() - 24 * 60 * 60
     local date = os.date("%Y-%m-%d", timestamp)
     local month = os.date("%m", timestamp)
@@ -68,11 +57,11 @@ function get_yesterday_date()
 end
 
 -- Returns the default template contents
-function get_default_template(date)
+local function get_default_template(date)
     return string.format("# TODO %s\n\n- [ ] Task", date)
 end
 
-function reuse_yesterday_template()
+local function reuse_yesterday_template()
     debug("The reuse-previous-day feature is not implemented", "warning")
     local date, month, year = get_yesterday_date()
     local yd_file_path = get_date_file_path(year, month, date)
@@ -109,10 +98,11 @@ local function get_or_create_daily_todo_file(date, month, year)
             return
         end
 
+        local template = ""
         if neowiki.config.reuse_previous_day then
-            local template = reuse_yesterday_template()
+            template = reuse_yesterday_template()
         else
-            local template = get_default_template(date)
+            template = get_default_template(date)
         end
 
         file:write(template)
@@ -310,8 +300,32 @@ function neowiki.open_current_month()
     local year = os.date("%Y")
     local wiki_path = vim.fn.expand(neowiki.config.wiki_directory)
     local full_path = string.format("%s/%s/%s/", wiki_path, year, month)
-    print("Current month folder: " .. full_path)
+    debug("Current month folder: " .. full_path, "info")
     vim.cmd('edit ' .. full_path)
+end
+
+-- Toggles checkboxes
+function neowiki.toggle_checkbox()
+    -- patterns (% symbol is regex escape in lua)
+    local unchecked = '%- %[ %]'
+    local checked = '%- %[x%]'
+    local list = '%- '
+
+    local current_line = vim.api.nvim_get_current_line()
+    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+    local new_line = ""
+
+    if current_line:find(unchecked) then
+        new_line = string.gsub(current_line, unchecked, checked, 1)
+    elseif current_line:find(checked) then
+        new_line = string.gsub(current_line, checked, unchecked, 1)
+    elseif current_line:find(list) then
+        new_line = string.gsub(current_line, list, unchecked .. " ", 1)
+    else
+        new_line = "- " .. current_line
+    end
+
+    vim.api.nvim_buf_set_lines(0, row - 1, row, true, { new_line })
 end
 
 -- Main plugin setup
@@ -339,6 +353,7 @@ function neowiki.setup(user_config)
     vim.api.nvim_create_user_command("WikiCurrentMonth", neowiki.open_current_month, {})
     vim.api.nvim_create_user_command("WikiCreateIndex", neowiki.create_index, {})
     vim.api.nvim_create_user_command("WikiFollowLink", neowiki.follow_link, {})
+    vim.api.nvim_create_user_command("WikiToggleCheckBox", neowiki.toggle_checkbox, {})
 
     -- Map <CR> in Insert mode
     -- vim.api.nvim_set_keymap('i', '<CR>', 'v:lua.neowiki.handle_markdown_list()', { expr = true, noremap = true })
@@ -359,6 +374,6 @@ end
 -- 3. [X] Handle internal section links
 -- 4. [ ] Auto create list points
 -- 5. [ ] Add checklist
--- 6. [ ] Toggle checklist
+-- 6. [x] Toggle checklist
 
 return neowiki
