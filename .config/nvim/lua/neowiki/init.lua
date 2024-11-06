@@ -41,34 +41,80 @@ neowiki.config = {
     -- Main directory to store the wiki/markdown files
     wiki_directory = "~/Notes",
     -- Auto-create the main wiki directory if it's missing
-    auto_create_wiki_directory = true
+    auto_create_wiki_directory = true,
+    -- Reuse the previous day contents as template in the new created daily entries
+    reuse_previous_day = true,
 }
+
+-- Construct the full path to the file
+function get_date_file_path(year, month, date)
+    local wiki_path = vim.fn.expand(neowiki.config.wiki_directory)
+    local full_path = string.format("%s/%s/%s/%s.md", wiki_path, year, month, date)
+end
+
+-- Construct the full path to the directory
+function get_date_dir_path(year, month)
+    local wiki_path = vim.fn.expand(neowiki.config.wiki_directory)
+    local dir_path = string.format("%s/%s/%s", wiki_path, year, month)
+end
+
+-- Returns the date, month and year values for yesterday
+function get_yesterday_date()
+    local timestamp = os.time() - 24 * 60 * 60
+    local date = os.date("%Y-%m-%d", timestamp)
+    local month = os.date("%m", timestamp)
+    local year = os.date("%Y", timestamp)
+    return date, month, year
+end
+
+-- Returns the default template contents
+function get_default_template(date)
+    return string.format("# TODO %s\n\n- [ ] Task", date)
+end
+
+function reuse_yesterday_template()
+    debug("The reuse-previous-day feature is not implemented", "warning")
+    local date, month, year = get_yesterday_date()
+    local yd_file_path = get_date_file_path(year, month, date)
+    local yd_file = io.open(yd_file_path, "r")
+
+    if yd_file == nil then
+        debug(string.format("The previous file is missing: %s", yd_file_path), "warning")
+        return get_default_template()
+    end
+
+    -- tmp: until implementation
+    return get_default_template()
+end
 
 -- Creates and opens the daily TODO file
 local function get_or_create_daily_todo_file(date, month, year)
     local vim = vim
-    local wiki_path = vim.fn.expand(neowiki.config.wiki_directory)
 
     -- Construct the full path to the file
-    local full_path = string.format("%s/%s/%s/%s.md", wiki_path, year, month, date)
+    local full_path = get_date_file_path(year, month, date)
 
     -- Check and create the directory structure if it doesn't exist
-    local dir_path = string.format("%s/%s/%s", wiki_path, year, month)
-
+    local dir_path = get_date_dir_path(year, month)
     if vim.fn.isdirectory(dir_path) == 0 then
         vim.fn.mkdir(dir_path, "p")
     end
 
     -- Check if the file exists before opening
     if vim.fn.filereadable(full_path) == 0 then
-        -- File does not exist, create it and add the template
         local file = io.open(full_path, "w")
+
         if file == nil then
             debug("The file " .. full_path .. " cannot be created", "error")
             return
         end
 
-        local template = string.format("# TODO %s\n\n- [ ] Task", date)
+        if neowiki.config.reuse_previous_day then
+            local template = reuse_yesterday_template()
+        else
+            local template = get_default_template(date)
+        end
+
         file:write(template)
         file:close()
     end
@@ -87,10 +133,11 @@ end
 
 -- Creates and opens the daily TODO file for yesterday
 function neowiki.open_yesterday()
-    local timestamp = os.time() - 24 * 60 * 60
-    local date = os.date("%Y-%m-%d", timestamp)
-    local month = os.date("%m", timestamp)
-    local year = os.date("%Y", timestamp)
+    -- local timestamp = os.time() - 24 * 60 * 60
+    -- local date = os.date("%Y-%m-%d", timestamp)
+    -- local month = os.date("%m", timestamp)
+    -- local year = os.date("%Y", timestamp)
+    local date, month, year = get_yesterday_date()
     get_or_create_daily_todo_file(date, month, year)
 end
 
