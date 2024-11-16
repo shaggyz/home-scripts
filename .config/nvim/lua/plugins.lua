@@ -49,6 +49,10 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'nvim-neotest/nvim-nio'
 -- Load .env variables in nvim session
 Plug 'ellisonleao/dotenv.nvim'
+-- Edge light theme
+Plug 'sainnhe/edge'
+-- Change light / dark mode based on the system
+-- Plug 'vimpostor/vim-lumen'
 
 -- Playground for treesitter
 -- Plug 'nvim-treesitter/playground'

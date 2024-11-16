@@ -55,12 +55,12 @@ require("nvim-tree").setup({
         width = 30,
     },
     update_focused_file = {
-      enable = true,
-      update_root = {
         enable = false,
-        ignore_list = {},
-      },
-      exclude = false,
+        update_root = {
+            enable = false,
+            ignore_list = {},
+        },
+        exclude = false,
     },
     modified = {
         enable = true,
@@ -204,7 +204,7 @@ dap.configurations.python = {
         request = 'launch',
         name = "Run all pytests",
         program = cwd .. "/.venv/bin/pytest",
-        args = {'-s', '-v',  cwd .. '/tests'},
+        args = { '-s', '-v', cwd .. '/tests' },
         pythonPath = resolvePythonBinary,
     },
 }
@@ -229,16 +229,16 @@ local dapui = require("dapui")
 dapui.setup()
 
 dap.listeners.before.attach.dapui_config = function()
-  dapui.open()
+    dapui.open()
 end
 dap.listeners.before.launch.dapui_config = function()
-  dapui.open()
+    dapui.open()
 end
 dap.listeners.before.event_terminated.dapui_config = function()
-  dapui.close()
+    dapui.close()
 end
 dap.listeners.before.event_exited.dapui_config = function()
-  dapui.close()
+    dapui.close()
 end
 
 
@@ -258,7 +258,6 @@ function _G.check_back_space()
     return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
 end
 
-
 -- Better Whitespace -------------------------- https://github.com/ntpeters/vim-better-whitespace --
 
 vim.g.better_whitespace_enabled = 1
@@ -277,9 +276,9 @@ require("neowiki").setup({
 
 -- UUID generator ------------------------------------------ https://github.com/TrevorS/uuid-nvim --
 
-require('uuid-nvim').setup{
-  case = 'lower',
-  quotes = 'double',
+require('uuid-nvim').setup {
+    case = 'lower',
+    quotes = 'double',
 }
 
 
