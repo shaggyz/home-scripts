@@ -53,6 +53,7 @@ Plug 'ellisonleao/dotenv.nvim'
 Plug 'sainnhe/edge'
 -- Change light / dark mode based on the system
 -- Plug 'vimpostor/vim-lumen'
+Plug 'glench/vim-jinja2-syntax'
 
 -- Playground for treesitter
 -- Plug 'nvim-treesitter/playground'
