@@ -56,24 +56,34 @@ local function get_yesterday_date()
     return date, month, year
 end
 
+-- Returns the date, month and year values for yesterday
+local function get_tomorrow_date()
+    local timestamp = os.time() + 24 * 60 * 60
+    local date = os.date("%Y-%m-%d", timestamp)
+    local month = os.date("%m", timestamp)
+    local year = os.date("%Y", timestamp)
+    return date, month, year
+end
+
 -- Returns the default template contents
 local function get_default_template(date)
     return string.format("# TODO %s\n\n- [ ] Task", date)
 end
 
-local function reuse_yesterday_template()
+local function reuse_yesterday_template(current_date)
     debug("The reuse-previous-day feature is not implemented", "warning")
-    local date, month, year = get_yesterday_date()
-    local yd_file_path = get_date_file_path(year, month, date)
+    -- TODO: we have to re-use TODAY file
+    local yd_date, month, year = get_yesterday_date()
+    local yd_file_path = get_date_file_path(year, month, yd_date)
     local yd_file = io.open(yd_file_path, "r")
 
     if yd_file == nil then
         debug(string.format("The previous file is missing: %s", yd_file_path), "warning")
-        return get_default_template()
+        return get_default_template(current_date)
     end
 
     -- tmp: until implementation
-    return get_default_template()
+    return get_default_template(current_date)
 end
 
 -- Creates and opens the daily TODO file
@@ -100,7 +110,7 @@ local function get_or_create_daily_todo_file(date, month, year)
 
         local template = ""
         if neowiki.config.reuse_previous_day then
-            template = reuse_yesterday_template()
+            template = reuse_yesterday_template(date)
         else
             template = get_default_template(date)
         end
@@ -123,20 +133,13 @@ end
 
 -- Creates and opens the daily TODO file for yesterday
 function neowiki.open_yesterday()
-    -- local timestamp = os.time() - 24 * 60 * 60
-    -- local date = os.date("%Y-%m-%d", timestamp)
-    -- local month = os.date("%m", timestamp)
-    -- local year = os.date("%Y", timestamp)
     local date, month, year = get_yesterday_date()
     get_or_create_daily_todo_file(date, month, year)
 end
 
 -- Creates and opens the daily TODO file for tomorrow
 function neowiki.open_tomorrow()
-    local timestamp = os.time() + 24 * 60 * 60
-    local date = os.date("%Y-%m-%d", timestamp)
-    local month = os.date("%m", timestamp)
-    local year = os.date("%Y", timestamp)
+    local date, month, year = get_tomorrow_date()
     get_or_create_daily_todo_file(date, month, year)
 end
 

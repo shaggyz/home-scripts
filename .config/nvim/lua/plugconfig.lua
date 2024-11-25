@@ -267,6 +267,8 @@ vim.g.strip_whitespace_confirm = 0
 
 -- NeoWiki -----------------------------------------------------------------------------------------
 
+-- files at: ~/.config/nvim/lua/neowiki/init.lua
+
 require("neowiki").setup({
     debug = false,
     wiki_directory = "~/Nextcloud/Notes",

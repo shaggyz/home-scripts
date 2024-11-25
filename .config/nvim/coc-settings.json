@@ -16,5 +16,8 @@
     ],
     "Lua.diagnostics.globals": [
         "vim"
-    ]
+    ],
+    "[html]": {
+        "coc.preferences.formatOnSave": false
+    }
 }
