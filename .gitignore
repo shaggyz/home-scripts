@@ -54,3 +54,4 @@
 !.config/nvim/lua/syntax/roselight.lua
 !.config/nvim/lua/syntax/rosepine.lua
 !.config/nvim/lua/syntax/edge.lua
+!.config/nvim/lua/syntax/edgelight.lua

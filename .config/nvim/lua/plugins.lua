@@ -51,9 +51,10 @@ Plug 'nvim-neotest/nvim-nio'
 Plug 'ellisonleao/dotenv.nvim'
 -- Edge light theme
 Plug 'sainnhe/edge'
--- Change light / dark mode based on the system
--- Plug 'vimpostor/vim-lumen'
+-- Jinja2 syntax
 Plug 'glench/vim-jinja2-syntax'
+-- GraphQL syntax
+Plug 'jparise/vim-graphql'
 
 -- Playground for treesitter
 -- Plug 'nvim-treesitter/playground'

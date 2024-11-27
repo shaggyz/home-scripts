@@ -35,3 +35,6 @@ require 'keybindings'
 
 -- ~/.config/nvim/lua/syntax/edge.lua
 require 'syntax.edge'
+
+-- ~/.config/nvim/lua/syntax/edgelight.lua
+-- require 'syntax.edgelight'
