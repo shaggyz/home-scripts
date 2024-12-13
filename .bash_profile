@@ -39,7 +39,7 @@ export PATH="~/.local/bin:$PATH"
 # Only macOS
 if [ `uname` == "Darwin" ]; then
     export HB="/opt/homebrew"
-    export PATH="$HB/bin:$HB/opt/util-linux/bin:$HB/opt/make/libexec/gnubin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HB/opt/openjdk@11/bin:$HB/opt/curl/bin:$PATH"
+    export PATH="$HB/bin:$HB/opt/postgresql@16/bin:$HB/opt/util-linux/bin:$HB/opt/make/libexec/gnubin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HB/opt/openjdk@11/bin:$HB/opt/curl/bin:$PATH"
 
     # Fuck apple using zsh as default
     export BASH_SILENCE_DEPRECATION_WARNING=1

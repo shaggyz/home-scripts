@@ -210,12 +210,19 @@ dap.configurations.python = {
 }
 
 -- Automatically load launch.json DAP entries
-local launch_file = cwd .. "/launch.json"
-
-if vim.fn.filereadable(launch_file) == 1 then
-    require('dap.ext.vscode').load_launchjs(launch_file)
-    print("DAP: Loaded launch.json file")
+local function loadLaunchFile()
+    local launch_file = cwd .. "/launch.json"
+    if vim.fn.filereadable(launch_file) == 1 then
+        require('dap.ext.vscode').load_launchjs(launch_file)
+        print("DAP: Loaded launch.json file")
+    end
 end
+
+vim.api.nvim_create_user_command('DapLoadLaunchJSON', function()
+    loadLaunchFile()
+end, { nargs = '?', complete = "file" })
+
+loadLaunchFile()
 
 -- FIXME: Unknown character error
 -- vim.fn.sign_define('DapBreakpoint', {text='', texthl='#de4948', linehl='', numhl=''})
