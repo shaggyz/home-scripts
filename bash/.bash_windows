@@ -1,4 +1,0 @@
-# Config only for windows (WSL)
-
-
-export PATH="/home/shaggyz/.local/pipx/venvs/poetry/bin:$PATH"
