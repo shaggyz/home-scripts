@@ -9,7 +9,7 @@ The program [GNU/Stow](https://www.gnu.org/software/stow/) is used to synchronis
 
 Also, `GNU make` is an optional dependency just for convenience.
 
-```sh
+```bash
 # Install stow in Debian
 sudo apt install stow
 
@@ -22,7 +22,7 @@ brew install stow
 
 The `stow` usage is quite simple, but here are the most used commands:
 
-```sh
+```bash
 # Synchronizes a single "package"
 stow -t $HOME -v bash
 
