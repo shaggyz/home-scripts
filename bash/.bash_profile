@@ -76,4 +76,6 @@ if [ `uname` == "Darwin" ]; then
             done
         fi
     fi
+
+    [[ -r "$HB/etc/profile.d/bash_completion.sh" ]] && . "$HB/etc/profile.d/bash_completion.sh"
 fi
