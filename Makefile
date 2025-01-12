@@ -21,8 +21,6 @@ development: unix ## Links development-related dotfiles
 
 linux: unix ## Links dotfiles only related to GNU/Linux
 	$(STOW) dunst
-	$(STOW) gtk2
-	$(STOW) gtk3
 	$(STOW) i3
 	$(STOW) i3blocks
 	$(STOW) mycli
