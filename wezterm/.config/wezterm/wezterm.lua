@@ -88,8 +88,9 @@ config.keys = {
 config.use_fancy_tab_bar = true
 
 -- Tab bar settings
+
 config.window_frame = {
-    font_size = 13.5,
+    font_size = (is_darwin and 13.5 or 12),
 }
 
 -- Debug key events
