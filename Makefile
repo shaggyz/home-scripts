@@ -34,5 +34,5 @@ linux: unix ## Links dotfiles only related to GNU/Linux
 macos: unix ## Links macOS dotfiles
 	echo "No dotfiles yet!"
 
-windows: ## Some WSL dotfiles
+windows: unix  ## Some WSL dotfiles
 	$(STOW) bash-wsl
