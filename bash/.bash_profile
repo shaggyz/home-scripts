@@ -79,3 +79,6 @@ if [ `uname` == "Darwin" ]; then
 
     [[ -r "$HB/etc/profile.d/bash_completion.sh" ]] && . "$HB/etc/profile.d/bash_completion.sh"
 fi
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/shaggyz/.cache/lm-studio/bin"

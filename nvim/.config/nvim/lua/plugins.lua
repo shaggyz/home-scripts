@@ -51,6 +51,8 @@ Plug 'nvim-neotest/nvim-nio'
 Plug 'ellisonleao/dotenv.nvim'
 -- Edge light theme
 Plug 'sainnhe/edge'
+-- Nightfox theme
+Plug 'EdenEast/nightfox.nvim'
 -- Jinja2 syntax
 Plug 'glench/vim-jinja2-syntax'
 -- GraphQL syntax
