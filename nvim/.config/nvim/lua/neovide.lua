@@ -40,4 +40,4 @@ vim.g.neovide_cursor_trail_size = 0.1
 -- Scrolling animation time
 vim.g.neovide_scroll_animation_length = 0.1
 -- Disable transparency
-vim.g.neovide_transparency = 1
+vim.g.neovide_opacity = 1
