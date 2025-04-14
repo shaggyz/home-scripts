@@ -105,6 +105,7 @@ config.debug_key_events = false
 
 -- Color scheme
 local color_scheme = 'Railscasts (base16)'
+-- local color_scheme = 'Everblush'
 
 -- Current color scheme customization
 local color_definition = wezterm.color.get_builtin_schemes()[color_scheme]
