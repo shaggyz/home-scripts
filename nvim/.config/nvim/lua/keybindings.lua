@@ -96,9 +96,9 @@ vim.keymap.set('n', '<leader>fq', builtin.quickfix, {})
 vim.keymap.set('n', '<leader>fr', builtin.resume, {})
 vim.keymap.set('n', '<leader>fk', builtin.keymaps, {})
 vim.keymap.set('n', '<leader>fc', builtin.colorscheme, {})
-
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-vim.keymap.set('n', '<leader>fs', builtin.treesitter, {})
+
+vim.keymap.set('n', '<leader>fs', 'Telescope coc workspace-symbols', {})
 
 vim.keymap.set('n', '<leader>fb', builtin.git_branches, {})
 vim.keymap.set('n', '<leader>gs', builtin.git_status, {})
@@ -131,7 +131,8 @@ vim.keymap.set('n', '<leader>ws',
 -- Nvim Tree ---------------------------------------------------------------------------------------
 
 -- NvimTree mappings
-vim.keymap.set('n', '<leader>v', "<cmd>NvimTreeToggle<CR>", { silent = true, noremap = true })
+vim.keymap.set('n', '<leader>vv', "<cmd>NvimTreeToggle<CR>", { silent = true, noremap = true })
+vim.keymap.set('n', '<leader>vf', "<cmd>NvimTreeFindFile<CR>", { silent = true, noremap = true })
 -- Find file in NvimTree using a Lua function (does not work)
 -- vim.keymap.set('n', '<leader>r', require('nvim-tree.api').tree.find_file, {
 --     noremap = true,

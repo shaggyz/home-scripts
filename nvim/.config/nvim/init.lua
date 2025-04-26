@@ -25,7 +25,7 @@ require 'keybindings'
 -- require 'syntax.rosepine'
 
 -- ~/.config/nvim/lua/syntax/retrobox.lua
--- require 'syntax.retrobox'
+require 'syntax.retrobox'
 
 -- ~/.config/nvim/lua/syntax/roselight.lua
 -- require 'syntax.roselight'
@@ -40,4 +40,4 @@ require 'keybindings'
 -- require 'syntax.edgelight'
 
 -- ~/.config/nvim/lua/syntax/nightfox.lua
-require 'syntax.nightfox'
+-- require 'syntax.nightfox'

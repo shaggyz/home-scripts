@@ -57,6 +57,9 @@ Plug 'EdenEast/nightfox.nvim'
 Plug 'glench/vim-jinja2-syntax'
 -- GraphQL syntax
 Plug 'jparise/vim-graphql'
+-- Telescope + COC
+Plug 'fannheyward/telescope-coc.nvim'
+
 
 -- Playground for treesitter
 -- Plug 'nvim-treesitter/playground'

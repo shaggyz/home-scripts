@@ -5,6 +5,7 @@
     "python.linting.mypyEnabled": true,
     "python.formatting.provider": "ruff",
     "python.linting.mypyPath": "./.venv/bin/mypy",
+    "python.formatting.ruffPath": "~/.local/bin/ruff",
     "coc.preferences.formatOnSave": true,
     "diagnostic.errorSign": "",
     "diagnostic.infoSign": "",
