@@ -25,8 +25,9 @@ alias dps='docker ps'
 # Vim
 alias vim='nvim'
 
-# Temporal vim alias to tes the new settings
-alias tvim='nvim -u ~/Development/tools/new-vim-config/init.lua'
+# Temporal vim alias to test the new settings
+# link the testing settings directory to ~/.config/tvim
+alias tvim='NVIM_APPNAME=tvim nvim'
 
 # Only GNU/linux
 if [ `uname` == "Linux" ]; then
