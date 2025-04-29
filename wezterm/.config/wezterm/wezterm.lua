@@ -33,7 +33,7 @@ config.keys = {
     { key = '9',     mods = key_mod,                       action = act.ActivateTab(8) },
     { key = '0',     mods = key_mod,                       action = act.ResetFontSize },
     { key = 'v',     mods = key_special .. '|' .. key_mod, action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
-    { key = 'h',     mods = key_special .. '|' .. key_mod, action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
+    { key = 'c',     mods = key_special .. '|' .. key_mod, action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
     { key = 'w',     mods = key_mod,                       action = act.CloseCurrentTab { confirm = true } },
     { key = 't',     mods = key_mod,                       action = act.SpawnTab "CurrentPaneDomain" },
     { key = '-',     mods = key_mod,                       action = act.DecreaseFontSize },
