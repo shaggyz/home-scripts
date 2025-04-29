@@ -34,10 +34,15 @@ vim.keymap.set({ "n", "v" }, "<C-->", ":lua vim.g.neovide_scale_factor = vim.g.n
 vim.keymap.set({ "n", "v" }, "<C-0>", ":lua vim.g.neovide_scale_factor = 1<CR>")
 
 -- Additional cursor particle effect
-vim.g.neovide_cursor_vfx_mode = "sonicboom"
+vim.g.neovide_cursor_vfx_mode = ""
 -- Cursor animation time
-vim.g.neovide_cursor_trail_size = 0.1
+vim.g.neovide_cursor_trail_size = 0.05
 -- Scrolling animation time
 vim.g.neovide_scroll_animation_length = 0.1
 -- Disable transparency
 vim.g.neovide_opacity = 1
+-- Enable smooth blink cursor
+vim.g.neovide_cursor_smooth_blink = true
+-- Short animation for cursor
+vim.g.neovide_cursor_short_animation_length = 0.03
+
