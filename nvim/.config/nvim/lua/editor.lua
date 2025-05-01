@@ -36,5 +36,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
     end
 })
 
+vim.cmd('set encoding=utf-8')
+vim.cmd('set fileencoding=utf-8')
 vim.cmd('filetype plugin indent on')
 vim.cmd('syntax on')

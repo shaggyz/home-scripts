@@ -194,9 +194,9 @@ dap.configurations.python = {
     -- {
     --     type = 'python',
     --     request = 'launch',
-    --     name = "Launch LDD application",
+    --     name = "Launch FastAPI application",
     --     program = cwd .. "/.venv/bin/fastapi",
-    --     args = {'run', cwd .. '/link_direct_data/api/main.py'},
+    --     args = {'run', cwd .. '/my_app/api/main.py'},
     --     pythonPath = resolvePythonBinary,
     -- },
     {

@@ -3,9 +3,9 @@
 --------------------------------------------------------------------------------
 
 -- Main color scheme
-vim.o.background = 'light'
+vim.o.background = 'dark'
 -- vim.o.background = 'light'
-vim.cmd('colorscheme dayfox')
+vim.cmd('colorscheme nightfox')
 
 -- Custom Colors
 -- local Grey = '#908caa'
