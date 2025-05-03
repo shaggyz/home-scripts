@@ -34,10 +34,10 @@ require 'keybindings'
 -- require 'syntax.gruvboxlight'
 
 -- ~/.config/nvim/lua/syntax/edge.lua
--- require 'syntax.edge'
+require 'syntax.edge'
 
 -- ~/.config/nvim/lua/syntax/edgelight.lua
 -- require 'syntax.edgelight'
 
 -- ~/.config/nvim/lua/syntax/nightfox.lua
-require 'syntax.nightfox'
+-- require 'syntax.nightfox'
