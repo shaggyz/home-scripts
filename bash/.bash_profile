@@ -45,8 +45,16 @@ if [ `uname` == "Darwin" ]; then
     export BASH_SILENCE_DEPRECATION_WARNING=1
 
     # Change the horrible name my company put to the work laptop
+    REGISTERED_NAMES=("foxy" "apollo")
     MACHINE_NAME=$(hostname | cut -d'.' -f1 | tr '[:upper:]' '[:lower:]')
-    [[ "$MACHINE_NAME" == "foxy" ]] || MACHINE_NAME="osiris"
+
+    case " ${REGISTERED_NAMES[*]} " in
+      *" $MACHINE_NAME "*)
+        ;;
+      *)
+        MACHINE_NAME="osiris"
+        ;;
+    esac
 
     # nodejs installed with brew (not automatic linking for this package)
     export PATH="$HB/opt/node@18/bin:$PATH"
