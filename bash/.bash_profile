@@ -61,6 +61,11 @@ if [ `uname` == "Darwin" ]; then
     export LDFLAGS="-L$HB/opt/node@18/lib"
     export CPPFLAGS="-I$HB/opt/node@18/include"
 
+    # Generic paths for versioned packages
+    NODE_BIN=$(brew --prefix node)/bin
+    PYTHON_BIN=$(brew --prefix python)/libexec/bin
+    export PATH="$PATH:$PYTHON_BIN:$NODE_BIN"
+
     # Wezterm
     export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
 

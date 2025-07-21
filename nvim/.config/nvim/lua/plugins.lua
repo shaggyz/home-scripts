@@ -6,8 +6,6 @@ local Plug = vim.fn['plug#']
 
 vim.cmd('call plug#begin()')
 
--- Rose-pine color scheme
-Plug 'rose-pine/neovim'
 -- CoC for neovim
 Plug('neoclide/coc.nvim', { branch = 'release' })
 -- Icons
@@ -28,8 +26,6 @@ Plug 'nvim-tree/nvim-tree.lua'
 Plug 'tpope/vim-fugitive'
 -- Adds additional highlight groups, used for syntax highlighting
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
--- Kotlin syntax highlight
-Plug 'udalov/kotlin-vim'
 -- Lualine
 Plug 'nvim-lualine/lualine.nvim'
 -- Improved diff tool
@@ -37,28 +33,23 @@ Plug 'sindrets/diffview.nvim'
 -- Telescope
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
--- Markdown viewer
-Plug 'MeanderingProgrammer/markdown.nvim'
 -- UUID generator
 Plug 'TrevorS/uuid-nvim'
 -- Bind named syntax
 Plug 'egberts/vim-syntax-bind-named'
--- Used in the light theme
-Plug 'sainnhe/gruvbox-material'
 -- IO library for asynchronous Lua
 Plug 'nvim-neotest/nvim-nio'
 -- Load .env variables in nvim session
 Plug 'ellisonleao/dotenv.nvim'
--- Edge light theme
-Plug 'sainnhe/edge'
--- Nightfox theme
-Plug 'EdenEast/nightfox.nvim'
 -- Jinja2 syntax
 Plug 'glench/vim-jinja2-syntax'
 -- GraphQL syntax
 Plug 'jparise/vim-graphql'
 -- Telescope + COC
 Plug 'fannheyward/telescope-coc.nvim'
+
+-- Editor themes
+Plug 'sainnhe/edge'
 
 
 -- Playground for treesitter

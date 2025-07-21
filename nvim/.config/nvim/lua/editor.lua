@@ -8,7 +8,7 @@ vim.opt.softtabstop = 4
 
 vim.opt.cursorline = true
 vim.opt.number = true
-vim.opt.conceallevel = 2
+vim.opt.conceallevel = 1
 vim.opt.cc = '100'
 vim.opt.termguicolors = true
 vim.opt.signcolumn = 'yes'

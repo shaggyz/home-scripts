@@ -11,7 +11,7 @@ srgb = false
 # With idle enabled, neovide won't render new frames when nothing is happening
 idle = false
 # nvim binary
-neovim-bin = "/usr/local/bin/nvim"
+neovim-bin = "/opt/homebrew/bin/nvim"
 # Configure the window manager frame
 frame = "full"
 # This hides the title in macOS
