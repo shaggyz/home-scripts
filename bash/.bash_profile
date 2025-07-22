@@ -69,6 +69,9 @@ if [ `uname` == "Darwin" ]; then
     # Wezterm
     export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
 
+    # Mysql
+    export PATH="$PATH:$HB/opt/mysql-client/bin"
+
     # Set the PS1 for macOS
     export PS1='\[\033[01;32m\]\u@$MACHINE_NAME:\[\033[01;34m\]\W\[\033[01;33m\]$(parse_git_branch)\[\033[0m\]\$ '
 
