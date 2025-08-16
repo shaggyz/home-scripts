@@ -78,6 +78,14 @@ if [ `uname` == "Darwin" ]; then
     # rust
     [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
+    # Added by LM Studio CLI (lms)
+    export PATH="$PATH:/Users/shaggyz/.cache/lm-studio/bin"
+    export PATH="$PATH:/Users/shaggyz/.lmstudio/bin"
+    # End of LM Studio CLI section
+
+    # Brew man pages
+    export MANPATH=/opt/homebrew/share/man
+
     # Homebrew
     export HOMEBREW_NO_ENV_HINTS=1
     if type brew &>/dev/null
@@ -94,7 +102,7 @@ if [ `uname` == "Darwin" ]; then
     fi
 
     [[ -r "$HB/etc/profile.d/bash_completion.sh" ]] && . "$HB/etc/profile.d/bash_completion.sh"
+
 fi
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/shaggyz/.cache/lm-studio/bin"
+
