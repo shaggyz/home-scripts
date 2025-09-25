@@ -30,6 +30,9 @@ man() {
 # Bash aliases
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 
+# Bash tools
+[ -f ~/.bash_tools ] && source ~/.bash_tools
+
 # Poetry
 export PATH="~/.local/bin:$PATH"
 
