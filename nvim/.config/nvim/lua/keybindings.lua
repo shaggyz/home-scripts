@@ -116,12 +116,14 @@ vim.keymap.set('n', '<leader>ss',
 
 
 -- Find in wiki content
--- For some reason live_grep is not working
 vim.keymap.set('n', '<leader>ws',
     function()
         builtin.live_grep({
-            cwd = "~/Nextcloud/VimWiki/personal",
-            type_filter = "markdown"
+            -- Expand the tilde to the full home path
+            cwd = vim.fn.expand("~/Nextcloud/VimWiki/personal"),
+            additional_args = function(_)
+                return { "--glob", "*.md" }
+            end,
         })
     end,
     { silent = true, noremap = true }
@@ -133,12 +135,13 @@ vim.keymap.set('n', '<leader>ws',
 -- NvimTree mappings
 vim.keymap.set('n', '<leader>vv', "<cmd>NvimTreeToggle<CR>", { silent = true, noremap = true })
 vim.keymap.set('n', '<leader>vf', "<cmd>NvimTreeFindFile<CR>", { silent = true, noremap = true })
--- Find file in NvimTree using a Lua function (does not work)
--- vim.keymap.set('n', '<leader>r', require('nvim-tree.api').tree.find_file, {
---     noremap = true,
---     silent = true
--- })
 
+-- Find current file in NvimTree
+vim.keymap.set('n', '<leader>r', function()
+    local api = require('nvim-tree.api')
+    -- This will open the tree if it's closed and focus the current file
+    api.tree.find_file({ open = true, focus = true })
+end, { desc = "NvimTree: Find current file", silent = true, noremap = true })
 
 -- DAP ---------------------------------------------------------------------------------------------
 

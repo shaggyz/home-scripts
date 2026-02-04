@@ -43,21 +43,15 @@ Plug 'nvim-neotest/nvim-nio'
 Plug 'ellisonleao/dotenv.nvim'
 -- Jinja2 syntax
 Plug 'glench/vim-jinja2-syntax'
--- GraphQL syntax
-Plug 'jparise/vim-graphql'
 -- Telescope + COC
 Plug 'fannheyward/telescope-coc.nvim'
 
 -- Editor themes
 Plug 'sainnhe/edge'
 
-
--- Playground for treesitter
--- Plug 'nvim-treesitter/playground'
-
 -- Python debugger
-Plug 'mfussenegger/nvim-dap'
-Plug 'mfussenegger/nvim-dap-python'
-Plug 'rcarriga/nvim-dap-ui'
+-- Plug 'mfussenegger/nvim-dap'
+-- Plug 'mfussenegger/nvim-dap-python'
+-- Plug 'rcarriga/nvim-dap-ui'
 
 vim.cmd('call plug#end()')
