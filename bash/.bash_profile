@@ -39,6 +39,23 @@ export PATH="~/.local/bin:$PATH"
 # WSL
 [ -f ~/.bash_windows ] && source ~/.bash_windows
 
+# Define the "Safe Clear" logic
+# We use $'\n' and $'\e' to ensure Bash handles them as control codes
+safe_clear() {
+    local lines=$(tput lines)
+    # Print newlines to push content into scrollback
+    for i in $(seq 1 $lines); do echo ""; done
+    # Clear the viewport and home the cursor
+    printf "\e[H\e[2J"
+}
+
+# Alias the command
+alias clear='safe_clear'
+
+# Bind CTRL-L to the function
+bind -x '"\C-l": safe_clear'
+
+
 # Only macOS
 if [ `uname` == "Darwin" ]; then
     export HB="/opt/homebrew"

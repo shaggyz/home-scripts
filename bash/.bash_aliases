@@ -25,10 +25,6 @@ alias dps='docker ps'
 # Vim
 alias vim='nvim'
 
-# Temporal vim alias to test the new settings
-# link the testing settings directory to ~/.config/tvim
-alias tvim='nvim --cmd "set rtp^=/home/shaggyz/Development/tools/new-vim-config" -u /home/shaggyz/Development/tools/new-vim-config/init.lua'
-
 # Only GNU/linux
 if [ `uname` == "Linux" ]; then
     alias ls='ls --color=auto'
