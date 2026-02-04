@@ -1,4 +1,5 @@
 {
+    "semanticTokens.enable": false,
     "inlayHint.enable": false,
     "pyright.inlayHints.parameterTypes": false,
     "pyright.inlayHints.variableTypes": false,
