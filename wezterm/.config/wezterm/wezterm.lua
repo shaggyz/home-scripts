@@ -1,6 +1,7 @@
 -- Pull in the wezterm API
 local wezterm = require 'wezterm'
 local act = wezterm.action
+local mux = wezterm.mux
 
 -- This will hold the configuration.
 local config = wezterm.config_builder()
@@ -19,6 +20,61 @@ if is_linux then
     key_mod = 'ALT'
     key_special = 'CTRL'
 end
+
+-- ------------- Workspaces settings ---------------
+
+-- Function to build the 'Work' workspace
+local function create_work_workspace(window, pane)
+    local workspace_name = 'work'
+
+    -- If it already exists, just switch to it
+    local active_workspaces = wezterm.mux.get_workspace_names()
+    for _, name in ipairs(active_workspaces) do
+        if name == workspace_name then
+            window:perform_action(wezterm.action.SwitchToWorkspace { name = workspace_name }, pane)
+            return
+        end
+    end
+
+    -- Otherwise, create the layout
+    -- Tab 1: LDD
+    local ldd_dir = wezterm.home_dir .. '/Development/direct-data/link-direct-data'
+    local tab, ldd_pane, new_window = mux.spawn_window { workspace = workspace_name, cwd = ldd_dir }
+    tab:set_title('📦 LDD')
+    ldd_pane:split { direction = 'Right', size = 0.5, cwd = ldd_dir }
+
+    -- Tab 2: DocID
+    local docid_dir = wezterm.home_dir .. '/Development/docid/veeva-docid-api'
+    local tab2, docid_pane, _ = new_window:spawn_tab { cwd = docid_dir }
+    tab2:set_title('🪪 DocID')
+    docid_pane:split { direction = 'Right', size = 0.5, cwd = docid_dir }
+
+    -- Tab 3: AWS
+    local aws_dir = wezterm.home_dir .. '/Development/link/deploycfg'
+    local tab3, aws_pane, _ = new_window:spawn_tab { cwd = aws_dir }
+    tab3:set_title('📟 AWS')
+    aws_pane:split { direction = 'Right', size = 0.5, cwd = aws_dir }
+
+    -- Tab 4: data
+    local data_dir = wezterm.home_dir .. '/Data'
+    local tab4, data_pane, _ = new_window:spawn_tab { cwd = data_dir }
+    tab4:set_title('📋 data')
+    data_pane:split { direction = 'Right', size = 0.5, cwd = data_dir }
+
+    -- Tab 5: osiris
+    local tab5, osiris_pane, _ = new_window:spawn_tab { cwd = wezterm.home_dir }
+    tab5:set_title('🧿 osiris')
+    osiris_pane:split { direction = 'Right', size = 0.5, cwd = wezterm.home_dir }
+
+    -- Tab 6: onyx
+    local onyx_dir = wezterm.home_dir .. '/Development/side/onyx'
+    local tab6, onyx_pane, _ = new_window:spawn_tab { cwd = onyx_dir }
+    tab6:set_title('🖲️ onyx')
+    onyx_pane:split { direction = 'Right', size = 0.5, cwd = onyx_dir }
+    -- Focus back on the first tab
+    tab:activate()
+end
+
 
 -- Global keybindings:
 config.keys = {
@@ -46,6 +102,7 @@ config.keys = {
     { key = 'h',     mods = 'SHIFT|CTRL',                  action = act.MoveTabRelative(-1) },
     { key = 'l',     mods = 'SHIFT|' .. key_mod,           action = act.ActivateTabRelative(1) },
     { key = 'h',     mods = 'SHIFT|' .. key_mod,           action = act.ActivateTabRelative(-1) },
+    { key = 'w',     mods = 'SHIFT|' .. key_mod,           action = wezterm.action_callback(create_work_workspace) },
     { key = 'l',     mods = key_mod,                       action = act.ActivatePaneDirection 'Right' },
     { key = 'h',     mods = key_mod,                       action = act.ActivatePaneDirection 'Left' },
     { key = 'k',     mods = key_mod,                       action = act.ActivatePaneDirection 'Up' },
@@ -84,6 +141,20 @@ config.keys = {
     }
 }
 
+-- Font
+config.font = wezterm.font_with_fallback {
+    {
+        family = '0xProto',
+        -- harfbuzz_features = { 'ss01' }
+    },
+    'JetBrains Mono'
+}
+config.font_size = 12.5
+-- line height
+config.line_height = .9
+-- horizontal space
+config.cell_width = 1.0
+
 -- Use the new tab bar
 config.use_fancy_tab_bar = true
 
@@ -96,16 +167,8 @@ config.window_frame = {
 -- Debug key events
 config.debug_key_events = false
 
--- Color scheme tests
--- config.color_scheme = 'rose-pine'
--- config.color_scheme = 'Ef-Bio'
--- config.color_scheme = 'Material Darker (base16)'
--- config.color_scheme = 'Everblush'
--- config.color_scheme = 'MaterialDesignColors'
-
 -- Color scheme
 local color_scheme = 'Railscasts (base16)'
--- local color_scheme = 'Everblush'
 
 -- Current color scheme customization
 local color_definition = wezterm.color.get_builtin_schemes()[color_scheme]
@@ -125,6 +188,14 @@ config.colors = {
 
 -- Bell
 config.audible_bell = "Disabled"
+
+-- Display workspace name in the window bar
+wezterm.on('update-right-status', function(window, _)
+    window:set_right_status(wezterm.format {
+        { Text = 'Workspace: ' .. window:active_workspace() .. '  ' },
+    })
+end)
+
 
 -- and finally, return the configuration to wezterm
 return config
