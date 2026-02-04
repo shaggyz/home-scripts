@@ -27,3 +27,5 @@
     (atx_h3_marker)
     (inline) @markup.heading.content.level3
 )
+
+(fenced_code_block) @markup.raw.block

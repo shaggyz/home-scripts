@@ -8,7 +8,7 @@ vim.opt.softtabstop = 4
 
 vim.opt.cursorline = true
 vim.opt.number = true
-vim.opt.conceallevel = 1
+-- vim.opt.conceallevel = 1
 vim.opt.cc = '100'
 vim.opt.termguicolors = true
 vim.opt.signcolumn = 'yes'
@@ -25,7 +25,8 @@ vim.opt.foldenable = false
 vim.opt.updatetime = 300
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
+vim.opt.clipboard = 'unnamedplus'
+
 
 -- Enable spell only in certain files
 vim.opt.spell = false
@@ -49,7 +50,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- Limit parallel updates to prevent SSL syscall errors on fast hardware
 vim.g.plug_threads = 4
 
-vim.cmd('set encoding=utf-8')
+-- Ensure TreeSitter gets priority to highlight markdown code blocks
+vim.g.markdown_fenced_languages = { 'python', 'bash', 'lua', 'javascript' }
+
 vim.cmd('set fileencoding=utf-8')
-vim.cmd('filetype plugin indent on')
-vim.cmd('syntax on')

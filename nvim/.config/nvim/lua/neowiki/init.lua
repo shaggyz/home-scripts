@@ -331,6 +331,28 @@ function neowiki.toggle_checkbox()
     vim.api.nvim_buf_set_lines(0, row - 1, row, true, { new_line })
 end
 
+-- 2026 additions
+
+-- Add specific format and colors for URLs
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "markdown",
+    callback = function()
+        -- Use vim.fn.matchadd for a more "Lua-friendly" way to add matches
+        -- This avoids the complex escaping issues of 'syntax match'
+        vim.fn.matchadd("Hyperlink", "https\\?://[^[:space:]]\\+")
+        vim.fn.matchadd("Hyperlink", "mailto:[^[:space:]]\\+")
+
+        -- Set the color for the "Hyperlink" group
+        -- This links it to 'Underlined' but also sets a specific color for Edge
+        vim.api.nvim_set_hl(0, "Hyperlink", {
+            fg = "#6cb6eb",
+            underline = true
+        })
+    end
+})
+
+-- / 2026 additions
+
 -- Main plugin setup
 function neowiki.setup(user_config)
     user_config = user_config or {}

@@ -12,18 +12,16 @@ require('gitsigns').setup()
 -- TreeSitter (better syntax) ---------------- https://github.com/nvim-treesitter/nvim-treesitter --
 
 require('nvim-treesitter').setup({
-    -- A list of parser names, or "all"
-    ensure_installed = { "python", "vimdoc", "bash", "markdown", "make" },
-
-    -- Install parsers synchronously (only applied to `ensure_installed`)
-    sync_install = false,
-
-    -- Automatically install missing parsers when entering buffer
+    -- Ensure all your core languages are here
+    ensure_installed = { "python", "vimdoc", "bash", "markdown", "markdown_inline", "make", "lua" },
+    -- This forces Neovim to wait for one parser to finish before starting the next.
+    sync_install = true,
+    -- Keep this true for convenience
     auto_install = true,
-
     highlight = {
         enable = true,
-        disable = { "bash" },
+        -- Ensure this is empty so Treesitter takes over highlighting
+        disable = {},
     },
 })
 
