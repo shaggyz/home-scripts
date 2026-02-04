@@ -144,6 +144,7 @@ config.keys = {
 -- Font
 config.font = wezterm.font_with_fallback {
     {
+        -- install: brew install font-0xproto-nerd-font
         family = '0xProto',
         -- harfbuzz_features = { 'ss01' }
     },
