@@ -13,6 +13,9 @@ require 'editor'
 -- ~/.config/nvim/lua/plugconfig.lua - Plugin configuration
 require 'plugconfig'
 
+-- ~/.config/nvim/lua/dap.lua - Python debugger
+-- require 'dap'
+
 -- ~/.config/nvim/lua/neovide.lua - Neovide specific configuration
 if vim.g.neovide then require 'neovide' end
 
