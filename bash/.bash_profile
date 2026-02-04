@@ -69,6 +69,11 @@ if [ `uname` == "Darwin" ]; then
     PYTHON_BIN=$(brew --prefix python)/libexec/bin
     export PATH="$PATH:$PYTHON_BIN:$NODE_BIN"
 
+    # current machine scripts and binaries
+    if [ -d ~/bin ]; then
+        export PATH="$PATH:~/bin"
+    fi
+
     # Wezterm
     export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
 
