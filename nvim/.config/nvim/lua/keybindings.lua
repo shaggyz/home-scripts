@@ -17,20 +17,6 @@ vim.keymap.set('n', '<leader>ca', ':BufOnly<CR>')
 -- CTRL+x: copy visual selected text into system clipboard (wezterm needs this to make CMD+c work in macOS)
 vim.api.nvim_set_keymap('v', '<Leader>xc', '"+y', { noremap = true, silent = true })
 
--- Define the ShowDocumentation function
-function ShowDocumentation()
-    if vim.fn.CocAction('hasProvider', 'hover') == 1 then
-        vim.fn.CocActionAsync('doHover')
-    else
-        vim.api.nvim_feedkeys(
-            vim.api.nvim_replace_termcodes('K', true, false, true), 'n', false
-        )
-    end
-end
-
--- Map 'K' to call the ShowDocumentation function in normal mode
-vim.keymap.set('n', 'K', ShowDocumentation, { noremap = true, silent = true })
-
 -- Edit main Neovim configuration
 vim.keymap.set('n', '<leader>ev', ':e ~/.config/nvim/init.lua<CR>', {
     noremap = true,
@@ -63,20 +49,22 @@ vim.keymap.set('i', '<CR>', 'coc#pum#visible() ? coc#pum#confirm() : "<CR>"', { 
 -- Use <c-space> to trigger completion
 vim.keymap.set("i", "<c-space>", "coc#refresh()", { silent = true, expr = true })
 
--- Use K to show documentation in preview window
+-- Consolidated Documentation Function
 function _G.show_docs()
-    local cw = vim.fn.expand('<cword>')
-    if vim.fn.index({ 'vim', 'help' }, vim.bo.filetype) >= 0 then
-        vim.api.nvim_command('h ' .. cw)
-    elseif vim.api.nvim_eval('coc#rpc#ready()') then
+    local ft = vim.bo.filetype
+    -- 1. Priority: Vim/Help documentation
+    if vim.tbl_contains({ 'vim', 'help' }, ft) then
+        vim.cmd('h ' .. vim.fn.expand('<cword>'))
+        -- 2. CoC Hover
+    elseif vim.fn['coc#rpc#ready']() then
         vim.fn.CocActionAsync('doHover')
+        -- 3. Fallback: Standard keyword program (man pages)
     else
-        vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
+        vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. vim.fn.expand('<cword>'))
     end
 end
 
-vim.keymap.set("n", "K", '<CMD>lua _G.show_docs()<CR>', { silent = true })
-
+vim.keymap.set("n", "K", '<CMD>lua _G.show_docs()<CR>', { silent = true, desc = "Smart Documentation" })
 
 -- Telescope ---------------------------------------------------------------------------------------
 

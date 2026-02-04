@@ -31,7 +31,7 @@ vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
 vim.opt.spell = false
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
     pattern = { "*.md", "*.py", "*.html", "*.lua" },
-    callback = function(ev)
+    callback = function(_)
         vim.opt.spell = true
     end
 })
