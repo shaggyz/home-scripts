@@ -33,6 +33,10 @@ neowiki.config = {
     auto_create_wiki_directory = true,
     -- Reuse the previous day contents as template in the new created daily entries
     reuse_previous_day = true,
+    -- Format URL and links
+    format_links = true,
+    -- URL and links color (only applicable if format_links=true)
+    links_color = "#6cb6eb",
 }
 
 -- Construct the full path to the file
@@ -333,23 +337,25 @@ end
 
 -- 2026 additions
 
--- Add specific format and colors for URLs
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "markdown",
-    callback = function()
-        -- Use vim.fn.matchadd for a more "Lua-friendly" way to add matches
-        -- This avoids the complex escaping issues of 'syntax match'
-        vim.fn.matchadd("Hyperlink", "https\\?://[^[:space:]]\\+")
-        vim.fn.matchadd("Hyperlink", "mailto:[^[:space:]]\\+")
+-- Sets an auto-command to Add specific format and colors for URLs
+function neowiki.set_format_links_autocmd()
+    vim.api.nvim_create_autocmd("FileType", {
+        pattern = "markdown",
+        callback = function()
+            -- Use vim.fn.matchadd for a more "Lua-friendly" way to add matches
+            -- This avoids the complex escaping issues of 'syntax match'
+            vim.fn.matchadd("Hyperlink", "https\\?://[^[:space:]]\\+")
+            vim.fn.matchadd("Hyperlink", "mailto:[^[:space:]]\\+")
 
-        -- Set the color for the "Hyperlink" group
-        -- This links it to 'Underlined' but also sets a specific color for Edge
-        vim.api.nvim_set_hl(0, "Hyperlink", {
-            fg = "#6cb6eb",
-            underline = true
-        })
-    end
-})
+            -- Set the color for the "Hyperlink" group
+            -- This links it to 'Underlined' but also sets a specific color for Edge
+            vim.api.nvim_set_hl(0, "Hyperlink", {
+                fg = "#6cb6eb",
+                underline = true
+            })
+        end
+    })
+end
 
 -- / 2026 additions
 
@@ -379,6 +385,12 @@ function neowiki.setup(user_config)
     vim.api.nvim_create_user_command("WikiCreateIndex", neowiki.create_index, {})
     vim.api.nvim_create_user_command("WikiFollowLink", neowiki.follow_link, {})
     vim.api.nvim_create_user_command("WikiToggleCheckBox", neowiki.toggle_checkbox, {})
+
+    -- Optional features
+    -- Format links and URLs
+    if neowiki.config.format_links then
+        neowiki.set_format_links_autocmd()
+    end
 
     -- Map <CR> in Insert mode
     -- vim.api.nvim_set_keymap('i', '<CR>', 'v:lua.neowiki.handle_markdown_list()', { expr = true, noremap = true })
