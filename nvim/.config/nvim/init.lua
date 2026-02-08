@@ -45,9 +45,30 @@ require 'syntax.edge'
 -- ~/.config/nvim/lua/syntax/nightfox.lua
 -- require 'syntax.nightfox'
 
+-- --------------------- Markdown settings ----------------------
 
--- Force markdown code blocks to have a specific background color
-vim.api.nvim_set_hl(0, "RenderMarkdownCode", { bg = "#1c1c1c", force = true })
-vim.api.nvim_set_hl(0, "RenderMarkdownCodeInline", { bg = "#1c1c1c", force = true })
--- This handles the background of the 'language' name tag (e.g., "python")
--- vim.api.nvim_set_hl(0, "RenderMarkdownInfo", { bg = "#1c1c1c", fg = "#5eacd3", force = true })
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "markdown",
+	callback = function()
+        -- Start treesitter for markdown files (some quirks with neovim 0.11)
+        vim.treesitter.start()
+        -- Force markdown code blocks to have a specific background color
+        vim.api.nvim_set_hl(0, "RenderMarkdownCode", { bg = "#1c1c1c", force = true })
+        vim.api.nvim_set_hl(0, "RenderMarkdownCodeInline", { bg = "#1c1c1c", force = true })
+        -- Force markdown headers to use these colours
+        -- backgrounds
+        vim.api.nvim_set_hl(0, "RenderMarkdownH1Bg", { bg = "#1e1e1e", force = true, underline = true, sp = "#3b3b3b" })
+        vim.api.nvim_set_hl(0, "RenderMarkdownH2Bg", { bg = "#1e1e1e", force = true, underline = true, sp = "#3b3b3b" })
+        vim.api.nvim_set_hl(0, "RenderMarkdownH3Bg", { bg = "#1e1e1e", force = true, underline = true, sp = "#3b3b3b" })
+        vim.api.nvim_set_hl(0, "RenderMarkdownH4Bg", { bg = "#1e1e1e", force = true, underline = true, sp = "#3b3b3b" })
+        vim.api.nvim_set_hl(0, "RenderMarkdownH5Bg", { bg = "#1e1e1e", force = true, underline = true, sp = "#3b3b3b" })
+        vim.api.nvim_set_hl(0, "RenderMarkdownH6Bg", { bg = "#1e1e1e", force = true, underline = true, sp = "#3b3b3b" })
+        -- texts
+        vim.api.nvim_set_hl(0, "@markup.heading.1.markdown", { fg = "#9ec67e", force = true, bold = true })
+        vim.api.nvim_set_hl(0, "@markup.heading.2.markdown", { fg = "#6cb6eb", force = true, bold = true })
+        vim.api.nvim_set_hl(0, "@markup.heading.3.markdown", { fg = "#ec7279", force = true, bold = true })
+        vim.api.nvim_set_hl(0, "@markup.heading.4.markdown", { fg = "#deb974", force = true, bold = true })
+        vim.api.nvim_set_hl(0, "@markup.heading.5.markdown", { fg = "#885a9b", force = true, bold = true })
+        vim.api.nvim_set_hl(0, "@markup.heading.6.markdown", { fg = "#ad3861", force = true, bold = true })
+    end,
+})

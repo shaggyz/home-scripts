@@ -133,16 +133,16 @@ end, { desc = "NvimTree: Find current file", silent = true, noremap = true })
 
 -- DAP ---------------------------------------------------------------------------------------------
 
-vim.keymap.set('n', '<Leader>ds', function() require('dap').continue() end)
-vim.keymap.set('n', '<Leader>dq', function() require('dap').terminate() end)
-vim.keymap.set('n', '<Leader>do', function() require('dap').step_over() end)
-vim.keymap.set('n', '<Leader>di', function() require('dap').step_into() end)
-vim.keymap.set('n', '<Leader>dt', function() require('dap').step_out() end)
-vim.keymap.set('n', '<Leader>db', function() require('dap').toggle_breakpoint() end)
-vim.keymap.set('n', '<Leader>dr', function() require('dap').repl.open() end)
-vim.keymap.set('n', '<Leader>dk', function() require('dap.ui.widgets').hover() end)
-vim.keymap.set('n', '<Leader>dl', ':e $HOME/.cache/nvim/dap.log<CR>', { silent = true, noremap = true })
-
+-- vim.keymap.set('n', '<Leader>ds', function() require('dap').continue() end)
+-- vim.keymap.set('n', '<Leader>dq', function() require('dap').terminate() end)
+-- vim.keymap.set('n', '<Leader>do', function() require('dap').step_over() end)
+-- vim.keymap.set('n', '<Leader>di', function() require('dap').step_into() end)
+-- vim.keymap.set('n', '<Leader>dt', function() require('dap').step_out() end)
+-- vim.keymap.set('n', '<Leader>db', function() require('dap').toggle_breakpoint() end)
+-- vim.keymap.set('n', '<Leader>dr', function() require('dap').repl.open() end)
+-- vim.keymap.set('n', '<Leader>dk', function() require('dap.ui.widgets').hover() end)
+-- vim.keymap.set('n', '<Leader>dl', ':e $HOME/.cache/nvim/dap.log<CR>', { silent = true, noremap = true })
+--
 
 -- NeoWiki -----------------------------------------------------------------------------------------
 -- Personal plugin under development ---------------------------------------------------------------
