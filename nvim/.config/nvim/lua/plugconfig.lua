@@ -91,6 +91,29 @@ require("nvim-tree").setup({
 })
 
 
+
+-- Render Markdown --------------------------------- https://github.com/nvim-lualine/lualine.nvim --
+
+require('render-markdown').setup({
+    code = {
+        -- 'full' makes the background span the width of the window
+        -- 'block' only highlights the code itself
+        style = 'full',
+        position = 'left',
+        width = 'full',
+        left_pad = 2,
+        right_pad = 2,
+        -- Use the highlight group we want to customize
+        highlight = 'RenderMarkdownCode',
+    },
+})
+
+-- Now, link that group to your preferred black background
+-- vim.api.nvim_set_hl(0, "RenderMarkdownCode", { bg = "#000000" })
+-- -- Usually, we want the "inline" code to stay as is or be slightly different
+-- vim.api.nvim_set_hl(0, "RenderMarkdownCodeInline", { bg = "#1a1a1a" })
+
+
 -- Lualine ----------------------------------------- https://github.com/nvim-lualine/lualine.nvim --
 
 -- Example: https://github.com/nvim-lualine/lualine.nvim/wiki/Writing-a-theme

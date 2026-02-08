@@ -44,3 +44,10 @@ require 'syntax.edge'
 
 -- ~/.config/nvim/lua/syntax/nightfox.lua
 -- require 'syntax.nightfox'
+
+
+-- Force markdown code blocks to have a specific background color
+vim.api.nvim_set_hl(0, "RenderMarkdownCode", { bg = "#1c1c1c", force = true })
+vim.api.nvim_set_hl(0, "RenderMarkdownCodeInline", { bg = "#1c1c1c", force = true })
+-- This handles the background of the 'language' name tag (e.g., "python")
+-- vim.api.nvim_set_hl(0, "RenderMarkdownInfo", { bg = "#1c1c1c", fg = "#5eacd3", force = true })

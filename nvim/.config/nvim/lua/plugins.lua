@@ -25,6 +25,7 @@ Plug 'fannheyward/telescope-coc.nvim'
 
 -- Syntax (The heavy lifter)
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
+Plug('MeanderingProgrammer/render-markdown.nvim')
 
 -- Utilities
 Plug 'schickling/vim-bufonly'
