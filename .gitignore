@@ -2,3 +2,4 @@
 tags
 nvim/.config/nvim/spell/
 gtk3/.config/gtk-3.0/*.css
+.mypy_cache/

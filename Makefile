@@ -32,7 +32,7 @@ linux: unix ## Links dotfiles only related to GNU/Linux
 	$(STOW) x11
 
 macos: unix ## Links macOS dotfiles
-	echo "No dotfiles yet!"
+	$(STOW) nvim-macos
 
 windows: unix  ## Some WSL dotfiles
 	$(STOW) bash-wsl
