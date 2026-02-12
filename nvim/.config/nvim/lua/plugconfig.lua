@@ -113,6 +113,7 @@ require('render-markdown').setup({
         position = 'left',
         width = 'block',
         min_width = 100,
+        sign = false,
         left_pad = 2,
         right_pad = 2,
         highlight = 'RenderMarkdownCode',
