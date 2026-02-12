@@ -13,7 +13,17 @@ require('gitsigns').setup()
 
 require('nvim-treesitter').setup({
     -- Ensure all your core languages are here
-    ensure_installed = { "python", "vimdoc", "bash", "markdown", "markdown_inline", "make", "lua" },
+    ensure_installed = {
+        "python",
+        "vimdoc",
+        "bash",
+        "markdown",
+        "markdown_inline",
+        "make",
+        "lua",
+        "json",
+        "sql",
+    },
     -- This forces Neovim to wait for one parser to finish before starting the next.
     sync_install = true,
     -- Keep this true for convenience
@@ -206,6 +216,8 @@ function _G.check_back_space()
     local col = vim.fn.col('.') - 1
     return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
 end
+
+vim.g.coc_node_path = "/opt/homebrew/opt/node@18/bin/node"
 
 -- Better Whitespace -------------------------- https://github.com/ntpeters/vim-better-whitespace --
 
