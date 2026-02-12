@@ -96,24 +96,33 @@ end
 local function reuse_yesterday_template(current_date)
     local yd_date, month, year = get_yesterday_date()
     local yd_path = get_date_file_path(year, month, yd_date)
+    local expanded_yd_path = vim.fn.expand(yd_path)
 
     local lines = {}
-    local f = io.open(yd_path, "r")
+    -- 1. Start with the fresh current date header
+    table.insert(lines, "# TODO " .. current_date)
+
+    local f = io.open(expanded_yd_path, "r")
     if f then
+        local line_count = 0
         for line in f:lines() do
-            -- Optional: only bring over lines that are unfinished tasks
-            if line:match("%- %[ %]") or line:match("^#") then
-                table.insert(lines, line)
+            line_count = line_count + 1
+
+            -- 2. Skip the old date header (first line)
+            if line_count > 1 then
+                -- 3. Logic: If it's a COMPLETED task, ignore it.
+                -- Otherwise, keep it (this preserves blank lines, notes, and unfinished tasks).
+                if not line:match("^%s*%- %[x%]") then
+                    table.insert(lines, line)
+                end
             end
         end
         f:close()
-    end
-
-    if #lines > 0 then
-        return table.concat(lines, "\n")
     else
         return get_default_template(current_date)
     end
+
+    return table.concat(lines, "\n")
 end
 
 -- Creates and opens the daily TODO file
