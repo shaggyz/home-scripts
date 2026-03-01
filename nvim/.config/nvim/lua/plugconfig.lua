@@ -23,6 +23,8 @@ require('nvim-treesitter').setup({
         "lua",
         "json",
         "sql",
+        "html",
+        "javascript",
     },
     -- This forces Neovim to wait for one parser to finish before starting the next.
     sync_install = true,
