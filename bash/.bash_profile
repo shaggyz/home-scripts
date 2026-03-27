@@ -81,6 +81,11 @@ if [ `uname` == "Darwin" ]; then
     export LDFLAGS="-L$HB/opt/node@18/lib"
     export CPPFLAGS="-I$HB/opt/node@18/include"
 
+    # Qt Development
+    export QT_PATH=$HOME/Qt/6.11.0/macos
+    export PATH=$QT_PATH/bin:$PATH
+    export CMAKE_PREFIX_PATH=$QT_PATH/lib/cmake:$CMAKE_PREFIX_PATH
+
     # Generic paths for versioned packages
     NODE_BIN=$(brew --prefix node)/bin
     PYTHON_BIN=$(brew --prefix python)/libexec/bin
