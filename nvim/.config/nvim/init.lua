@@ -49,7 +49,7 @@ require 'syntax.edge'
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "markdown",
-	callback = function()
+    callback = function()
         -- Start treesitter for markdown files (some quirks with neovim 0.11)
         vim.treesitter.start()
         -- Force markdown code blocks to have a specific background color
@@ -71,4 +71,13 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.api.nvim_set_hl(0, "@markup.heading.5.markdown", { fg = "#885a9b", force = true, bold = true })
         vim.api.nvim_set_hl(0, "@markup.heading.6.markdown", { fg = "#ad3861", force = true, bold = true })
     end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "cpp", "hpp", "c", "h" },
+    callback = function()
+        vim.opt_local.shiftwidth = 4
+        vim.opt_local.tabstop = 4
+        vim.opt_local.expandtab = true
+    end
 })
