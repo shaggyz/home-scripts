@@ -70,10 +70,10 @@ local function create_work_workspace(window, pane)
     osiris_pane:split { direction = 'Right', size = 0.5, cwd = wezterm.home_dir }
 
     -- Tab 6: onyx
-    local onyx_dir = wezterm.home_dir .. '/Development/side/onyx'
-    local tab6, onyx_pane, _ = new_window:spawn_tab { cwd = onyx_dir }
-    tab6:set_title('🖲️ onyx')
-    onyx_pane:split { direction = 'Right', size = 0.5, cwd = onyx_dir }
+    local hal_dir = wezterm.home_dir .. '/Downloads'
+    local tab6, hal_pane, _ = new_window:spawn_tab { cwd = hal_dir }
+    tab6:set_title('🖲️ hal')
+    hal_pane:split { direction = 'Right', size = 0.5, cwd = hal_dir }
     -- Focus back on the first tab
     tab:activate()
 end
