@@ -81,6 +81,9 @@ if [ `uname` == "Darwin" ]; then
     export LDFLAGS="-L$HB/opt/node@18/lib"
     export CPPFLAGS="-I$HB/opt/node@18/include"
 
+    # needed to tell CoC where the crypto module is (JS kids getting some fun...)
+    export NODE_OPTIONS="--experimental-global-webcrypto"
+
     # Qt Development
     export QT_PATH=$HOME/Qt/6.11.0/macos
     export PATH=$QT_PATH/bin:$PATH
