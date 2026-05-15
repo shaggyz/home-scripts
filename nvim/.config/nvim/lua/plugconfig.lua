@@ -233,13 +233,13 @@ vim.g.strip_whitespace_confirm = 0
 
 -- files at: ~/.config/nvim/lua/neowiki/
 
-vim.opt.rtp:prepend(vim.fn.expand("~/.config/nvim/lua/neowiki"))
-
-require("neowiki").setup({
-    wiki_directory = "~/Nextcloud/Notes",
-    reuse_previous_day = true,
-    weekdays_only = true,
-})
+-- vim.opt.rtp:prepend(vim.fn.expand("~/.config/nvim/lua/neowiki"))
+--
+-- require("neowiki").setup({
+--     wiki_directory = "~/Nextcloud/Notes",
+--     reuse_previous_day = true,
+--     weekdays_only = true,
+-- })
 
 
 -- UUID generator ------------------------------------------ https://github.com/TrevorS/uuid-nvim --

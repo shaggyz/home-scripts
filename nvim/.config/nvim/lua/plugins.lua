@@ -31,6 +31,7 @@ Plug('MeanderingProgrammer/render-markdown.nvim')
 Plug 'schickling/vim-bufonly'
 Plug 'TrevorS/uuid-nvim'
 Plug 'ellisonleao/dotenv.nvim'
+Plug 'shaggyz/neowiki'
 
 -- Themes
 Plug 'sainnhe/edge'
