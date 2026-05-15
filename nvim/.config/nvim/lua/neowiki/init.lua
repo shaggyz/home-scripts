@@ -9,11 +9,10 @@ M.config = wiki.config
 -- Main plugin setup
 function M.setup(user_config)
     user_config = user_config or {}
-    -- Merge user config with the default config
+    -- Merge user config with the default config (shared table ref)
     for key, value in pairs(user_config) do
         wiki.config[key] = value
     end
-    M.config = wiki.config
 
     -- Check if the needed directories are there
     if vim.fn.isdirectory(wiki.config.wiki_directory) == 0 then

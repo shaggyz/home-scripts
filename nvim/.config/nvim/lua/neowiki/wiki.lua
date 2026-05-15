@@ -96,7 +96,7 @@ local function get_or_create_daily_todo_file(date, month, year)
     end
 
     -- Open the file in a new buffer
-    vim.cmd('edit ' .. full_path)
+    vim.cmd('edit ' .. vim.fn.fnameescape(full_path))
 end
 
 -- Creates and opens the daily TODO file for today
@@ -141,7 +141,14 @@ function M.create_link()
     else
         -- Use the word under the cursor as the link text if no visual selection
         local word = vim.fn.expand('<cword>')
+        if word == nil or word == "" then
+            return
+        end
         start_text, end_text = current_line:find(vim.pesc(word), 1, true)
+    end
+
+    if start_text == nil or end_text == nil then
+        return
     end
 
     -- Ugly swap for reversed visual selections
@@ -151,42 +158,74 @@ function M.create_link()
         start_text = swap
     end
 
-    if start_text == nil then
-        return
-    end
-
-    local prefix = current_line:sub(0, start_text - 1)
+    local prefix = current_line:sub(1, start_text - 1)
     local title = current_line:sub(start_text, end_text)
     local sufix = current_line:sub(end_text + 1)
 
     -- Read clipboard, if we have a URL we can just add it as target.
-    local clipboard = vim.fn.getreg('+')
+    local clipboard = vim.fn.getreg('+') or ""
     local url = ""
-    if clipboard:match("^https?://") then
+    if type(clipboard) == "string" and clipboard:match("^https?://") then
         url = clipboard
     end
 
-    local new_line = string.format("%s[%s]()%s", prefix, title, sufix)
-
+    local new_line = string.format("%s[%s](%s)%s", prefix, title, url, sufix)
 
     -- Update the line contents
     vim.fn.setline(current_line_number, new_line)
 
-    -- Cursor is placed between the parenthesis (computing the added symbols: []()  == 4)
-    vim.fn.cursor(current_line_number, #prefix + #title + 4)
+    -- Cursor placed on the closing ')' so `i` inserts inside the parens
+    vim.fn.cursor(current_line_number, #prefix + #title + #url + 4)
 
     -- Go back to normal mode
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, false, true), 'n', false)
 end
 
+local INDEX_START = "<!-- neowiki:index:start -->"
+local INDEX_END = "<!-- neowiki:index:end -->"
+
+-- Locate an existing index block. Returns (start_row, end_row) 0-indexed
+-- end-exclusive (suitable for nvim_buf_set_lines), or nil if absent.
+local function find_existing_index(bufnr)
+    local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+    local s
+    for i, line in ipairs(lines) do
+        if line == INDEX_START then
+            s = i - 1
+        elseif line == INDEX_END and s then
+            -- Include trailing blank line if present, for clean re-render
+            local e = i
+            if lines[i + 1] == "" then e = i + 1 end
+            return s, e
+        end
+    end
+    return nil
+end
+
 -- Generates a Table of Contents based on headers
 function M.create_index()
     local bufnr = 0 -- Current buffer
-    local parser = vim.treesitter.get_parser(bufnr, "markdown")
+    local ok, parser = pcall(vim.treesitter.get_parser, bufnr, "markdown")
+    if not ok or not parser then
+        utils.debug("Markdown treesitter parser not available", "error")
+        return
+    end
     local tree = parser:parse()[1]
+    if not tree then
+        utils.debug("Failed to parse markdown buffer", "error")
+        return
+    end
     local root = tree:root()
 
-    -- This query finds all heading nodes
+    -- Skip heading nodes that fall inside the existing index block so we
+    -- never index our own '# Index' header on re-runs.
+    local skip_start_row, skip_end_row
+    local existing_s, existing_e = find_existing_index(bufnr)
+    if existing_s then
+        skip_start_row = existing_s
+        skip_end_row = existing_e
+    end
+
     local query = vim.treesitter.query.parse("markdown", [[
         (atx_heading (atx_h1_marker) (inline) @cap)
         (atx_heading (atx_h2_marker) (inline) @cap)
@@ -196,36 +235,46 @@ function M.create_index()
         (atx_heading (atx_h6_marker) (inline) @cap)
     ]])
 
-    -- Initial table with title and a single blank line
-    local index_lines = { "# Index", "" }
+    local entries = {}
+    for _, node in query:iter_captures(root, bufnr) do
+        local row = node:start()
+        local in_skip = skip_start_row and row >= skip_start_row and row < skip_end_row
+        if not in_skip then
+            local text = vim.treesitter.get_node_text(node, bufnr)
+            local slug = utils.slugify(text)
 
-    for id, node in query:iter_captures(root, bufnr) do
-        local text = vim.treesitter.get_node_text(node, bufnr)
-        local slug = utils.slugify(text)
+            local parent = node:parent()
+            local level = 1
+            if parent then
+                local marker_type = parent:child(0):type()
+                local level_str = marker_type:match("atx_h(%d)_marker")
+                level = tonumber(level_str) or 1
+            end
 
-        -- Extract level from the parent node's first child (the marker, e.g., atx_h1_marker)
-        local parent = node:parent()
-        local level = 1
-        if parent then
-            local marker_type = parent:child(0):type()
-            local level_str = marker_type:match("atx_h(%d)_marker")
-            level = tonumber(level_str) or 1
+            local indent = string.rep("  ", level - 1)
+            table.insert(entries, string.format("%s- [%s](#%s)", indent, text, slug))
         end
-
-        local indent = string.rep("  ", level - 1)
-        table.insert(index_lines, string.format("%s- [%s](#%s)", indent, text, slug))
     end
 
-    if #index_lines > 2 then
-        -- Add two blank lines at the end of the index for spacing
-        table.insert(index_lines, "")
-        table.insert(index_lines, "")
-
-        -- Insert at the top of the buffer
-        vim.api.nvim_buf_set_lines(bufnr, 0, 0, false, index_lines)
-        utils.debug("Index created with " .. (#index_lines - 4) .. " headers") -- Adjusted debug count
-    else
+    if #entries == 0 then
         utils.debug("No headers found to create index", "warning")
+        return
+    end
+
+    local index_lines = { INDEX_START, "# Index", "" }
+    for _, entry in ipairs(entries) do
+        table.insert(index_lines, entry)
+    end
+    table.insert(index_lines, "")
+    table.insert(index_lines, INDEX_END)
+    table.insert(index_lines, "")
+
+    if existing_s then
+        vim.api.nvim_buf_set_lines(bufnr, existing_s, existing_e, false, index_lines)
+        utils.debug("Index updated with " .. #entries .. " headers")
+    else
+        vim.api.nvim_buf_set_lines(bufnr, 0, 0, false, index_lines)
+        utils.debug("Index created with " .. #entries .. " headers")
     end
 end
 
@@ -252,17 +301,38 @@ function M.go_to_header(header_slug)
     return false
 end
 
+-- Dispatch an external URL to the OS default handler
+local function open_external(target)
+    if vim.ui and vim.ui.open then
+        vim.ui.open(target)
+        return
+    end
+    local opener
+    if vim.fn.has("mac") == 1 then
+        opener = "open"
+    elseif vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
+        opener = "explorer"
+    elseif vim.fn.has("wsl") == 1 then
+        opener = "wslview"
+    elseif vim.fn.has("unix") == 1 then
+        opener = "xdg-open"
+    end
+    if not opener then
+        utils.debug("No URL opener available for this platform", "error")
+        return
+    end
+    vim.fn.jobstart({ opener, target }, { detach = true })
+end
+
 -- Opens a markdown internal_section/external/local_file link
 local function open_link(target)
     if target:match("^#") then
         -- Internal section link (e.g., #my-header)
         M.go_to_header(target)
-    elseif target:match("^http") then
-        -- External link - Mac 'open' command
-        vim.fn.jobstart({ "open", target })
+    elseif target:match("^https?://") or target:match("^mailto:") then
+        open_external(target)
     elseif target:match("%.md$") then
-        -- Local Markdown file
-        -- We use 'p' to expand to full path relative to current file
+        -- Local Markdown file relative to current file
         local file_path = vim.fn.expand("%:p:h") .. "/" .. target
         vim.cmd('edit ' .. vim.fn.fnameescape(file_path))
     else
@@ -270,21 +340,65 @@ local function open_link(target)
     end
 end
 
+-- Scan a line for [label](target) links, supporting balanced parens
+-- and backslash escapes inside the target (CommonMark inline-link rules).
+local function find_links(line)
+    local links = {}
+    local i = 1
+    local n = #line
+    while i <= n do
+        local lbr = line:find("%[", i)
+        if not lbr then break end
+        local rbr = line:find("%]", lbr + 1)
+        if not rbr then break end
+        if line:sub(rbr + 1, rbr + 1) ~= "(" then
+            i = rbr + 1
+        else
+            local j = rbr + 2
+            local depth = 1
+            local closed = false
+            while j <= n do
+                local ch = line:sub(j, j)
+                if ch == "\\" then
+                    j = j + 2
+                elseif ch == "(" then
+                    depth = depth + 1
+                    j = j + 1
+                elseif ch == ")" then
+                    depth = depth - 1
+                    if depth == 0 then
+                        closed = true
+                        break
+                    end
+                    j = j + 1
+                else
+                    j = j + 1
+                end
+            end
+            if closed then
+                table.insert(links, {
+                    label = line:sub(lbr + 1, rbr - 1),
+                    target = line:sub(rbr + 2, j - 1),
+                    s = lbr,
+                    e = j,
+                })
+                i = j + 1
+            else
+                i = rbr + 1
+            end
+        end
+    end
+    return links
+end
+
 -- Follows an external/internal-markdown link
 function M.follow_link()
-    -- Get the line and find what's under the cursor
     local line = vim.api.nvim_get_current_line()
     local col = vim.api.nvim_win_get_cursor(0)[2] + 1 -- Lua is 1-indexed
 
-    -- Search for [text](target) patterns in the current line
-    for label, target in line:gmatch("%[([^%]]+)%]%(([^%)]+)%)") do
-        -- Find the start and end positions of this specific link in the line
-        -- This ensures we only follow the link the cursor is actually ON
-        local pattern = vim.pesc("[" .. label .. "](" .. target .. ")")
-        local s, e = line:find(pattern)
-
-        if s and col >= s and col <= e then
-            open_link(target)
+    for _, link in ipairs(find_links(line)) do
+        if col >= link.s and col <= link.e then
+            open_link(link.target)
             return
         end
     end
@@ -323,23 +437,24 @@ function M.open_current_month()
     local year = os.date("%Y")
     local full_path = get_date_dir_path(year, month) .. "/"
     utils.debug("Current month folder: " .. full_path, "info")
-    vim.cmd('edit ' .. full_path)
+    vim.cmd('edit ' .. vim.fn.fnameescape(full_path))
 end
 
 -- Toggles checkboxes
 function M.toggle_checkbox()
     local line = vim.api.nvim_get_current_line()
     local row = vim.api.nvim_win_get_cursor(0)[1]
+    local indent = line:match("^(%s*)") or ""
     local new_line
 
-    if line:match("%- %[ %]") then
+    if line:match("^%s*%- %[ %]") then
         new_line = line:gsub("%- %[ %]", "- [x]", 1)
-    elseif line:match("%- %[x%]") then
-        new_line = line:gsub("%- %[x%]", "- [ ]", 1)
-    elseif line:match("%- ") then
+    elseif line:match("^%s*%- %[[xX]%]") then
+        new_line = line:gsub("%- %[[xX]%]", "- [ ]", 1)
+    elseif line:match("^%s*%- ") then
         new_line = line:gsub("%- ", "- [ ] ", 1)
     else
-        new_line = "- [ ] " .. line
+        new_line = indent .. "- [ ] " .. line:sub(#indent + 1)
     end
 
     vim.api.nvim_buf_set_lines(0, row - 1, row, true, { new_line })
@@ -350,18 +465,19 @@ function M.set_format_links_autocmd()
     vim.api.nvim_create_autocmd("FileType", {
         pattern = "markdown",
         callback = function()
-            -- Use vim.fn.matchadd for a more "Lua-friendly" way to add matches
-            -- This avoids the complex escaping issues of 'syntax match'
-            vim.fn.matchadd("Hyperlink", "https\\?://[^[:space:]]\\+")
-            vim.fn.matchadd("Hyperlink", "mailto:[^[:space:]]\\+")
+            -- matchadd is window-scoped; guard so re-entering the buffer
+            -- in the same window does not stack duplicate matches.
+            if not vim.w.neowiki_links_set then
+                vim.w.neowiki_links_set = true
+                vim.fn.matchadd("Hyperlink", "https\\?://[^[:space:]]\\+")
+                vim.fn.matchadd("Hyperlink", "mailto:[^[:space:]]\\+")
+            end
 
-            -- Set the color for the "Hyperlink" group
-            -- This links it to 'Underlined' but also sets a specific color for Edge
             vim.api.nvim_set_hl(0, "Hyperlink", {
                 fg = M.config.links_color,
-                underline = true
+                underline = true,
             })
-        end
+        end,
     })
 end
 
