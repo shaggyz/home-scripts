@@ -4,12 +4,27 @@ Personal Neovim plugin (Lua). WIP. VimWiki-lite: named markdown knowledge bases 
 
 ## Layout
 
-- `init.lua` — bootstrap: `setup()`, config merge, command/autocmd registration, public Lua API. No business logic.
-- `wiki.lua` — diary + markdown helpers (commands `WikiToday`, `WikiCreateLink`, etc.) and `M.config` defaults.
-- `knowledge_base.lua` — knowledge-base registry + resolution. Backs `WikiFind`/`WikiGrep`/`WikiOpen`/`WikiSelect` and the Lua API.
-- `pickers.lua` — picker backend shims (telescope / fzf-lua / snacks / mini / `vim.ui` fallback). No hard deps.
-- `utils.lua` — pure helpers: `slugify`, `debug`, date math, workday helpers, path builders.
-- `README.md` — user-facing notes.
+Standard Neovim plugin layout (repo root = this directory):
+
+```
+neowiki/
+├── lua/
+│   └── neowiki/
+│       ├── init.lua            -- bootstrap: setup(), commands, public Lua API
+│       ├── wiki.lua            -- diary + markdown helpers + M.config defaults
+│       ├── knowledge_base.lua  -- KB registry; backs WikiFind/Grep/Open/Select
+│       ├── pickers.lua         -- picker backend shims (no hard deps)
+│       └── utils.lua           -- pure helpers (slugify, dates, paths)
+├── doc/neowiki.txt             -- vim help (placeholder; :helptags doc/ regenerates tags)
+├── .gitignore
+├── .luarc.json                 -- lua-language-server config (recognizes `vim`)
+├── stylua.toml                 -- formatter config (4-space, double quotes)
+├── CLAUDE.md
+└── README.md                   -- user-facing notes (TBD)
+```
+
+No `plugin/` directory: the plugin requires explicit `require("neowiki").setup({...})`.
+Compatible with lazy.nvim / packer / vim-plug / mini.deps out of the box — they only need a git repo.
 
 ## Architecture
 
@@ -63,6 +78,7 @@ Knowledge base: `WikiFind [name]`, `WikiGrep [name]`, `WikiOpen [name]`, `WikiSe
 
 ## Open TODOs (from README + code)
 
-- Restructure as redistributable plugin; publish.
+- Publish (push to GitHub as a standalone repo; layout is already plugin-shaped).
 - Inter-wiki links (e.g. `[label](work:notes/foo.md)`).
 - Tag/backlink index.
+- Flesh out `README.md` and `doc/neowiki.txt` once the API is stable.
