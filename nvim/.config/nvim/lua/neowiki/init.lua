@@ -1,10 +1,21 @@
 local wiki = require("neowiki.wiki")
+local kb = require("neowiki.knowledge_base")
 local utils = require("neowiki.utils")
 
 local M = {}
 
 -- Expose config so callers can read/write `require("neowiki").config`
 M.config = wiki.config
+
+local function complete_wiki(arglead)
+    local out = {}
+    for _, name in ipairs(kb.names()) do
+        if arglead == "" or name:find(arglead, 1, true) == 1 then
+            table.insert(out, name)
+        end
+    end
+    return out
+end
 
 -- Main plugin setup
 function M.setup(user_config)
@@ -14,18 +25,13 @@ function M.setup(user_config)
         wiki.config[key] = value
     end
 
-    -- Check if the needed directories are there
-    if vim.fn.isdirectory(wiki.config.wiki_directory) == 0 then
-        if wiki.config.auto_create_wiki_directory == true then
-            local wiki_path = vim.fn.expand(wiki.config.wiki_directory)
-            vim.fn.mkdir(wiki_path, "p")
-        else
-            utils.debug("Not enabled, missing wiki directory: " .. wiki.config.wiki_directory, "error")
-            return
-        end
+    -- Build the knowledge-base registry (also handles backwards-compat for
+    -- the legacy single `wiki_directory` config).
+    if not kb.configure(wiki.config) then
+        return
     end
 
-    -- Export the plugin functions as NeoVim commands
+    -- Daily TODO + markdown helper commands (diary wiki)
     vim.api.nvim_create_user_command("WikiCreateLink", wiki.create_link, {})
     vim.api.nvim_create_user_command("WikiToday", wiki.open_today, {})
     vim.api.nvim_create_user_command("WikiYesterday", wiki.open_yesterday, {})
@@ -35,8 +41,27 @@ function M.setup(user_config)
     vim.api.nvim_create_user_command("WikiFollowLink", wiki.follow_link, {})
     vim.api.nvim_create_user_command("WikiToggleCheckBox", wiki.toggle_checkbox, {})
 
+    -- Named knowledge-base commands
+    vim.api.nvim_create_user_command("WikiFind", function(opts)
+        kb.find_files(opts.fargs[1])
+    end, { nargs = "?", complete = complete_wiki })
+
+    vim.api.nvim_create_user_command("WikiGrep", function(opts)
+        kb.live_grep(opts.fargs[1])
+    end, { nargs = "?", complete = complete_wiki })
+
+    vim.api.nvim_create_user_command("WikiOpen", function(opts)
+        kb.open_wiki(opts.fargs[1])
+    end, { nargs = "?", complete = complete_wiki })
+
+    vim.api.nvim_create_user_command("WikiSelect", function(opts)
+        kb.select_wiki(opts.fargs[1])
+    end, {
+        nargs = "?",
+        complete = function() return { "find_files", "live_grep", "open" } end,
+    })
+
     -- Optional features
-    -- Format links and URLs
     if wiki.config.format_links then
         wiki.set_format_links_autocmd()
     end
@@ -46,12 +71,21 @@ function M.setup(user_config)
         pattern = "markdown",
         callback = function()
             vim.keymap.set('n', 'gf', wiki.follow_link, { buffer = true, desc = "Follow Wiki Link" })
-        end
+        end,
     })
 
     if wiki.config.debug then
-        utils.debug("Started: " .. wiki.config.wiki_directory)
+        local diary = kb.diary_name() or "<none>"
+        utils.debug("Started. Wikis: " .. table.concat(kb.names(), ", ") .. " | diary=" .. diary)
     end
 end
+
+-- Public Lua API for keymap wiring
+function M.find_files(name, opts) return kb.find_files(name, opts) end
+function M.live_grep(name, opts)  return kb.live_grep(name, opts) end
+function M.open_wiki(name)        return kb.open_wiki(name) end
+function M.select_wiki(action)    return kb.select_wiki(action) end
+function M.path(name)             return kb.path(name) end
+function M.list()                 return kb.list() end
 
 return M

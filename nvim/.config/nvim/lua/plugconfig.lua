@@ -237,6 +237,7 @@ require("neowiki").setup({
     debug = false,
     wiki_directory = "~/Nextcloud/Notes",
     reuse_previous_day = true,
+    weekdays_only = true,
 })
 
 

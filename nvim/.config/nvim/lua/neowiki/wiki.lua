@@ -6,24 +6,61 @@ local M = {}
 M.config = {
     -- Enable debug flag
     debug = false,
-    -- Main directory to store the wiki/markdown files
+    -- Legacy single-wiki directory. Still honored as a backwards-compat shim:
+    -- if `wikis` is not provided, knowledge_base.lua synthesizes `wikis.default` from this.
     wiki_directory = "~/Notes",
-    -- Auto-create the main wiki directory if it's missing
+    -- Named knowledge bases. Example:
+    --   wikis = {
+    --     diary    = { path = "~/Notes", diary = true },
+    --     personal = { path = "~/Nextcloud/VimWiki/personal" },
+    --   }
+    wikis = nil,
+    -- Name of the wiki used when commands/API are called without an explicit one.
+    -- Defaults to the diary wiki, then to the first registered name.
+    default_wiki = nil,
+    -- Picker backend: "auto" | "telescope" | "fzf-lua" | "snacks" | "mini" | "vim_ui"
+    picker = "auto",
+    -- Auto-create wiki directories on setup if they're missing
     auto_create_wiki_directory = true,
     -- Reuse the previous day contents as template in the new created daily entries
     reuse_previous_day = true,
+    -- Treat Mon-Fri as the only valid wiki days: navigation skips weekends
+    -- (Monday's "yesterday" is Friday) and reuse_previous_day pulls from the
+    -- last workday rather than literal yesterday.
+    weekdays_only = false,
     -- Format URL and links
     format_links = true,
     -- URL and links color (only applicable if format_links=true)
     links_color = "#6cb6eb",
 }
 
+-- Diary file paths derive from the registered diary wiki at call time so that
+-- runtime config changes (and the knowledge_base.lua backwards-compat shim) flow through.
+local function diary_base()
+    local kb = require("neowiki.knowledge_base")
+    return kb.diary_path() or M.config.wiki_directory
+end
+
 local function get_date_file_path(year, month, date)
-    return utils.date_file_path(M.config.wiki_directory, year, month, date)
+    return utils.date_file_path(diary_base(), year, month, date)
 end
 
 local function get_date_dir_path(year, month)
-    return utils.date_dir_path(M.config.wiki_directory, year, month)
+    return utils.date_dir_path(diary_base(), year, month)
+end
+
+-- Previous day relative to `current_date` (YYYY-MM-DD), honoring weekdays_only.
+-- Falls back to "now" semantics if current_date can't be parsed.
+local function previous_day_of(current_date)
+    local base = utils.date_to_timestamp(current_date)
+    if M.config.weekdays_only then
+        return utils.get_previous_workday(base)
+    end
+    if base then
+        local ts = base - 86400
+        return os.date("%Y-%m-%d", ts), os.date("%m", ts), os.date("%Y", ts)
+    end
+    return utils.get_yesterday_date()
 end
 
 -- Returns the default template contents
@@ -31,8 +68,8 @@ local function get_default_template(date)
     return string.format("# TODO %s\n\n- [ ] Task", date)
 end
 
-local function reuse_yesterday_template(current_date)
-    local yd_date, month, year = utils.get_yesterday_date()
+local function reuse_previous_template(current_date)
+    local yd_date, month, year = previous_day_of(current_date)
     local yd_path = get_date_file_path(year, month, yd_date)
     local expanded_yd_path = vim.fn.expand(yd_path)
 
@@ -86,7 +123,7 @@ local function get_or_create_daily_todo_file(date, month, year)
 
         local template = ""
         if M.config.reuse_previous_day then
-            template = reuse_yesterday_template(date)
+            template = reuse_previous_template(date)
         else
             template = get_default_template(date)
         end
@@ -108,14 +145,26 @@ function M.open_today()
 end
 
 -- Creates and opens the daily TODO file for yesterday
+-- (last workday when weekdays_only is enabled)
 function M.open_yesterday()
-    local date, month, year = utils.get_yesterday_date()
+    local date, month, year
+    if M.config.weekdays_only then
+        date, month, year = utils.get_previous_workday()
+    else
+        date, month, year = utils.get_yesterday_date()
+    end
     get_or_create_daily_todo_file(date, month, year)
 end
 
 -- Creates and opens the daily TODO file for tomorrow
+-- (next workday when weekdays_only is enabled)
 function M.open_tomorrow()
-    local date, month, year = utils.get_tomorrow_date()
+    local date, month, year
+    if M.config.weekdays_only then
+        date, month, year = utils.get_next_workday()
+    else
+        date, month, year = utils.get_tomorrow_date()
+    end
     get_or_create_daily_todo_file(date, month, year)
 end
 
