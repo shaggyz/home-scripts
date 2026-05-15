@@ -231,10 +231,11 @@ vim.g.strip_whitespace_confirm = 0
 
 -- NeoWiki -----------------------------------------------------------------------------------------
 
--- files at: ~/.config/nvim/lua/neowiki/init.lua
+-- files at: ~/.config/nvim/lua/neowiki/
+
+vim.opt.rtp:prepend(vim.fn.expand("~/.config/nvim/lua/neowiki"))
 
 require("neowiki").setup({
-    debug = false,
     wiki_directory = "~/Nextcloud/Notes",
     reuse_previous_day = true,
     weekdays_only = true,
