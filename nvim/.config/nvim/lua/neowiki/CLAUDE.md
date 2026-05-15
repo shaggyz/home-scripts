@@ -4,13 +4,16 @@ Personal Neovim plugin (Lua). WIP. VimWiki-lite for one Markdown knowledge base 
 
 ## Layout
 
-- `init.lua` — entire plugin: config, commands, autocmds.
-- `wiki.lua` — empty stub.
+- `init.lua` — bootstrap: `setup()`, config merge, user-command + autocmd registration. No business logic.
+- `wiki.lua` — plugin logic + `M.config` defaults. All `Wiki*` command callbacks live here.
+- `utils.lua` — pure helpers: `slugify`, `debug`, date math (`get_yesterday_date`/`get_tomorrow_date`/`get_relative_date`), path builders (`date_file_path`, `date_dir_path`).
 - `README.md` — user-facing notes.
 
 ## Architecture
 
-Single module `neowiki` returned from `init.lua`. `neowiki.setup(user_config)` merges config, ensures `wiki_directory` exists, registers user commands + a `markdown` FileType autocmd for `gf` link follow.
+`init.lua` returns module exposing `setup(user_config)` and re-exports `config` (shared table with `wiki.config`). Setup merges config, ensures `wiki_directory` exists, registers commands + `markdown` FileType autocmd for `gf` link follow.
+
+`wiki.lua` owns config and all behavior; requires `neowiki.utils`. Path builders wrap `utils.date_file_path` / `utils.date_dir_path` with `M.config.wiki_directory`. `utils.lua` has no config dependency — all wiki paths are passed in.
 
 Daily files: `<wiki_directory>/YYYY/MM/YYYY-MM-DD.md`. New file uses yesterday's content minus the date header and minus completed `- [x]` tasks (if `reuse_previous_day=true`), else default `# TODO <date>` template.
 
