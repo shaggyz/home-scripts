@@ -46,3 +46,6 @@ vim.g.neovide_cursor_smooth_blink = true
 -- Short animation for cursor
 vim.g.neovide_cursor_short_animation_length = 0.03
 
+-- Fix for Coc crypto library
+-- Force coc.nvim to use the experimental flag when it starts Node
+vim.g.coc_node_args = {'--experimental-global-webcrypto'}
