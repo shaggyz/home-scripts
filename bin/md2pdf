@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+
+# -----------------------------------------------------------------------------
+# Script: md2pdf
+# Description: Converts Markdown files to PDF using Pandoc and Tectonic.
+# Dependencies: brew install pandoc tectonic
+# -----------------------------------------------------------------------------
+
+# 1. Validate Input Parameter
+if [ -z "$1" ]; then
+    echo "Usage: $0 <input_file.md> [output_file] [format]"
+    exit 1
+fi
+
+INPUT_FILE="$1"
+
+# Check if input file exists
+if [ ! -f "$INPUT_FILE" ]; then
+    echo "❌ Error: Input file '$INPUT_FILE' not found."
+    exit 1
+fi
+
+# 2. Set Format (Default: pdf)
+FORMAT="${3:-pdf}"
+FORMAT=$(echo "$FORMAT" | tr '[:upper:]' '[:lower:]')
+
+# 3. Set Output File
+if [ -n "$2" ]; then
+    OUTPUT_FILE="$2"
+else
+    BASENAME=$(basename "$INPUT_FILE")
+    FILENAME="${BASENAME%.*}"
+    OUTPUT_FILE="${FILENAME}.${FORMAT}"
+fi
+
+# 4. Verify Tectonic is installed (if format is PDF)
+if [ "$FORMAT" == "pdf" ]; then
+    if ! command -v tectonic >/dev/null 2>&1; then
+        echo "❌ Error: 'tectonic' is not installed."
+        echo "Please run: brew install tectonic"
+        exit 1
+    fi
+fi
+
+echo "🔄 Converting '$INPUT_FILE' to '$FORMAT'..."
+
+# Execute Pandoc
+if [ "$FORMAT" == "pdf" ]; then
+    # Tectonic downloads any required LaTeX packages automatically on the fly
+    pandoc "$INPUT_FILE" \
+        -o "$OUTPUT_FILE" \
+        --syntax-highlighting=tango \
+        --pdf-engine=tectonic \
+        -V geometry:margin=1in \
+        -V colorlinks=true \
+        -V linkcolor=blue
+else
+    pandoc "$INPUT_FILE" \
+        -o "$OUTPUT_FILE" \
+        --syntax-highlighting=tango
+fi
+
+# Check if the command succeeded
+if [ $? -eq 0 ]; then
+    echo "✅ Success! File saved to: $OUTPUT_FILE"
+else
+    echo "❌ Conversion failed."
+    exit 1
+fi
