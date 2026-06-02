@@ -81,3 +81,31 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.expandtab = true
     end
 })
+
+-- md2pdf
+
+vim.api.nvim_create_user_command('Md2Pdf', function()
+    -- Get the absolute path of the current buffer
+    local input_file = vim.fn.expand('%:p')
+
+    if input_file == '' then
+        print('❌ Error: No file in the current buffer.')
+        return
+    end
+
+    -- Get the filename without the extension
+    local base_name = vim.fn.expand('%:t:r')
+
+    -- Construct the output path
+    local output_file = '~/Downloads/' .. base_name .. '.pdf'
+
+    -- Build and execute the shell command
+    -- Note: Replace 'md2pdf' with the absolute path (e.g., '~/bin/md2pdf') if it's not in your system PATH
+    local cmd = string.format('!md2pdf %s %s', vim.fn.shellescape(input_file), vim.fn.shellescape(output_file))
+
+    print('🔄 Converting to PDF...')
+    vim.cmd(cmd)
+end, { desc = 'Convert current markdown file to PDF in ~/Downloads' })
+
+-- Map <leader>pf to run the :Md2Pdf command
+vim.keymap.set('n', '<leader>pf', ':Md2Pdf<CR>', { noremap = true, silent = true, desc = 'Convert MD to PDF' })
