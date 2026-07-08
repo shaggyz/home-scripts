@@ -33,6 +33,9 @@ man() {
 # Bash tools
 [ -f ~/.bash_tools ] && source ~/.bash_tools
 
+# Claude bash
+[ -f ~/.bash_claude ] && source ~/.bash_claude
+
 # Poetry
 export PATH="~/.local/bin:$PATH"
 

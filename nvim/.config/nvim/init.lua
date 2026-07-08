@@ -101,7 +101,8 @@ vim.api.nvim_create_user_command('Md2Pdf', function()
 
     -- Build and execute the shell command
     -- Note: Replace 'md2pdf' with the absolute path (e.g., '~/bin/md2pdf') if it's not in your system PATH
-    local cmd = string.format('!md2pdf %s %s', vim.fn.shellescape(input_file), vim.fn.shellescape(output_file))
+    local cmd = string.format('!/Users/shaggyz/bin/md2pdf %s %s', vim.fn.shellescape(input_file),
+        vim.fn.shellescape(output_file))
 
     print('🔄 Converting to PDF...')
     vim.cmd(cmd)
