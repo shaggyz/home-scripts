@@ -122,6 +122,13 @@ if [ `uname` == "Darwin" ]; then
     # Brew man pages
     export MANPATH=/opt/homebrew/share/man
 
+    # PyCharm's built-in terminal derives LANG from AppleLocale (en_ES —
+    # invalid, no matching installed locale) and leaves it blank, which trips
+    # bash-completion's internal setlocale reset (LC_COLLATE warning below).
+    # Must be set before bash-completion loads. WezTerm doesn't do this.
+    export LANG=en_US.UTF-8
+    export LC_ALL=en_US.UTF-8
+
     # Homebrew
     export HOMEBREW_NO_ENV_HINTS=1
     if type brew &>/dev/null
