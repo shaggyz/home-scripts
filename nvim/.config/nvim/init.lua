@@ -96,12 +96,15 @@ vim.api.nvim_create_user_command('Md2Pdf', function()
     -- Get the filename without the extension
     local base_name = vim.fn.expand('%:t:r')
 
-    -- Construct the output path
-    local output_file = '~/Downloads/' .. base_name .. '.pdf'
+    -- Construct the output path, expanding ~ to the real home dir
+    local output_file = vim.fn.expand('~/Downloads/' .. base_name .. '.pdf')
 
-    -- Build and execute the shell command
-    -- Note: Replace 'md2pdf' with the absolute path (e.g., '~/bin/md2pdf') if it's not in your system PATH
-    local cmd = string.format('!/Users/shaggyz/bin/md2pdf %s %s', vim.fn.shellescape(input_file),
+    -- Expand the md2pdf binary path too, so it's not hardcoded
+    local md2pdf_bin = vim.fn.expand('~/bin/md2pdf')
+
+    local cmd = string.format('!%s %s %s',
+        vim.fn.shellescape(md2pdf_bin),
+        vim.fn.shellescape(input_file),
         vim.fn.shellescape(output_file))
 
     print('🔄 Converting to PDF...')
