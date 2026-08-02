@@ -46,11 +46,11 @@ local function create_work_workspace(window, pane)
     tab:set_title('📦 LDD')
     ldd_pane:split { direction = 'Right', size = 0.5, cwd = ldd_dir }
 
-    -- Tab 2: DocID
-    local docid_dir = wezterm.home_dir .. '/Development/docid/veeva-docid-api'
-    local tab2, docid_pane, _ = new_window:spawn_tab { cwd = docid_dir }
-    tab2:set_title('🪪 DocID')
-    docid_pane:split { direction = 'Right', size = 0.5, cwd = docid_dir }
+    -- Tab 2: LDD 2
+    local ldd2_dir = wezterm.home_dir .. '/Development/direct-data/link-direct-data-2'
+    local tab2, ldd2_pane, _ = new_window:spawn_tab { cwd = ldd2_dir }
+    tab2:set_title('🪪 LDD 2')
+    ldd2_pane:split { direction = 'Right', size = 0.5, cwd = ldd2_dir }
 
     -- Tab 3: AWS
     local aws_dir = wezterm.home_dir .. '/Development/link/deploycfg'
@@ -69,11 +69,44 @@ local function create_work_workspace(window, pane)
     tab5:set_title('🧿 osiris')
     osiris_pane:split { direction = 'Right', size = 0.5, cwd = wezterm.home_dir }
 
-    -- Tab 6: onyx
-    local hal_dir = wezterm.home_dir .. '/Downloads'
-    local tab6, hal_pane, _ = new_window:spawn_tab { cwd = hal_dir }
-    tab6:set_title('🖲️ hal')
-    hal_pane:split { direction = 'Right', size = 0.5, cwd = hal_dir }
+    -- Focus back on the first tab
+    tab:activate()
+end
+
+
+-- Function to build the 'Side' workspace
+local function create_side_workspace(window, pane)
+    local workspace_name = 'side'
+
+    -- If it already exists, just switch to it
+    local active_workspaces = wezterm.mux.get_workspace_names()
+    for _, name in ipairs(active_workspaces) do
+        if name == workspace_name then
+            window:perform_action(wezterm.action.SwitchToWorkspace { name = workspace_name }, pane)
+            return
+        end
+    end
+
+    -- Otherwise, create the layout
+    local project_dir = wezterm.home_dir .. '/Development/personal/time-view'
+
+    -- Tab 1: coding
+    local tab, project_pane, new_window = mux.spawn_window { workspace = workspace_name, cwd = project_dir }
+    tab:set_title('📦 Coding')
+    local right_pane = project_pane:split { direction = 'Right', size = 0.5, cwd = project_dir }
+    right_pane:split { direction = 'Bottom', size = 0.2, cwd = project_dir }
+
+    -- Tab 2: References
+    local ldd2_dir = wezterm.home_dir .. '/Development/work/link-direct-data'
+    local tab2, ldd2_pane, _ = new_window:spawn_tab { cwd = ldd2_dir }
+    tab2:set_title('🪪 References')
+    ldd2_pane:split { direction = 'Right', size = 0.5, cwd = ldd2_dir }
+
+    -- Tab 3: osiris
+    local tab3, osiris_pane, _ = new_window:spawn_tab { cwd = wezterm.home_dir }
+    tab3:set_title('🧿 osiris')
+    osiris_pane:split { direction = 'Right', size = 0.5, cwd = wezterm.home_dir }
+
     -- Focus back on the first tab
     tab:activate()
 end
@@ -106,6 +139,7 @@ config.keys = {
     { key = 'l',     mods = 'SHIFT|' .. key_mod,           action = act.ActivateTabRelative(1) },
     { key = 'h',     mods = 'SHIFT|' .. key_mod,           action = act.ActivateTabRelative(-1) },
     { key = 'w',     mods = 'SHIFT|' .. key_mod,           action = wezterm.action_callback(create_work_workspace) },
+    { key = 's',     mods = 'SHIFT|' .. key_mod,           action = wezterm.action_callback(create_side_workspace) },
     { key = 'l',     mods = key_mod,                       action = act.ActivatePaneDirection 'Right' },
     { key = 'h',     mods = key_mod,                       action = act.ActivatePaneDirection 'Left' },
     { key = 'k',     mods = key_mod,                       action = act.ActivatePaneDirection 'Up' },
