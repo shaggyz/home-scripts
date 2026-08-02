@@ -146,6 +146,9 @@ if [ `uname` == "Darwin" ]; then
 
     [[ -r "$HB/etc/profile.d/bash_completion.sh" ]] && . "$HB/etc/profile.d/bash_completion.sh"
 
+    # Enure homebrew prio on path
+    export PATH="$PATH:/opt/homebrew/bin"
+
 fi
 
 
