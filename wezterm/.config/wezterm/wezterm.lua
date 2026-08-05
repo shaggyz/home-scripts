@@ -93,7 +93,6 @@ local function create_side_workspace(window, pane)
     -- Tab 1: coding
     local tab, project_pane, new_window = mux.spawn_window { workspace = workspace_name, cwd = project_dir }
     tab:set_title('📦 Coding')
-    project_pane:split { direction = 'Bottom', size = 0.1, cwd = project_dir }
 
     local right_pane = project_pane:split { direction = 'Right', size = 0.5, cwd = project_dir }
     right_pane:split { direction = 'Bottom', size = 0.2, cwd = project_dir }
