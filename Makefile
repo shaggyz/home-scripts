@@ -32,7 +32,7 @@ linux: unix ## Links dotfiles only related to GNU/Linux
 	$(STOW) x11
 
 macos: unix ## Links macOS dotfiles
-	$(STOW) nvim-macos
+	$(STOW) --adopt nvim-macos
 
 windows: unix  ## Some WSL dotfiles
 	$(STOW) bash-wsl
