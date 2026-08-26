@@ -220,7 +220,7 @@ function _G.check_back_space()
     return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
 end
 
-vim.g.coc_node_path = "/opt/homebrew/opt/node@18/bin/node"
+vim.g.coc_node_path = "/opt/homebrew/opt/node@22/bin/node"
 
 -- Better Whitespace -------------------------- https://github.com/ntpeters/vim-better-whitespace --
 
