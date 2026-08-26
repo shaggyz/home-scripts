@@ -80,9 +80,9 @@ if [ `uname` == "Darwin" ]; then
     esac
 
     # nodejs installed with brew (not automatic linking for this package)
-    export PATH="$HB/opt/node@18/bin:$PATH"
-    export LDFLAGS="-L$HB/opt/node@18/lib"
-    export CPPFLAGS="-I$HB/opt/node@18/include"
+    export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
+    export LDFLAGS="-L/opt/homebrew/opt/node@22/lib"
+    export CPPFLAGS="-I/opt/homebrew/opt/node@22/include"
 
     # needed to tell CoC where the crypto module is (JS kids getting some fun...)
     export NODE_OPTIONS="--experimental-global-webcrypto"
@@ -93,9 +93,9 @@ if [ `uname` == "Darwin" ]; then
     export CMAKE_PREFIX_PATH=$QT_PATH/lib/cmake:$CMAKE_PREFIX_PATH
 
     # Generic paths for versioned packages
-    NODE_BIN=$(brew --prefix node)/bin
-    PYTHON_BIN=$(brew --prefix python)/libexec/bin
-    export PATH="$PATH:$PYTHON_BIN:$NODE_BIN"
+    # NODE_BIN=$(brew --prefix node)/bin
+    # PYTHON_BIN=$(brew --prefix python)/libexec/bin
+    # export PATH="$PATH:$PYTHON_BIN:$NODE_BIN"
 
     # current machine scripts and binaries
     if [ -d ~/bin ]; then
