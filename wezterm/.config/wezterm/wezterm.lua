@@ -47,7 +47,7 @@ local function create_work_workspace(window, pane)
     ldd_pane:split { direction = 'Right', size = 0.5, cwd = ldd_dir }
 
     -- Tab 2: LDD 2
-    local ldd2_dir = wezterm.home_dir .. '/Development/direct-data/link-direct-data-2'
+    local ldd2_dir = wezterm.home_dir .. '/Development/direct-data/link-direct-data_2'
     local tab2, ldd2_pane, _ = new_window:spawn_tab { cwd = ldd2_dir }
     tab2:set_title('🪪 LDD 2')
     ldd2_pane:split { direction = 'Right', size = 0.5, cwd = ldd2_dir }
