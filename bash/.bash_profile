@@ -71,15 +71,23 @@ if [ `uname` == "Darwin" ]; then
     # Fuck apple using zsh as default
     export BASH_SILENCE_DEPRECATION_WARNING=1
 
-    # Change the horrible name my company put to the work laptop
-    REGISTERED_NAMES=("foxy" "apollo")
-    MACHINE_NAME=$(hostname | cut -d'.' -f1 | tr '[:upper:]' '[:lower:]')
+    # Machine names
+    RAW_HOSTNAME=$(hostname -s | tr '[:upper:]' '[:lower:]')
 
-    case " ${REGISTERED_NAMES[*]} " in
-      *" $MACHINE_NAME "*)
+    # Map the machine name
+    case "$RAW_HOSTNAME" in
+      "eu-cg42tqpw3j")
+        MACHINE_NAME="osiris"
+        ;;
+      "eu-xt4g2cxqh0")
+        MACHINE_NAME="zeus"
+        ;;
+      "foxy"|"apollo")
+        MACHINE_NAME="$RAW_HOSTNAME"
         ;;
       *)
-        MACHINE_NAME="osiris"
+        # Fallback for new machines
+        MACHINE_NAME="$RAW_HOSTNAME"
         ;;
     esac
 
