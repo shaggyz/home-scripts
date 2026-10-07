@@ -4,7 +4,7 @@ export PATH="$PATH:/Users/shaggyz/.docker/bin"
 
 export EDITOR=nvim
 export VISUAL=nvim
-export BROWSER=firefox
+# export BROWSER=firefox
 export TERM=xterm-256color
 
 # Prompt
