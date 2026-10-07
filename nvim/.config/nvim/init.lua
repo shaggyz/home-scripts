@@ -82,6 +82,17 @@ vim.api.nvim_create_autocmd("FileType", {
     end
 })
 
+-- JSON indents with 2 spaces; everything else keeps the global 4 (lua/editor.lua)
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "json", "jsonc" },
+    callback = function()
+        vim.opt_local.shiftwidth = 2
+        vim.opt_local.tabstop = 2
+        vim.opt_local.softtabstop = 2
+        vim.opt_local.expandtab = true
+    end
+})
+
 -- md2pdf
 
 vim.api.nvim_create_user_command('Md2Pdf', function()
