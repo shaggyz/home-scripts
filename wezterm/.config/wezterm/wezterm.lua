@@ -65,9 +65,10 @@ local function create_work_workspace(window, pane)
     data_pane:split { direction = 'Right', size = 0.5, cwd = data_dir }
 
     -- Tab 5: osiris
-    local tab5, osiris_pane, _ = new_window:spawn_tab { cwd = wezterm.home_dir }
+    local project_dir = wezterm.home_dir .. '/Development/personal/opus'
+    local tab5, osiris_pane, _ = new_window:spawn_tab { cwd = project_dir }
     tab5:set_title('🧿 osiris')
-    osiris_pane:split { direction = 'Right', size = 0.5, cwd = wezterm.home_dir }
+    osiris_pane:split { direction = 'Right', size = 0.5, cwd = project_dir }
 
     -- Focus back on the first tab
     tab:activate()
